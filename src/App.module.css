@@ -1,0 +1,4 @@
+/* Lobotomized owl: consistent section spacing */
+.app > * + * {
+  margin-top: 0;
+}

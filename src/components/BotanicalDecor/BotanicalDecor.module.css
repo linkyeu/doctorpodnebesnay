@@ -1,0 +1,33 @@
+.decor {
+  position: absolute;
+  pointer-events: none;
+  color: var(--color-primary);
+  z-index: 0;
+  animation: floatSlow 8s ease-in-out infinite;
+}
+
+.leaf-1 {
+  width: 60px;
+  height: 80px;
+}
+
+.leaf-2 {
+  width: 50px;
+  height: 70px;
+}
+
+.branch {
+  width: 120px;
+  height: 40px;
+}
+
+.stem {
+  width: 20px;
+  height: 120px;
+}
+
+@media (max-width: 480px) {
+  .decor {
+    display: none;
+  }
+}

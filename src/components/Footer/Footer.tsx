@@ -1,0 +1,72 @@
+import styles from './Footer.module.css';
+
+export default function Footer() {
+  return (
+    <footer className={styles.footer}>
+      {/* Botanical separator */}
+      <div className={styles.separator} aria-hidden="true">
+        <svg width="200" height="20" viewBox="0 0 200 20" fill="none">
+          <path
+            d="M0 10C30 10 40 4 60 4C80 4 85 10 100 10C115 10 120 4 140 4C160 4 170 10 200 10"
+            stroke="currentColor"
+            strokeWidth="1"
+            opacity="0.25"
+          />
+          <circle cx="60" cy="4" r="2.5" fill="currentColor" opacity="0.1" />
+          <circle cx="100" cy="10" r="3" fill="currentColor" opacity="0.12" />
+          <circle cx="140" cy="4" r="2.5" fill="currentColor" opacity="0.1" />
+        </svg>
+      </div>
+
+      <div className={styles.container}>
+        <div className={styles.main}>
+          <p className={styles.name}>Др. Люба</p>
+          <p className={styles.tagline}>Науковий навігатор батьківства</p>
+        </div>
+
+        <div className={styles.social}>
+          <a
+            href="https://instagram.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.socialLink}
+            aria-label="Instagram"
+          >
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" strokeWidth="1.5" />
+              <circle cx="12" cy="12" r="5" stroke="currentColor" strokeWidth="1.5" />
+              <circle cx="18" cy="6" r="1" fill="currentColor" />
+            </svg>
+          </a>
+          <a
+            href="https://t.me/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.socialLink}
+            aria-label="Telegram"
+          >
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path
+                d="M21 3L10 14M21 3l-7 18-4-8M21 3L3 11l7 3"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </a>
+        </div>
+
+        <div className={styles.bottom}>
+          <p className={styles.copyright}>
+            &copy; {new Date().getFullYear()} Др. Люба. Всі права захищені.
+          </p>
+          <p className={styles.disclaimer}>
+            Матеріали на цьому сайті мають інформаційний характер і не замінюють
+            індивідуальну консультацію лікаря.
+          </p>
+        </div>
+      </div>
+    </footer>
+  );
+}
