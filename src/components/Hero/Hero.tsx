@@ -2,12 +2,12 @@ import BotanicalDecor from '../BotanicalDecor/BotanicalDecor';
 import styles from './Hero.module.css';
 
 interface HeroProps {
-  onCtaClick: () => void;
+  ctaUrl: string;
 }
 
-export default function Hero({ onCtaClick }: HeroProps) {
+export default function Hero({ ctaUrl }: HeroProps) {
   return (
-    <section className={styles.hero}>
+    <section className={styles.hero} id="hero">
       <BotanicalDecor
         variant="leaf-1"
         style={{ top: '10%', right: '5%', animationDelay: '0s' }}
@@ -38,9 +38,15 @@ export default function Hero({ onCtaClick }: HeroProps) {
           Від народження до школи — навігатор для свідомих батьків.
         </p>
 
-        <button className={styles.cta} onClick={onCtaClick}>
-          Записатися на консультацію
-        </button>
+        <a
+          href={ctaUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={styles.cta}
+        >
+          Написати в Telegram
+          <span className="sr-only"> (відкриється в новій вкладці)</span>
+        </a>
 
         <p className={styles.subtitle}>
           Перша консультація — знайомство та план дій

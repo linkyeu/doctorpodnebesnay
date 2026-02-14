@@ -90,7 +90,7 @@ ul, ol {
   border-width: 0;
 }
 
-/* ─── Scroll lock for modal ─── */
-body.modal-open {
-  overflow: hidden;
+/* ─── Sticky header offset for anchor links ─── */
+section[id] {
+  scroll-margin-top: 72px;
 }

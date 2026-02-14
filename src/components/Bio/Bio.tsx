@@ -14,23 +14,11 @@ export default function Bio() {
         {/* Photo placeholder */}
         <div className={styles.photoWrapper}>
           <div className={styles.photo}>
-            <div className={styles.photoPlaceholder}>
-              <svg
-                width="80"
-                height="80"
-                viewBox="0 0 80 80"
-                fill="none"
-                aria-hidden="true"
-              >
-                <circle cx="40" cy="30" r="14" stroke="currentColor" strokeWidth="1.5" />
-                <path
-                  d="M16 68c0-13.255 10.745-24 24-24s24 10.745 24 24"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                />
-              </svg>
-              <span>Фото</span>
-            </div>
+            <img
+              src="/photo.jpg"
+              alt="Др. Люба — сімейний лікар"
+              className={styles.photoImg}
+            />
           </div>
           {/* Botanical frame decoration */}
           <svg

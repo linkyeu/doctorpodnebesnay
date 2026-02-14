@@ -1,3 +1,4 @@
+import { TELEGRAM_DM, INSTAGRAM } from '../../data/links';
 import styles from './Footer.module.css';
 
 export default function Footer() {
@@ -26,7 +27,7 @@ export default function Footer() {
 
         <div className={styles.social}>
           <a
-            href="https://instagram.com/"
+            href={INSTAGRAM}
             target="_blank"
             rel="noopener noreferrer"
             className={styles.socialLink}
@@ -39,7 +40,7 @@ export default function Footer() {
             </svg>
           </a>
           <a
-            href="https://t.me/"
+            href={TELEGRAM_DM}
             target="_blank"
             rel="noopener noreferrer"
             className={styles.socialLink}

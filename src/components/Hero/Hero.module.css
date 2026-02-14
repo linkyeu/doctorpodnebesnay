@@ -64,8 +64,7 @@
   background: var(--color-accent);
   padding: var(--space-4) var(--space-8);
   border-radius: var(--radius-full);
-  border: none;
-  cursor: pointer;
+  text-decoration: none;
   min-height: 52px;
   min-width: 44px;
   transition:
