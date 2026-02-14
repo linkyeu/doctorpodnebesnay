@@ -20,43 +20,12 @@ export default function Bio() {
               className={styles.photoImg}
             />
           </div>
-          {/* Botanical frame decoration */}
-          <svg
+          <img
+            src="/images/bio-frame.png"
+            alt=""
             className={styles.frame}
-            viewBox="0 0 300 300"
-            fill="none"
             aria-hidden="true"
-          >
-            <path
-              d="M30 150C30 80 80 30 150 30C220 30 270 80 270 150C270 220 220 270 150 270C80 270 30 220 30 150Z"
-              stroke="currentColor"
-              strokeWidth="1"
-              opacity="0.15"
-            />
-            <path
-              d="M20 150C20 74 74 20 150 20"
-              stroke="currentColor"
-              strokeWidth="0.8"
-              opacity="0.1"
-            />
-            <path
-              d="M150 280C226 280 280 226 280 150"
-              stroke="currentColor"
-              strokeWidth="0.8"
-              opacity="0.1"
-            />
-            {/* Small leaf accents */}
-            <path
-              d="M40 100C35 90 38 78 48 75C42 85 44 95 40 100Z"
-              fill="currentColor"
-              opacity="0.08"
-            />
-            <path
-              d="M260 200C265 210 262 222 252 225C258 215 256 205 260 200Z"
-              fill="currentColor"
-              opacity="0.08"
-            />
-          </svg>
+          />
         </div>
 
         {/* Text content */}
@@ -78,26 +47,7 @@ export default function Bio() {
           <ul className={styles.credentials}>
             {credentials.map((item) => (
               <li key={item} className={styles.credentialItem}>
-                <svg
-                  width="18"
-                  height="18"
-                  viewBox="0 0 18 18"
-                  fill="none"
-                  aria-hidden="true"
-                  className={styles.leafIcon}
-                >
-                  <path
-                    d="M9 16C9 16 3 11 3 7C3 3 9 1 9 1C9 1 15 3 15 7C15 11 9 16 9 16Z"
-                    fill="var(--color-primary)"
-                    opacity="0.2"
-                  />
-                  <path
-                    d="M9 14V3"
-                    stroke="var(--color-primary)"
-                    strokeWidth="1"
-                    opacity="0.4"
-                  />
-                </svg>
+                <span className={styles.dot} aria-hidden="true" />
                 {item}
               </li>
             ))}

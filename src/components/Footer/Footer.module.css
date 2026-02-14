@@ -4,10 +4,12 @@
 }
 
 .separator {
-  display: flex;
-  justify-content: center;
-  padding-bottom: var(--space-8);
-  color: var(--color-primary);
+  width: 80px;
+  height: 2px;
+  background: var(--color-primary-light);
+  opacity: 0.4;
+  margin: 0 auto var(--space-8);
+  border-radius: 1px;
 }
 
 .container {

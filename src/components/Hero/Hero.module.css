@@ -53,6 +53,12 @@
   max-width: 100%;
 }
 
+.illustration {
+  max-width: 280px;
+  height: auto;
+  margin: 0 auto var(--space-10);
+}
+
 .cta {
   display: inline-flex;
   align-items: center;

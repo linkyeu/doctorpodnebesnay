@@ -20,15 +20,20 @@ No test runner is configured.
 - React 19, TypeScript 5.9 (strict), Vite 7
 - CSS Modules for component styling, CSS custom properties for design tokens
 - Fonts: Fraunces (serif, headings) + Plus Jakarta Sans (sans-serif, body) via Google Fonts
-- Deployed on Netlify (Node 22, SPA fallback configured)
+
+## Deployment
+
+- **Live site:** https://doctorpidnebesna.com
+- Hosted on Netlify (Node 22, SPA fallback configured)
 
 ## Architecture
 
 Single-page app with these sections rendered sequentially in `App.tsx`:
 
-**Hero** → **Navigator** (tabbed age-group browser with SituationCards) → **Bio** → **Footer**, plus a **Modal** (portal-based booking dialog)
+**StickyHeader** (fixed, appears on scroll) → **Hero** → **Services** → **Navigator** (tabbed age-group browser with SituationCards) → **SocialProof** → **Bio** → **Footer**
 
 - `src/data/situations.ts` — All content data: 3 age groups × 3 myth/science pairs
+- `src/data/links.ts` — External URL constants (Telegram, Instagram)
 - `src/types/index.ts` — `Situation` and `AgeGroup` interfaces
 - `src/styles/variables.css` — Design tokens (colors, spacing, typography scale)
 - `src/styles/animations.css` — Keyframe animations, respects `prefers-reduced-motion`
@@ -48,6 +53,7 @@ Single-page app with these sections rendered sequentially in `App.tsx`:
 ## Accessibility
 
 - Navigator uses ARIA tablist with keyboard arrow-key navigation
-- Modal implements focus trap, focus restoration, Escape-to-close, renders via portal
+- StickyHeader uses `aria-hidden` when not visible
+- External link CTAs include sr-only hint text
 - Decorative SVGs marked `aria-hidden="true"`
 - `.sr-only` utility class available in global.css
