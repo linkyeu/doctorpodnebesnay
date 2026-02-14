@@ -1,4 +1,4 @@
-import BotanicalDecor from '../BotanicalDecor/BotanicalDecor';
+import DecorativeElements from '../DecorativeElements/DecorativeElements';
 import styles from './Hero.module.css';
 
 interface HeroProps {
@@ -8,18 +8,7 @@ interface HeroProps {
 export default function Hero({ ctaUrl }: HeroProps) {
   return (
     <section className={styles.hero} id="hero">
-      <BotanicalDecor
-        variant="leaf-1"
-        style={{ top: '10%', right: '5%', animationDelay: '0s' }}
-      />
-      <BotanicalDecor
-        variant="leaf-2"
-        style={{ bottom: '15%', left: '3%', animationDelay: '2s' }}
-      />
-      <BotanicalDecor
-        variant="stem"
-        style={{ top: '5%', left: '8%', animationDelay: '4s' }}
-      />
+      <DecorativeElements variant="hero" />
 
       <div className={styles.content}>
         <p className={styles.badge}>Сімейний лікар · 12 років досвіду</p>
@@ -37,6 +26,13 @@ export default function Hero({ ctaUrl }: HeroProps) {
           <br />
           Від народження до школи — навігатор для свідомих батьків.
         </p>
+
+        <img
+          src="/images/hero-illustration.png"
+          alt=""
+          className={styles.illustration}
+          aria-hidden="true"
+        />
 
         <a
           href={ctaUrl}

@@ -4,20 +4,7 @@ import styles from './Footer.module.css';
 export default function Footer() {
   return (
     <footer className={styles.footer}>
-      {/* Botanical separator */}
-      <div className={styles.separator} aria-hidden="true">
-        <svg width="200" height="20" viewBox="0 0 200 20" fill="none">
-          <path
-            d="M0 10C30 10 40 4 60 4C80 4 85 10 100 10C115 10 120 4 140 4C160 4 170 10 200 10"
-            stroke="currentColor"
-            strokeWidth="1"
-            opacity="0.25"
-          />
-          <circle cx="60" cy="4" r="2.5" fill="currentColor" opacity="0.1" />
-          <circle cx="100" cy="10" r="3" fill="currentColor" opacity="0.12" />
-          <circle cx="140" cy="4" r="2.5" fill="currentColor" opacity="0.1" />
-        </svg>
-      </div>
+      <div className={styles.separator} aria-hidden="true" />
 
       <div className={styles.container}>
         <div className={styles.main}>

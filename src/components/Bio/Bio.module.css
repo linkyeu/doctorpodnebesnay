@@ -1,5 +1,5 @@
 .bio {
-  padding: var(--space-20) var(--space-6);
+  padding: var(--space-24) var(--space-6);
   background: var(--color-bg-alt);
 }
 
@@ -26,7 +26,6 @@
   border-radius: var(--radius-full);
   overflow: hidden;
   background: var(--color-surface);
-  box-shadow: var(--shadow-md);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -44,7 +43,6 @@
   position: absolute;
   width: 300px;
   height: 300px;
-  color: var(--color-primary);
   animation: floatSlow 10s ease-in-out infinite;
 }
 
@@ -87,8 +85,12 @@
   font-weight: var(--weight-medium);
 }
 
-.leafIcon {
+.dot {
   flex-shrink: 0;
+  width: 6px;
+  height: 6px;
+  border-radius: var(--radius-full);
+  background: var(--color-primary);
 }
 
 @media (max-width: 768px) {
