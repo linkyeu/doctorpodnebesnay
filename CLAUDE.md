@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project
 
-Landing page for Dr. Luba — an evidence-based parenting consultant. Static React SPA, all content in Ukrainian.
+Landing page for Dr. Luba — a family doctor specializing in evidence-based parenting. Static React SPA, all content in Ukrainian.
 
 ## Commands
 
@@ -19,7 +19,7 @@ No test runner is configured.
 
 - React 19, TypeScript 5.9 (strict), Vite 7
 - CSS Modules for component styling, CSS custom properties for design tokens
-- Fonts: Fraunces (serif, headings) + Plus Jakarta Sans (sans-serif, body) via Google Fonts
+- Fonts: Playfair Display (serif, headings, full Cyrillic, variable 400-900) + Manrope (sans-serif, body, full Cyrillic) via Google Fonts
 
 ## Deployment
 
@@ -30,14 +30,19 @@ No test runner is configured.
 
 Single-page app with these sections rendered sequentially in `App.tsx`:
 
-**StickyHeader** (fixed, appears on scroll) → **Hero** → **Services** → **Navigator** (tabbed age-group browser with SituationCards) → **SocialProof** → **Bio** → **Footer**
+**StickyHeader** (fixed, glassmorphism, appears on scroll) → **Hero** (bg image + animated gradient mesh) → **TrustBadges** (infinite scrolling marquee) → **Services** (off-white bg) → **Navigator** (deep charcoal-navy `#111827`, tabbed age-group browser with SituationCards, fade transitions) → **SocialProof** (animated counter with spring reveal) → **Bio** → **FAQ** (accordion, off-white bg) → **Footer** (near-black navy `#0B1120`)
 
 - `src/data/situations.ts` — All content data: 3 age groups × 3 myth/science pairs
+- `src/data/faq.ts` — FAQ questions/answers in Ukrainian
 - `src/data/links.ts` — External URL constants (Telegram, Instagram)
 - `src/types/index.ts` — `Situation` and `AgeGroup` interfaces
-- `src/styles/variables.css` — Design tokens (colors, spacing, typography scale)
-- `src/styles/animations.css` — Keyframe animations, respects `prefers-reduced-motion`
-- `src/styles/global.css` — Reset, base typography, paper-texture background
+- `src/hooks/useScrollReveal.ts` — IntersectionObserver scroll-triggered reveal animations
+- `src/hooks/useCountUp.ts` — Animated number counter hook
+- `src/components/GradientMesh/` — Animated CSS gradient mesh background (floating blurred orbs)
+- `src/styles/variables.css` — Design tokens (colors, spacing, typography scale, shadows)
+- `src/styles/animations.css` — Keyframe animations (heroReveal, revealUp/Scale/Left/Right, meshFloat, marquee, counterReveal), respects `prefers-reduced-motion`
+- `src/styles/global.css` — Reset, base typography, scroll reveal utility classes
+- `public/images/navigator/` — 9 line-art illustration PNGs for SituationCards (Gemini-generated, matching services icon style)
 
 ## Mobile First
 
@@ -46,14 +51,24 @@ Single-page app with these sections rendered sequentially in `App.tsx`:
 ## Styling Conventions
 
 - Every component has a co-located `.module.css` file
-- Color palette: sage green (`#4A6741`), terracotta (`#C27B5C`), teal (`#5B8A8A`), warm beige background (`#FAF7F2`)
+- Color palette: near-white bg (`#FAFAF8`), off-white alt (`#F5F4F1`), deep teal-navy primary (`#1B3A4B`), warm amber accent (`#C8956C`, used sparingly)
+- Dark sections: Navigator (`#111827`), Footer (`#0B1120`)
 - Fluid typography via `clamp()`, 8px spacing grid (`--space-*` variables)
-- Botanical SVG decorations are inline in `BotanicalDecor` component
+- Rectangular dark buttons (`border-radius: 8px`, `--color-primary` bg), clean shadows (no glow)
+- Animated gradient mesh in Hero (CSS pseudo-elements with `meshFloat` keyframes)
+- TrustBadges as infinite CSS marquee (duplicated content for seamless loop)
+- Varied scroll reveal animations: revealUp, revealScale, revealLeft, revealRight
+- Navigator tab switch: fade out → swap content → fade in with staggered card reveals
+- SituationCard illustrations: radial-gradient mask for soft edge fade, `scale(1.06)` hover, lazy-loaded with emoji fallback
+- Scroll reveal animations via `.reveal` / `.visible` CSS classes + `useScrollReveal` hook
 
 ## Accessibility
 
 - Navigator uses ARIA tablist with keyboard arrow-key navigation
+- FAQ uses ARIA-compliant accordion (button + region roles, aria-expanded)
 - StickyHeader uses `aria-hidden` when not visible
 - External link CTAs include sr-only hint text
-- Decorative SVGs marked `aria-hidden="true"`
+- Decorative elements marked `aria-hidden="true"`
+- SituationCard illustrations use `alt=""` + `aria-hidden="true"` (decorative, with emoji fallback)
 - `.sr-only` utility class available in global.css
+- `prefers-reduced-motion: reduce` disables all animations (mesh, marquee, reveals)
