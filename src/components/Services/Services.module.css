@@ -1,12 +1,46 @@
+/* ─── Section ─── */
 .services {
   padding: 7.2rem var(--space-6);
+  padding-bottom: 0;
   background: var(--color-bg-alt);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Organic background blobs */
+.services::before,
+.services::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+/* Top-right warm amber blob */
+.services::before {
+  width: 600px;
+  height: 600px;
+  top: -100px;
+  right: -150px;
+  background: radial-gradient(circle, rgba(200, 149, 108, 0.08) 0%, transparent 70%);
+}
+
+/* Bottom-left cool teal blob */
+.services::after {
+  width: 500px;
+  height: 500px;
+  bottom: 80px;
+  left: -100px;
+  background: radial-gradient(circle, rgba(27, 58, 75, 0.05) 0%, transparent 70%);
 }
 
 .container {
   max-width: var(--max-width);
   margin: 0 auto;
   text-align: center;
+  position: relative;
+  z-index: 1;
+  padding-bottom: var(--space-16);
 }
 
 .heading {
@@ -24,30 +58,68 @@
   margin: 0 auto var(--space-12);
 }
 
-/* ─── Step Cards ─── */
+/* ─── Timeline Steps ─── */
 .steps {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--space-6);
+  display: flex;
+  flex-direction: column;
+  position: relative;
   margin-bottom: var(--space-12);
+  padding-left: 60px;
 }
 
 .stepCard {
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-xl);
-  padding: var(--space-8) var(--space-6);
-  transition: box-shadow var(--transition-base);
+  position: relative;
+  padding: var(--space-4) 0 var(--space-8);
+  opacity: 0;
 }
 
-.stepCard:hover {
-  box-shadow: var(--shadow-lg);
+/* Vertical dashed connector between timeline nodes */
+.stepCard:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  left: -41px;
+  top: calc(var(--space-4) + 20px);
+  bottom: calc(-1 * var(--space-4) - 20px);
+  width: 2px;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(27, 58, 75, 0.18) 0px,
+    rgba(27, 58, 75, 0.18) 6px,
+    transparent 6px,
+    transparent 12px
+  );
+  z-index: 1;
+}
+
+/* ─── Step Number (Timeline Node) ─── */
+.stepNumber {
+  position: absolute;
+  left: -60px;
+  top: var(--space-4);
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--color-primary);
+  color: #FFFFFF;
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+  box-shadow: 0 0 0 5px var(--color-bg-alt);
+}
+
+/* ─── Step Content ─── */
+.stepContent {
+  text-align: center;
 }
 
 /* ─── Step Icon ─── */
 .iconWrapper {
-  width: 120px;
-  height: 120px;
+  width: 100px;
+  height: 100px;
   margin: 0 auto var(--space-2);
   -webkit-mask-image: radial-gradient(circle closest-side, black 50%, transparent 90%);
   mask-image: radial-gradient(circle closest-side, black 50%, transparent 90%);
@@ -64,15 +136,6 @@
   object-fit: contain;
 }
 
-.stepNumber {
-  display: block;
-  font-family: var(--font-body);
-  font-size: var(--text-sm);
-  font-weight: var(--weight-medium);
-  color: var(--color-text-muted);
-  margin-bottom: var(--space-4);
-}
-
 .stepTitle {
   font-family: var(--font-display);
   font-size: var(--text-xl);
@@ -84,17 +147,33 @@
   font-size: var(--text-sm);
   color: var(--color-text-muted);
   line-height: var(--leading-normal);
-  max-width: 100%;
+  max-width: 280px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* ─── Price Card ─── */
 .priceCard {
-  background: var(--color-bg);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-2xl);
+  background: var(--color-accent-light);
+  border-radius: var(--radius-xl);
   padding: var(--space-10) var(--space-8);
   max-width: 480px;
   margin: 0 auto;
+  box-shadow: var(--shadow-md);
+  position: relative;
+  overflow: hidden;
+  opacity: 0;
+}
+
+/* Warm accent top stripe */
+.priceCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--color-accent);
 }
 
 .price {
@@ -147,27 +226,132 @@
   outline-offset: 3px;
 }
 
+/* ─── Wave Divider ─── */
+.waveDivider {
+  position: relative;
+  z-index: 1;
+  line-height: 0;
+  margin-top: calc(-1px);
+}
+
+.waveDivider svg {
+  display: block;
+  width: 100%;
+  height: clamp(40px, 5vw, 80px);
+}
+
+/* ─── Staggered Scroll Reveal ─── */
+:global(.visible) .stepCard {
+  animation: revealUp var(--transition-reveal) both;
+}
+
+:global(.visible) .stepCard:nth-child(1) {
+  animation-delay: 0ms;
+}
+
+:global(.visible) .stepCard:nth-child(2) {
+  animation-delay: 150ms;
+}
+
+:global(.visible) .stepCard:nth-child(3) {
+  animation-delay: 300ms;
+}
+
+:global(.visible) .priceCard {
+  animation: revealScale var(--transition-reveal) both;
+  animation-delay: 500ms;
+}
+
+@keyframes revealUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes revealScale {
+  from {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* ─── Tablet ─── */
 @media (min-width: 768px) {
+  .steps {
+    max-width: 480px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .iconWrapper {
+    width: 120px;
+    height: 120px;
+  }
+}
+
+/* ─── Desktop: Horizontal Timeline ─── */
+@media (min-width: 1024px) {
+  .steps {
+    flex-direction: row;
+    padding-left: 0;
+    padding-top: 72px;
+    max-width: none;
+    align-items: flex-start;
+  }
+
+  .stepCard {
+    flex: 1;
+    padding: 0 var(--space-4) var(--space-6);
+  }
+
+  /* Reposition node to top-center for horizontal timeline */
+  .stepNumber {
+    left: 50%;
+    top: -56px;
+    transform: translateX(-50%);
+    box-shadow: 0 0 0 5px var(--color-bg-alt);
+  }
+
+  /* Horizontal dashed connector between nodes */
+  .stepCard:not(:last-child)::after {
+    top: -36px;
+    left: calc(50% + 20px);
+    bottom: auto;
+    height: 2px;
+    width: calc(100% - 40px);
+    background: repeating-linear-gradient(
+      to right,
+      rgba(27, 58, 75, 0.18) 0px,
+      rgba(27, 58, 75, 0.18) 6px,
+      transparent 6px,
+      transparent 12px
+    );
+  }
+
   .iconWrapper {
     width: 140px;
     height: 140px;
   }
 }
 
-@media (min-width: 1024px) {
-  .iconWrapper {
-    width: 160px;
-    height: 160px;
-  }
-}
-
+/* ─── Mobile ─── */
 @media (max-width: 768px) {
   .services {
     padding: var(--space-16) var(--space-4);
+    padding-bottom: 0;
   }
 
-  .steps {
-    grid-template-columns: 1fr;
+  .container {
+    padding-bottom: var(--space-12);
   }
 
   .priceCard {
@@ -175,6 +359,7 @@
   }
 }
 
+/* ─── Reduced Motion ─── */
 @media (prefers-reduced-motion: reduce) {
   .iconWrapper {
     transition: none;
@@ -182,5 +367,16 @@
 
   .stepCard:hover .iconWrapper {
     transform: none;
+  }
+
+  .stepCard,
+  .priceCard {
+    opacity: 1;
+  }
+
+  :global(.visible) .stepCard,
+  :global(.visible) .priceCard {
+    animation: none;
+    opacity: 1;
   }
 }

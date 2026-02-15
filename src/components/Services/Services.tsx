@@ -41,12 +41,14 @@ export default function Services() {
         <div className={styles.steps}>
           {steps.map((step) => (
             <div key={step.number} className={styles.stepCard}>
-              <div className={styles.iconWrapper}>
-                <img src={step.icon} alt="" aria-hidden="true" className={styles.stepIcon} />
+              <span className={styles.stepNumber}>{step.number}</span>
+              <div className={styles.stepContent}>
+                <div className={styles.iconWrapper}>
+                  <img src={step.icon} alt="" aria-hidden="true" className={styles.stepIcon} />
+                </div>
+                <h3 className={styles.stepTitle}>{step.title}</h3>
+                <p className={styles.stepDescription}>{step.description}</p>
               </div>
-              <span className={styles.stepNumber}>{String(step.number).padStart(2, '0')}</span>
-              <h3 className={styles.stepTitle}>{step.title}</h3>
-              <p className={styles.stepDescription}>{step.description}</p>
             </div>
           ))}
         </div>
@@ -66,6 +68,14 @@ export default function Services() {
             <span className="sr-only"> (відкриється в новій вкладці)</span>
           </a>
         </div>
+      </div>
+      <div className={styles.waveDivider} aria-hidden="true">
+        <svg viewBox="0 0 1440 80" preserveAspectRatio="none">
+          <path
+            d="M0,32 C240,64 480,8 720,40 C960,72 1200,16 1440,48 L1440,80 L0,80 Z"
+            fill="#111827"
+          />
+        </svg>
       </div>
     </section>
   );
