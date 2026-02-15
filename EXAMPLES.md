@@ -1,0 +1,9 @@
+- https://drhyman.com/
+- https://peterattiamd.com/
+- https://www.plumhealthdpc.com/
+- https://privatemedical.org/
+- https://zdoggmd.com/
+- https://drspencer.com/
+- https://pedsdoctalk.com/
+- https://www.goodinside.com/
+- https://www.tinabryson.com/#home-page

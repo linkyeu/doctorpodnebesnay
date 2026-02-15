@@ -2,10 +2,12 @@ import { useRef, useState, useEffect } from 'react';
 import { TELEGRAM_DM } from './data/links';
 import StickyHeader from './components/StickyHeader/StickyHeader';
 import Hero from './components/Hero/Hero';
+import TrustBadges from './components/TrustBadges/TrustBadges';
 import Services from './components/Services/Services';
 import Navigator from './components/Navigator/Navigator';
 import SocialProof from './components/SocialProof/SocialProof';
 import Bio from './components/Bio/Bio';
+import FAQ from './components/FAQ/FAQ';
 import Footer from './components/Footer/Footer';
 import styles from './App.module.css';
 
@@ -34,10 +36,12 @@ export default function App() {
       <div ref={heroRef}>
         <Hero ctaUrl={TELEGRAM_DM} />
       </div>
+      <TrustBadges />
       <Services />
       <Navigator />
       <SocialProof />
       <Bio />
+      <FAQ />
       <Footer />
     </div>
   );

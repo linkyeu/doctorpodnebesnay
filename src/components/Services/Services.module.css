@@ -1,5 +1,6 @@
 .services {
   padding: 7.2rem var(--space-6);
+  background: var(--color-bg-alt);
 }
 
 .container {
@@ -32,31 +33,43 @@
 }
 
 .stepCard {
-  background: var(--color-bg-alt);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-xl);
   padding: var(--space-8) var(--space-6);
-  transition:
-    transform var(--transition-base),
-    box-shadow var(--transition-base);
+  transition: box-shadow var(--transition-base);
 }
 
 .stepCard:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-card-hover);
+  box-shadow: var(--shadow-lg);
+}
+
+/* ─── Step Icon ─── */
+.iconWrapper {
+  width: 120px;
+  height: 120px;
+  margin: 0 auto var(--space-2);
+  -webkit-mask-image: radial-gradient(circle closest-side, black 50%, transparent 90%);
+  mask-image: radial-gradient(circle closest-side, black 50%, transparent 90%);
+  transition: transform var(--transition-base);
+}
+
+.stepCard:hover .iconWrapper {
+  transform: scale(1.06);
+}
+
+.stepIcon {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
 .stepNumber {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 44px;
-  height: 44px;
-  border-radius: var(--radius-full);
-  background: var(--color-primary-lighter);
-  color: var(--color-primary);
-  font-family: var(--font-display);
-  font-size: var(--text-xl);
-  font-weight: var(--weight-bold);
+  display: block;
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+  color: var(--color-text-muted);
   margin-bottom: var(--space-4);
 }
 
@@ -76,7 +89,8 @@
 
 /* ─── Price Card ─── */
 .priceCard {
-  background: var(--color-primary-lighter);
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-2xl);
   padding: var(--space-10) var(--space-8);
   max-width: 480px;
@@ -87,7 +101,7 @@
   font-family: var(--font-display);
   font-size: var(--text-2xl);
   font-weight: var(--weight-bold);
-  color: var(--color-primary);
+  color: var(--color-text);
   margin-bottom: var(--space-3);
 }
 
@@ -107,32 +121,44 @@
   font-size: var(--text-base);
   font-weight: var(--weight-semibold);
   color: #FFFFFF;
-  background: var(--color-accent);
-  padding: var(--space-4) var(--space-8);
-  border-radius: var(--radius-full);
+  background: var(--color-primary);
+  padding: 14px 32px;
+  border-radius: 8px;
   text-decoration: none;
-  min-height: 52px;
+  min-height: 48px;
   transition:
     background var(--transition-base),
-    transform var(--transition-fast),
     box-shadow var(--transition-base);
-  box-shadow: var(--shadow-md);
+  box-shadow: var(--shadow-sm);
 }
 
 .cta:hover {
-  background: var(--color-accent-light);
+  background: var(--color-primary-hover);
   color: #FFFFFF;
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-lg);
+  box-shadow: var(--shadow-md);
 }
 
 .cta:active {
-  transform: translateY(0);
+  background: var(--color-primary);
 }
 
 .cta:focus-visible {
-  outline: 3px solid var(--color-accent);
+  outline: 3px solid var(--color-primary-light);
   outline-offset: 3px;
+}
+
+@media (min-width: 768px) {
+  .iconWrapper {
+    width: 140px;
+    height: 140px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .iconWrapper {
+    width: 160px;
+    height: 160px;
+  }
 }
 
 @media (max-width: 768px) {
@@ -146,5 +172,15 @@
 
   .priceCard {
     padding: var(--space-8) var(--space-6);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .iconWrapper {
+    transition: none;
+  }
+
+  .stepCard:hover .iconWrapper {
+    transform: none;
   }
 }

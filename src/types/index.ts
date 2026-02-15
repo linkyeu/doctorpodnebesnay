@@ -1,6 +1,7 @@
 export interface Situation {
   id: string;
   emoji: string;
+  illustration?: string;
   title: string;
   myth: string;
   mythSource?: string;

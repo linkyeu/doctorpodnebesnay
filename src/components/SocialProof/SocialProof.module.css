@@ -17,9 +17,10 @@
   font-family: var(--font-display);
   font-size: var(--text-4xl);
   font-weight: var(--weight-bold);
-  color: var(--color-primary);
+  color: var(--color-text);
   line-height: var(--leading-tight);
   margin-bottom: var(--space-2);
+  animation: counterReveal 600ms cubic-bezier(0.34, 1.56, 0.64, 1) both;
 }
 
 .label {
@@ -44,33 +45,31 @@
   font-family: var(--font-body);
   font-size: var(--text-base);
   font-weight: var(--weight-semibold);
-  color: var(--color-secondary);
+  color: var(--color-text);
   background: transparent;
-  border: 2px solid var(--color-secondary);
+  border: 1.5px solid var(--color-border);
   padding: var(--space-3) var(--space-8);
-  border-radius: var(--radius-full);
+  border-radius: 8px;
   text-decoration: none;
   min-height: 48px;
   transition:
     background var(--transition-base),
     color var(--transition-base),
-    transform var(--transition-fast),
-    box-shadow var(--transition-base);
+    border-color var(--transition-base);
 }
 
 .channelCta:hover {
-  background: var(--color-secondary);
+  background: var(--color-primary);
   color: #FFFFFF;
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-md);
+  border-color: var(--color-primary);
 }
 
 .channelCta:active {
-  transform: translateY(0);
+  background: var(--color-primary);
 }
 
 .channelCta:focus-visible {
-  outline: 3px solid var(--color-secondary);
+  outline: 3px solid var(--color-primary-light);
   outline-offset: 3px;
 }
 
@@ -83,17 +82,16 @@
 
 .card {
   position: relative;
-  background: var(--color-bg-alt);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-xl);
   padding: var(--space-8) var(--space-6);
   transition:
-    transform var(--transition-base),
     box-shadow var(--transition-base);
 }
 
 .card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-card-hover);
+  box-shadow: var(--shadow-lg);
 }
 
 .quote {
@@ -103,8 +101,8 @@
   font-family: var(--font-display);
   font-size: 3rem;
   line-height: 1;
-  color: var(--color-secondary-light);
-  opacity: 0.4;
+  color: var(--color-border);
+  opacity: 0.5;
 }
 
 .text {
