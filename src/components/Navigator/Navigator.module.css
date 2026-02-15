@@ -167,7 +167,6 @@
   transition: opacity var(--transition-base), background var(--transition-fast), transform var(--transition-fast);
 }
 
-.scrollArrowVisible { opacity: 1; pointer-events: auto; }
 .scrollArrowLeft   { left: calc(-1 * var(--space-3)); }
 .scrollArrowRight  { right: calc(-1 * var(--space-3)); }
 
@@ -178,7 +177,7 @@
 @media (min-width: 769px) {
   .grid { gap: var(--space-6); }
   .cardWrapper { flex: 0 0 45%; }
-  .scrollArrow { display: flex; align-items: center; justify-content: center; }
+  .scrollArrow { display: flex; align-items: center; justify-content: center; opacity: 1; pointer-events: auto; }
 }
 
 @media (prefers-reduced-motion: reduce) {
