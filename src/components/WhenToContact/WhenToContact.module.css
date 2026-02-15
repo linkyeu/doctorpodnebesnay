@@ -64,24 +64,6 @@
   border-top-color: var(--color-accent);
 }
 
-/* ─── Number Badge ─── */
-.badge {
-  position: absolute;
-  top: var(--space-4);
-  left: var(--space-4);
-  width: 28px;
-  height: 28px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: var(--radius-full);
-  background: var(--color-primary);
-  color: #fff;
-  font-size: var(--text-xs);
-  font-weight: var(--weight-semibold);
-  line-height: 1;
-}
-
 /* ─── Illustration ─── */
 .illustrationWrapper {
   width: 80px;
