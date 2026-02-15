@@ -25,6 +25,7 @@ No test runner is configured.
 
 - **Live site:** https://doctorpidnebesna.com
 - Hosted on Netlify (Node 22, SPA fallback configured)
+- **Google Search Console:** linked with Luba's email (doctorpodbenesnay)
 
 ## Architecture
 
@@ -69,6 +70,8 @@ Single-page app with these sections rendered sequentially in `App.tsx`:
 - `public/sitemap.xml` — XML sitemap listing all indexable URLs
 
 **Review these files when:** adding new pages/routes, changing the domain, or adding sections that should be independently indexable.
+
+**Reminder:** After deploying changes that affect pages/routes or SEO metadata, verify indexing and check for crawl errors in [Google Search Console](https://search.google.com/).
 
 ## Accessibility
 
