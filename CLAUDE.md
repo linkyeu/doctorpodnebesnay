@@ -63,6 +63,13 @@ Single-page app with these sections rendered sequentially in `App.tsx`:
 - Scroll reveal animations via `.reveal` / `.visible` CSS classes + `useScrollReveal` hook
 - Bio portrait grounding: Bio has a transparent bg with a `::before` pseudo-element that stops 5rem from the bottom (off-white-to-white transition zone). WhenToContact overlaps into that zone via `margin-top: -5rem`. The grid uses `align-items: stretch` so the photo column fills the full row height, `.content` uses `align-self: center`, and `.photoWrapper` uses `align-items: flex-end` to push the photo to the bottom into the off-white zone. **Pitfall:** `align-items: center` on the grid causes the photo to float mid-row when the text column is taller — always use `stretch` + per-column `align-self`.
 
+## SEO Files
+
+- `public/robots.txt` — Crawler directives + sitemap reference
+- `public/sitemap.xml` — XML sitemap listing all indexable URLs
+
+**Review these files when:** adding new pages/routes, changing the domain, or adding sections that should be independently indexable.
+
 ## Accessibility
 
 - Navigator uses ARIA tablist with keyboard arrow-key navigation
