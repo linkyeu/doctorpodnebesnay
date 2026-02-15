@@ -61,6 +61,7 @@ Single-page app with these sections rendered sequentially in `App.tsx`:
 - Navigator tab switch: fade out → swap content → fade in with staggered card reveals
 - SituationCard illustrations: radial-gradient mask for soft edge fade, `scale(1.06)` hover, lazy-loaded with emoji fallback
 - Scroll reveal animations via `.reveal` / `.visible` CSS classes + `useScrollReveal` hook
+- Bio portrait grounding: Bio has a transparent bg with a `::before` pseudo-element that stops 5rem from the bottom (off-white-to-white transition zone). WhenToContact overlaps into that zone via `margin-top: -5rem`. The grid uses `align-items: stretch` so the photo column fills the full row height, `.content` uses `align-self: center`, and `.photoWrapper` uses `align-items: flex-end` to push the photo to the bottom into the off-white zone. **Pitfall:** `align-items: center` on the grid causes the photo to float mid-row when the text column is taller — always use `stretch` + per-column `align-self`.
 
 ## Accessibility
 

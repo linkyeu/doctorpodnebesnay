@@ -16,13 +16,12 @@ export default function Bio() {
       <div className={`${styles.container} reveal`} ref={ref}>
         {/* Photo */}
         <div className={styles.photoWrapper}>
-          <div className={styles.photo}>
-            <img
-              src="/photo.jpg"
-              alt="Др. Люба — сімейний лікар"
-              className={styles.photoImg}
-            />
-          </div>
+          <img
+            src="/images/doctor-lyuba-portrait.png"
+            alt="Лікар Люба — сімейний лікар з 12-річним досвідом"
+            className={styles.photoImg}
+            loading="lazy"
+          />
         </div>
 
         {/* Text content */}
