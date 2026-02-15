@@ -3,8 +3,9 @@
   to { transform: scale(1); opacity: 1; }
 }
 
-.socialProof {
+.community {
   padding: 7.2rem var(--space-6);
+  background: var(--color-bg);
 }
 
 .container {
@@ -12,10 +13,8 @@
   margin: 0 auto;
 }
 
-/* ─── Community Stat ─── */
 .stat {
   text-align: center;
-  margin-bottom: var(--space-16);
 }
 
 .number {
@@ -78,58 +77,8 @@
   outline-offset: 3px;
 }
 
-/* ─── Testimonials ─── */
-.testimonials {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--space-6);
-}
-
-.card {
-  position: relative;
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-xl);
-  padding: var(--space-8) var(--space-6);
-  transition:
-    box-shadow var(--transition-base);
-}
-
-.card:hover {
-  box-shadow: var(--shadow-lg);
-}
-
-.quote {
-  position: absolute;
-  top: var(--space-4);
-  left: var(--space-5);
-  font-family: var(--font-display);
-  font-size: 3rem;
-  line-height: 1;
-  color: var(--color-border);
-  opacity: 0.5;
-}
-
-.text {
-  font-size: var(--text-base);
-  color: var(--color-text);
-  line-height: var(--leading-normal);
-  margin-bottom: var(--space-4);
-  font-style: italic;
-  max-width: 100%;
-}
-
-.author {
-  font-size: var(--text-sm);
-  color: var(--color-text-muted);
-}
-
 @media (max-width: 768px) {
-  .socialProof {
+  .community {
     padding: var(--space-16) var(--space-4);
-  }
-
-  .testimonials {
-    grid-template-columns: 1fr;
   }
 }

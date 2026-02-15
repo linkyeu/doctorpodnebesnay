@@ -69,14 +69,6 @@ export default function Services() {
           </a>
         </div>
       </div>
-      <div className={styles.waveDivider} aria-hidden="true">
-        <svg viewBox="0 0 1440 80" preserveAspectRatio="none">
-          <path
-            d="M0,32 C240,64 480,8 720,40 C960,72 1200,16 1440,48 L1440,80 L0,80 Z"
-            fill="#111827"
-          />
-        </svg>
-      </div>
     </section>
   );
 }
