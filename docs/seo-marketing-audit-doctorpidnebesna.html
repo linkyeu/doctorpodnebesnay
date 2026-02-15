@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SEO & Marketing Audit — doctorpidnebesna.com</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background: #f8f9fa; color: #1a1a2e; line-height: 1.6; }
+
+  .header { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%); color: white; padding: 48px 32px; text-align: center; }
+  .header h1 { font-size: 2.2rem; margin-bottom: 8px; }
+  .header .subtitle { opacity: 0.8; font-size: 1.1rem; }
+  .header .date { opacity: 0.6; font-size: 0.9rem; margin-top: 12px; }
+
+  .container { max-width: 1100px; margin: 0 auto; padding: 32px 24px; }
+
+  /* Score cards */
+  .scores { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin: 32px 0; }
+  .score-card { background: white; border-radius: 16px; padding: 24px; text-align: center; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+  .score-card .value { font-size: 2.8rem; font-weight: 800; }
+  .score-card .label { font-size: 0.85rem; color: #666; margin-top: 4px; }
+  .score-card .sublabel { font-size: 0.75rem; color: #999; margin-top: 2px; }
+  .red { color: #e53935; }
+  .orange { color: #fb8c00; }
+  .green { color: #43a047; }
+  .gray { color: #9e9e9e; }
+
+  /* Executive Summary */
+  .exec-summary { background: linear-gradient(135deg, #fff3e0, #fff8e1); border-left: 5px solid #fb8c00; border-radius: 12px; padding: 28px; margin: 32px 0; }
+  .exec-summary h2 { color: #e65100; margin-bottom: 12px; font-size: 1.3rem; }
+
+  /* Section styling */
+  .section { background: white; border-radius: 16px; padding: 32px; margin: 24px 0; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+  .section h2 { font-size: 1.5rem; color: #1a1a2e; margin-bottom: 20px; padding-bottom: 12px; border-bottom: 2px solid #e8eaf6; }
+  .section h3 { font-size: 1.15rem; color: #283593; margin: 20px 0 12px; }
+
+  /* Tables */
+  table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 0.9rem; }
+  th { background: #1a1a2e; color: white; padding: 12px 16px; text-align: left; font-weight: 600; }
+  td { padding: 12px 16px; border-bottom: 1px solid #eee; }
+  tr:hover { background: #f5f5f5; }
+
+  /* Status badges */
+  .badge { display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 0.75rem; font-weight: 600; }
+  .badge-critical { background: #ffebee; color: #c62828; }
+  .badge-high { background: #fff3e0; color: #e65100; }
+  .badge-medium { background: #fff8e1; color: #f57f17; }
+  .badge-low { background: #e8f5e9; color: #2e7d32; }
+  .badge-pass { background: #e8f5e9; color: #2e7d32; }
+  .badge-fail { background: #ffebee; color: #c62828; }
+  .badge-warn { background: #fff8e1; color: #f57f17; }
+  .badge-missing { background: #fce4ec; color: #880e4f; }
+
+  /* Checklist */
+  .check-item { display: flex; align-items: center; padding: 10px 0; border-bottom: 1px solid #f0f0f0; }
+  .check-icon { width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 14px; font-size: 0.85rem; flex-shrink: 0; }
+  .check-pass { background: #e8f5e9; color: #2e7d32; }
+  .check-fail { background: #ffebee; color: #c62828; }
+  .check-warn { background: #fff8e1; color: #f57f17; }
+  .check-text { flex: 1; }
+  .check-text strong { display: block; font-size: 0.95rem; }
+  .check-text span { font-size: 0.82rem; color: #666; }
+
+  /* Action plan */
+  .action-card { border: 1px solid #e0e0e0; border-radius: 12px; padding: 20px; margin: 12px 0; transition: box-shadow 0.2s; }
+  .action-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.1); }
+  .action-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+  .action-title { font-weight: 700; font-size: 1rem; }
+  .action-impact { font-size: 0.8rem; }
+  .action-desc { font-size: 0.88rem; color: #555; }
+  .action-meta { display: flex; gap: 16px; margin-top: 10px; font-size: 0.78rem; color: #888; }
+
+  /* Keyword table styling */
+  .kw-table td:nth-child(3), .kw-table td:nth-child(4) { text-align: center; }
+
+  /* Competitor comparison */
+  .comp-table td:nth-child(2), .comp-table td:nth-child(3), .comp-table td:nth-child(4) { text-align: center; }
+
+  /* Tabs for sections */
+  .tab-nav { display: flex; gap: 4px; flex-wrap: wrap; margin-bottom: 20px; }
+  .tab-btn { padding: 8px 18px; border: none; background: #e8eaf6; border-radius: 8px; cursor: pointer; font-size: 0.85rem; font-weight: 600; color: #3949ab; transition: all 0.2s; }
+  .tab-btn.active { background: #1a1a2e; color: white; }
+  .tab-btn:hover { background: #c5cae9; }
+  .tab-btn.active:hover { background: #1a1a2e; }
+  .tab-content { display: none; }
+  .tab-content.active { display: block; }
+
+  /* Marketing funnel */
+  .funnel { display: flex; flex-direction: column; gap: 0; margin: 20px auto; max-width: 600px; }
+  .funnel-stage { padding: 16px 24px; text-align: center; color: white; font-weight: 600; position: relative; }
+  .funnel-stage .status { font-size: 0.75rem; font-weight: 400; opacity: 0.9; display: block; margin-top: 4px; }
+  .funnel-top { background: #1565c0; border-radius: 12px 12px 0 0; clip-path: polygon(0 0, 100% 0, 95% 100%, 5% 100%); }
+  .funnel-mid1 { background: #1976d2; clip-path: polygon(5% 0, 95% 0, 90% 100%, 10% 100%); }
+  .funnel-mid2 { background: #1e88e5; clip-path: polygon(10% 0, 90% 0, 85% 100%, 15% 100%); }
+  .funnel-bottom { background: #42a5f5; border-radius: 0 0 12px 12px; clip-path: polygon(15% 0, 85% 0, 80% 100%, 20% 100%); }
+  .funnel-missing { opacity: 0.4; border: 2px dashed white; }
+
+  /* Progress bar */
+  .progress-bar { background: #e0e0e0; border-radius: 10px; height: 12px; overflow: hidden; margin: 8px 0; }
+  .progress-fill { height: 100%; border-radius: 10px; transition: width 0.5s; }
+
+  .note-box { background: #e3f2fd; border-radius: 8px; padding: 16px; margin: 16px 0; font-size: 0.88rem; }
+  .warning-box { background: #fff3e0; border-left: 4px solid #fb8c00; border-radius: 8px; padding: 16px; margin: 16px 0; font-size: 0.88rem; }
+  .critical-box { background: #ffebee; border-left: 4px solid #e53935; border-radius: 8px; padding: 16px; margin: 16px 0; font-size: 0.88rem; }
+
+  .footer { text-align: center; padding: 32px; color: #999; font-size: 0.8rem; }
+
+  @media (max-width: 768px) {
+    .header h1 { font-size: 1.6rem; }
+    .scores { grid-template-columns: repeat(2, 1fr); }
+    table { font-size: 0.8rem; }
+    th, td { padding: 8px 10px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>SEO & Marketing Audit</h1>
+  <div class="subtitle">doctorpidnebesna.com — Др. Люба | Науковий навігатор батьківства</div>
+  <div class="date">Report generated: February 15, 2026</div>
+</div>
+
+<div class="container">
+
+<!-- LIGHTHOUSE SCORES -->
+<div class="scores">
+  <div class="score-card">
+    <div class="value orange">65</div>
+    <div class="label">Mobile Performance</div>
+    <div class="sublabel">LCP 8.5s — needs work</div>
+  </div>
+  <div class="score-card">
+    <div class="value green">97</div>
+    <div class="label">Desktop Performance</div>
+    <div class="sublabel">LCP 1.0s — excellent</div>
+  </div>
+  <div class="score-card">
+    <div class="value green">97</div>
+    <div class="label">Accessibility</div>
+    <div class="sublabel">Minor issues</div>
+  </div>
+  <div class="score-card">
+    <div class="value green">92</div>
+    <div class="label">Lighthouse SEO</div>
+    <div class="sublabel">Missing OG tags, canonical</div>
+  </div>
+  <div class="score-card">
+    <div class="value red">0</div>
+    <div class="label">Google Indexed Pages</div>
+    <div class="sublabel">Not found in Google</div>
+  </div>
+</div>
+
+<!-- EXECUTIVE SUMMARY -->
+<div class="exec-summary">
+  <h2>Executive Summary</h2>
+  <p>Your site is visually well-designed with strong branding and a clear value proposition. However, from a marketing and SEO standpoint, <strong>the site is essentially invisible to search engines</strong> — Google has indexed zero pages. The site is a single-page application with no blog, no subpages, no sitemap, no robots.txt, and no structured data. There is <strong>no email capture, no analytics tracking, no retargeting pixels</strong>, and no content marketing strategy in place. The conversion funnel relies entirely on a single Telegram CTA, leaving significant growth potential untapped.</p>
+  <p style="margin-top: 12px;"><strong>Overall assessment: Strong brand foundation, but critical marketing infrastructure is missing.</strong> The good news is that implementing the recommendations below can produce dramatic improvements quickly.</p>
+</div>
+
+<!-- SECTION TABS -->
+<div class="section">
+  <div class="tab-nav">
+    <button class="tab-btn active" onclick="showTab('tech')">Technical SEO</button>
+    <button class="tab-btn" onclick="showTab('onpage')">On-Page SEO</button>
+    <button class="tab-btn" onclick="showTab('marketing')">Marketing Gaps</button>
+    <button class="tab-btn" onclick="showTab('content')">Content Gaps</button>
+    <button class="tab-btn" onclick="showTab('keywords')">Keywords</button>
+    <button class="tab-btn" onclick="showTab('competitors')">Competitors</button>
+    <button class="tab-btn" onclick="showTab('actions')">Action Plan</button>
+  </div>
+
+  <!-- TECHNICAL SEO -->
+  <div class="tab-content active" id="tech">
+    <h2>Technical SEO Checklist</h2>
+
+    <div class="critical-box">
+      <strong>Critical finding:</strong> Your site returns 0 results in Google search (site:doctorpidnebesna.com). The site is not being indexed, likely because it lacks a sitemap, robots.txt, and has no crawlable subpages.
+    </div>
+
+    <div class="check-item">
+      <div class="check-icon check-pass">&#10003;</div>
+      <div class="check-text">
+        <strong>HTTPS enabled</strong>
+        <span>Site loads over HTTPS — secure connection confirmed</span>
+      </div>
+    </div>
+    <div class="check-item">
+      <div class="check-icon check-pass">&#10003;</div>
+      <div class="check-text">
+        <strong>Viewport meta tag</strong>
+        <span>width=device-width, initial-scale=1.0 — mobile-ready</span>
+      </div>
+    </div>
+    <div class="check-item">
+      <div class="check-icon check-pass">&#10003;</div>
+      <div class="check-text">
+        <strong>Language attribute</strong>
+        <span>lang="uk" is correctly set for Ukrainian</span>
+      </div>
+    </div>
+    <div class="check-item">
+      <div class="check-icon check-pass">&#10003;</div>
+      <div class="check-text">
+        <strong>Title tag</strong>
+        <span>"Др. Люба — Науковий навігатор батьківства" — descriptive and branded</span>
+      </div>
+    </div>
+    <div class="check-item">
+      <div class="check-icon check-pass">&#10003;</div>
+      <div class="check-text">
+        <strong>Meta description</strong>
+        <span>Present: "Доказове батьківство: розвінчуємо міфи, спираємось на науку..."</span>
+      </div>
+    </div>
+    <div class="check-item">
+      <div class="check-icon check-fail">&#10007;</div>
+      <div class="check-text">
+        <strong>Canonical URL — MISSING</strong>
+        <span>No &lt;link rel="canonical"&gt; tag. Can cause duplicate content issues.</span>
+      </div>
+    </div>
+    <div class="check-item">
+      <div class="check-icon check-fail">&#10007;</div>
+      <div class="check-text">
+        <strong>robots.txt — MISSING</strong>
+        <span>URL redirects to homepage. Google can't read crawl directives.</span>
+      </div>
+    </div>
+    <div class="check-item">
+      <div class="check-icon check-fail">&#10007;</div>
+      <div class="check-text">
+        <strong>XML Sitemap — MISSING</strong>
+        <span>No sitemap.xml found. Google won't discover your pages efficiently.</span>
+      </div>
+    </div>
+    <div class="check-item">
+      <div class="check-icon check-fail">&#10007;</div>
+      <div class="check-text">
+        <strong>Open Graph tags — ALL MISSING</strong>
+        <span>og:title, og:description, og:image, og:type, og:url — none present. Social sharing will look broken.</span>
+      </div>
+    </div>
+    <div class="check-item">
+      <div class="check-icon check-fail">&#10007;</div>
+      <div class="check-text">
+        <strong>Twitter Card tags — ALL MISSING</strong>
+        <span>twitter:card, twitter:title, twitter:description — none present.</span>
+      </div>
+    </div>
+    <div class="check-item">
+      <div class="check-icon check-fail">&#10007;</div>
+      <div class="check-text">
+        <strong>Structured Data (JSON-LD) — MISSING</strong>
+        <span>No schema markup at all. Missing: Person, MedicalBusiness, FAQPage, LocalBusiness schemas.</span>
+      </div>
+    </div>
+    <div class="check-item">
+      <div class="check-icon check-fail">&#10007;</div>
+      <div class="check-text">
+        <strong>Google Analytics / GTM — NOT DETECTED</strong>
+        <span>No tracking code found. You have zero visibility into visitor behavior.</span>
+      </div>
+    </div>
+    <div class="check-item">
+      <div class="check-icon check-fail">&#10007;</div>
+      <div class="check-text">
+        <strong>Facebook/Meta Pixel — NOT DETECTED</strong>
+        <span>No retargeting capability. Can't build lookalike audiences.</span>
+      </div>
+    </div>
+    <div class="check-item">
+      <div class="check-icon check-warn">!</div>
+      <div class="check-text">
+        <strong>Mobile Performance — NEEDS IMPROVEMENT</strong>
+        <span>Score: 65/100. FCP 3.4s (poor), LCP 8.5s (critical). Likely caused by large hero images.</span>
+      </div>
+    </div>
+    <div class="check-item">
+      <div class="check-icon check-pass">&#10003;</div>
+      <div class="check-text">
+        <strong>Desktop Performance — EXCELLENT</strong>
+        <span>Score: 97/100. FCP 0.9s, LCP 1.0s, CLS 0.004 — all green.</span>
+      </div>
+    </div>
+    <div class="check-item">
+      <div class="check-icon check-fail">&#10007;</div>
+      <div class="check-text">
+        <strong>Google Search Console — NOT SET UP</strong>
+        <span>Site is not registered. Cannot submit sitemap or monitor indexing.</span>
+      </div>
+    </div>
+
+    <h3>PageSpeed Metrics Summary</h3>
+    <table>
+      <tr><th>Metric</th><th>Mobile</th><th>Desktop</th><th>Status</th></tr>
+      <tr><td>First Contentful Paint</td><td>3.4s</td><td>0.9s</td><td><span class="badge badge-critical">Mobile: Poor</span></td></tr>
+      <tr><td>Largest Contentful Paint</td><td>8.5s</td><td>1.0s</td><td><span class="badge badge-critical">Mobile: Critical</span></td></tr>
+      <tr><td>Total Blocking Time</td><td>0ms</td><td>10ms</td><td><span class="badge badge-pass">Good</span></td></tr>
+      <tr><td>Cumulative Layout Shift</td><td>0</td><td>0.004</td><td><span class="badge badge-pass">Good</span></td></tr>
+      <tr><td>Speed Index</td><td>5.4s</td><td>1.3s</td><td><span class="badge badge-high">Mobile: Slow</span></td></tr>
+    </table>
+  </div>
+
+  <!-- ON-PAGE SEO -->
+  <div class="tab-content" id="onpage">
+    <h2>On-Page SEO Analysis</h2>
+
+    <h3>Heading Structure</h3>
+    <table>
+      <tr><th>Tag</th><th>Content</th><th>Status</th></tr>
+      <tr><td>H1</td><td>"Доказове батьківство без паніки"</td><td><span class="badge badge-pass">Good — 1 H1</span></td></tr>
+      <tr><td>H2</td><td>"Консультація через Telegram"</td><td><span class="badge badge-pass">Good</span></td></tr>
+      <tr><td>H2</td><td>"Навігатор для батьків"</td><td><span class="badge badge-pass">Good</span></td></tr>
+      <tr><td>H2</td><td>"Лікар Люба"</td><td><span class="badge badge-pass">Good</span></td></tr>
+      <tr><td>H2</td><td>"Часті запитання"</td><td><span class="badge badge-pass">Good</span></td></tr>
+      <tr><td>H3</td><td>"Опишіть ситуацію" / "Отримайте відповідь" / "Уточнюйте далі"</td><td><span class="badge badge-pass">Good</span></td></tr>
+      <tr><td>H3</td><td>"Температура у немовляти" / "Прорізування зубів" / "Сон немовляти"</td><td><span class="badge badge-medium">Missing keyword depth</span></td></tr>
+    </table>
+
+    <h3>Issues Found</h3>
+    <table>
+      <tr><th>Page Element</th><th>Issue</th><th>Severity</th><th>Recommendation</th></tr>
+      <tr>
+        <td>Canonical URL</td>
+        <td>Missing entirely</td>
+        <td><span class="badge badge-critical">Critical</span></td>
+        <td>Add &lt;link rel="canonical" href="https://doctorpidnebesna.com/"&gt;</td>
+      </tr>
+      <tr>
+        <td>Open Graph tags</td>
+        <td>All OG tags missing</td>
+        <td><span class="badge badge-critical">Critical</span></td>
+        <td>Add og:title, og:description, og:image, og:url, og:type for rich social sharing</td>
+      </tr>
+      <tr>
+        <td>Image alt text</td>
+        <td>Multiple images missing alt attributes</td>
+        <td><span class="badge badge-high">High</span></td>
+        <td>Add descriptive Ukrainian alt text to every image (icons, photos)</td>
+      </tr>
+      <tr>
+        <td>Internal linking</td>
+        <td>Only anchor links (#hero, #services, etc.) — no subpages</td>
+        <td><span class="badge badge-critical">Critical</span></td>
+        <td>Create dedicated pages (blog, about, services, FAQ) for SEO</td>
+      </tr>
+      <tr>
+        <td>URL structure</td>
+        <td>Single-page site — no crawlable URL structure</td>
+        <td><span class="badge badge-critical">Critical</span></td>
+        <td>Expand to multi-page site with keyword-rich URLs</td>
+      </tr>
+      <tr>
+        <td>Footer links</td>
+        <td>Only social icons — no legal, privacy, or service pages</td>
+        <td><span class="badge badge-medium">Medium</span></td>
+        <td>Add links to privacy policy, terms, and important pages</td>
+      </tr>
+      <tr>
+        <td>FAQ section</td>
+        <td>FAQ present on page but no FAQPage schema</td>
+        <td><span class="badge badge-high">High</span></td>
+        <td>Add FAQPage structured data — can appear as rich result in Google</td>
+      </tr>
+      <tr>
+        <td>Content depth</td>
+        <td>~380 words on entire homepage</td>
+        <td><span class="badge badge-high">High</span></td>
+        <td>Thin content — Google prefers 800+ words for informational pages</td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- MARKETING GAPS -->
+  <div class="tab-content" id="marketing">
+    <h2>Marketing Infrastructure Gaps</h2>
+
+    <p style="margin-bottom: 20px;">Here's everything that's missing from a modern digital marketing perspective, organized by impact and urgency.</p>
+
+    <h3>Marketing Funnel Analysis</h3>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin: 20px 0;">
+      <div>
+        <div style="background: #e3f2fd; border-radius: 12px; padding: 20px;">
+          <strong style="color: #1565c0;">What you HAVE:</strong>
+          <ul style="margin-top: 8px; padding-left: 20px; font-size: 0.9rem;">
+            <li>Strong personal brand (Dr. Lyuba)</li>
+            <li>Clear USP: evidence-based parenting</li>
+            <li>Social proof (10,428+ Telegram members)</li>
+            <li>Testimonials (3 displayed)</li>
+            <li>Clean pricing (500 UAH/consultation)</li>
+            <li>FAQ section with myth vs. science format</li>
+            <li>Professional, trust-building design</li>
+            <li>Instagram + Telegram presence</li>
+          </ul>
+        </div>
+      </div>
+      <div>
+        <div style="background: #ffebee; border-radius: 12px; padding: 20px;">
+          <strong style="color: #c62828;">What you're MISSING:</strong>
+          <ul style="margin-top: 8px; padding-left: 20px; font-size: 0.9rem;">
+            <li>Google visibility (0 indexed pages)</li>
+            <li>Any analytics or tracking</li>
+            <li>Email list / newsletter capture</li>
+            <li>Blog / content marketing</li>
+            <li>Lead magnets / free resources</li>
+            <li>Retargeting pixels (FB, Google)</li>
+            <li>Multiple conversion paths</li>
+            <li>Cookie consent / privacy policy</li>
+            <li>Video content / trust signals</li>
+            <li>Backlink strategy</li>
+            <li>Google Business Profile</li>
+            <li>Search Console setup</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <h3>Detailed Gap Analysis</h3>
+    <table>
+      <tr><th>Marketing Element</th><th>Status</th><th>Impact</th><th>What You're Losing</th></tr>
+      <tr>
+        <td><strong>Google indexing</strong></td>
+        <td><span class="badge badge-missing">Missing</span></td>
+        <td><span class="badge badge-critical">Critical</span></td>
+        <td>100% of potential organic search traffic. Ukrainian parents searching for evidence-based medical advice can't find you.</td>
+      </tr>
+      <tr>
+        <td><strong>Analytics (GA4/GTM)</strong></td>
+        <td><span class="badge badge-missing">Missing</span></td>
+        <td><span class="badge badge-critical">Critical</span></td>
+        <td>No data on visitors, traffic sources, page engagement, or conversion rates. Flying blind.</td>
+      </tr>
+      <tr>
+        <td><strong>Email capture / Newsletter</strong></td>
+        <td><span class="badge badge-missing">Missing</span></td>
+        <td><span class="badge badge-critical">Critical</span></td>
+        <td>Every visitor who leaves without subscribing is lost forever. Email lists are the #1 owned audience channel.</td>
+      </tr>
+      <tr>
+        <td><strong>Blog / SEO content</strong></td>
+        <td><span class="badge badge-missing">Missing</span></td>
+        <td><span class="badge badge-critical">Critical</span></td>
+        <td>Zero organic traffic pipeline. Competitors rank for hundreds of parenting health queries you could own.</td>
+      </tr>
+      <tr>
+        <td><strong>Facebook/Meta Pixel</strong></td>
+        <td><span class="badge badge-missing">Missing</span></td>
+        <td><span class="badge badge-high">High</span></td>
+        <td>Can't retarget site visitors on Instagram/Facebook. Can't build lookalike audiences from converters.</td>
+      </tr>
+      <tr>
+        <td><strong>Lead magnet</strong></td>
+        <td><span class="badge badge-missing">Missing</span></td>
+        <td><span class="badge badge-high">High</span></td>
+        <td>No free resource (checklist, guide, PDF) to capture emails. E.g. "Чекліст домашньої аптечки для малюка".</td>
+      </tr>
+      <tr>
+        <td><strong>Multiple CTAs / conversion paths</strong></td>
+        <td><span class="badge badge-missing">Missing</span></td>
+        <td><span class="badge badge-high">High</span></td>
+        <td>Only CTA is "Write on Telegram." No booking form, phone, email, or WhatsApp alternative.</td>
+      </tr>
+      <tr>
+        <td><strong>Google Business Profile</strong></td>
+        <td><span class="badge badge-missing">Missing</span></td>
+        <td><span class="badge badge-high">High</span></td>
+        <td>Missing from local search, Google Maps, and "near me" queries. Even online services benefit from GBP.</td>
+      </tr>
+      <tr>
+        <td><strong>Video content</strong></td>
+        <td><span class="badge badge-missing">Missing</span></td>
+        <td><span class="badge badge-medium">Medium</span></td>
+        <td>Video builds trust 3x faster than text for medical professionals. Short myth-busting clips would go viral.</td>
+      </tr>
+      <tr>
+        <td><strong>Cookie consent banner</strong></td>
+        <td><span class="badge badge-missing">Missing</span></td>
+        <td><span class="badge badge-medium">Medium</span></td>
+        <td>Legal compliance risk (GDPR if serving EU users). Required before adding any tracking.</td>
+      </tr>
+      <tr>
+        <td><strong>Privacy policy / Terms</strong></td>
+        <td><span class="badge badge-missing">Missing</span></td>
+        <td><span class="badge badge-medium">Medium</span></td>
+        <td>Legal requirement for medical consultations. Also needed for Google Ads and Facebook Ads eligibility.</td>
+      </tr>
+      <tr>
+        <td><strong>Trust badges / credentials</strong></td>
+        <td><span class="badge badge-warn">Partial</span></td>
+        <td><span class="badge badge-medium">Medium</span></td>
+        <td>Credentials listed as text but no diplomas, certificates, or verification badges shown.</td>
+      </tr>
+      <tr>
+        <td><strong>Social proof depth</strong></td>
+        <td><span class="badge badge-warn">Partial</span></td>
+        <td><span class="badge badge-medium">Medium</span></td>
+        <td>3 anonymous testimonials. Adding names, photos, dates, and more reviews would increase conversion.</td>
+      </tr>
+      <tr>
+        <td><strong>Urgency / scarcity signals</strong></td>
+        <td><span class="badge badge-missing">Missing</span></td>
+        <td><span class="badge badge-low">Low</span></td>
+        <td>No "limited slots", response time indicators, or availability status that encourage immediate action.</td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- CONTENT GAPS -->
+  <div class="tab-content" id="content">
+    <h2>Content Gap Analysis</h2>
+
+    <p style="margin-bottom: 16px;">Your competitors have deep content libraries targeting parenting health queries. Here are the biggest content opportunities for your niche.</p>
+
+    <table>
+      <tr><th>Content Topic</th><th>Why It Matters</th><th>Format</th><th>Priority</th><th>Effort</th></tr>
+      <tr>
+        <td><strong>Температура у дитини: коли збивати</strong></td>
+        <td>Extremely high-search query among Ukrainian parents. You already have myth-busting content on this.</td>
+        <td>Blog post + FAQ schema</td>
+        <td><span class="badge badge-critical">High</span></td>
+        <td>2-3 hours</td>
+      </tr>
+      <tr>
+        <td><strong>Прорізування зубів: що робити</strong></td>
+        <td>Your navigator already covers this — expand into a full SEO article with citations.</td>
+        <td>Long-form guide</td>
+        <td><span class="badge badge-critical">High</span></td>
+        <td>2-3 hours</td>
+      </tr>
+      <tr>
+        <td><strong>Домашня аптечка для немовляти</strong></td>
+        <td>Perfect lead magnet topic. High search volume, easy to rank.</td>
+        <td>Blog post + PDF checklist</td>
+        <td><span class="badge badge-critical">High</span></td>
+        <td>3-4 hours</td>
+      </tr>
+      <tr>
+        <td><strong>Вакцинація дітей: календар та FAQ</strong></td>
+        <td>Extremely controversial and searched topic. Evidence-based content is rare.</td>
+        <td>Pillar page</td>
+        <td><span class="badge badge-critical">High</span></td>
+        <td>4-6 hours</td>
+      </tr>
+      <tr>
+        <td><strong>Колики у немовляти: доказові методи</strong></td>
+        <td>High search volume. Parents desperately search this at 3 AM.</td>
+        <td>Blog post</td>
+        <td><span class="badge badge-high">High</span></td>
+        <td>2-3 hours</td>
+      </tr>
+      <tr>
+        <td><strong>Введення прикорму: покроковий гід</strong></td>
+        <td>Comprehensive guides on this rank extremely well. Competitors own this space.</td>
+        <td>Pillar page + infographic</td>
+        <td><span class="badge badge-high">High</span></td>
+        <td>4-6 hours</td>
+      </tr>
+      <tr>
+        <td><strong>Сімейний лікар онлайн: як це працює</strong></td>
+        <td>Commercial intent keyword — people are ready to book.</td>
+        <td>Landing page</td>
+        <td><span class="badge badge-high">High</span></td>
+        <td>2-3 hours</td>
+      </tr>
+      <tr>
+        <td><strong>Доказова медицина для батьків: що це</strong></td>
+        <td>Builds your authority pillar. Differentiates from competitors.</td>
+        <td>Educational page</td>
+        <td><span class="badge badge-medium">Medium</span></td>
+        <td>2-3 hours</td>
+      </tr>
+      <tr>
+        <td><strong>Сон немовляти: режим за місяцями</strong></td>
+        <td>Evergreen content parents search for repeatedly at each stage.</td>
+        <td>Blog series</td>
+        <td><span class="badge badge-medium">Medium</span></td>
+        <td>3-4 hours</td>
+      </tr>
+      <tr>
+        <td><strong>ГРВІ у дітей: коли до лікаря</strong></td>
+        <td>Seasonal peaks (autumn/winter) drive massive search traffic.</td>
+        <td>Blog post</td>
+        <td><span class="badge badge-medium">Medium</span></td>
+        <td>2-3 hours</td>
+      </tr>
+      <tr>
+        <td><strong>Myth vs Science article series</strong></td>
+        <td>Your unique angle! No competitor does this consistently as a content series.</td>
+        <td>Blog series + social content</td>
+        <td><span class="badge badge-high">High</span></td>
+        <td>Ongoing (1-2 hrs/week)</td>
+      </tr>
+      <tr>
+        <td><strong>Comparison: online vs in-person pediatrician</strong></td>
+        <td>Addresses the #1 objection to your service — legitimacy of Telegram consultations.</td>
+        <td>Comparison page</td>
+        <td><span class="badge badge-medium">Medium</span></td>
+        <td>2-3 hours</td>
+      </tr>
+    </table>
+
+    <div class="note-box">
+      <strong>Content strategy recommendation:</strong> Your "Myth vs. Science" format is unique and highly shareable. Build your entire content strategy around this — each blog post debunks a common parenting myth with scientific citations. This differentiates you from every competitor and aligns perfectly with your brand.
+    </div>
+  </div>
+
+  <!-- KEYWORDS -->
+  <div class="tab-content" id="keywords">
+    <h2>Keyword Opportunities</h2>
+
+    <div class="warning-box">
+      <strong>Note:</strong> Without an SEO tool (Ahrefs, Semrush) connected, search volume and difficulty are estimated based on web research and competitor analysis. For precise data, connect a dedicated SEO tool.
+    </div>
+
+    <table class="kw-table">
+      <tr><th>Keyword (Ukrainian)</th><th>Intent</th><th>Est. Difficulty</th><th>Opportunity</th><th>Recommended Content</th></tr>
+      <tr><td>температура у дитини коли збивати</td><td>Informational</td><td><span class="badge badge-medium">Medium</span></td><td><span class="badge badge-critical">High</span></td><td>Blog post + FAQ</td></tr>
+      <tr><td>прорізування зубів у немовляти</td><td>Informational</td><td><span class="badge badge-medium">Medium</span></td><td><span class="badge badge-critical">High</span></td><td>Guide article</td></tr>
+      <tr><td>сімейний лікар онлайн консультація</td><td>Commercial</td><td><span class="badge badge-high">Hard</span></td><td><span class="badge badge-critical">High</span></td><td>Service landing page</td></tr>
+      <tr><td>педіатр онлайн Україна</td><td>Commercial</td><td><span class="badge badge-high">Hard</span></td><td><span class="badge badge-high">High</span></td><td>Service page</td></tr>
+      <tr><td>доказова медицина діти</td><td>Informational</td><td><span class="badge badge-low">Easy</span></td><td><span class="badge badge-critical">High</span></td><td>Pillar page</td></tr>
+      <tr><td>колики у немовляти що робити</td><td>Informational</td><td><span class="badge badge-medium">Medium</span></td><td><span class="badge badge-critical">High</span></td><td>Blog post</td></tr>
+      <tr><td>вакцинація дітей календар Україна</td><td>Informational</td><td><span class="badge badge-medium">Medium</span></td><td><span class="badge badge-high">High</span></td><td>Pillar page</td></tr>
+      <tr><td>введення прикорму таблиця</td><td>Informational</td><td><span class="badge badge-medium">Medium</span></td><td><span class="badge badge-high">High</span></td><td>Guide + infographic</td></tr>
+      <tr><td>домашня аптечка для малюка</td><td>Informational</td><td><span class="badge badge-low">Easy</span></td><td><span class="badge badge-high">High</span></td><td>Checklist + PDF</td></tr>
+      <tr><td>сон немовляти по місяцях</td><td>Informational</td><td><span class="badge badge-medium">Medium</span></td><td><span class="badge badge-high">High</span></td><td>Blog series</td></tr>
+      <tr><td>ГРВІ у дитини лікування</td><td>Informational</td><td><span class="badge badge-high">Hard</span></td><td><span class="badge badge-medium">Medium</span></td><td>Blog post</td></tr>
+      <tr><td>консультація лікаря телеграм</td><td>Transactional</td><td><span class="badge badge-low">Easy</span></td><td><span class="badge badge-high">High</span></td><td>Landing page</td></tr>
+      <tr><td>алергія у дитини симптоми</td><td>Informational</td><td><span class="badge badge-medium">Medium</span></td><td><span class="badge badge-medium">Medium</span></td><td>Blog post</td></tr>
+      <tr><td>розвиток дитини по місяцях</td><td>Informational</td><td><span class="badge badge-high">Hard</span></td><td><span class="badge badge-medium">Medium</span></td><td>Blog series</td></tr>
+      <tr><td>як обрати педіатра</td><td>Commercial</td><td><span class="badge badge-low">Easy</span></td><td><span class="badge badge-medium">Medium</span></td><td>Blog post</td></tr>
+      <tr><td>міф чи правда здоров'я дитини</td><td>Informational</td><td><span class="badge badge-low">Easy</span></td><td><span class="badge badge-critical">High</span></td><td>"Myth vs. Science" series</td></tr>
+    </table>
+  </div>
+
+  <!-- COMPETITORS -->
+  <div class="tab-content" id="competitors">
+    <h2>Competitor SEO Comparison</h2>
+
+    <p style="margin-bottom: 16px;">Based on your niche (evidence-based parenting, online doctor consultations in Ukraine), here are your closest competitors:</p>
+
+    <table class="comp-table">
+      <tr><th>Dimension</th><th>doctorpidnebesna.com<br><small>(Your Site)</small></th><th>kinderklinik.ua</th><th>friendlic.clinic</th><th>lamalu.site</th></tr>
+      <tr>
+        <td><strong>Indexed pages</strong></td>
+        <td style="text-align:center"><span class="badge badge-fail">0</span></td>
+        <td style="text-align:center"><span class="badge badge-pass">500+</span></td>
+        <td style="text-align:center"><span class="badge badge-pass">200+</span></td>
+        <td style="text-align:center"><span class="badge badge-pass">50+</span></td>
+      </tr>
+      <tr>
+        <td><strong>Blog / Content</strong></td>
+        <td style="text-align:center"><span class="badge badge-fail">None</span></td>
+        <td style="text-align:center"><span class="badge badge-pass">Active blog</span></td>
+        <td style="text-align:center"><span class="badge badge-pass">Active blog</span></td>
+        <td style="text-align:center"><span class="badge badge-warn">Limited</span></td>
+      </tr>
+      <tr>
+        <td><strong>Structured data</strong></td>
+        <td style="text-align:center"><span class="badge badge-fail">None</span></td>
+        <td style="text-align:center"><span class="badge badge-pass">Yes</span></td>
+        <td style="text-align:center"><span class="badge badge-pass">Yes</span></td>
+        <td style="text-align:center"><span class="badge badge-warn">Partial</span></td>
+      </tr>
+      <tr>
+        <td><strong>Open Graph</strong></td>
+        <td style="text-align:center"><span class="badge badge-fail">Missing</span></td>
+        <td style="text-align:center"><span class="badge badge-pass">Yes</span></td>
+        <td style="text-align:center"><span class="badge badge-pass">Yes</span></td>
+        <td style="text-align:center"><span class="badge badge-pass">Yes</span></td>
+      </tr>
+      <tr>
+        <td><strong>Email capture</strong></td>
+        <td style="text-align:center"><span class="badge badge-fail">None</span></td>
+        <td style="text-align:center"><span class="badge badge-pass">Yes</span></td>
+        <td style="text-align:center"><span class="badge badge-pass">Yes</span></td>
+        <td style="text-align:center"><span class="badge badge-warn">Partial</span></td>
+      </tr>
+      <tr>
+        <td><strong>Analytics</strong></td>
+        <td style="text-align:center"><span class="badge badge-fail">None</span></td>
+        <td style="text-align:center"><span class="badge badge-pass">GA4 + FB</span></td>
+        <td style="text-align:center"><span class="badge badge-pass">GA4 + FB</span></td>
+        <td style="text-align:center"><span class="badge badge-pass">GA4</span></td>
+      </tr>
+      <tr>
+        <td><strong>Conversion paths</strong></td>
+        <td style="text-align:center">Telegram only</td>
+        <td style="text-align:center">Phone, form, chat, Telegram</td>
+        <td style="text-align:center">Phone, form, chat</td>
+        <td style="text-align:center">Phone, form, Telegram</td>
+      </tr>
+      <tr>
+        <td><strong>Video content</strong></td>
+        <td style="text-align:center"><span class="badge badge-fail">None</span></td>
+        <td style="text-align:center"><span class="badge badge-pass">YouTube</span></td>
+        <td style="text-align:center"><span class="badge badge-pass">YouTube</span></td>
+        <td style="text-align:center"><span class="badge badge-fail">None</span></td>
+      </tr>
+      <tr>
+        <td><strong>Unique angle</strong></td>
+        <td style="text-align:center">Myth vs. Science</td>
+        <td style="text-align:center">Full clinic services</td>
+        <td style="text-align:center">Subscription model</td>
+        <td style="text-align:center">Warm/friendly approach</td>
+      </tr>
+    </table>
+
+    <div class="note-box">
+      <strong>Your competitive advantage:</strong> Your "Myth vs. Science" format is genuinely unique. No competitor does evidence-based myth-busting as a core brand pillar. Your personal brand as a family doctor + mother is also a strong differentiator. The gap is purely in technical and content infrastructure — not in positioning.
+    </div>
+  </div>
+
+  <!-- ACTION PLAN -->
+  <div class="tab-content" id="actions">
+    <h2>Prioritized Action Plan</h2>
+
+    <h3 style="color: #c62828;">Quick Wins — Do This Week</h3>
+
+    <div class="action-card">
+      <div class="action-header">
+        <div class="action-title">1. Add Google Analytics (GA4) + Search Console</div>
+        <div class="action-impact"><span class="badge badge-critical">Critical</span></div>
+      </div>
+      <div class="action-desc">Install GA4 tracking code. Register site in Google Search Console. Without this, you're making decisions with zero data.</div>
+      <div class="action-meta">
+        <span>Effort: 1-2 hours</span>
+        <span>Impact: Foundational — enables everything else</span>
+      </div>
+    </div>
+
+    <div class="action-card">
+      <div class="action-header">
+        <div class="action-title">2. Add robots.txt + XML sitemap</div>
+        <div class="action-impact"><span class="badge badge-critical">Critical</span></div>
+      </div>
+      <div class="action-desc">Create a robots.txt allowing crawling and a sitemap.xml listing all URLs. Submit sitemap in Search Console. This is the #1 barrier to indexing.</div>
+      <div class="action-meta">
+        <span>Effort: 30 minutes</span>
+        <span>Impact: Enables Google to find and index your site</span>
+      </div>
+    </div>
+
+    <div class="action-card">
+      <div class="action-header">
+        <div class="action-title">3. Add Open Graph + Twitter Card meta tags</div>
+        <div class="action-impact"><span class="badge badge-critical">Critical</span></div>
+      </div>
+      <div class="action-desc">Add og:title, og:description, og:image, og:url + Twitter card tags. Every time someone shares your link on Instagram, Facebook, or Telegram, it will display with a beautiful preview instead of a blank box.</div>
+      <div class="action-meta">
+        <span>Effort: 30 minutes</span>
+        <span>Impact: Dramatically better social sharing appearance</span>
+      </div>
+    </div>
+
+    <div class="action-card">
+      <div class="action-header">
+        <div class="action-title">4. Add canonical URL tag</div>
+        <div class="action-impact"><span class="badge badge-high">High</span></div>
+      </div>
+      <div class="action-desc">Add &lt;link rel="canonical" href="https://doctorpidnebesna.com/"&gt; to prevent duplicate content issues.</div>
+      <div class="action-meta">
+        <span>Effort: 5 minutes</span>
+        <span>Impact: Clean SEO signal</span>
+      </div>
+    </div>
+
+    <div class="action-card">
+      <div class="action-header">
+        <div class="action-title">5. Add structured data (JSON-LD)</div>
+        <div class="action-impact"><span class="badge badge-high">High</span></div>
+      </div>
+      <div class="action-desc">Add FAQPage schema (for your FAQ section), Person schema (for Dr. Lyuba), and MedicalBusiness schema. FAQPage schema can show your Q&As directly in Google search results.</div>
+      <div class="action-meta">
+        <span>Effort: 1-2 hours</span>
+        <span>Impact: Rich results in Google, builds E-E-A-T</span>
+      </div>
+    </div>
+
+    <div class="action-card">
+      <div class="action-header">
+        <div class="action-title">6. Fix mobile performance (LCP 8.5s)</div>
+        <div class="action-impact"><span class="badge badge-high">High</span></div>
+      </div>
+      <div class="action-desc">Optimize hero images (compress, use WebP), add lazy loading to below-fold images, and preload critical resources. Target LCP under 2.5s on mobile.</div>
+      <div class="action-meta">
+        <span>Effort: 2-4 hours</span>
+        <span>Impact: Better Google ranking + lower bounce rate on mobile</span>
+      </div>
+    </div>
+
+    <div class="action-card">
+      <div class="action-header">
+        <div class="action-title">7. Install Facebook/Meta Pixel</div>
+        <div class="action-impact"><span class="badge badge-high">High</span></div>
+      </div>
+      <div class="action-desc">Even before running ads, the pixel starts building an audience of your visitors. When you're ready for ads, you'll have data to create lookalike audiences.</div>
+      <div class="action-meta">
+        <span>Effort: 30 minutes</span>
+        <span>Impact: Future retargeting capability</span>
+      </div>
+    </div>
+
+    <h3 style="color: #1565c0; margin-top: 32px;">Strategic Investments — This Quarter</h3>
+
+    <div class="action-card">
+      <div class="action-header">
+        <div class="action-title">8. Expand to multi-page site with blog</div>
+        <div class="action-impact"><span class="badge badge-critical">Critical</span></div>
+      </div>
+      <div class="action-desc">Create dedicated pages: /about, /services, /blog, /faq, /contact. Then start publishing 2-4 blog posts per month based on your "Myth vs. Science" format. Each post targets a specific keyword from the opportunities table.</div>
+      <div class="action-meta">
+        <span>Effort: 1-2 weeks for site structure, ongoing for content</span>
+        <span>Impact: Organic traffic pipeline — potentially 500-2000 monthly visitors within 6 months</span>
+      </div>
+    </div>
+
+    <div class="action-card">
+      <div class="action-header">
+        <div class="action-title">9. Create a lead magnet + email capture</div>
+        <div class="action-impact"><span class="badge badge-critical">Critical</span></div>
+      </div>
+      <div class="action-desc">Create a free PDF guide (e.g., "Чекліст домашньої аптечки для малюка" or "10 медичних міфів які шкодять дітям"). Add an email signup form to capture leads. Use a tool like MailerLite (free tier) for email automation.</div>
+      <div class="action-meta">
+        <span>Effort: 1-2 days</span>
+        <span>Impact: Build owned audience. Email converts 3-5x better than social media.</span>
+      </div>
+    </div>
+
+    <div class="action-card">
+      <div class="action-header">
+        <div class="action-title">10. Add privacy policy + cookie consent</div>
+        <div class="action-impact"><span class="badge badge-high">High</span></div>
+      </div>
+      <div class="action-desc">Required for legal compliance (especially for medical services), Google Ads eligibility, and Facebook Ads. Use a template or generator for Ukrainian medical practice.</div>
+      <div class="action-meta">
+        <span>Effort: 2-3 hours</span>
+        <span>Impact: Legal compliance + ad platform eligibility</span>
+      </div>
+    </div>
+
+    <div class="action-card">
+      <div class="action-header">
+        <div class="action-title">11. Claim Google Business Profile</div>
+        <div class="action-impact"><span class="badge badge-high">High</span></div>
+      </div>
+      <div class="action-desc">Even as an online practice, GBP helps you appear in "family doctor" and "pediatrician" searches. Add photos, services, operating hours, and encourage reviews.</div>
+      <div class="action-meta">
+        <span>Effort: 1-2 hours</span>
+        <span>Impact: Local search visibility</span>
+      </div>
+    </div>
+
+    <div class="action-card">
+      <div class="action-header">
+        <div class="action-title">12. Add video content</div>
+        <div class="action-impact"><span class="badge badge-medium">Medium</span></div>
+      </div>
+      <div class="action-desc">Short 60-90 second myth-busting videos (Reels/TikTok format) embedded on site and shared on social. Video builds trust faster than text for medical professionals. Even a simple "talking head" format works.</div>
+      <div class="action-meta">
+        <span>Effort: Ongoing (1-2 videos/week)</span>
+        <span>Impact: Trust building + viral potential + YouTube SEO</span>
+      </div>
+    </div>
+
+    <div class="action-card">
+      <div class="action-header">
+        <div class="action-title">13. Add more social proof & trust signals</div>
+        <div class="action-impact"><span class="badge badge-medium">Medium</span></div>
+      </div>
+      <div class="action-desc">Display diploma/certificate images, add more testimonials with names and photos (with consent), show "consultation counter" (e.g., "5000+ consultations"), and add response time indicator.</div>
+      <div class="action-meta">
+        <span>Effort: 1 day</span>
+        <span>Impact: Higher conversion rate</span>
+      </div>
+    </div>
+
+    <div class="action-card">
+      <div class="action-header">
+        <div class="action-title">14. Diversify conversion paths</div>
+        <div class="action-impact"><span class="badge badge-medium">Medium</span></div>
+      </div>
+      <div class="action-desc">Add a contact form, a booking calendar (Calendly-style), a WhatsApp/Viber option, and an email address. Some users are uncomfortable starting medical conversations on Telegram.</div>
+      <div class="action-meta">
+        <span>Effort: 1 day</span>
+        <span>Impact: Capture users who prefer non-Telegram channels</span>
+      </div>
+    </div>
+
+    <h3 style="color: #666; margin-top: 32px;">Overall Priority Matrix</h3>
+    <table>
+      <tr><th>#</th><th>Action</th><th>Effort</th><th>Impact</th><th>Timeline</th></tr>
+      <tr><td>1</td><td>GA4 + Search Console</td><td>1-2 hrs</td><td><span class="badge badge-critical">Critical</span></td><td>Day 1</td></tr>
+      <tr><td>2</td><td>robots.txt + sitemap.xml</td><td>30 min</td><td><span class="badge badge-critical">Critical</span></td><td>Day 1</td></tr>
+      <tr><td>3</td><td>Open Graph + Twitter Card tags</td><td>30 min</td><td><span class="badge badge-critical">Critical</span></td><td>Day 1</td></tr>
+      <tr><td>4</td><td>Canonical URL</td><td>5 min</td><td><span class="badge badge-high">High</span></td><td>Day 1</td></tr>
+      <tr><td>5</td><td>JSON-LD structured data</td><td>1-2 hrs</td><td><span class="badge badge-high">High</span></td><td>Week 1</td></tr>
+      <tr><td>6</td><td>Fix mobile LCP</td><td>2-4 hrs</td><td><span class="badge badge-high">High</span></td><td>Week 1</td></tr>
+      <tr><td>7</td><td>Meta Pixel</td><td>30 min</td><td><span class="badge badge-high">High</span></td><td>Week 1</td></tr>
+      <tr><td>8</td><td>Multi-page site + blog</td><td>1-2 weeks</td><td><span class="badge badge-critical">Critical</span></td><td>Month 1</td></tr>
+      <tr><td>9</td><td>Lead magnet + email</td><td>1-2 days</td><td><span class="badge badge-critical">Critical</span></td><td>Month 1</td></tr>
+      <tr><td>10</td><td>Privacy policy + cookies</td><td>2-3 hrs</td><td><span class="badge badge-high">High</span></td><td>Month 1</td></tr>
+      <tr><td>11</td><td>Google Business Profile</td><td>1-2 hrs</td><td><span class="badge badge-high">High</span></td><td>Month 1</td></tr>
+      <tr><td>12</td><td>Video content</td><td>Ongoing</td><td><span class="badge badge-medium">Medium</span></td><td>Month 2+</td></tr>
+      <tr><td>13</td><td>Social proof depth</td><td>1 day</td><td><span class="badge badge-medium">Medium</span></td><td>Month 1</td></tr>
+      <tr><td>14</td><td>Diversify CTAs</td><td>1 day</td><td><span class="badge badge-medium">Medium</span></td><td>Month 1</td></tr>
+    </table>
+  </div>
+</div>
+
+</div>
+
+<div class="footer">
+  SEO & Marketing Audit for doctorpidnebesna.com | Generated February 15, 2026
+</div>
+
+<script>
+function showTab(id) {
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  event.target.classList.add('active');
+}
+</script>
+</body>
+</html>

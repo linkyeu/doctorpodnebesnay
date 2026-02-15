@@ -1,7 +1,5 @@
-import { TELEGRAM_CHANNEL } from '../../data/links';
-import { useCountUp } from '../../hooks/useCountUp';
 import { useScrollReveal } from '../../hooks/useScrollReveal';
-import styles from './SocialProof.module.css';
+import styles from './Testimonials.module.css';
 
 const testimonials = [
   {
@@ -27,32 +25,15 @@ const testimonials = [
   },
 ];
 
-export default function SocialProof() {
-  const { count, ref: counterRef } = useCountUp(30000);
-  const testimonialsRef = useScrollReveal<HTMLDivElement>();
+export default function Testimonials() {
+  const ref = useScrollReveal<HTMLDivElement>();
 
   return (
-    <section className={styles.socialProof} id="community">
-      <div className={styles.container}>
-        <div className={styles.stat} ref={counterRef}>
-          <p className={styles.number}>{count.toLocaleString('uk-UA')}+</p>
-          <p className={styles.label}>батьків у Telegram-спільноті</p>
-          <p className={styles.description}>
-            Щодня — доказові пости про здоров'я дітей, розбори випадків та
-            відповіді на запитання підписників.
-          </p>
-          <a
-            href={TELEGRAM_CHANNEL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.channelCta}
-          >
-            Приєднатися до каналу
-            <span className="sr-only"> (відкриється в новій вкладці)</span>
-          </a>
-        </div>
+    <section className={styles.testimonials} id="testimonials">
+      <div className={`${styles.container} reveal`} ref={ref}>
+        <h2 className={styles.heading}>Що кажуть батьки</h2>
 
-        <div className={`${styles.testimonials} reveal`} ref={testimonialsRef}>
+        <div className={styles.grid}>
           {testimonials.map((t) => (
             <blockquote key={t.id} className={styles.card}>
               <span className={styles.quote} aria-hidden="true">&ldquo;</span>

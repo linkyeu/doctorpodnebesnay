@@ -1,4 +1,4 @@
-import { useState, useRef, useCallback } from 'react';
+import { useState, useRef, useCallback, useEffect } from 'react';
 import { ageGroups } from '../../data/situations';
 import { useScrollReveal } from '../../hooks/useScrollReveal';
 import SituationCard from '../SituationCard/SituationCard';
@@ -10,6 +10,9 @@ export default function Navigator() {
   const activeGroup = ageGroups[activeIndex];
   const ref = useScrollReveal<HTMLDivElement>();
   const pendingIndex = useRef<number | null>(null);
+  const gridRef = useRef<HTMLDivElement>(null);
+  const [canScrollLeft, setCanScrollLeft] = useState(false);
+  const [canScrollRight, setCanScrollRight] = useState(false);
 
   const switchTab = useCallback((index: number) => {
     if (index === activeIndex || transitioning) return;
@@ -22,6 +25,39 @@ export default function Navigator() {
       pendingIndex.current = null;
     }, 200);
   }, [activeIndex, transitioning]);
+
+  const updateScrollButtons = useCallback(() => {
+    const el = gridRef.current;
+    if (!el) return;
+    setCanScrollLeft(el.scrollLeft > 1);
+    setCanScrollRight(el.scrollLeft + el.clientWidth < el.scrollWidth - 1);
+  }, []);
+
+  const scrollCarousel = useCallback((direction: 'left' | 'right') => {
+    const el = gridRef.current;
+    if (!el) return;
+    const card = el.querySelector<HTMLElement>(`.${styles.cardWrapper}`);
+    if (!card) return;
+    const gap = parseFloat(getComputedStyle(el).gap) || 0;
+    const distance = card.offsetWidth + gap;
+    el.scrollBy({ left: direction === 'left' ? -distance : distance, behavior: 'smooth' });
+  }, []);
+
+  useEffect(() => {
+    const el = gridRef.current;
+    if (!el) return;
+
+    const timeout = setTimeout(updateScrollButtons, 50);
+    el.addEventListener('scroll', updateScrollButtons, { passive: true });
+    const observer = new ResizeObserver(updateScrollButtons);
+    observer.observe(el);
+
+    return () => {
+      clearTimeout(timeout);
+      el.removeEventListener('scroll', updateScrollButtons);
+      observer.disconnect();
+    };
+  }, [activeGroup.id, updateScrollButtons]);
 
   return (
     <section className={styles.navigator} id="navigator">
@@ -72,16 +108,44 @@ export default function Navigator() {
           className={`${styles.panel} ${transitioning ? styles.panelExiting : styles.panelEntering}`}
           key={activeGroup.id}
         >
-          <div className={styles.grid}>
-            {activeGroup.situations.map((situation, i) => (
-              <div
-                key={situation.id}
-                className={styles.cardWrapper}
-                style={{ animationDelay: `${i * 100}ms` }}
-              >
-                <SituationCard situation={situation} />
-              </div>
-            ))}
+          <div className={styles.carouselWrapper}>
+            <button
+              className={`${styles.scrollArrow} ${styles.scrollArrowLeft} ${canScrollLeft ? styles.scrollArrowVisible : ''}`}
+              onClick={() => scrollCarousel('left')}
+              aria-label="Попередня картка"
+              tabIndex={canScrollLeft ? 0 : -1}
+            >
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="M12.5 15L7.5 10L12.5 5" />
+              </svg>
+            </button>
+            <div
+              ref={gridRef}
+              className={styles.grid}
+              role="region"
+              aria-label="Картки з розвінчаними міфами"
+              tabIndex={0}
+            >
+              {activeGroup.situations.map((situation, i) => (
+                <div
+                  key={situation.id}
+                  className={styles.cardWrapper}
+                  style={{ animationDelay: `${i * 100}ms` }}
+                >
+                  <SituationCard situation={situation} />
+                </div>
+              ))}
+            </div>
+            <button
+              className={`${styles.scrollArrow} ${styles.scrollArrowRight} ${canScrollRight ? styles.scrollArrowVisible : ''}`}
+              onClick={() => scrollCarousel('right')}
+              aria-label="Наступна картка"
+              tabIndex={canScrollRight ? 0 : -1}
+            >
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="M7.5 5L12.5 10L7.5 15" />
+              </svg>
+            </button>
           </div>
         </div>
       </div>

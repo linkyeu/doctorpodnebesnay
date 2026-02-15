@@ -1,0 +1,152 @@
+import { useState } from 'react';
+import { useScrollReveal } from '../../hooks/useScrollReveal';
+import styles from './WhenToContact.module.css';
+
+const cards = [
+  {
+    num: '01',
+    title: 'Температура у дитини',
+    description:
+      'Не знаєте, коли збивати і чи потрібно взагалі? Розберемо за протоколами.',
+    illustration: '/images/when-to-contact/temperature.png',
+    emoji: '🌡️',
+  },
+  {
+    num: '02',
+    title: 'Введення прикорму',
+    description:
+      'З чого починати, коли і скільки давати — індивідуальний план для вашого малюка.',
+    illustration: '/images/when-to-contact/feeding.png',
+    emoji: '🍎',
+  },
+  {
+    num: '03',
+    title: 'Вакцинація',
+    description:
+      'Сумніви, страхи, індивідуальний графік — все обговоримо з посиланням на дослідження.',
+    illustration: '/images/when-to-contact/vaccination.png',
+    emoji: '🛡️',
+  },
+  {
+    num: '04',
+    title: 'Проблеми зі сном',
+    description:
+      'Дитина не спить, ви не спите. Розберемо причини та знайдемо рішення без «залишити плакати».',
+    illustration: '/images/when-to-contact/sleep.png',
+    emoji: '🌙',
+  },
+  {
+    num: '05',
+    title: 'Виховання та розвиток',
+    description:
+      'Істерики, кризи, межі — як реагувати, спираючись на науку, а не на «мене так виховували».',
+    illustration: '/images/when-to-contact/development.png',
+    emoji: '🧩',
+  },
+  {
+    num: '06',
+    title: 'Здоров\'я дорослих',
+    description:
+      'Профілактика, чекапи, довголіття — консультую всю родину, не тільки малюків.',
+    illustration: '/images/when-to-contact/adult-health.png',
+    emoji: '❤️',
+  },
+];
+
+export default function WhenToContact() {
+  const ref = useScrollReveal<HTMLDivElement>();
+  const [activeCard, setActiveCard] = useState<number | null>(null);
+
+  const toggleCard = (index: number) => {
+    setActiveCard((prev) => (prev === index ? null : index));
+  };
+
+  return (
+    <section className={styles.whenToContact}>
+      <div className={`${styles.container} reveal`} ref={ref}>
+        <h2 className={styles.heading}>Коли варто написати</h2>
+        <p className={styles.subtitle}>
+          Не чекайте, поки тривога переросте в паніку. Напишіть — розберемося разом.
+        </p>
+
+        <div className={styles.grid}>
+          {cards.map((card, index) => {
+            const isExpanded = activeCard === index;
+            return (
+              <button
+                key={card.num}
+                type="button"
+                className={styles.card}
+                aria-expanded={isExpanded}
+                onClick={() => toggleCard(index)}
+              >
+                <span className={styles.badge}>{card.num}</span>
+
+                <div className={styles.illustrationWrapper}>
+                  <img
+                    src={card.illustration}
+                    alt=""
+                    aria-hidden="true"
+                    width="80"
+                    height="80"
+                    loading="lazy"
+                    className={styles.illustration}
+                    onError={(e) => {
+                      const target = e.currentTarget;
+                      target.style.display = 'none';
+                      const fallback = target.nextElementSibling;
+                      if (fallback instanceof HTMLElement) {
+                        fallback.style.display = 'flex';
+                      }
+                    }}
+                  />
+                  <span
+                    className={styles.emojiFallback}
+                    aria-hidden="true"
+                    style={{ display: 'none' }}
+                  >
+                    {card.emoji}
+                  </span>
+                </div>
+
+                <h3 className={styles.cardTitle}>{card.title}</h3>
+
+                <div
+                  className={`${styles.descriptionWrapper} ${isExpanded ? styles.expanded : ''}`}
+                >
+                  <p className={styles.cardDescription}>{card.description}</p>
+                </div>
+
+                <svg
+                  className={`${styles.chevron} ${isExpanded ? styles.chevronRotated : ''}`}
+                  width="20"
+                  height="20"
+                  viewBox="0 0 20 20"
+                  fill="none"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M5 7.5L10 12.5L15 7.5"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
+      <div className={styles.waveDivider} aria-hidden="true">
+        <svg viewBox="0 0 1440 80" preserveAspectRatio="none">
+          <path
+            d="M0,32 C240,64 480,8 720,40 C960,72 1200,16 1440,48 L1440,80 L0,80 Z"
+            fill="#111827"
+          />
+        </svg>
+      </div>
+    </section>
+  );
+}
