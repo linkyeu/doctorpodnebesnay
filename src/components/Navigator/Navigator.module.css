@@ -1,3 +1,8 @@
+@keyframes revealScale {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+
 .navigator {
   padding: var(--space-24) var(--space-6);
   background: var(--color-bg-dark);

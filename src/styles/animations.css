@@ -1,15 +1,3 @@
-/* ─── Hero reveal ─── */
-@keyframes heroReveal {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
 /* ─── Scroll reveal variants ─── */
 @keyframes fadeInUp {
   from {
@@ -33,17 +21,6 @@
   }
 }
 
-@keyframes revealScale {
-  from {
-    opacity: 0;
-    transform: scale(0.9);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
 @keyframes revealLeft {
   from {
     opacity: 0;
@@ -63,28 +40,6 @@
   to {
     opacity: 1;
     transform: translateX(0);
-  }
-}
-
-/* ─── Trust badges marquee ─── */
-@keyframes marquee {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
-}
-
-/* ─── Counter spring reveal ─── */
-@keyframes counterReveal {
-  from {
-    transform: scale(0.8);
-    opacity: 0;
-  }
-  to {
-    transform: scale(1);
-    opacity: 1;
   }
 }
 
