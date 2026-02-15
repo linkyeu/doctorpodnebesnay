@@ -1,6 +1,9 @@
+import { useScrollReveal } from '../../hooks/useScrollReveal';
 import styles from './Bio.module.css';
 
 export default function Bio() {
+  const ref = useScrollReveal<HTMLDivElement>();
+
   const credentials = [
     'Сімейний лікар вищої категорії',
     '12 років клінічного досвіду',
@@ -10,8 +13,8 @@ export default function Bio() {
 
   return (
     <section className={styles.bio} id="about">
-      <div className={styles.container}>
-        {/* Photo placeholder */}
+      <div className={`${styles.container} reveal`} ref={ref}>
+        {/* Photo */}
         <div className={styles.photoWrapper}>
           <div className={styles.photo}>
             <img
@@ -20,12 +23,6 @@ export default function Bio() {
               className={styles.photoImg}
             />
           </div>
-          <img
-            src="/images/bio-frame.png"
-            alt=""
-            className={styles.frame}
-            aria-hidden="true"
-          />
         </div>
 
         {/* Text content */}
@@ -47,7 +44,23 @@ export default function Bio() {
           <ul className={styles.credentials}>
             {credentials.map((item) => (
               <li key={item} className={styles.credentialItem}>
-                <span className={styles.dot} aria-hidden="true" />
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 20 20"
+                  fill="none"
+                  aria-hidden="true"
+                  className={styles.checkIcon}
+                >
+                  <circle cx="10" cy="10" r="9" fill="var(--color-text-muted)" opacity="0.15" />
+                  <path
+                    d="M6 10l3 3 5-6"
+                    stroke="var(--color-text-muted)"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
                 {item}
               </li>
             ))}

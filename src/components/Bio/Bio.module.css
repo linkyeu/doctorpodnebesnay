@@ -1,6 +1,6 @@
 .bio {
   padding: var(--space-24) var(--space-6);
-  background: var(--color-bg-alt);
+  background: var(--color-surface);
 }
 
 .container {
@@ -25,12 +25,12 @@
   height: 240px;
   border-radius: var(--radius-full);
   overflow: hidden;
-  background: var(--color-surface);
+  background: var(--color-bg-alt);
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
-  z-index: 1;
+  border: 3px solid var(--color-border);
 }
 
 .photoImg {
@@ -39,24 +39,16 @@
   object-fit: cover;
 }
 
-.frame {
-  position: absolute;
-  width: 300px;
-  height: 300px;
-  animation: floatSlow 10s ease-in-out infinite;
-}
-
 /* ─── Content ─── */
 .heading {
   font-family: var(--font-display);
   font-size: var(--text-3xl);
   margin-bottom: var(--space-2);
-  font-variation-settings: 'opsz' 72;
 }
 
 .role {
   font-size: var(--text-base);
-  color: var(--color-primary);
+  color: var(--color-text-muted);
   font-weight: var(--weight-medium);
   margin-bottom: var(--space-6);
 }
@@ -85,12 +77,8 @@
   font-weight: var(--weight-medium);
 }
 
-.dot {
+.checkIcon {
   flex-shrink: 0;
-  width: 6px;
-  height: 6px;
-  border-radius: var(--radius-full);
-  background: var(--color-primary);
 }
 
 @media (max-width: 768px) {
@@ -111,11 +99,6 @@
   .photo {
     width: 180px;
     height: 180px;
-  }
-
-  .frame {
-    width: 230px;
-    height: 230px;
   }
 
   .content {

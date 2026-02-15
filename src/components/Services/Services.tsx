@@ -1,21 +1,25 @@
 import { TELEGRAM_DM } from '../../data/links';
+import { useScrollReveal } from '../../hooks/useScrollReveal';
 import styles from './Services.module.css';
 
 const steps = [
   {
     number: 1,
+    icon: '/images/services/step-1-describe.png',
     title: 'Опишіть ситуацію',
     description:
       'Напишіть у Telegram: симптоми, вік дитини, фото за потреби. Чим детальніше — тим точніша відповідь.',
   },
   {
     number: 2,
+    icon: '/images/services/step-2-answer.png',
     title: 'Отримайте відповідь',
     description:
       'Др. Люба відповість розгорнутими рекомендаціями з поясненнями та посиланнями на протоколи.',
   },
   {
     number: 3,
+    icon: '/images/services/step-3-followup.png',
     title: 'Уточнюйте далі',
     description:
       'Додаткові запитання в межах однієї теми — без обмежень. Поки не розберемося до кінця.',
@@ -23,9 +27,11 @@ const steps = [
 ];
 
 export default function Services() {
+  const ref = useScrollReveal<HTMLDivElement>();
+
   return (
     <section className={styles.services} id="services">
-      <div className={styles.container}>
+      <div className={`${styles.container} reveal`} ref={ref}>
         <h2 className={styles.heading}>Консультація через Telegram</h2>
         <p className={styles.subtitle}>
           Сімейний лікар для всієї родини — консультації онлайн у текстовому форматі.
@@ -35,7 +41,10 @@ export default function Services() {
         <div className={styles.steps}>
           {steps.map((step) => (
             <div key={step.number} className={styles.stepCard}>
-              <span className={styles.stepNumber}>{step.number}</span>
+              <div className={styles.iconWrapper}>
+                <img src={step.icon} alt="" aria-hidden="true" className={styles.stepIcon} />
+              </div>
+              <span className={styles.stepNumber}>{String(step.number).padStart(2, '0')}</span>
               <h3 className={styles.stepTitle}>{step.title}</h3>
               <p className={styles.stepDescription}>{step.description}</p>
             </div>

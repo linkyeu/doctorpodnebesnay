@@ -8,11 +8,29 @@ interface SituationCardProps {
 export default function SituationCard({ situation }: SituationCardProps) {
   return (
     <article className={styles.card}>
+      {/* Illustration zone */}
+      <div className={styles.illustrationZone}>
+        {situation.illustration ? (
+          <div className={styles.illustrationWrapper}>
+            <img
+              src={situation.illustration}
+              alt=""
+              aria-hidden="true"
+              width="120"
+              height="120"
+              loading="lazy"
+              className={styles.illustration}
+            />
+          </div>
+        ) : (
+          <span className={styles.emoji} aria-hidden="true">
+            {situation.emoji}
+          </span>
+        )}
+      </div>
+
       {/* Header */}
       <div className={styles.header}>
-        <span className={styles.emoji} aria-hidden="true">
-          {situation.emoji}
-        </span>
         <h3 className={styles.title}>{situation.title}</h3>
       </div>
 
@@ -27,10 +45,10 @@ export default function SituationCard({ situation }: SituationCardProps) {
             aria-hidden="true"
             className={styles.icon}
           >
-            <circle cx="10" cy="10" r="9" stroke="var(--color-myth-icon)" strokeWidth="1.5" />
+            <circle cx="10" cy="10" r="9" stroke="var(--color-myth-accent)" strokeWidth="1.5" />
             <path
               d="M7 7l6 6M13 7l-6 6"
-              stroke="var(--color-myth-icon)"
+              stroke="var(--color-myth-accent)"
               strokeWidth="1.5"
               strokeLinecap="round"
             />
@@ -61,10 +79,10 @@ export default function SituationCard({ situation }: SituationCardProps) {
             aria-hidden="true"
             className={styles.icon}
           >
-            <circle cx="10" cy="10" r="9" stroke="var(--color-science-icon)" strokeWidth="1.5" />
+            <circle cx="10" cy="10" r="9" stroke="var(--color-science-accent)" strokeWidth="1.5" />
             <path
               d="M6 10l3 3 5-6"
-              stroke="var(--color-science-icon)"
+              stroke="var(--color-science-accent)"
               strokeWidth="1.5"
               strokeLinecap="round"
               strokeLinejoin="round"

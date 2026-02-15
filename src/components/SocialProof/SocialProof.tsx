@@ -1,4 +1,6 @@
 import { TELEGRAM_CHANNEL } from '../../data/links';
+import { useCountUp } from '../../hooks/useCountUp';
+import { useScrollReveal } from '../../hooks/useScrollReveal';
 import styles from './SocialProof.module.css';
 
 const testimonials = [
@@ -26,11 +28,14 @@ const testimonials = [
 ];
 
 export default function SocialProof() {
+  const { count, ref: counterRef } = useCountUp(30000);
+  const testimonialsRef = useScrollReveal<HTMLDivElement>();
+
   return (
     <section className={styles.socialProof} id="community">
       <div className={styles.container}>
-        <div className={styles.stat}>
-          <p className={styles.number}>30 000+</p>
+        <div className={styles.stat} ref={counterRef}>
+          <p className={styles.number}>{count.toLocaleString('uk-UA')}+</p>
           <p className={styles.label}>батьків у Telegram-спільноті</p>
           <p className={styles.description}>
             Щодня — доказові пости про здоров'я дітей, розбори випадків та
@@ -47,7 +52,7 @@ export default function SocialProof() {
           </a>
         </div>
 
-        <div className={styles.testimonials}>
+        <div className={`${styles.testimonials} reveal`} ref={testimonialsRef}>
           {testimonials.map((t) => (
             <blockquote key={t.id} className={styles.card}>
               <span className={styles.quote} aria-hidden="true">&ldquo;</span>

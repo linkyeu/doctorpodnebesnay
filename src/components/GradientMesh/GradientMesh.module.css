@@ -1,0 +1,310 @@
+.mesh {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* ═══════════════════════════════════════════
+   RIBBONS — elongated shapes that drift + rotate
+   ═══════════════════════════════════════════ */
+
+.ribbon1,
+.ribbon2,
+.ribbon3,
+.ribbon4 {
+  position: absolute;
+  will-change: translate, rotate;
+}
+
+/* Ribbon 1 — teal, top-right, diagonal */
+.ribbon1 {
+  width: 320px;
+  height: 22px;
+  top: 12%;
+  right: -5%;
+  background: linear-gradient(90deg, rgba(43, 107, 127, 0.22), rgba(43, 107, 127, 0.06));
+  border-radius: 40px;
+  filter: blur(6px);
+  rotate: -25deg;
+  animation:
+    ribbonDrift1 12s ease-in-out infinite alternate,
+    ribbonSpin1 28s linear infinite;
+}
+
+/* Ribbon 2 — amber, center-left, steep */
+.ribbon2 {
+  width: 280px;
+  height: 18px;
+  top: 40%;
+  left: -8%;
+  background: linear-gradient(90deg, rgba(200, 149, 108, 0.06), rgba(200, 149, 108, 0.2));
+  border-radius: 40px;
+  filter: blur(5px);
+  rotate: 35deg;
+  animation:
+    ribbonDrift2 15s ease-in-out infinite alternate,
+    ribbonSpin2 22s linear infinite;
+  animation-delay: -1.5s, -3s;
+}
+
+/* Ribbon 3 — teal-light, bottom area */
+.ribbon3 {
+  width: 360px;
+  height: 16px;
+  bottom: 18%;
+  right: 10%;
+  background: linear-gradient(90deg, rgba(43, 107, 127, 0.15), rgba(107, 142, 112, 0.1));
+  border-radius: 40px;
+  filter: blur(7px);
+  rotate: -15deg;
+  animation:
+    ribbonDrift3 10s ease-in-out infinite alternate,
+    ribbonSpin3 32s linear infinite;
+  animation-delay: -2s, -5s;
+}
+
+/* Ribbon 4 — amber-light, top-left */
+.ribbon4 {
+  width: 240px;
+  height: 14px;
+  top: 25%;
+  left: 15%;
+  background: linear-gradient(90deg, rgba(200, 149, 108, 0.18), rgba(200, 149, 108, 0.04));
+  border-radius: 40px;
+  filter: blur(4px);
+  rotate: 50deg;
+  animation:
+    ribbonDrift4 13s ease-in-out infinite alternate,
+    ribbonSpin4 25s linear infinite;
+  animation-delay: -3s, -1s;
+}
+
+/* Ribbon drift — translate paths */
+
+@keyframes ribbonDrift1 {
+  0%   { translate: 0 0; }
+  50%  { translate: -60px 40px; }
+  100% { translate: 30px -25px; }
+}
+
+@keyframes ribbonDrift2 {
+  0%   { translate: 0 0; }
+  50%  { translate: 70px -30px; }
+  100% { translate: -20px 50px; }
+}
+
+@keyframes ribbonDrift3 {
+  0%   { translate: 0 0; }
+  50%  { translate: -45px -35px; }
+  100% { translate: 55px 20px; }
+}
+
+@keyframes ribbonDrift4 {
+  0%   { translate: 0 0; }
+  50%  { translate: 40px 45px; }
+  100% { translate: -50px -15px; }
+}
+
+/* Ribbon rotation — slow continuous spin */
+
+@keyframes ribbonSpin1 {
+  from { rotate: -25deg; }
+  to   { rotate: 335deg; }
+}
+
+@keyframes ribbonSpin2 {
+  from { rotate: 35deg; }
+  to   { rotate: -325deg; }
+}
+
+@keyframes ribbonSpin3 {
+  from { rotate: -15deg; }
+  to   { rotate: 345deg; }
+}
+
+@keyframes ribbonSpin4 {
+  from { rotate: 50deg; }
+  to   { rotate: -310deg; }
+}
+
+/* ═══════════════════════════════════════════
+   BUBBLES — small circles, drift only, no rotation
+   Different paces & directions from ribbons
+   ═══════════════════════════════════════════ */
+
+.bubble1,
+.bubble2,
+.bubble3,
+.bubble4,
+.bubble5,
+.bubble6 {
+  position: absolute;
+  border-radius: 50%;
+  will-change: translate, scale;
+}
+
+/* Bubble 1 — large, top-left */
+.bubble1 {
+  width: 55px;
+  height: 55px;
+  top: 8%;
+  left: 18%;
+  background: rgba(255, 255, 255, 0.45);
+  filter: blur(3px);
+  animation:
+    bubbleFloat1 6s ease-in-out infinite,
+    bubblePulse1 3s ease-in-out infinite;
+  animation-delay: 0s, -1s;
+}
+
+/* Bubble 2 — medium, top-right */
+.bubble2 {
+  width: 35px;
+  height: 35px;
+  top: 15%;
+  right: 22%;
+  background: rgba(255, 255, 255, 0.35);
+  filter: blur(2px);
+  animation:
+    bubbleFloat2 8s ease-in-out infinite,
+    bubblePulse2 4s ease-in-out infinite;
+  animation-delay: -2s, -0.5s;
+}
+
+/* Bubble 3 — small, center-right */
+.bubble3 {
+  width: 22px;
+  height: 22px;
+  top: 42%;
+  right: 12%;
+  background: rgba(255, 255, 255, 0.5);
+  filter: blur(1px);
+  animation:
+    bubbleFloat3 5s ease-in-out infinite,
+    bubblePulse1 2.5s ease-in-out infinite;
+  animation-delay: -3s, -2s;
+}
+
+/* Bubble 4 — large, center-left */
+.bubble4 {
+  width: 45px;
+  height: 45px;
+  top: 50%;
+  left: 8%;
+  background: rgba(255, 255, 255, 0.3);
+  filter: blur(4px);
+  animation:
+    bubbleFloat4 7s ease-in-out infinite,
+    bubblePulse2 3.5s ease-in-out infinite;
+  animation-delay: -1s, -1.5s;
+}
+
+/* Bubble 5 — tiny, bottom-right */
+.bubble5 {
+  width: 18px;
+  height: 18px;
+  bottom: 25%;
+  right: 30%;
+  background: rgba(255, 255, 255, 0.55);
+  filter: blur(1px);
+  animation:
+    bubbleFloat5 5.5s ease-in-out infinite,
+    bubblePulse1 2s ease-in-out infinite;
+  animation-delay: -4s, -0.8s;
+}
+
+/* Bubble 6 — medium, bottom-left */
+.bubble6 {
+  width: 30px;
+  height: 30px;
+  bottom: 15%;
+  left: 25%;
+  background: rgba(255, 255, 255, 0.38);
+  filter: blur(2px);
+  animation:
+    bubbleFloat6 9s ease-in-out infinite,
+    bubblePulse2 4.5s ease-in-out infinite;
+  animation-delay: -5s, -2.5s;
+}
+
+/* Bubble float — gentle wandering, distinct from ribbon motion */
+
+@keyframes bubbleFloat1 {
+  0%   { translate: 0 0; }
+  25%  { translate: 20px -35px; }
+  50%  { translate: -15px -60px; }
+  75%  { translate: 30px -25px; }
+  100% { translate: 0 0; }
+}
+
+@keyframes bubbleFloat2 {
+  0%   { translate: 0 0; }
+  25%  { translate: -25px 20px; }
+  50%  { translate: 15px 45px; }
+  75%  { translate: -30px 10px; }
+  100% { translate: 0 0; }
+}
+
+@keyframes bubbleFloat3 {
+  0%   { translate: 0 0; }
+  25%  { translate: -20px -40px; }
+  50%  { translate: 25px -15px; }
+  75%  { translate: -10px 30px; }
+  100% { translate: 0 0; }
+}
+
+@keyframes bubbleFloat4 {
+  0%   { translate: 0 0; }
+  25%  { translate: 35px 15px; }
+  50%  { translate: 10px -30px; }
+  75%  { translate: -25px 20px; }
+  100% { translate: 0 0; }
+}
+
+@keyframes bubbleFloat5 {
+  0%   { translate: 0 0; }
+  25%  { translate: -15px -25px; }
+  50%  { translate: 30px -40px; }
+  75%  { translate: 20px 10px; }
+  100% { translate: 0 0; }
+}
+
+@keyframes bubbleFloat6 {
+  0%   { translate: 0 0; }
+  25%  { translate: 25px -20px; }
+  50%  { translate: -20px 35px; }
+  75%  { translate: -30px -10px; }
+  100% { translate: 0 0; }
+}
+
+/* Bubble pulse — gentle breathing */
+
+@keyframes bubblePulse1 {
+  0%, 100% { scale: 1; }
+  50%      { scale: 1.2; }
+}
+
+@keyframes bubblePulse2 {
+  0%, 100% { scale: 1; }
+  50%      { scale: 0.8; }
+}
+
+/* ═══════════════════════════════════════════
+   Desktop — scale up ribbons & bubbles
+   ═══════════════════════════════════════════ */
+
+@media (min-width: 769px) {
+  .ribbon1 { width: 480px; height: 28px; filter: blur(8px); }
+  .ribbon2 { width: 420px; height: 24px; filter: blur(7px); }
+  .ribbon3 { width: 520px; height: 22px; filter: blur(9px); }
+  .ribbon4 { width: 360px; height: 20px; filter: blur(6px); }
+
+  .bubble1 { width: 75px; height: 75px; filter: blur(4px); }
+  .bubble2 { width: 50px; height: 50px; filter: blur(3px); }
+  .bubble3 { width: 32px; height: 32px; }
+  .bubble4 { width: 60px; height: 60px; filter: blur(5px); }
+  .bubble5 { width: 25px; height: 25px; }
+  .bubble6 { width: 42px; height: 42px; filter: blur(3px); }
+}

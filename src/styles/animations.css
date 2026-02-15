@@ -1,3 +1,16 @@
+/* ─── Hero reveal ─── */
+@keyframes heroReveal {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ─── Scroll reveal variants ─── */
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -9,30 +22,92 @@
   }
 }
 
-@keyframes floatSlow {
-  0%, 100% {
-    transform: translateY(0) rotate(0deg);
+@keyframes revealUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
   }
-  50% {
-    transform: translateY(-10px) rotate(2deg);
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
-@keyframes subtlePulse {
-  0%, 100% {
-    opacity: 0.6;
+@keyframes revealScale {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
   }
-  50% {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes revealLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes revealRight {
+  from {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* ─── Trust badges marquee ─── */
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* ─── Counter spring reveal ─── */
+@keyframes counterReveal {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
     opacity: 1;
   }
 }
 
+/* ─── Subtle float ─── */
+@keyframes floatSlow {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+/* ─── Reduced motion ─── */
 @media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
+  *, *::before, *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
   }
 }

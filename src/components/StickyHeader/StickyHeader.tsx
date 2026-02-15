@@ -10,6 +10,7 @@ const navLinks = [
   { href: '#navigator', label: 'Навігатор' },
   { href: '#community', label: 'Спільнота' },
   { href: '#about', label: 'Про лікаря' },
+  { href: '#faq', label: 'FAQ' },
 ];
 
 export default function StickyHeader({ visible }: StickyHeaderProps) {
