@@ -23,6 +23,7 @@ export default function StickyHeader({ visible }: StickyHeaderProps) {
       <div className={styles.inner}>
         <a href="#hero" className={styles.logo}>
           Др. Люба
+          <span className={styles.logoSurname}>Піднебесна</span>
         </a>
 
         <nav className={styles.nav}>

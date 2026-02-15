@@ -18,7 +18,7 @@ export default function Bio() {
         <div className={styles.photoWrapper}>
           <img
             src="/images/doctor-lyuba-portrait.png"
-            alt="Лікар Люба — сімейний лікар з 13-річним досвідом"
+            alt="Любов Піднебесна — сімейний лікар з 13-річним досвідом"
             className={styles.photoImg}
             loading="lazy"
           />
@@ -26,11 +26,11 @@ export default function Bio() {
 
         {/* Text content */}
         <div className={styles.content}>
-          <h2 className={styles.heading}>Лікар Люба</h2>
+          <h2 className={styles.heading}>Любов Піднебесна</h2>
           <p className={styles.role}>Сімейний лікар · Науковий навігатор батьківства</p>
 
           <p className={styles.text}>
-            Я — Люба, сімейний лікар з 13-річним досвідом та мама чудової доньки.
+            Я — Люба Піднебесна, сімейний лікар з 13-річним досвідом та мама чудової доньки.
             Моя місія — допомогти батькам приймати впевнені рішення, спираючись на
             сучасну доказову медицину, а не на страхи та застарілі поради.
           </p>
