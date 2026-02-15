@@ -12,7 +12,7 @@ export default function Hero({ ctaUrl }: HeroProps) {
       <GradientMesh />
 
       <div className={styles.content}>
-        <p className={styles.badge}>Сімейний лікар · 12 років досвіду</p>
+        <p className={styles.badge}>Сімейний лікар · 13 років досвіду</p>
 
         <h1 className={styles.headline}>
           Доказове
