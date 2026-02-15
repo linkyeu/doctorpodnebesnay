@@ -8,6 +8,7 @@ export default function BlogComingSoon() {
       <header className={styles.header}>
         <a href="/" className={styles.logo}>
           Др. Люба
+          <span className={styles.logoSurname}>Піднебесна</span>
         </a>
       </header>
 

@@ -18,6 +18,17 @@
   font-weight: var(--weight-bold);
   color: var(--color-text);
   text-decoration: none;
+  line-height: 1.15;
+}
+
+.logoSurname {
+  display: block;
+  font-size: var(--text-xs);
+  font-weight: var(--weight-medium);
+  color: var(--color-text-muted);
+  letter-spacing: 0.08em;
+  line-height: 1;
+  margin-top: 1px;
 }
 
 .logo:hover {

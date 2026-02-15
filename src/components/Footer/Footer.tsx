@@ -6,7 +6,7 @@ export default function Footer() {
     <footer className={styles.footer}>
       <div className={styles.container}>
         <div className={styles.main}>
-          <p className={styles.name}>Др. Люба</p>
+          <p className={styles.name}>Др. Любов Піднебесна</p>
           <p className={styles.tagline}>Науковий навігатор батьківства</p>
         </div>
 
@@ -57,7 +57,7 @@ export default function Footer() {
 
         <div className={styles.bottom}>
           <p className={styles.copyright}>
-            &copy; {new Date().getFullYear()} Др. Люба. Всі права захищені.
+            &copy; {new Date().getFullYear()} Др. Любов Піднебесна. Всі права захищені.
           </p>
           <p className={styles.disclaimer}>
             Матеріали на цьому сайті мають інформаційний характер і не замінюють
