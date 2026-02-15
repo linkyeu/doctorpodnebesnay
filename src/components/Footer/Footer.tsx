@@ -1,4 +1,4 @@
-import { TELEGRAM_DM, INSTAGRAM } from '../../data/links';
+import { TELEGRAM_DM, INSTAGRAM, YOUTUBE } from '../../data/links';
 import styles from './Footer.module.css';
 
 export default function Footer() {
@@ -39,6 +39,18 @@ export default function Footer() {
                 strokeLinecap="round"
                 strokeLinejoin="round"
               />
+            </svg>
+          </a>
+          <a
+            href={YOUTUBE}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.socialLink}
+            aria-label="YouTube"
+          >
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <rect x="2" y="4.5" width="20" height="15" rx="4" stroke="currentColor" strokeWidth="1.5" />
+              <path d="M10 9.5v5l4.5-2.5L10 9.5z" fill="currentColor" />
             </svg>
           </a>
         </div>
