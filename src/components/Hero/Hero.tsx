@@ -15,9 +15,9 @@ export default function Hero({ ctaUrl }: HeroProps) {
         <p className={styles.badge}>Сімейний лікар · 13 років досвіду</p>
 
         <h1 className={styles.headline}>
-          Доказове
+          Доказове{' '}
           <br />
-          <span className={styles.accent}>батьківство</span>
+          <span className={styles.accent}>батьківство</span>{' '}
           <br />
           без паніки
         </h1>
