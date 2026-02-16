@@ -69,6 +69,7 @@
   font-size: var(--text-xs);
   margin-bottom: var(--space-2);
   color: rgba(241, 241, 239, 0.4);
+  margin-inline: auto;
 }
 
 .disclaimer {
