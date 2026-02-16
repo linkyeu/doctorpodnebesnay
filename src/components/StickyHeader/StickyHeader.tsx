@@ -10,7 +10,6 @@ const navLinks = [
   { href: '#navigator', label: 'Навігатор' },
   { href: '#services', label: 'Консультації' },
   { href: '/blog', label: 'Блог' },
-  { href: '#community', label: 'Спільнота' },
   { href: '#faq', label: 'FAQ' },
 ];
 
