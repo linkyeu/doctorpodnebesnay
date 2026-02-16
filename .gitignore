@@ -34,3 +34,4 @@ dist-ssr
 .playwright-mcp
 .claude
 *LUBA.md
+.worktrees/
