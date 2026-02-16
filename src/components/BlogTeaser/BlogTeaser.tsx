@@ -91,8 +91,7 @@ export default function BlogTeaser() {
     el.addEventListener('scroll', handleScroll, { passive: true });
 
     const observer = new ResizeObserver(() => {
-      // Skip re-centering in desktop grid mode (no overflow)
-      if (el.scrollWidth <= el.clientWidth) return;
+
       const metrics = getCardMetrics();
       if (metrics) {
         el.style.scrollSnapType = 'none';
