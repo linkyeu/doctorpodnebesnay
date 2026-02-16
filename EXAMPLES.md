@@ -7,3 +7,7 @@
 - https://pedsdoctalk.com/
 - https://www.goodinside.com/
 - https://www.tinabryson.com/#home-page
+- https://www.shaferplasticsurgery.com/
+- https://springfertility.com/
+- https://chahalcardiovascularcentre.com/
+- https://www.nurx.com/
