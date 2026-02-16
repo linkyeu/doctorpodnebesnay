@@ -191,10 +191,22 @@
   max-width: 100%;
 }
 
+@keyframes ctaFloat {
+  0%, 100% {
+    transform: translateY(0);
+    box-shadow: 0 4px 12px rgba(27, 58, 75, 0.15);
+  }
+  50% {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(27, 58, 75, 0.2);
+  }
+}
+
 .cta {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  gap: var(--space-2);
   font-family: var(--font-body);
   font-size: var(--text-base);
   font-weight: var(--weight-semibold);
@@ -204,25 +216,45 @@
   border-radius: 8px;
   text-decoration: none;
   min-height: 48px;
+  box-shadow: 0 4px 12px rgba(27, 58, 75, 0.15);
+  animation: ctaFloat 3s ease-in-out infinite;
+  animation-play-state: paused;
   transition:
     background var(--transition-base),
-    box-shadow var(--transition-base);
-  box-shadow: var(--shadow-sm);
+    transform 200ms ease,
+    box-shadow 200ms ease;
+}
+
+:global(.visible) .cta {
+  animation-play-state: running;
 }
 
 .cta:hover {
   background: var(--color-primary-hover);
   color: #FFFFFF;
-  box-shadow: var(--shadow-md);
+  transform: translateY(-6px);
+  box-shadow: 0 12px 28px rgba(27, 58, 75, 0.22);
+  animation-play-state: paused;
 }
 
 .cta:active {
   background: var(--color-primary);
+  transform: translateY(-2px);
 }
 
 .cta:focus-visible {
   outline: 3px solid var(--color-primary-light);
   outline-offset: 3px;
+}
+
+.ctaIcon {
+  display: inline-block;
+  flex-shrink: 0;
+  transition: transform 200ms ease;
+}
+
+.cta:hover .ctaIcon {
+  transform: translate(3px, -2px);
 }
 
 /* ─── Staggered Scroll Reveal ─── */
@@ -362,5 +394,26 @@
   :global(.visible) .priceCard {
     animation: none;
     opacity: 1;
+  }
+
+  .cta {
+    animation: none;
+    transition: background var(--transition-base);
+  }
+
+  .cta:hover {
+    transform: none;
+  }
+
+  .cta:active {
+    transform: none;
+  }
+
+  .ctaIcon {
+    transition: none;
+  }
+
+  .cta:hover .ctaIcon {
+    transform: none;
   }
 }
