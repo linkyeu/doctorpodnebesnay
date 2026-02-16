@@ -34,6 +34,8 @@ React Router app with two routes defined in `App.tsx`:
 - `/` → `src/pages/LandingPage.tsx` (renders all landing sections)
 - `/blog` → `BlogComingSoon` placeholder page
 
+> **Blog temporarily hidden:** The blog system (BlogTeaser on the landing page, `/blog` listing, `/blog/:slug` article pages) is commented out in `App.tsx` and `LandingPage.tsx` — not deleted. We hid it to launch/test the site faster while articles are still being prepared. Re-enable by uncommenting the relevant imports and routes.
+
 ### Landing page section order (`LandingPage.tsx`)
 
 **StickyHeader** (fixed, glassmorphism, appears on scroll) → **Hero** (bg image + animated gradient mesh) → **TrustBadges** (infinite scrolling marquee) → **Bio** → **WhenToContact** (expandable cards grid — 7 consultation topics with illustrations) → **Navigator** (deep charcoal-navy `#111827`, tabbed age-group browser with SituationCards, fade transitions) → **Testimonials** (3 parent testimonial blockquotes) → **Services** (off-white bg, 3-step process with illustrations) → **BlogTeaser** (infinite-scroll carousel of upcoming blog article cards) → **FAQ** (accordion, off-white bg) → **FinalCta** (final CTA section with Telegram link) → **Footer** (near-black navy `#0B1120`)
