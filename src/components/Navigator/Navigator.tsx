@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useRef } from 'react';
 import { navigatorTabs } from '../../data/navigator-tiles';
 import { useScrollReveal } from '../../hooks/useScrollReveal';
 import NavigatorTile from '../NavigatorTile/NavigatorTile';
@@ -12,6 +12,7 @@ export default function Navigator() {
   const [modalTile, setModalTile] = useState<NavigatorTileData | null>(null);
   const activeTab = navigatorTabs[activeIndex];
   const ref = useScrollReveal<HTMLDivElement>();
+  const gridRef = useRef<HTMLDivElement>(null);
 
   const switchTab = useCallback((index: number) => {
     if (index === activeIndex || transitioning) return;
@@ -19,9 +20,26 @@ export default function Navigator() {
 
     setTimeout(() => {
       setActiveIndex(index);
+      if (gridRef.current) {
+        gridRef.current.scrollLeft = 0;
+      }
       setTransitioning(false);
     }, 200);
   }, [activeIndex, transitioning]);
+
+  const scrollCarousel = useCallback((direction: 'left' | 'right') => {
+    const grid = gridRef.current;
+    if (!grid) return;
+    const firstChild = grid.firstElementChild as HTMLElement | null;
+    if (!firstChild) return;
+    const cardWidth = firstChild.offsetWidth;
+    const gap = parseFloat(getComputedStyle(grid).gap) || 0;
+    const scrollAmount = cardWidth + gap;
+    grid.scrollBy({
+      left: direction === 'right' ? scrollAmount : -scrollAmount,
+      behavior: 'smooth',
+    });
+  }, []);
 
   return (
     <section className={styles.navigator} id="navigator">
@@ -72,15 +90,38 @@ export default function Navigator() {
           className={`${styles.panel} ${transitioning ? styles.panelExiting : styles.panelEntering}`}
           key={activeTab.id}
         >
-          <div className={styles.grid}>
-            {activeTab.tiles.map((tile, i) => (
-              <NavigatorTile
-                key={tile.id}
-                tile={tile}
-                index={i}
-                onOpen={setModalTile}
-              />
-            ))}
+          <div className={styles.carouselWrapper}>
+            <button
+              className={`${styles.scrollArrow} ${styles.scrollArrowLeft}`}
+              onClick={() => scrollCarousel('left')}
+              aria-label="Попередня картка"
+            >
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="M12 4L6 10L12 16" />
+              </svg>
+            </button>
+
+            <div className={styles.grid} ref={gridRef}>
+              {activeTab.tiles.map((tile, i) => (
+                <div className={styles.tileWrapper} key={tile.id}>
+                  <NavigatorTile
+                    tile={tile}
+                    index={i}
+                    onOpen={setModalTile}
+                  />
+                </div>
+              ))}
+            </div>
+
+            <button
+              className={`${styles.scrollArrow} ${styles.scrollArrowRight}`}
+              onClick={() => scrollCarousel('right')}
+              aria-label="Наступна картка"
+            >
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="M8 4L14 10L8 16" />
+              </svg>
+            </button>
           </div>
         </div>
       </div>
