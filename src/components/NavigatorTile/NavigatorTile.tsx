@@ -14,7 +14,7 @@ export default function NavigatorTile({ tile, index, onOpen }: NavigatorTileProp
   return (
     <button
       className={styles.tile}
-      style={{ animationDelay: `${index * 120}ms` }}
+      style={{ animationDelay: `${index * 80}ms` }}
       onClick={() => onOpen(tile)}
       aria-haspopup="dialog"
     >

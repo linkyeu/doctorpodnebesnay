@@ -1,23 +1,43 @@
-export interface Situation {
-  id: string;
-  emoji: string;
-  illustration?: string;
-  title: string;
+export type TileCategory = 'guide' | 'safety' | 'first-aid' | 'behavior' | 'nutrition' | 'vaccination' | 'development';
+
+export interface MythScience {
   myth: string;
   mythSource?: string;
   science: string;
   scienceSource: string;
 }
 
-export interface AgeGroup {
-  id: string;
-  label: string;
-  labelEn: string;
-  ageRange: string;
-  situations: Situation[];
+export interface KeyPoint {
+  icon: string;
+  text: string;
 }
 
-export type TileCategory = 'guide' | 'safety' | 'first-aid' | 'behavior' | 'nutrition';
+export interface AgeChartItem {
+  age: string;
+  text: string;
+}
+
+export interface DosDonts {
+  dos: string[];
+  donts: string[];
+}
+
+export interface StepItem {
+  step: number;
+  title: string;
+  text: string;
+}
+
+export interface TileContent {
+  keyPoints: KeyPoint[];
+  warningTitle?: string;
+  warningSigns: string[];
+  doctorTip: string;
+  mythScience?: MythScience;
+  ageChart?: AgeChartItem[];
+  dosDonts?: DosDonts;
+  steps?: StepItem[];
+}
 
 export interface NavigatorTileData {
   id: string;
@@ -28,6 +48,7 @@ export interface NavigatorTileData {
   infographic: string;
   source: string;
   category: TileCategory;
+  content: TileContent;
 }
 
 export interface NavigatorTabData {
