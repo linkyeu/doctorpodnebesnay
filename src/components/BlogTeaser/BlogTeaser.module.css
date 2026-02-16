@@ -167,24 +167,7 @@
 }
 
 @media (min-width: 1024px) {
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    overflow: visible;
-    scroll-snap-type: none;
-  }
-
-  .cardWrapper {
-    flex: none;
-  }
-
-  .clone {
-    display: none;
-  }
-
-  .scrollArrow {
-    display: none;
-  }
+  .cardWrapper { flex: 0 0 calc(33.333% - var(--space-4)); }
 }
 
 @media (max-width: 768px) {
