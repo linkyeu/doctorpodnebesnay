@@ -24,10 +24,7 @@ export default function FinalCta() {
         </div>
         <div className={styles.content}>
           <h2 className={styles.heading}>Залишились запитання?</h2>
-          <p className={styles.subheading}>
-            Напишіть — перша консультація починається зі знайомства та плану дій.
-            Без зобов'язань.
-          </p>
+
           <a
             href={TELEGRAM_DM}
             target="_blank"
