@@ -8,7 +8,7 @@ import WhenToContact from '../components/WhenToContact/WhenToContact';
 import Navigator from '../components/Navigator/Navigator';
 import Testimonials from '../components/Testimonials/Testimonials';
 import Services from '../components/Services/Services';
-import BlogTeaser from '../components/BlogTeaser/BlogTeaser';
+// import BlogTeaser from '../components/BlogTeaser/BlogTeaser'; // Hidden until articles are polished
 import FAQ from '../components/FAQ/FAQ';
 import FinalCta from '../components/FinalCta/FinalCta';
 import Footer from '../components/Footer/Footer';
@@ -44,7 +44,7 @@ export default function LandingPage() {
       <Navigator />
       <Testimonials />
       <Services />
-      <BlogTeaser />
+      {/* <BlogTeaser /> */}{/* Hidden until articles are polished */}
       <FAQ />
       <FinalCta />
       <Footer />

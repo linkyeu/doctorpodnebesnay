@@ -54,7 +54,7 @@ export default function Services() {
         </div>
 
         <div className={styles.priceCard}>
-          <p className={styles.price}>1000 ₴ за консультацію</p>
+          <p className={styles.price}>500 ₴ за консультацію</p>
           <p className={styles.priceNote}>
             Одна тема — одна консультація. Усі уточнення входять у вартість.
           </p>

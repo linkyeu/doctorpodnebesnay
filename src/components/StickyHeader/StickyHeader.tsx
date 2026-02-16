@@ -9,7 +9,6 @@ const navLinks = [
   { href: '#about', label: 'Про лікаря' },
   { href: '#navigator', label: 'Навігатор' },
   { href: '#services', label: 'Консультації' },
-  { href: '/blog', label: 'Блог' },
   { href: '#faq', label: 'FAQ' },
 ];
 
