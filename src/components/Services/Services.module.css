@@ -320,9 +320,9 @@
   .steps {
     flex-direction: row;
     padding-left: 0;
-    padding-top: 72px;
+    padding-bottom: 72px;
     max-width: none;
-    align-items: flex-start;
+    align-items: stretch;
   }
 
   .stepCard {
@@ -330,19 +330,20 @@
     padding: 0 var(--space-4) var(--space-6);
   }
 
-  /* Reposition node to top-center for horizontal timeline */
+  /* Reposition node to bottom-center for horizontal timeline */
   .stepNumber {
     left: 50%;
-    top: -56px;
+    top: auto;
+    bottom: -56px;
     transform: translateX(-50%);
     box-shadow: 0 0 0 5px var(--color-bg-alt);
   }
 
   /* Horizontal dashed connector between nodes */
   .stepCard:not(:last-child)::after {
-    top: -36px;
+    top: auto;
+    bottom: -36px;
     left: calc(50% + 20px);
-    bottom: auto;
     height: 2px;
     width: calc(100% - 40px);
     background: repeating-linear-gradient(
