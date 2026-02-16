@@ -65,10 +65,6 @@ export default function Bio() {
             ))}
           </ul>
 
-          <a href="#faq" className={styles.learnMore}>
-            Дізнатися більше про мій підхід
-            <span aria-hidden="true"> →</span>
-          </a>
         </div>
       </div>
     </section>
