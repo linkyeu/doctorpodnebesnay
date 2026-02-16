@@ -117,7 +117,7 @@ export default function BlogTeaser() {
       <div className={styles.container}>
         <h2 className={styles.heading}>Корисні статті</h2>
         <p className={styles.subtitle}>
-          Доказова медицина простою мовою — скоро на сайті
+          Доказова медицина простою мовою
         </p>
 
         <div className={styles.carouselWrapper}>
@@ -141,14 +141,13 @@ export default function BlogTeaser() {
                     {...(isClone ? { 'aria-hidden': true as const } : {})}
                   >
                     <a
-                      href="/blog"
+                      href={`/blog/${article.slug}`}
                       className={styles.card}
                       style={{ transitionDelay: `${i * 80}ms` }}
                       {...(isClone ? { tabIndex: -1 } : {})}
                     >
                       <div className={styles.cardTop}>
                         <span className={styles.category}>{article.category}</span>
-                        <span className={styles.badge}>Скоро</span>
                       </div>
                       <span className={styles.emoji} aria-hidden="true">
                         {article.emoji}

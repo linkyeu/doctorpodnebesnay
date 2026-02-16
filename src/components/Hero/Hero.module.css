@@ -44,7 +44,21 @@
   text-align: center;
 }
 
-/* Staggered hero reveal */
+/* Avatar */
+.avatar {
+  display: block;
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 0 auto var(--space-5);
+  box-shadow: 0 2px 12px rgba(27, 58, 75, 0.12);
+  border: 3px solid rgba(255, 255, 255, 0.8);
+  animation: heroReveal 700ms ease-out both;
+  animation-delay: 0ms;
+}
+
+/* Staggered hero reveal — shift delays to account for avatar */
 .badge {
   display: inline-block;
   font-family: var(--font-body);
@@ -57,7 +71,7 @@
   margin-bottom: var(--space-8);
   letter-spacing: 0.02em;
   animation: heroReveal 700ms ease-out both;
-  animation-delay: 0ms;
+  animation-delay: 100ms;
 }
 
 .headline {
@@ -68,7 +82,7 @@
   color: var(--color-text);
   margin-bottom: var(--space-8);
   animation: heroReveal 700ms ease-out both;
-  animation-delay: 100ms;
+  animation-delay: 200ms;
 }
 
 .accent {
@@ -83,7 +97,7 @@
   margin-bottom: var(--space-12);
   max-width: 100%;
   animation: heroReveal 700ms ease-out both;
-  animation-delay: 200ms;
+  animation-delay: 300ms;
 }
 
 .cta {
@@ -146,6 +160,10 @@
     text-align: left;
   }
 
+  .avatar {
+    margin-left: 0;
+  }
+
   .badge {
     margin-bottom: var(--space-6);
   }
@@ -153,6 +171,7 @@
 
 /* ─── Reduced Motion ─── */
 @media (prefers-reduced-motion: reduce) {
+  .avatar,
   .badge,
   .headline,
   .tagline {

@@ -16,6 +16,8 @@ const CATEGORY_LABELS: Record<TileCategory, string> = {
   'first-aid': 'Перша допомога',
   behavior: 'Поведінка',
   nutrition: 'Харчування',
+  vaccination: 'Вакцинація',
+  development: 'Розвиток',
 };
 
 export default function InfographicModal({ tile, onClose }: InfographicModalProps) {
@@ -120,6 +122,39 @@ export default function InfographicModal({ tile, onClose }: InfographicModalProp
               ))}
             </ul>
           </section>
+
+          {/* Myth vs Science */}
+          {content.mythScience && (
+            <>
+              <hr className={styles.divider} />
+              <section className={styles.mythScienceBlock}>
+                <div className={styles.mythCard}>
+                  <div className={styles.mythScienceHeader}>
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                      <circle cx="10" cy="10" r="9" stroke="currentColor" strokeWidth="1.5" fill="var(--color-myth-bg)" />
+                      <path d="M7 7L13 13M13 7L7 13" stroke="var(--color-myth-accent)" strokeWidth="2" strokeLinecap="round" />
+                    </svg>
+                    <span className={styles.mythLabel}>Міф</span>
+                  </div>
+                  <p className={styles.mythQuote}>{content.mythScience.myth}</p>
+                  {content.mythScience.mythSource && (
+                    <p className={styles.mythSourceText}>{content.mythScience.mythSource}</p>
+                  )}
+                </div>
+                <div className={styles.scienceCard}>
+                  <div className={styles.mythScienceHeader}>
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                      <circle cx="10" cy="10" r="9" stroke="currentColor" strokeWidth="1.5" fill="var(--color-science-bg)" />
+                      <path d="M6 10L9 13L14 7" stroke="var(--color-science-accent)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                    <span className={styles.scienceLabel}>Наука</span>
+                  </div>
+                  <p className={styles.scienceText}>{content.mythScience.science}</p>
+                  <p className={styles.scienceSourceText}>{content.mythScience.scienceSource}</p>
+                </div>
+              </section>
+            </>
+          )}
 
           {/* Variant: ageChart */}
           {content.ageChart && (

@@ -12,6 +12,15 @@ export default function Hero({ ctaUrl }: HeroProps) {
       <GradientMesh />
 
       <div className={styles.content}>
+        <img
+          src="/images/hero-avatar.webp"
+          alt=""
+          aria-hidden="true"
+          className={styles.avatar}
+          width="88"
+          height="88"
+          loading="eager"
+        />
         <p className={styles.badge}>Лікар Любов Піднебесна · Сімейний лікар · 13 років досвіду</p>
 
         <h1 className={styles.headline}>
