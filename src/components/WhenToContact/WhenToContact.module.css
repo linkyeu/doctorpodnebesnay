@@ -166,6 +166,7 @@
 :global(.visible) .card:nth-child(4) { animation-delay: 300ms; }
 :global(.visible) .card:nth-child(5) { animation-delay: 400ms; }
 :global(.visible) .card:nth-child(6) { animation-delay: 500ms; }
+:global(.visible) .card:nth-child(7) { animation-delay: 600ms; }
 
 @keyframes revealUp {
   from {

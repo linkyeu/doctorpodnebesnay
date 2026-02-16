@@ -17,7 +17,7 @@ No test runner is configured.
 
 ## Tech Stack
 
-- React 19, TypeScript 5.9 (strict), Vite 7
+- React 19, TypeScript 5.9 (strict), Vite 7, React Router v7 (`react-router-dom`)
 - CSS Modules for component styling, CSS custom properties for design tokens
 - Fonts: Playfair Display (serif, headings, full Cyrillic, variable 400-900) + Manrope (sans-serif, body, full Cyrillic) via Google Fonts
 
