@@ -31,14 +31,13 @@ No test runner is configured.
 
 Single-page app with these sections rendered sequentially in `App.tsx`:
 
-**StickyHeader** (fixed, glassmorphism, appears on scroll) → **Hero** (bg image + animated gradient mesh) → **TrustBadges** (infinite scrolling marquee) → **Services** (off-white bg) → **Navigator** (deep charcoal-navy `#111827`, tabbed age-group browser with SituationCards, fade transitions) → **SocialProof** (animated counter with spring reveal) → **Bio** → **FAQ** (accordion, off-white bg) → **Footer** (near-black navy `#0B1120`)
+**StickyHeader** (fixed, glassmorphism, appears on scroll) → **Hero** (bg image + animated gradient mesh) → **TrustBadges** (infinite scrolling marquee) → **Services** (off-white bg) → **Navigator** (deep charcoal-navy `#111827`, tabbed age-group browser with SituationCards, fade transitions) → **Bio** → **FAQ** (accordion, off-white bg) → **Footer** (near-black navy `#0B1120`)
 
 - `src/data/situations.ts` — All content data: 3 age groups × 3 myth/science pairs
 - `src/data/faq.ts` — FAQ questions/answers in Ukrainian
 - `src/data/links.ts` — External URL constants (Telegram, Instagram)
 - `src/types/index.ts` — `Situation` and `AgeGroup` interfaces
 - `src/hooks/useScrollReveal.ts` — IntersectionObserver scroll-triggered reveal animations
-- `src/hooks/useCountUp.ts` — Animated number counter hook
 - `src/components/GradientMesh/` — Animated CSS gradient mesh background (floating blurred orbs)
 - `src/styles/variables.css` — Design tokens (colors, spacing, typography scale, shadows)
 - `src/styles/animations.css` — Keyframe animations (heroReveal, revealUp/Scale/Left/Right, meshFloat, marquee, counterReveal), respects `prefers-reduced-motion`

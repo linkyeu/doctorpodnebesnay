@@ -8,7 +8,6 @@ import WhenToContact from '../components/WhenToContact/WhenToContact';
 import Navigator from '../components/Navigator/Navigator';
 import Testimonials from '../components/Testimonials/Testimonials';
 import Services from '../components/Services/Services';
-import Community from '../components/Community/Community';
 import BlogTeaser from '../components/BlogTeaser/BlogTeaser';
 import FAQ from '../components/FAQ/FAQ';
 import FinalCta from '../components/FinalCta/FinalCta';
@@ -45,7 +44,6 @@ export default function LandingPage() {
       <Navigator />
       <Testimonials />
       <Services />
-      <Community />
       <BlogTeaser />
       <FAQ />
       <FinalCta />
