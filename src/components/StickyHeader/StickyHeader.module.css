@@ -99,6 +99,7 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  gap: var(--space-1);
   font-family: var(--font-body);
   font-size: var(--text-sm);
   font-weight: var(--weight-semibold);
@@ -112,23 +113,36 @@
   flex-shrink: 0;
   transition:
     background var(--transition-base),
-    box-shadow var(--transition-base);
+    transform 200ms ease,
+    box-shadow 200ms ease;
   box-shadow: var(--shadow-sm);
 }
 
 .cta:hover {
   background: var(--color-primary-hover);
   color: #FFFFFF;
-  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(27, 58, 75, 0.18);
 }
 
 .cta:active {
   background: var(--color-primary);
+  transform: translateY(0);
 }
 
 .cta:focus-visible {
   outline: 3px solid var(--color-primary-light);
   outline-offset: 3px;
+}
+
+.ctaIcon {
+  display: inline-block;
+  flex-shrink: 0;
+  transition: transform 200ms ease;
+}
+
+.cta:hover .ctaIcon {
+  transform: translate(2px, -1px);
 }
 
 @media (max-width: 768px) {
@@ -138,5 +152,28 @@
 
   .inner {
     padding: 0 var(--space-4);
+  }
+}
+
+/* ─── Reduced Motion ─── */
+@media (prefers-reduced-motion: reduce) {
+  .cta {
+    transition: background var(--transition-base);
+  }
+
+  .cta:hover {
+    transform: none;
+  }
+
+  .cta:active {
+    transform: none;
+  }
+
+  .ctaIcon {
+    transition: none;
+  }
+
+  .cta:hover .ctaIcon {
+    transform: none;
   }
 }
