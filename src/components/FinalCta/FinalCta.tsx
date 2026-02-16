@@ -32,7 +32,6 @@ export default function FinalCta() {
           </svg>
           <span className="sr-only"> (відкриється в новій вкладці)</span>
         </a>
-        <p className={styles.note}>Відповідь зазвичай протягом 2-4 годин</p>
       </div>
     </section>
   );

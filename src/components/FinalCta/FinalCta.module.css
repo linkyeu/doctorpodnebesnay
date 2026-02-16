@@ -87,12 +87,6 @@
   transform: translate(3px, -2px);
 }
 
-.note {
-  font-size: var(--text-sm);
-  color: rgba(255, 255, 255, 0.6);
-  margin-top: var(--space-4);
-}
-
 @media (max-width: 768px) {
   .finalCta {
     padding: var(--space-16) var(--space-4);
