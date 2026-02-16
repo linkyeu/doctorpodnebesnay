@@ -47,10 +47,6 @@ export default function Hero({ ctaUrl }: HeroProps) {
           </svg>
           <span className="sr-only"> (відкриється в новій вкладці)</span>
         </a>
-
-        <p className={styles.subtitle}>
-          Перша консультація — знайомство та план дій
-        </p>
       </div>
     </section>
   );

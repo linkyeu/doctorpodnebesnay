@@ -137,14 +137,6 @@
   transform: translate(3px, -2px);
 }
 
-.subtitle {
-  margin-top: var(--space-5);
-  font-size: var(--text-sm);
-  color: var(--color-text-muted);
-  animation: heroReveal 700ms ease-out both;
-  animation-delay: 400ms;
-}
-
 @media (max-width: 768px) {
   .hero {
     padding: var(--space-6) var(--space-4);
@@ -163,8 +155,7 @@
 @media (prefers-reduced-motion: reduce) {
   .badge,
   .headline,
-  .tagline,
-  .subtitle {
+  .tagline {
     animation: none;
     opacity: 1;
   }
