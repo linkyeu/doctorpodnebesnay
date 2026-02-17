@@ -29,7 +29,8 @@ export default function Hero({ ctaUrl }: HeroProps) {
         </p>
 
         <p className={styles.subtitle}>
-          🌍 Консультую українських батьків по всьому світу
+          <img src="/images/icons/globe-inline.png" alt="" aria-hidden="true" className={styles.inlineIcon} />
+          Консультую українських батьків по всьому світу
         </p>
 
         <a
