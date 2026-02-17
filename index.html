@@ -20,6 +20,27 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Manrope:wght@200..800&display=swap" rel="stylesheet" />
+
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9Z9VXG1NZK"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-9Z9VXG1NZK');
+
+      // Track Telegram CTA clicks as conversions
+      document.addEventListener('click', function(e) {
+        var link = e.target.closest('a[href*="t.me"]');
+        if (link) {
+          gtag('event', 'telegram_cta_click', {
+            event_category: 'conversion',
+            event_label: link.textContent.trim(),
+            transport_type: 'beacon'
+          });
+        }
+      });
+    </script>
   </head>
   <body>
     <div id="root"></div>
