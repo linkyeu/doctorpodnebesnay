@@ -18,7 +18,7 @@
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(6, 1fr);
   gap: var(--space-6);
   margin-bottom: var(--space-8);
 }
@@ -30,6 +30,16 @@
   border-radius: var(--radius-xl);
   padding: var(--space-8) var(--space-6);
   transition: box-shadow var(--transition-base);
+  grid-column: span 2;
+}
+
+/* Center the bottom row (cards 4-5) */
+.card:nth-child(4) {
+  grid-column: 2 / span 2;
+}
+
+.card:nth-child(5) {
+  grid-column: 4 / span 2;
 }
 
 .card:hover {
@@ -69,5 +79,14 @@
 
   .grid {
     grid-template-columns: 1fr;
+  }
+
+  .card {
+    grid-column: auto;
+  }
+
+  .card:nth-child(4),
+  .card:nth-child(5) {
+    grid-column: auto;
   }
 }

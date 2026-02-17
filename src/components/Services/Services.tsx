@@ -58,6 +58,9 @@ export default function Services() {
           <p className={styles.priceNote}>
             Одна тема — одна консультація. Усі уточнення входять у вартість.
           </p>
+          <p className={styles.priceNoteAbroad}>
+            Для батьків за кордоном є зручні варіанти оплати
+          </p>
           <a
             href={TELEGRAM_DM}
             target="_blank"

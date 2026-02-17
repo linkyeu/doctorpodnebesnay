@@ -79,10 +79,19 @@
   font-size: var(--text-lg);
   color: var(--color-text-muted);
   line-height: var(--leading-relaxed);
-  margin-bottom: var(--space-12);
+  margin-bottom: var(--space-4);
   max-width: 100%;
   animation: heroReveal 700ms ease-out both;
   animation-delay: 200ms;
+}
+
+.subtitle {
+  font-size: var(--text-base);
+  font-weight: var(--weight-medium);
+  color: var(--color-primary-light);
+  margin-bottom: var(--space-10);
+  animation: heroReveal 700ms ease-out both;
+  animation-delay: 250ms;
 }
 
 .cta {
@@ -154,7 +163,8 @@
 @media (prefers-reduced-motion: reduce) {
   .badge,
   .headline,
-  .tagline {
+  .tagline,
+  .subtitle {
     animation: none;
     opacity: 1;
   }
