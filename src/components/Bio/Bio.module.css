@@ -124,5 +124,14 @@
 
   .credentials {
     align-self: stretch;
+    text-align: left;
+  }
+
+  .credentialItem {
+    align-items: flex-start;
+  }
+
+  .checkIcon {
+    margin-top: 0.15em;
   }
 }
