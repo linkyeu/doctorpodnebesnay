@@ -167,6 +167,7 @@
 :global(.visible) .card:nth-child(5) { animation-delay: 400ms; }
 :global(.visible) .card:nth-child(6) { animation-delay: 500ms; }
 :global(.visible) .card:nth-child(7) { animation-delay: 600ms; }
+:global(.visible) .card:nth-child(8) { animation-delay: 700ms; }
 
 @keyframes revealUp {
   from {
@@ -194,15 +195,13 @@
     gap: var(--space-5);
   }
 
-  /* Featured cards span 2 rows */
-  .card:nth-child(1),
-  .card:nth-child(4) {
+  /* Featured card spans 2 rows — only first card */
+  .card:nth-child(1) {
     grid-row: span 2;
   }
 
-  /* Featured cards get larger illustrations */
-  .card:nth-child(1) .illustrationWrapper,
-  .card:nth-child(4) .illustrationWrapper {
+  /* Featured card gets larger illustration */
+  .card:nth-child(1) .illustrationWrapper {
     width: 100px;
     height: 100px;
   }

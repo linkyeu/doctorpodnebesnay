@@ -52,6 +52,13 @@ const cards = [
     illustration: '/images/when-to-contact/adult-health.png',
     emoji: '❤️',
   },
+  {
+    title: 'Ви за кордоном',
+    description:
+      'Переїхали й не знаєте, кому довіряти? Консультую українських батьків у будь-якій країні — зрозумілою мовою, за міжнародними протоколами.',
+    illustration: '',
+    emoji: '🌍',
+  },
 ];
 
 export default function WhenToContact() {
@@ -82,30 +89,42 @@ export default function WhenToContact() {
                 onClick={() => toggleCard(index)}
               >
                 <div className={styles.illustrationWrapper}>
-                  <img
-                    src={card.illustration}
-                    alt=""
-                    aria-hidden="true"
-                    width="80"
-                    height="80"
-                    loading="lazy"
-                    className={styles.illustration}
-                    onError={(e) => {
-                      const target = e.currentTarget;
-                      target.style.display = 'none';
-                      const fallback = target.nextElementSibling;
-                      if (fallback instanceof HTMLElement) {
-                        fallback.style.display = 'flex';
-                      }
-                    }}
-                  />
-                  <span
-                    className={styles.emojiFallback}
-                    aria-hidden="true"
-                    style={{ display: 'none' }}
-                  >
-                    {card.emoji}
-                  </span>
+                  {card.illustration ? (
+                    <>
+                      <img
+                        src={card.illustration}
+                        alt=""
+                        aria-hidden="true"
+                        width="80"
+                        height="80"
+                        loading="lazy"
+                        className={styles.illustration}
+                        onError={(e) => {
+                          const target = e.currentTarget;
+                          target.style.display = 'none';
+                          const fallback = target.nextElementSibling;
+                          if (fallback instanceof HTMLElement) {
+                            fallback.style.display = 'flex';
+                          }
+                        }}
+                      />
+                      <span
+                        className={styles.emojiFallback}
+                        aria-hidden="true"
+                        style={{ display: 'none' }}
+                      >
+                        {card.emoji}
+                      </span>
+                    </>
+                  ) : (
+                    <span
+                      className={styles.emojiFallback}
+                      aria-hidden="true"
+                      style={{ display: 'flex' }}
+                    >
+                      {card.emoji}
+                    </span>
+                  )}
                 </div>
 
                 <h3 className={styles.cardTitle}>{card.title}</h3>

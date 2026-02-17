@@ -3,8 +3,9 @@ import styles from './TrustBadges.module.css';
 const badges = [
   'Медична освіта',
   'Доказова медицина',
-  'Міжнародні протоколи',
+  'Протоколи AAP · WHO · NICE',
   '13 років досвіду',
+  'Батьки у 15+ країнах',
 ];
 
 export default function TrustBadges() {
