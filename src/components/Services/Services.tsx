@@ -62,7 +62,8 @@ export default function Services() {
             Для батьків за кордоном є зручні варіанти оплати
           </p>
           <p className={styles.responseTime}>
-            ⏱ Відповідаю протягом 2–6 годин
+            <img src="/images/icons/timer-inline.png" alt="" aria-hidden="true" className={styles.inlineIcon} />
+            Відповідаю протягом 2–6 годин
           </p>
           <a
             href={TELEGRAM_DM}

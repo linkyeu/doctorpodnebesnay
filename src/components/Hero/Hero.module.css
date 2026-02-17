@@ -94,6 +94,14 @@
   animation-delay: 250ms;
 }
 
+.inlineIcon {
+  display: inline-block;
+  width: 1.4em;
+  height: 1.4em;
+  vertical-align: -0.25em;
+  margin-right: 0.25em;
+}
+
 .cta {
   display: inline-flex;
   align-items: center;
