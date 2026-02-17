@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Marketing Audit — doctorpidnebesna.com</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f5f5f0; color: #1a1a2e; line-height: 1.6; }
+  .container { max-width: 900px; margin: 0 auto; padding: 24px 16px; }
+  h1 { font-size: 28px; margin-bottom: 4px; color: #1B3A4B; }
+  .subtitle { color: #666; margin-bottom: 32px; font-size: 15px; }
+  .overall { background: linear-gradient(135deg, #1B3A4B, #2C5364); color: #fff; border-radius: 16px; padding: 32px; margin-bottom: 32px; display: flex; align-items: center; gap: 32px; }
+  .score-circle { width: 120px; height: 120px; border-radius: 50%; border: 6px solid rgba(255,255,255,0.3); display: flex; flex-direction: column; align-items: center; justify-content: center; flex-shrink: 0; }
+  .score-num { font-size: 42px; font-weight: 800; line-height: 1; }
+  .score-label { font-size: 12px; opacity: 0.7; }
+  .verdict h2 { font-size: 22px; margin-bottom: 8px; }
+  .verdict p { opacity: 0.85; font-size: 15px; }
+  .category { background: #fff; border-radius: 12px; margin-bottom: 16px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.06); }
+  .cat-header { padding: 16px 20px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; user-select: none; }
+  .cat-header:hover { background: #fafafa; }
+  .cat-title { font-weight: 700; font-size: 16px; display: flex; align-items: center; gap: 10px; }
+  .cat-score { font-weight: 700; font-size: 18px; padding: 4px 14px; border-radius: 20px; }
+  .cat-score.high { background: #d4edda; color: #155724; }
+  .cat-score.mid { background: #fff3cd; color: #856404; }
+  .cat-score.low { background: #f8d7da; color: #721c24; }
+  .cat-score.crit { background: #721c24; color: #fff; }
+  .cat-body { padding: 0 20px 20px; display: none; }
+  .category.open .cat-body { display: block; }
+  .category.open .arrow { transform: rotate(180deg); }
+  .arrow { transition: transform 0.2s; font-size: 12px; color: #999; }
+  .item { padding: 10px 0; border-bottom: 1px solid #f0f0f0; display: flex; gap: 10px; align-items: flex-start; }
+  .item:last-child { border: none; }
+  .icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+  .item-text strong { display: block; font-size: 14px; }
+  .item-text span { font-size: 13px; color: #666; }
+  .blocker { border-left: 3px solid #dc3545; padding-left: 12px; margin: 12px 0; background: #fff5f5; padding: 12px 16px; border-radius: 0 8px 8px 0; }
+  .blocker strong { color: #dc3545; }
+  .section-label { font-size: 12px; font-weight: 600; text-transform: uppercase; color: #999; letter-spacing: 1px; margin: 24px 0 8px; }
+  .action-list { background: #fff; border-radius: 12px; padding: 20px; margin-bottom: 16px; box-shadow: 0 1px 3px rgba(0,0,0,0.06); }
+  .action-list h3 { font-size: 16px; margin-bottom: 12px; color: #1B3A4B; }
+  .action { display: flex; gap: 10px; padding: 8px 0; border-bottom: 1px solid #f5f5f5; font-size: 14px; }
+  .action:last-child { border: none; }
+  .priority { font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 4px; flex-shrink: 0; height: fit-content; margin-top: 2px; }
+  .priority.p1 { background: #dc3545; color: #fff; }
+  .priority.p2 { background: #fd7e14; color: #fff; }
+  .priority.p3 { background: #ffc107; color: #333; }
+  @media (max-width: 600px) {
+    .overall { flex-direction: column; text-align: center; }
+    .score-circle { width: 100px; height: 100px; }
+    .score-num { font-size: 36px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>Marketing Audit: doctorpidnebesna.com</h1>
+  <p class="subtitle">Дата: 17 лютого 2026 · Аналіз готовності до рекламної кампанії</p>
+
+  <div class="overall">
+    <div class="score-circle">
+      <div class="score-num">62</div>
+      <div class="score-label">/ 100</div>
+    </div>
+    <div class="verdict">
+      <h2>Майже готово — але є блокери</h2>
+      <p>Сайт виглядає професійно і має всі ключові маркетингові секції. Але без аналітики, пікселя та favicon запускати рекламу — це витрачати гроші наосліп. 3–4 технічні фікси потрібні перед стартом.</p>
+    </div>
+  </div>
+
+  <!-- CATEGORY: Design & First Impression -->
+  <div class="category open">
+    <div class="cat-header" onclick="this.parentElement.classList.toggle('open')">
+      <span class="cat-title">🎨 Дизайн та перше враження</span>
+      <span><span class="cat-score high">9/10</span> <span class="arrow">▼</span></span>
+    </div>
+    <div class="cat-body">
+      <div class="item"><span class="icon">✅</span><div class="item-text"><strong>Професійний, чистий дизайн</strong><span>Кольорова палітра (teal-navy + warm amber) створює довіру. Типографіка Playfair + Manrope — елегантна і читабельна.</span></div></div>
+      <div class="item"><span class="icon">✅</span><div class="item-text"><strong>Сильний hero-блок</strong><span>«Доказове батьківство без паніки» — чітка УТП, одразу зрозуміло що і для кого. Badge «13 років досвіду» додає авторитету.</span></div></div>
+      <div class="item"><span class="icon">✅</span><div class="item-text"><strong>Професійне фото лікаря</strong><span>Якісний портрет в секції Bio будує особистий зв'язок і довіру.</span></div></div>
+      <div class="item"><span class="icon">✅</span><div class="item-text"><strong>Анімації та мікровзаємодії</strong><span>Scroll reveal, gradient mesh, marquee badges — сайт відчувається живим, але не перевантаженим.</span></div></div>
+      <div class="item"><span class="icon">⚠️</span><div class="item-text"><strong>Немає favicon</strong><span>В закладках та вкладках браузера — порожня іконка. Виглядає непрофесійно і знижує впізнаваність.</span></div></div>
+    </div>
+  </div>
+
+  <!-- CATEGORY: Messaging & Content -->
+  <div class="category">
+    <div class="cat-header" onclick="this.parentElement.classList.toggle('open')">
+      <span class="cat-title">💬 Контент та повідомлення</span>
+      <span><span class="cat-score high">8/10</span> <span class="arrow">▼</span></span>
+    </div>
+    <div class="cat-body">
+      <div class="item"><span class="icon">✅</span><div class="item-text"><strong>Чітка УТП (Unique Value Proposition)</strong><span>«Розвінчуємо міфи, спираємось на науку. Від народження до школи — навігатор для свідомих батьків.» — бʼє точно в ЦА.</span></div></div>
+      <div class="item"><span class="icon">✅</span><div class="item-text"><strong>Правильна структура секцій</strong><span>Hero → Trust → Bio → Проблеми → Рішення → Відгуки → Процес → Ціна → FAQ → CTA — класична висококонверсійна воронка.</span></div></div>
+      <div class="item"><span class="icon">✅</span><div class="item-text"><strong>Навігатор по вікових групах</strong><span>Унікальна фіча: 0–1, 1–3, 3–5 з конкретними темами — показує глибину експертизи і допомагає батькам впізнати себе.</span></div></div>
+      <div class="item"><span class="icon">✅</span><div class="item-text"><strong>Прозора ціна: 500₴</strong><span>«Одна тема — одна консультація. Усі уточнення входять у вартість.» — зрозуміло, без прихованих витрат.</span></div></div>
+      <div class="item"><span class="icon">⚠️</span><div class="item-text"><strong>Мало контенту для SEO (~661 слово)</strong><span>Для платної реклами вистачить, але для органічного трафіку — замало. Блог сховано, а він критичний для SEO.</span></div></div>
+      <div class="item"><span class="icon">⚠️</span><div class="item-text"><strong>Тільки 3 відгуки</strong><span>Для максимальної довіри бажано 5–7 відгуків. Імена без фото — менш переконливо.</span></div></div>
+    </div>
+  </div>
+
+  <!-- CATEGORY: Trust & Social Proof -->
+  <div class="category">
+    <div class="cat-header" onclick="this.parentElement.classList.toggle('open')">
+      <span class="cat-title">🛡️ Довіра та соціальний доказ</span>
+      <span><span class="cat-score mid">7/10</span> <span class="arrow">▼</span></span>
+    </div>
+    <div class="cat-body">
+      <div class="item"><span class="icon">✅</span><div class="item-text"><strong>Trust badges marquee</strong><span>«30 000+ батьків · 13 років досвіду · Медична освіта · Доказова медицина · Міжнародні протоколи» — сильні маркери довіри.</span></div></div>
+      <div class="item"><span class="icon">✅</span><div class="item-text"><strong>Чеклист кваліфікацій в Bio</strong><span>Сімейний лікар вищої категорії, 13 років, доказова медицина, мама — кожен пункт працює на довіру.</span></div></div>
+      <div class="item"><span class="icon">✅</span><div class="item-text"><strong>Медичний дисклеймер у footer</strong><span>«Матеріали мають інформаційний характер і не замінюють індивідуальну консультацію лікаря» — правильно юридично.</span></div></div>
+      <div class="item"><span class="icon">⚠️</span><div class="item-text"><strong>Немає фото реальних відгуків</strong><span>Скріншоти з Telegram/Instagram переконують значно більше ніж текстові цитати.</span></div></div>
+      <div class="item"><span class="icon">⚠️</span><div class="item-text"><strong>Немає логотипів/згадок у медіа</strong><span>Якщо є згадки в медіа, виступи, публікації — додайте. Це підсилює авторитет.</span></div></div>
+    </div>
+  </div>
+
+  <!-- CATEGORY: CTAs & Conversion -->
+  <div class="category">
+    <div class="cat-header" onclick="this.parentElement.classList.toggle('open')">
+      <span class="cat-title">🎯 CTA та конверсія</span>
+      <span><span class="cat-score mid">7/10</span> <span class="arrow">▼</span></span>
+    </div>
+    <div class="cat-body">
+      <div class="item"><span class="icon">✅</span><div class="item-text"><strong>4 CTA кнопки на сторінці</strong><span>Sticky header, Hero, Services (з ціною), Final CTA — кнопки з'являються в правильних місцях воронки.</span></div></div>
+      <div class="item"><span class="icon">✅</span><div class="item-text"><strong>Sticky header з CTA</strong><span>Кнопка «Написати в Telegram» завжди доступна при скролі — добре для конверсії.</span></div></div>
+      <div class="item"><span class="icon">✅</span><div class="item-text"><strong>3-кроковий процес</strong><span>«Опишіть ситуацію → Отримайте відповідь → Додаткові запитання» — знімає невизначеність.</span></div></div>
+      <div class="item"><span class="icon">⚠️</span><div class="item-text"><strong>Тільки Telegram як канал зв'язку</strong><span>Частина ЦА (мами 35+) можуть не мати Telegram. Розгляньте Viber, Instagram DM, або форму на сайті як альтернативу.</span></div></div>
+      <div class="item"><span class="icon">⚠️</span><div class="item-text"><strong>Немає «urgency» елементів</strong><span>Жодних тригерів терміновості (обмежена кількість слотів, час відповіді тощо). Для реклами це знижує конверсію.</span></div></div>
+    </div>
+  </div>
+
+  <!-- CATEGORY: Technical SEO -->
+  <div class="category">
+    <div class="cat-header" onclick="this.parentElement.classList.toggle('open')">
+      <span class="cat-title">🔍 Технічне SEO</span>
+      <span><span class="cat-score mid">6/10</span> <span class="arrow">▼</span></span>
+    </div>
+    <div class="cat-body">
+      <div class="item"><span class="icon">✅</span><div class="item-text"><strong>Meta title + description</strong><span>Заповнені, українською, з ключовими словами. Title: «Др. Піднебесна — Доказове батьківство без паніки | Сімейний лікар».</span></div></div>
+      <div class="item"><span class="icon">✅</span><div class="item-text"><strong>Open Graph теги</strong><span>og:title, og:description, og:image, og:locale — прев'ю в Telegram/Facebook будуть коректними.</span></div></div>
+      <div class="item"><span class="icon">✅</span><div class="item-text"><strong>Canonical URL встановлено</strong><span>Правильна канонічна адреса на https://doctorpidnebesna.com/</span></div></div>
+      <div class="item"><span class="icon">✅</span><div class="item-text"><strong>robots.txt + sitemap.xml</strong><span>Присутні і коректні. Але sitemap містить тільки 1 URL.</span></div></div>
+      <div class="item"><span class="icon">✅</span><div class="item-text"><strong>Правильна структура заголовків</strong><span>H1 → H2 → H3 — ієрархія чітка, без пропусків рівнів.</span></div></div>
+      <div class="item"><span class="icon">✅</span><div class="item-text"><strong>Всі зображення мають alt</strong><span>20 зображень, всі з alt-текстом. 17 з lazy loading.</span></div></div>
+      <div class="item"><span class="icon">❌</span><div class="item-text"><strong>Немає structured data (JSON-LD)</strong><span>Без Schema.org розмітки (MedicalBusiness, Person, FAQPage) — немає rich snippets в Google.</span></div></div>
+      <div class="item"><span class="icon">❌</span><div class="item-text"><strong>og-image.png відсутній</strong><span>Файл вказаний в мета-тегах, але фізично не існує в /public. Прев'ю посилань будуть без картинки!</span></div></div>
+      <div class="item"><span class="icon">⚠️</span><div class="item-text"><strong>SPA без SSR</strong><span>React SPA — пошукові боти можуть не індексувати контент. Перевірте рендеринг через Google Search Console.</span></div></div>
+    </div>
+  </div>
+
+  <!-- CATEGORY: Analytics & Tracking — BLOCKER -->
+  <div class="category">
+    <div class="cat-header" onclick="this.parentElement.classList.toggle('open')">
+      <span class="cat-title">📊 Аналітика та трекінг</span>
+      <span><span class="cat-score crit">1/10</span> <span class="arrow">▼</span></span>
+    </div>
+    <div class="cat-body">
+      <div class="blocker"><strong>🚫 БЛОКЕР ДЛЯ РЕКЛАМИ</strong><br>Без аналітики та пікселів ви будете витрачати бюджет наосліп. Це ОБОВ'ЯЗКОВО потрібно встановити до запуску.</div>
+      <div class="item"><span class="icon">❌</span><div class="item-text"><strong>Немає Google Analytics / GTM</strong><span>Нуль даних про відвідувачів: хто приходить, звідки, що робить на сайті, де відвалюється. Без цього оптимізувати рекламу неможливо.</span></div></div>
+      <div class="item"><span class="icon">❌</span><div class="item-text"><strong>Немає Meta Pixel (Facebook/Instagram)</strong><span>Без пікселя не працює ретаргетинг, look-alike аудиторії, трекінг конверсій з Instagram/Facebook реклами.</span></div></div>
+      <div class="item"><span class="icon">❌</span><div class="item-text"><strong>Немає конверсійних подій</strong><span>Клік на «Написати в Telegram» не трекається. Ви не знатимете скільки людей перейшли з реклами в Telegram.</span></div></div>
+      <div class="item"><span class="icon">❌</span><div class="item-text"><strong>Немає UTM-трекінгу</strong><span>Telegram-посилання статичне (t.me/doctorpidnebesna) — неможливо відрізнити органічний трафік від рекламного.</span></div></div>
+    </div>
+  </div>
+
+  <!-- CATEGORY: Performance -->
+  <div class="category">
+    <div class="cat-header" onclick="this.parentElement.classList.toggle('open')">
+      <span class="cat-title">⚡ Швидкість та продуктивність</span>
+      <span><span class="cat-score high">9/10</span> <span class="arrow">▼</span></span>
+    </div>
+    <div class="cat-body">
+      <div class="item"><span class="icon">✅</span><div class="item-text"><strong>Блискавична швидкість</strong><span>DOM Interactive: 103ms, повне завантаження: 204ms. Відмінний результат.</span></div></div>
+      <div class="item"><span class="icon">✅</span><div class="item-text"><strong>Lazy loading зображень</strong><span>17 з 20 зображень завантажуються лише при скролі — економить трафік на мобільних.</span></div></div>
+      <div class="item"><span class="icon">✅</span><div class="item-text"><strong>Preconnect до Google Fonts</strong><span>Шрифти завантажуються швидше завдяки preconnect.</span></div></div>
+    </div>
+  </div>
+
+  <!-- CATEGORY: Legal / Compliance -->
+  <div class="category">
+    <div class="cat-header" onclick="this.parentElement.classList.toggle('open')">
+      <span class="cat-title">⚖️ Юридичне / Compliance</span>
+      <span><span class="cat-score mid">5/10</span> <span class="arrow">▼</span></span>
+    </div>
+    <div class="cat-body">
+      <div class="item"><span class="icon">✅</span><div class="item-text"><strong>Медичний дисклеймер</strong><span>Є інформація, що матеріали не замінюють консультацію лікаря.</span></div></div>
+      <div class="item"><span class="icon">❌</span><div class="item-text"><strong>Немає Політики конфіденційності</strong><span>Для запуску реклами в Meta (Instagram/Facebook) це обов'язкова вимога. Google Ads теж рекомендує.</span></div></div>
+      <div class="item"><span class="icon">❌</span><div class="item-text"><strong>Немає Умов використання</strong><span>Для медичного сайту рекомендується мати Terms of Service.</span></div></div>
+      <div class="item"><span class="icon">⚠️</span><div class="item-text"><strong>Немає cookie-банера</strong><span>Якщо плануєте встановити аналітику — потрібен банер згоди на cookies (GDPR, якщо є EU-аудиторія).</span></div></div>
+    </div>
+  </div>
+
+  <!-- ACTION PLAN -->
+  <div class="section-label">План дій</div>
+
+  <div class="action-list">
+    <h3>🔴 Перед запуском реклами (ОБОВ'ЯЗКОВО)</h3>
+    <div class="action"><span class="priority p1">P1</span><div>Встановити Google Tag Manager + Google Analytics 4. Налаштувати подію конверсії на клік «Написати в Telegram».</div></div>
+    <div class="action"><span class="priority p1">P1</span><div>Встановити Meta Pixel для Facebook/Instagram реклами. Налаштувати подію Lead на клік CTA.</div></div>
+    <div class="action"><span class="priority p1">P1</span><div>Створити og-image.png (1200×630px) і favicon. Зараз посилання в соцмережі показуються без картинки.</div></div>
+    <div class="action"><span class="priority p1">P1</span><div>Додати сторінку Privacy Policy (Політика конфіденційності) — вимога Meta і Google для рекламних акаунтів.</div></div>
+  </div>
+
+  <div class="action-list">
+    <h3>🟠 Для вищої конверсії (рекомендовано)</h3>
+    <div class="action"><span class="priority p2">P2</span><div>Додати JSON-LD structured data: MedicalBusiness, Person (лікар), FAQPage — для rich snippets в Google.</div></div>
+    <div class="action"><span class="priority p2">P2</span><div>Додати скріншоти реальних відгуків з Telegram/Instagram замість текстових цитат.</div></div>
+    <div class="action"><span class="priority p2">P2</span><div>Використовувати окремі UTM-посилання для кожного рекламного каналу (напр., t.me/doctorpidnebesna?start=instagram_ad).</div></div>
+    <div class="action"><span class="priority p2">P2</span><div>Додати елемент терміновості: «Відповідаю протягом 2 годин» або «Вільних слотів: X цього тижня».</div></div>
+  </div>
+
+  <div class="action-list">
+    <h3>🟡 Для росту (після запуску)</h3>
+    <div class="action"><span class="priority p3">P3</span><div>Увімкнути блог та публікувати SEO-оптимізовані статті для органічного трафіку.</div></div>
+    <div class="action"><span class="priority p3">P3</span><div>Додати альтернативний канал зв'язку (Viber, Instagram DM, або форма) для аудиторії без Telegram.</div></div>
+    <div class="action"><span class="priority p3">P3</span><div>Розглянути SSR або prerendering для кращої індексації в Google (зараз SPA без SSR).</div></div>
+    <div class="action"><span class="priority p3">P3</span><div>Додати розділ з згадками в медіа / виступами / публікаціями, якщо є.</div></div>
+  </div>
+
+  <div style="text-align: center; padding: 24px; color: #999; font-size: 13px;">
+    Аудит виконано Claude · 17 лютого 2026
+  </div>
+</div>
+
+<script>
+document.querySelectorAll('.category').forEach((cat, i) => {
+  if (i > 0) cat.classList.remove('open');
+});
+</script>
+</body>
+</html>
