@@ -54,12 +54,15 @@ export default function Services() {
         </div>
 
         <div className={styles.priceCard}>
-          <p className={styles.price}>500 ₴ за консультацію</p>
+          <p className={styles.price}>від 500 ₴ за консультацію</p>
           <p className={styles.priceNote}>
             Одна тема — одна консультація. Усі уточнення входять у вартість.
           </p>
           <p className={styles.priceNoteAbroad}>
             Для батьків за кордоном є зручні варіанти оплати
+          </p>
+          <p className={styles.responseTime}>
+            ⏱ Відповідаю протягом 2–6 годин
           </p>
           <a
             href={TELEGRAM_DM}
