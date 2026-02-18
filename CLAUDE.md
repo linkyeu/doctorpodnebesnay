@@ -6,6 +6,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Landing page for Dr. Luba — a family doctor specializing in evidence-based parenting. Static React SPA, all content in Ukrainian.
 
+> **Business context, brand guidelines, content strategy and analytics live in a separate workspace.** This repo is code-only.
+
 ## Commands
 
 - `npm run dev` — Start Vite dev server (http://localhost:5173)
@@ -32,23 +34,22 @@ No test runner is configured.
 React Router app with two routes defined in `App.tsx`:
 
 - `/` → `src/pages/LandingPage.tsx` (renders all landing sections)
-- `/blog` → `BlogComingSoon` placeholder page
 
-> **Blog temporarily hidden:** The blog system (BlogTeaser on the landing page, `/blog` listing, `/blog/:slug` article pages) is commented out in `App.tsx` and `LandingPage.tsx` — not deleted. We hid it to launch/test the site faster while articles are still being prepared. Re-enable by uncommenting the relevant imports and routes.
+> **Blog temporarily hidden:** The blog system (BlogTeaser on the landing page, `/blog` listing, `/blog/:slug` article pages) is commented out in `App.tsx` and `LandingPage.tsx` — not deleted. `BlogComingSoon` component also exists but is not routed. We hid it to launch/test the site faster while articles are still being prepared. Re-enable by uncommenting the relevant imports and routes.
 
 ### Landing page section order (`LandingPage.tsx`)
 
-**StickyHeader** (fixed, glassmorphism, appears on scroll) → **Hero** (bg image + animated gradient mesh) → **TrustBadges** (infinite scrolling marquee) → **Bio** → **WhenToContact** (expandable cards grid — 7 consultation topics with illustrations) → **Navigator** (deep charcoal-navy `#111827`, tabbed age-group browser with SituationCards, fade transitions) → **Testimonials** (3 parent testimonial blockquotes) → **Services** (off-white bg, 3-step process with illustrations) → **BlogTeaser** (infinite-scroll carousel of upcoming blog article cards) → **FAQ** (accordion, off-white bg) → **FinalCta** (final CTA section with Telegram link) → **Footer** (near-black navy `#0B1120`)
+**StickyHeader** (fixed, glassmorphism, appears on scroll) → **Hero** (bg image + animated gradient mesh) → **TrustBadges** (infinite scrolling marquee) → **Bio** → **WhenToContact** (expandable cards grid — 7 consultation topics with illustrations) → **Navigator** (deep charcoal-navy `#111827`, tabbed age-group browser with NavigatorTiles, fade transitions) → **Testimonials** (3 parent testimonial blockquotes) → **Services** (off-white bg, 3-step process with illustrations) → **BlogTeaser** (infinite-scroll carousel of upcoming blog article cards) → **FAQ** (accordion, off-white bg) → **FinalCta** (final CTA section with Telegram link) → **Footer** (near-black navy `#0B1120`)
 
 ### Key files
 
 - `src/pages/LandingPage.tsx` — Landing page component, assembles all sections
 - `src/components/BlogComingSoon/` — Standalone `/blog` placeholder page
-- `src/data/situations.ts` — All content data: 3 age groups × 3 myth/science pairs
+- `src/data/navigator-tiles.ts` — All Navigator content: 3 age-group tabs with topic tiles (key points, warning signs, doctor tips, myth/science, etc.)
 - `src/data/faq.ts` — FAQ questions/answers in Ukrainian
-- `src/data/blog.ts` — `BlogArticle` interface + 3 preview articles for BlogTeaser
+- `src/data/blog.ts` — `BlogArticle` interface + 6 article entries for BlogTeaser
 - `src/data/links.ts` — External URL constants (Telegram DM, Telegram channel, Instagram, YouTube)
-- `src/types/index.ts` — `Situation` and `AgeGroup` interfaces
+- `src/types/index.ts` — `NavigatorTileData`, `NavigatorTabData`, `TileContent`, and related interfaces
 - `src/hooks/useScrollReveal.ts` — IntersectionObserver scroll-triggered reveal animations
 - `src/components/GradientMesh/` — Animated CSS gradient mesh background (floating blurred orbs)
 - `src/styles/variables.css` — Design tokens (colors, spacing, typography scale, shadows)
@@ -60,7 +61,7 @@ React Router app with two routes defined in `App.tsx`:
 - `public/images/hero-illustration.png` — Stylized mother-and-child line-art illustration
 - `public/images/hero-bg.png` — Abstract flowing ribbon waves background
 - `public/images/doctor-lyuba-portrait.png` — Professional photo cutout (waist-up, transparent bg)
-- `public/images/navigator/` — 9 line-art illustration PNGs for SituationCards (Gemini-generated)
+- `public/images/navigator/tiles/` — 24 line-art illustration PNGs for NavigatorTiles (Gemini-generated)
 - `public/images/services/` — 3 step-process illustrations (`step-1-describe.png`, `step-2-answer.png`, `step-3-followup.png`)
 - `public/images/when-to-contact/` — 7 topic illustrations (6 on-brand gradient+leaves style + 1 simpler outline style — see Graphic Design Guide)
 
@@ -79,7 +80,7 @@ React Router app with two routes defined in `App.tsx`:
 - TrustBadges as infinite CSS marquee (duplicated content for seamless loop)
 - Varied scroll reveal animations: revealUp, revealScale, revealLeft, revealRight
 - Navigator tab switch: fade out → swap content → fade in with staggered card reveals
-- SituationCard illustrations: radial-gradient mask for soft edge fade, `scale(1.06)` hover, lazy-loaded with emoji fallback
+- NavigatorTile illustrations: radial-gradient mask for soft edge fade, `scale(1.06)` hover, lazy-loaded with emoji fallback
 - Scroll reveal animations via `.reveal` / `.visible` CSS classes + `useScrollReveal` hook
 - Bio portrait grounding: Bio has a transparent bg with a `::before` pseudo-element that stops 5rem from the bottom (off-white-to-white transition zone). WhenToContact overlaps into that zone via `margin-top: -5rem`. The grid uses `align-items: stretch` so the photo column fills the full row height, `.content` uses `align-self: center`, and `.photoWrapper` uses `align-items: flex-end` to push the photo to the bottom into the off-white zone. **Pitfall:** `align-items: center` on the grid causes the photo to float mid-row when the text column is taller — always use `stretch` + per-column `align-self`.
 
@@ -99,7 +100,7 @@ React Router app with two routes defined in `App.tsx`:
 - StickyHeader uses `aria-hidden` when not visible
 - External link CTAs include sr-only hint text
 - Decorative elements marked `aria-hidden="true"`
-- SituationCard illustrations use `alt=""` + `aria-hidden="true"` (decorative, with emoji fallback)
+- NavigatorTile illustrations use `alt=""` + `aria-hidden="true"` (decorative, with emoji fallback)
 - `.sr-only` utility class available in global.css
 - `prefers-reduced-motion: reduce` disables all animations (mesh, marquee, reveals)
 
