@@ -20,7 +20,7 @@
   display: block;
   width: 100%;
   text-align: center;
-  background: var(--color-primary);
+  background: var(--color-cta);
   color: white;
   padding: var(--space-3) var(--space-6);
   border-radius: var(--radius-sm);
@@ -31,7 +31,7 @@
 
 .button:hover {
   color: white;
-  background: var(--color-primary-hover);
+  background: var(--color-cta-hover);
 }
 
 @media (min-width: 769px) {

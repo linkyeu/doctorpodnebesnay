@@ -74,22 +74,25 @@
 
 .cta {
   display: inline-block;
-  background: var(--color-surface);
-  color: var(--color-primary);
+  background: var(--color-cta);
+  color: #fff;
   padding: var(--space-4) var(--space-10);
   border-radius: var(--radius-sm);
   font-weight: var(--weight-semibold);
   font-size: var(--text-lg);
   text-decoration: none;
+  box-shadow: 0 4px 14px rgba(22, 163, 74, 0.35);
   transition:
-    opacity var(--transition-fast),
-    transform var(--transition-fast);
+    background var(--transition-fast),
+    transform var(--transition-fast),
+    box-shadow var(--transition-fast);
 }
 
 .cta:hover {
-  color: var(--color-primary);
-  opacity: 0.9;
+  background: var(--color-cta-hover);
+  color: #fff;
   transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(22, 163, 74, 0.4);
 }
 
 @media (prefers-reduced-motion: reduce) {

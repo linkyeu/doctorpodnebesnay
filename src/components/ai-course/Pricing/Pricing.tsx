@@ -1,12 +1,21 @@
+import { useState } from 'react';
 import styles from './Pricing.module.css';
-import { pricingContent, TELEGRAM_PURCHASE_LINK } from '../../../data/ai-course';
+import { pricingContent, courseFaqItems, TELEGRAM_PURCHASE_LINK } from '../../../data/ai-course';
 
 export default function Pricing() {
+  const [openId, setOpenId] = useState<string | null>(null);
+
+  const toggle = (id: string) => {
+    setOpenId((prev) => (prev === id ? null : id));
+  };
+
   return (
     <section className={styles.section}>
       <div className={styles.dotGrid} aria-hidden="true" />
       <div className={styles.container}>
         <p className={styles.anchor}>{pricingContent.anchor}</p>
+
+        {/* Pricing card */}
         <div className={styles.card}>
           <div className={styles.priceRow}>
             <span className={styles.price}>{pricingContent.price}</span>
@@ -33,12 +42,51 @@ export default function Pricing() {
             </svg>
             {pricingContent.cta}
           </a>
-          <p className={styles.ctaSubtext}>{pricingContent.ctaSubtext}</p>
         </div>
-        <p className={styles.guarantee}>
-          <span className={styles.guaranteeCheck} aria-hidden="true">&#10003;</span>
-          {pricingContent.guarantee}
-        </p>
+
+        {/* FAQ accordion — directly below pricing */}
+        <div className={styles.faqBlock}>
+          <h3 className={styles.faqHeading}>Часті запитання</h3>
+          <div className={styles.faqList}>
+            {courseFaqItems.map((item) => {
+              const isOpen = openId === item.id;
+              return (
+                <div key={item.id} className={styles.faqItem}>
+                  <button
+                    className={styles.faqTrigger}
+                    onClick={() => toggle(item.id)}
+                    aria-expanded={isOpen}
+                    aria-controls={`faq-panel-${item.id}`}
+                  >
+                    <span className={styles.faqQuestion}>{item.question}</span>
+                    <span
+                      className={`${styles.faqIcon} ${isOpen ? styles.faqIconOpen : ''}`}
+                      aria-hidden="true"
+                    >
+                      <svg width="18" height="18" viewBox="0 0 20 20" fill="none">
+                        <path
+                          d="M10 4v12M4 10h12"
+                          stroke="currentColor"
+                          strokeWidth="1.5"
+                          strokeLinecap="round"
+                        />
+                      </svg>
+                    </span>
+                  </button>
+                  <div
+                    id={`faq-panel-${item.id}`}
+                    role="region"
+                    className={`${styles.faqPanel} ${isOpen ? styles.faqPanelOpen : ''}`}
+                  >
+                    <div className={styles.faqPanelInner}>
+                      <p className={styles.faqAnswer}>{item.answer}</p>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
       </div>
     </section>
   );

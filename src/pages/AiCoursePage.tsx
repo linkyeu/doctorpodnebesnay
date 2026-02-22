@@ -1,28 +1,21 @@
 import { useEffect } from 'react';
 import styles from './AiCoursePage.module.css';
 import CourseHero from '../components/ai-course/CourseHero/CourseHero';
-import CourseTrustBadges from '../components/ai-course/CourseTrustBadges/CourseTrustBadges';
 import PainPoints from '../components/ai-course/PainPoints/PainPoints';
-import Outcomes from '../components/ai-course/Outcomes/Outcomes';
-import WhatsInside from '../components/ai-course/WhatsInside/WhatsInside';
-import WorkflowExamples from '../components/ai-course/WorkflowExamples/WorkflowExamples';
-import SocialProof from '../components/ai-course/SocialProof/SocialProof';
-import ForWho from '../components/ai-course/ForWho/ForWho';
-import CommonDoubts from '../components/ai-course/CommonDoubts/CommonDoubts';
-import Credibility from '../components/ai-course/Credibility/Credibility';
+import Solution from '../components/ai-course/Solution/Solution';
+import AuthorTrust from '../components/ai-course/AuthorTrust/AuthorTrust';
 import Pricing from '../components/ai-course/Pricing/Pricing';
-import CourseFaq from '../components/ai-course/CourseFaq/CourseFaq';
 import CourseFinalCta from '../components/ai-course/FinalCta/FinalCta';
 import CourseFooter from '../components/ai-course/CourseFooter/CourseFooter';
 import StickyMobileCta from '../components/ai-course/StickyMobileCta/StickyMobileCta';
 
 export default function AiCoursePage() {
   useEffect(() => {
-    document.title = 'ШІ-помічник лікаря: готові рішення | Др. Піднебесна';
+    document.title = 'ШІ-помічник лікаря — поверніть собі 2 години на день | Др. Піднебесна';
 
     const metaDesc = document.querySelector('meta[name="description"]');
     const descContent =
-      'Готові ШІ-рішення для лікарів — документація, діагностика, протоколи. Копіюєте, вставляєте, працює. 799₴, одноразова покупка.';
+      'Готові ШІ-рішення для лікарів — документація за 5 хвилин, друга думка з джерелами, відповіді на ChatGPT-питання пацієнтів. 799₴, одноразова покупка.';
     if (metaDesc) {
       metaDesc.setAttribute('content', descContent);
     } else {
@@ -34,7 +27,7 @@ export default function AiCoursePage() {
 
     // OG meta tags
     const ogTags: Record<string, string> = {
-      'og:title': 'ШІ-помічник лікаря: готові рішення',
+      'og:title': 'ШІ-помічник лікаря — поверніть собі 2 години на день',
       'og:description': descContent,
       'og:url': 'https://doctorpidnebesna.com/ai-course',
       'og:type': 'website',
@@ -75,17 +68,10 @@ export default function AiCoursePage() {
   return (
     <div className={styles.coursePage}>
       <CourseHero />
-      <CourseTrustBadges />
       <PainPoints />
-      <Outcomes />
-      <WhatsInside />
-      <WorkflowExamples />
-      <SocialProof />
-      <Credibility />
-      <ForWho />
-      <CommonDoubts />
+      <Solution />
+      <AuthorTrust />
       <Pricing />
-      <CourseFaq />
       <CourseFinalCta />
       <CourseFooter />
       <StickyMobileCta />
