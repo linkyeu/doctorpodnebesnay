@@ -1,0 +1,214 @@
+/* ─── Section ─── */
+
+.section {
+  background: var(--color-bg-alt);
+  padding: var(--space-12) var(--space-6);
+}
+
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+/* ─── Heading ─── */
+
+.heading {
+  font-size: var(--text-3xl);
+  color: var(--color-text);
+  text-align: center;
+  margin: 0 0 var(--space-3);
+}
+
+.subtitle {
+  font-size: var(--text-base);
+  color: var(--color-text-muted);
+  text-align: center;
+  margin: 0 0 var(--space-10);
+}
+
+/* ─── Grid ─── */
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-6);
+}
+
+@media (min-width: 768px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* ─── Card ─── */
+
+.card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: var(--space-8);
+  display: flex;
+  flex-direction: column;
+  transition:
+    border-color var(--transition-fast),
+    box-shadow var(--transition-fast);
+  opacity: 0;
+  transform: translateY(16px);
+  transition:
+    border-color var(--transition-fast),
+    box-shadow var(--transition-fast),
+    opacity 500ms ease,
+    transform 500ms ease;
+  transition-delay: calc(var(--card-index, 0) * 100ms);
+}
+
+:global(.visible) .card {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.card:hover {
+  border-color: var(--color-primary-light);
+  box-shadow: var(--shadow-md);
+}
+
+/* ─── Card header ─── */
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-bottom: var(--space-6);
+}
+
+.emoji {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+.cardTitle {
+  font-size: var(--text-lg);
+  font-weight: var(--weight-semibold);
+  color: var(--color-text);
+  margin: 0;
+}
+
+/* ─── Progress bars ─── */
+
+.bars {
+  margin-bottom: var(--space-5);
+}
+
+.barRow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.barLabelBefore,
+.barLabelAfter {
+  font-size: 11px;
+  font-weight: var(--weight-bold);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  width: 3.5rem;
+  flex-shrink: 0;
+}
+
+.barLabelBefore {
+  color: var(--color-text-muted);
+  opacity: 0.7;
+}
+
+.barLabelAfter {
+  color: var(--color-primary);
+}
+
+.barTrack {
+  flex: 1;
+  height: 8px;
+  background: rgba(0, 0, 0, 0.06);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.barFill {
+  height: 100%;
+  border-radius: var(--radius-full);
+  width: 0;
+  transition: width 600ms ease-out;
+  transition-delay: calc(200ms + var(--card-index, 0) * 100ms);
+}
+
+:global(.visible) .barFill {
+  width: var(--bar-width);
+}
+
+.barBefore {
+  background: #D97B5C;
+}
+
+.barAfter {
+  background: var(--color-primary);
+}
+
+.barText {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  margin: var(--space-1) 0 var(--space-3) 0;
+  padding-left: calc(3.5rem + var(--space-3));
+}
+
+/* ─── Multiplier badge ─── */
+
+.multiplier {
+  display: inline-block;
+  align-self: center;
+  font-size: 11px;
+  font-weight: var(--weight-semibold);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--color-primary);
+  background: rgba(27, 58, 75, 0.08);
+  padding: 3px 12px;
+  border-radius: var(--radius-full);
+  margin-bottom: var(--space-5);
+}
+
+/* ─── Detail text ─── */
+
+.detail {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  line-height: var(--leading-normal);
+  margin: 0;
+  padding-top: var(--space-5);
+  border-top: 1px solid var(--color-border);
+}
+
+/* ─── Footer ─── */
+
+.footer {
+  text-align: center;
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  margin-top: var(--space-10);
+  font-style: italic;
+}
+
+/* ─── Reduced motion ─── */
+
+@media (prefers-reduced-motion: reduce) {
+  .card {
+    opacity: 1;
+    transform: none;
+    transition:
+      border-color var(--transition-fast),
+      box-shadow var(--transition-fast);
+  }
+
+  .barFill {
+    width: var(--bar-width);
+    transition: none;
+  }
+}

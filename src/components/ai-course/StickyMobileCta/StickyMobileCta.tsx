@@ -25,7 +25,7 @@ export default function StickyMobileCta() {
         target="_blank"
         rel="noopener noreferrer"
       >
-        Забрати 15 рішень — 799₴
+        Забрати всі рішення — 799₴
       </a>
     </div>
   );
