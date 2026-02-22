@@ -1,0 +1,316 @@
+/* ─── Hero section — dark navy background ─── */
+
+.hero {
+  position: relative;
+  min-height: 100dvh;
+  background: #0a1628;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Subtle vignette overlay */
+.hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, transparent 40%, rgba(10, 22, 40, 0.6) 100%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ─── Particle canvas ─── */
+
+.particleContainer {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: auto;
+}
+
+.particleCanvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* ─── Content ─── */
+
+.content {
+  position: relative;
+  z-index: 1;
+  max-width: 640px;
+  margin: 0 auto;
+  padding: var(--space-10) var(--space-6);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+/* Scan-line sweep */
+.content::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(0, 212, 255, 0.6) 30%,
+    rgba(0, 212, 255, 0.9) 50%,
+    rgba(0, 212, 255, 0.6) 70%,
+    transparent 100%
+  );
+  box-shadow: 0 0 12px rgba(0, 212, 255, 0.4), 0 0 30px rgba(0, 212, 255, 0.15);
+  animation: scanLine 600ms ease-out forwards;
+  pointer-events: none;
+  z-index: 10;
+}
+
+@keyframes scanLine {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  80% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: translateY(calc(100dvh - 2px));
+    opacity: 0;
+  }
+}
+
+@media (min-width: 768px) {
+  .content {
+    max-width: 660px;
+    padding: var(--space-12) var(--space-10);
+  }
+}
+
+/* ─── Title — glitch-in clip-path wipe ─── */
+
+.title {
+  font-size: var(--text-4xl);
+  line-height: var(--leading-tight);
+  color: #fff;
+  font-weight: var(--weight-bold);
+  text-shadow: 0 0 40px rgba(0, 212, 255, 0.15);
+  clip-path: inset(0 100% 0 0);
+  opacity: 0;
+  animation: glitchWipeIn 600ms ease-out 400ms forwards;
+}
+
+@keyframes glitchWipeIn {
+  0% {
+    clip-path: inset(0 100% 0 0);
+    opacity: 1;
+    text-shadow: 0 0 40px rgba(0, 212, 255, 0.4);
+  }
+  28% {
+    clip-path: inset(0 72% 0 0);
+    text-shadow: 0 0 40px rgba(0, 212, 255, 0.4);
+  }
+  30% {
+    transform: translateX(2px);
+    text-shadow: -2px 0 rgba(0, 212, 255, 0.3), 2px 0 rgba(200, 149, 108, 0.3);
+    clip-path: inset(0 70% 0 0);
+  }
+  33% {
+    transform: translateX(0);
+    text-shadow: 0 0 40px rgba(0, 212, 255, 0.4);
+  }
+  58% {
+    clip-path: inset(0 42% 0 0);
+    text-shadow: 0 0 40px rgba(0, 212, 255, 0.35);
+  }
+  60% {
+    transform: translateX(-2px);
+    text-shadow: 2px 0 rgba(0, 212, 255, 0.3), -2px 0 rgba(200, 149, 108, 0.3);
+    clip-path: inset(0 40% 0 0);
+  }
+  63% {
+    transform: translateX(0);
+    text-shadow: 0 0 40px rgba(0, 212, 255, 0.3);
+  }
+  100% {
+    clip-path: inset(0 0 0 0);
+    opacity: 1;
+    text-shadow: 0 0 40px rgba(0, 212, 255, 0.15);
+  }
+}
+
+/* ─── Subtitle — glitch flicker fade-in ─── */
+
+.subtitle {
+  font-size: var(--text-base);
+  color: rgba(255, 255, 255, 0.7);
+  line-height: var(--leading-normal);
+  max-width: 520px;
+  opacity: 0;
+  animation: glitchFadeIn 500ms ease-out 900ms forwards;
+}
+
+@keyframes glitchFadeIn {
+  0% {
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.7;
+  }
+  25% {
+    opacity: 0.3;
+  }
+  40% {
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 0.3;
+  }
+  65% {
+    opacity: 0.9;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* ─── CTA button — animated gradient border ─── */
+
+@property --angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+.ctaWrapper {
+  position: relative;
+  display: inline-flex;
+  padding: 2px;
+  border-radius: calc(var(--radius-sm) + 2px);
+  background: conic-gradient(from var(--angle), #00d4ff, #1B8A9E, #C8956C, #00d4ff);
+  animation:
+    ctaMaterialize 500ms ease-out 1200ms both,
+    borderRotate 4s linear 1200ms infinite;
+  opacity: 0;
+}
+
+@keyframes borderRotate {
+  to {
+    --angle: 360deg;
+  }
+}
+
+@keyframes ctaMaterialize {
+  0% {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Pulse ring on CTA appear */
+.ctaWrapper::after {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  border: 2px solid rgba(0, 212, 255, 0.4);
+  animation: ctaPulseRing 4s ease-out 1200ms infinite;
+  pointer-events: none;
+}
+
+@keyframes ctaPulseRing {
+  0% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+  30% {
+    transform: scale(2);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+.cta {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  background: #0a1628;
+  color: #fff;
+  padding: var(--space-4) var(--space-8);
+  border-radius: var(--radius-sm);
+  font-weight: var(--weight-semibold);
+  font-size: var(--text-base);
+  text-decoration: none;
+  transition:
+    background var(--transition-fast),
+    transform var(--transition-fast),
+    backdrop-filter var(--transition-fast);
+}
+
+.cta:hover {
+  background: rgba(10, 22, 40, 0.85);
+  backdrop-filter: blur(8px);
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+.ctaIcon {
+  flex-shrink: 0;
+}
+
+/* ─── Mobile adjustments ─── */
+
+@media (max-width: 767px) {
+  .content::before {
+    height: 1px;
+  }
+}
+
+/* ─── Reduced motion ─── */
+
+@media (prefers-reduced-motion: reduce) {
+  .content::before {
+    animation: none;
+    display: none;
+  }
+
+  .title {
+    animation: none;
+    clip-path: none;
+    opacity: 1;
+    text-shadow: none;
+  }
+
+  .subtitle {
+    animation: none;
+    opacity: 1;
+  }
+
+  .ctaWrapper {
+    animation: none;
+    opacity: 1;
+    background: linear-gradient(135deg, #00d4ff, #1B8A9E, #C8956C);
+  }
+
+  .ctaWrapper::after {
+    animation: none;
+    display: none;
+  }
+
+  .cta {
+    animation: none;
+  }
+}

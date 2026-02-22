@@ -1,0 +1,105 @@
+.section {
+  padding: var(--space-24) var(--space-6);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.bgImage {
+  position: absolute;
+  inset: 0;
+  background-image: url('/images/ai-course/hero-bg-frame-1.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  pointer-events: none;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(11, 17, 32, 0.75);
+  pointer-events: none;
+}
+
+.container {
+  max-width: var(--max-width-narrow);
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+/* ─── Text shimmer animation ─── */
+
+@keyframes textShimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+.heading {
+  font-size: var(--text-3xl);
+  color: var(--color-text-on-dark);
+  margin-bottom: var(--space-4);
+  line-height: var(--leading-snug);
+  background: linear-gradient(
+    90deg,
+    var(--color-text-on-dark) 0%,
+    var(--color-text-on-dark) 40%,
+    var(--color-accent) 50%,
+    var(--color-text-on-dark) 60%,
+    var(--color-text-on-dark) 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: textShimmer 6s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .heading {
+    background: none;
+    -webkit-background-clip: unset;
+    background-clip: unset;
+    -webkit-text-fill-color: var(--color-text-on-dark);
+    animation: none;
+  }
+}
+
+.subtext {
+  font-size: var(--text-lg);
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: var(--space-8);
+}
+
+.cta {
+  display: inline-block;
+  background: var(--color-surface);
+  color: var(--color-primary);
+  padding: var(--space-4) var(--space-10);
+  border-radius: var(--radius-sm);
+  font-weight: var(--weight-semibold);
+  font-size: var(--text-lg);
+  text-decoration: none;
+  transition:
+    opacity var(--transition-fast),
+    transform var(--transition-fast);
+}
+
+.cta:hover {
+  color: var(--color-primary);
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cta:hover {
+    transform: none;
+  }
+}
+
+.ctaSubtext {
+  font-size: var(--text-sm);
+  color: rgba(255, 255, 255, 0.45);
+  margin-top: var(--space-4);
+}
