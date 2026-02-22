@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import styles from './AiCoursePage.module.css';
 import CourseHero from '../components/ai-course/CourseHero/CourseHero';
 import PainPoints from '../components/ai-course/PainPoints/PainPoints';
+import Personas from '../components/ai-course/Personas/Personas';
 import Solution from '../components/ai-course/Solution/Solution';
 import AuthorTrust from '../components/ai-course/AuthorTrust/AuthorTrust';
 import Pricing from '../components/ai-course/Pricing/Pricing';
@@ -69,6 +70,7 @@ export default function AiCoursePage() {
     <div className={styles.coursePage}>
       <CourseHero />
       <PainPoints />
+      <Personas />
       <Solution />
       <AuthorTrust />
       <Pricing />
