@@ -1,0 +1,112 @@
+.section {
+  padding: var(--space-16) var(--space-6);
+  background: var(--color-bg);
+}
+
+.container {
+  max-width: var(--max-width-narrow);
+  margin: 0 auto;
+}
+
+.heading {
+  font-size: var(--text-3xl);
+  text-align: center;
+  margin-bottom: var(--space-12);
+  color: var(--color-text);
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.item {
+  background: var(--color-surface);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border);
+  overflow: hidden;
+  transition: box-shadow var(--transition-base);
+}
+
+.item:has(.panelOpen) {
+  box-shadow: var(--shadow-md);
+}
+
+.trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: var(--space-5) var(--space-6);
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  gap: var(--space-4);
+  min-height: 44px;
+}
+
+.trigger:focus-visible {
+  outline: 3px solid var(--color-primary);
+  outline-offset: -3px;
+  border-radius: var(--radius-sm);
+}
+
+.question {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  font-weight: var(--weight-semibold);
+  color: var(--color-text);
+  line-height: var(--leading-snug);
+}
+
+.icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  color: var(--color-text-muted);
+  transition: transform var(--transition-base);
+}
+
+.iconOpen {
+  transform: rotate(45deg);
+}
+
+.panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows var(--transition-slow);
+}
+
+.panelOpen {
+  grid-template-rows: 1fr;
+}
+
+.panelInner {
+  overflow: hidden;
+}
+
+.answer {
+  padding: 0 var(--space-6) var(--space-6);
+  font-size: var(--text-base);
+  color: var(--color-text-muted);
+  line-height: var(--leading-relaxed);
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: var(--space-12) var(--space-4);
+  }
+
+  .trigger {
+    padding: var(--space-4) var(--space-5);
+  }
+
+  .answer {
+    padding: 0 var(--space-5) var(--space-5);
+  }
+}
