@@ -1,6 +1,6 @@
 import { useState, useRef, useCallback, useEffect, useLayoutEffect } from 'react';
 import styles from './Outcomes.module.css';
-import { outcomes, outcomesTeaser } from '../../../data/ai-course';
+import { outcomes } from '../../../data/ai-course';
 
 function OutcomeIcon({ icon, emoji }: { icon?: string; emoji: string }) {
   const [failed, setFailed] = useState(false);
@@ -170,11 +170,6 @@ export default function Outcomes() {
               <path d="M7.5 5L12.5 10L7.5 15" />
             </svg>
           </button>
-        </div>
-        <div className={styles.teaserBlock}>
-          {outcomesTeaser.map((line, i) => (
-            <p key={i} className={styles.teaser}>{line}</p>
-          ))}
         </div>
       </div>
     </section>

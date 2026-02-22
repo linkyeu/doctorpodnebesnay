@@ -64,7 +64,7 @@ export default function Credibility() {
   return (
     <section className={styles.section}>
       <div className={styles.container}>
-        <h2 className={styles.heading}>Хто це створив</h2>
+        <h2 className={styles.heading}>Чому це працює</h2>
         <div className={styles.cards}>
           {instructors.map((inst) => (
             <div key={inst.id} className={styles.card}>
@@ -94,6 +94,13 @@ export default function Credibility() {
           ))}
         </div>
         <p className={styles.subtitle}>{credibilitySubtitle}</p>
+        <blockquote className={styles.blockquote}>
+          <span className={styles.blockquoteQuote} aria-hidden="true">"</span>
+          <p className={styles.blockquoteText}>
+            Документація, яка займала весь вечір, тепер готова за 15 хвилин. Нарешті йду додому вчасно.
+          </p>
+          <footer className={styles.blockquoteAuthor}>— Лікар Піднебесна, сімейний лікар</footer>
+        </blockquote>
       </div>
     </section>
   );

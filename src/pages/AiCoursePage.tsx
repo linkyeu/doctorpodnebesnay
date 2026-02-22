@@ -4,8 +4,11 @@ import CourseHero from '../components/ai-course/CourseHero/CourseHero';
 import CourseTrustBadges from '../components/ai-course/CourseTrustBadges/CourseTrustBadges';
 import PainPoints from '../components/ai-course/PainPoints/PainPoints';
 import Outcomes from '../components/ai-course/Outcomes/Outcomes';
+import WhatsInside from '../components/ai-course/WhatsInside/WhatsInside';
+import WorkflowExamples from '../components/ai-course/WorkflowExamples/WorkflowExamples';
 import SocialProof from '../components/ai-course/SocialProof/SocialProof';
 import ForWho from '../components/ai-course/ForWho/ForWho';
+import CommonDoubts from '../components/ai-course/CommonDoubts/CommonDoubts';
 import Credibility from '../components/ai-course/Credibility/Credibility';
 import Pricing from '../components/ai-course/Pricing/Pricing';
 import CourseFaq from '../components/ai-course/CourseFaq/CourseFaq';
@@ -15,11 +18,11 @@ import StickyMobileCta from '../components/ai-course/StickyMobileCta/StickyMobil
 
 export default function AiCoursePage() {
   useEffect(() => {
-    document.title = 'ШІ-помічник лікаря: 15 готових рішень | Др. Піднебесна';
+    document.title = 'ШІ-помічник лікаря: готові рішення | Др. Піднебесна';
 
     const metaDesc = document.querySelector('meta[name="description"]');
     const descContent =
-      '15 готових ШІ-шаблонів для лікарів — документація, діагностика, протоколи. Копіюєте, вставляєте, працює. 799₴, одноразова покупка.';
+      'Готові ШІ-рішення для лікарів — документація, діагностика, протоколи. Копіюєте, вставляєте, працює. 799₴, одноразова покупка.';
     if (metaDesc) {
       metaDesc.setAttribute('content', descContent);
     } else {
@@ -31,7 +34,7 @@ export default function AiCoursePage() {
 
     // OG meta tags
     const ogTags: Record<string, string> = {
-      'og:title': 'ШІ-помічник лікаря: 15 готових рішень',
+      'og:title': 'ШІ-помічник лікаря: готові рішення',
       'og:description': descContent,
       'og:url': 'https://doctorpidnebesna.com/ai-course',
       'og:type': 'website',
@@ -75,9 +78,12 @@ export default function AiCoursePage() {
       <CourseTrustBadges />
       <PainPoints />
       <Outcomes />
+      <WhatsInside />
+      <WorkflowExamples />
       <SocialProof />
       <Credibility />
       <ForWho />
+      <CommonDoubts />
       <Pricing />
       <CourseFaq />
       <CourseFinalCta />
