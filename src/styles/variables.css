@@ -18,6 +18,11 @@
   --color-accent: #C8956C;
   --color-accent-light: #F5EDE4;
 
+  /* CTA: Warm green — stands out on any background */
+  --color-cta: #16A34A;
+  --color-cta-hover: #15803D;
+  --color-cta-light: rgba(22, 163, 74, 0.12);
+
   /* Text */
   --color-text: #1D1D1F;
   --color-text-muted: #6B7280;

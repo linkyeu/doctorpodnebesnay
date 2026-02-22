@@ -4,8 +4,8 @@ import type { PainPoint } from '../../../data/ai-course';
 
 function PainIcon({ icon }: { icon: PainPoint['icon'] }) {
   const props = {
-    width: 36,
-    height: 36,
+    width: 28,
+    height: 28,
     viewBox: '0 0 24 24',
     fill: 'none',
     stroke: 'currentColor',
@@ -36,19 +36,37 @@ function PainIcon({ icon }: { icon: PainPoint['icon'] }) {
   if (icon === 'alert') {
     return (
       <svg {...props}>
-        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
-        <line x1="12" y1="8" x2="12" y2="12" />
-        <circle cx="12" cy="15" r="0.5" fill="currentColor" />
+        <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
+        <line x1="12" y1="9" x2="12" y2="13" />
+        <line x1="12" y1="17" x2="12.01" y2="17" />
       </svg>
     );
   }
   if (icon === 'users') {
     return (
       <svg {...props}>
-        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
-        <circle cx="9" cy="7" r="4" />
-        <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
-        <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+        <line x1="9" y1="9" x2="15" y2="9" />
+        <line x1="12" y1="6" x2="12" y2="12" />
+      </svg>
+    );
+  }
+  if (icon === 'search') {
+    return (
+      <svg {...props}>
+        <circle cx="11" cy="11" r="8" />
+        <line x1="21" y1="21" x2="16.65" y2="16.65" />
+        <line x1="8" y1="11" x2="14" y2="11" />
+      </svg>
+    );
+  }
+  if (icon === 'brain') {
+    return (
+      <svg {...props}>
+        <path d="M9.5 2a5.5 5.5 0 0 0-4.17 9.08A6 6 0 0 0 4 15v1a2 2 0 0 0 2 2h1" />
+        <path d="M14.5 2a5.5 5.5 0 0 1 4.17 9.08A6 6 0 0 1 20 15v1a2 2 0 0 1-2 2h-1" />
+        <path d="M12 2v8" />
+        <path d="M7 18v2a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-2" />
       </svg>
     );
   }
@@ -60,17 +78,15 @@ export default function PainPoints() {
     <section className={styles.section}>
       <div className={styles.container}>
         <h2 className={styles.heading}>Знайоме?</h2>
-        <div className={styles.stack}>
+        <div className={styles.grid}>
           {painPoints.map((point) => (
             <div key={point.id} className={styles.card}>
               <div className={styles.iconWrapper}>
                 <PainIcon icon={point.icon} />
               </div>
-              <div className={styles.cardContent}>
-                <h3 className={styles.headline}>{point.headline}</h3>
-                <p className={styles.text}>{point.text}</p>
-                {point.source && <cite className={styles.source}>{point.source}</cite>}
-              </div>
+              <h3 className={styles.headline}>{point.headline}</h3>
+              <p className={styles.text}>{point.text}</p>
+              {point.source && <cite className={styles.source}>{point.source}</cite>}
             </div>
           ))}
         </div>

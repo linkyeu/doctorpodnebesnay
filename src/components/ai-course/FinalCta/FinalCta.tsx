@@ -17,7 +17,6 @@ export default function CourseFinalCta() {
         >
           {finalCtaContent.cta}
         </a>
-        <p className={styles.ctaSubtext}>{finalCtaContent.ctaSubtext}</p>
       </div>
     </section>
   );
