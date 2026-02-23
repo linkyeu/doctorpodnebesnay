@@ -12,7 +12,15 @@ export default function Personas() {
         <div className={styles.grid}>
           {personas.map((p) => (
             <div key={p.id} className={styles.card}>
-              <span className={styles.emoji} aria-hidden="true">{p.emoji}</span>
+              <div className={styles.imageWrapper}>
+                <img
+                  src={p.image}
+                  alt=""
+                  aria-hidden="true"
+                  className={styles.image}
+                  loading="lazy"
+                />
+              </div>
               <h3 className={styles.cardHeading}>{p.heading}</h3>
               <p className={styles.cardText}>{p.text}</p>
             </div>
