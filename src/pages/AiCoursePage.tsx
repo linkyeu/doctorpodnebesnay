@@ -6,6 +6,7 @@ import Personas from '../components/ai-course/Personas/Personas';
 import Solution from '../components/ai-course/Solution/Solution';
 import AuthorTrust from '../components/ai-course/AuthorTrust/AuthorTrust';
 import Pricing from '../components/ai-course/Pricing/Pricing';
+import CourseFaq from '../components/ai-course/CourseFaq/CourseFaq';
 import CourseFinalCta from '../components/ai-course/FinalCta/FinalCta';
 import CourseFooter from '../components/ai-course/CourseFooter/CourseFooter';
 import StickyMobileCta from '../components/ai-course/StickyMobileCta/StickyMobileCta';
@@ -74,6 +75,7 @@ export default function AiCoursePage() {
       <Solution />
       <AuthorTrust />
       <Pricing />
+      <CourseFaq />
       <CourseFinalCta />
       <CourseFooter />
       <StickyMobileCta />
