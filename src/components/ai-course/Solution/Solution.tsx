@@ -1,159 +1,112 @@
+import { useState } from 'react';
 import { useScrollReveal } from '../../../hooks/useScrollReveal';
 import {
-  whatsInsideCards,
-  whatsInsideSubtitle,
-  whatsInsideFooter,
-  previewPages,
-  workflowExamples,
-  workflowExamplesFooter,
+  howItWorksSteps,
+  howItWorksFooter,
+  // workflowExamples,
+  // workflowExamplesFooter,
 } from '../../../data/ai-course';
-import type { WhatsInsideCard } from '../../../data/ai-course';
+// import type { WorkflowExample } from '../../../data/ai-course';
 import styles from './Solution.module.css';
 
-function FeatureIcon({ icon }: { icon: WhatsInsideCard['icon'] }) {
-  const props = {
-    width: 28,
-    height: 28,
-    viewBox: '0 0 24 24',
-    fill: 'none',
-    stroke: 'currentColor',
-    strokeWidth: 1.5,
-    strokeLinecap: 'round' as const,
-    strokeLinejoin: 'round' as const,
-    'aria-hidden': true as const,
-  };
-
-  if (icon === 'copy') {
-    return (
-      <svg {...props}>
-        <rect x="9" y="9" width="13" height="13" rx="2" />
-        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
-      </svg>
-    );
-  }
-  if (icon === 'book-open') {
-    return (
-      <svg {...props}>
-        <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
-        <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
-      </svg>
-    );
-  }
-  return (
-    <svg {...props}>
-      <rect x="2" y="5" width="20" height="16" rx="2" />
-      <path d="M2 10h20" />
-      <path d="M6 5V3a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v2" />
-      <circle cx="16" cy="15" r="1" />
-    </svg>
-  );
-}
+// WorkflowCard temporarily hidden — re-enable with workflow examples
+// function WorkflowCard({ wf, index }: { wf: WorkflowExample; index: number }) {
+//   const timeParts = wf.timeLabel.split('→');
+//   const timeBefore = timeParts[0].trim();
+//   const timeAfter = timeParts[1].trim();
+//
+//   return (
+//     <div
+//       className={styles.workflowCard}
+//       style={{ '--card-index': index } as React.CSSProperties}
+//     >
+//       {/* Big multiplier hero */}
+//       <div className={styles.wfHero}>
+//         <span className={styles.multiplierBig}>{wf.multiplier}</span>
+//         {wf.multiplierLabel && (
+//           <span className={styles.multiplierSub}>{wf.multiplierLabel}</span>
+//         )}
+//       </div>
+//
+//       {/* Title */}
+//       <h4 className={styles.workflowTitle}>{wf.title}</h4>
+//
+//       {/* "Crossed-out price" time comparison */}
+//       <div className={styles.timeCompare}>
+//         <span className={styles.timeOld}>{timeBefore}</span>
+//         <span className={styles.timeArrow}>→</span>
+//         <span className={styles.timeNew}>{timeAfter}</span>
+//       </div>
+//     </div>
+//   );
+// }
 
 export default function Solution() {
   const sectionRef = useScrollReveal<HTMLElement>(0.1);
+  const [imgErrors, setImgErrors] = useState<Record<string, boolean>>({});
+
+  const handleImgError = (id: string) => {
+    setImgErrors((prev) => ({ ...prev, [id]: true }));
+  };
 
   return (
     <section ref={sectionRef} className={`${styles.section} reveal`}>
       <div className={styles.container}>
-        <h2 className={styles.heading}>Ось як саме це працює</h2>
-        <p className={styles.subtitle}>{whatsInsideSubtitle}</p>
+        <h2 className={styles.heading}>Ось як це працює</h2>
+        <p className={styles.subheading}>
+          Три кроки — від задачі до результату. Без IT-навичок.
+        </p>
 
-        {/* Book mockup */}
-        <div className={styles.bookWrapper}>
-          <img
-            src="/images/ai-course/book-cover.png"
-            alt=""
-            aria-hidden="true"
-            className={styles.bookImage}
-            loading="lazy"
-          />
-        </div>
-
-        {/* Preview pages */}
-        <div className={styles.previewPages}>
-          <h3 className={styles.previewHeading}>Приклади рішень з книги:</h3>
-          <div className={styles.previewGrid}>
-            {previewPages.map((page) => (
-              <div key={page.num} className={styles.previewPage}>
-                <div className={styles.previewCategory}>{page.category}</div>
-                <div className={styles.previewNum}>{page.num}</div>
-                <div className={styles.previewTitle}>{page.title}</div>
-                <div className={styles.previewBlur} aria-hidden="true">
-                  <div className={styles.blurLine} style={{ width: '90%' }} />
-                  <div className={styles.blurLine} style={{ width: '75%' }} />
-                  <div className={styles.blurLine} style={{ width: '85%' }} />
-                  <div className={styles.blurLine} style={{ width: '60%' }} />
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Feature cards */}
-        <div className={styles.featureCards}>
-          {whatsInsideCards.map((card, i) => (
+        {/* 3 Steps */}
+        <div className={styles.timeline}>
+          {howItWorksSteps.map((step, i) => (
             <div
-              key={card.id}
-              className={styles.featureCard}
+              key={step.id}
+              className={styles.step}
               style={{ '--card-index': i } as React.CSSProperties}
             >
-              <div className={styles.featureIconWrapper}>
-                <FeatureIcon icon={card.icon} />
+              <div className={styles.illustrationWrapper}>
+                {!imgErrors[step.id] ? (
+                  <img
+                    src={step.image}
+                    alt=""
+                    aria-hidden="true"
+                    className={styles.illustration}
+                    loading="lazy"
+                    onError={() => handleImgError(step.id)}
+                  />
+                ) : (
+                  <span className={styles.emojiFallback} aria-hidden="true">
+                    {step.emoji}
+                  </span>
+                )}
               </div>
-              <h3 className={styles.featureCardTitle}>{card.title}</h3>
-              <p className={styles.featureCardText}>{card.description}</p>
+
+              <div className={styles.stepContent}>
+                <div className={styles.stepNum}>{step.num}</div>
+                <h3 className={styles.stepTitle}>{step.title}</h3>
+                <p className={styles.stepText}>{step.description}</p>
+              </div>
             </div>
           ))}
         </div>
 
-        <p className={styles.featureFooter}>{whatsInsideFooter}</p>
+        <p className={styles.footer}>{howItWorksFooter}</p>
 
-        {/* Workflow examples — dark sub-section */}
+        {/* Workflow examples — temporarily hidden for marketing testing
         <div className={styles.workflows}>
           <h3 className={styles.workflowHeading}>Результати на практиці</h3>
           <div className={styles.workflowGrid}>
             {workflowExamples.map((wf, i) => (
-              <div
-                key={wf.id}
-                className={styles.workflowCard}
-                style={{ '--card-index': i } as React.CSSProperties}
-              >
-                <div className={styles.workflowHeader}>
-                  <span className={styles.emoji} aria-hidden="true">{wf.emoji}</span>
-                  <h4 className={styles.workflowTitle}>{wf.title}</h4>
-                </div>
-
-                <div className={styles.bars} aria-hidden="true">
-                  <div className={styles.barRow}>
-                    <span className={styles.barLabelBefore}>ДО</span>
-                    <div className={styles.barTrack}>
-                      <div
-                        className={`${styles.barFill} ${styles.barBefore}`}
-                        style={{ '--bar-width': `${wf.before.barPercent}%` } as React.CSSProperties}
-                      />
-                    </div>
-                  </div>
-                  <p className={styles.barText}>{wf.before.label}</p>
-
-                  <div className={styles.barRow}>
-                    <span className={styles.barLabelAfter}>ПІСЛЯ</span>
-                    <div className={styles.barTrack}>
-                      <div
-                        className={`${styles.barFill} ${styles.barAfter}`}
-                        style={{ '--bar-width': `${wf.after.barPercent}%` } as React.CSSProperties}
-                      />
-                    </div>
-                  </div>
-                  <p className={styles.barText}>{wf.after.label}</p>
-                </div>
-
-                <span className={styles.multiplier}>{wf.multiplier}</span>
-                <p className={styles.detail}>{wf.detail}</p>
-              </div>
+              <WorkflowCard key={wf.id} wf={wf} index={i} />
             ))}
           </div>
+          <p className={styles.workflowTagline}>
+            Прийдеш додому на 2 години раніше.
+          </p>
           <p className={styles.workflowFooter}>{workflowExamplesFooter}</p>
         </div>
+        */}
       </div>
     </section>
   );
