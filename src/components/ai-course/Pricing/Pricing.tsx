@@ -1,19 +1,35 @@
-import { useState } from 'react';
 import styles from './Pricing.module.css';
-import { pricingContent, courseFaqItems, TELEGRAM_PURCHASE_LINK } from '../../../data/ai-course';
+import {
+  pricingContent,
+  competitorPrices,
+  TELEGRAM_PURCHASE_LINK,
+} from '../../../data/ai-course';
 
 export default function Pricing() {
-  const [openId, setOpenId] = useState<string | null>(null);
-
-  const toggle = (id: string) => {
-    setOpenId((prev) => (prev === id ? null : id));
-  };
-
   return (
     <section className={styles.section}>
       <div className={styles.dotGrid} aria-hidden="true" />
       <div className={styles.container}>
-        <p className={styles.anchor}>{pricingContent.anchor}</p>
+        {/* Section title */}
+        <h2 className={styles.sectionTitle}>{pricingContent.sectionTitle}</h2>
+
+        {/* Time saving reminder */}
+        <p className={styles.timeSaving}>{pricingContent.timeSaving}</p>
+
+        {/* Competitor price comparison */}
+        <div className={styles.priceAnchor}>
+          {competitorPrices.map((c, i) => (
+            <div key={i} className={styles.competitorRow}>
+              <span className={styles.competitorName}>{c.name}</span>
+              <span className={styles.competitorPrice}>{c.price}</span>
+            </div>
+          ))}
+          <div className={styles.divider} />
+          <div className={styles.ourPriceRow}>
+            <span className={styles.ourPriceName}>ШІ-помічник лікаря</span>
+            <span className={styles.ourPrice}>{pricingContent.price}</span>
+          </div>
+        </div>
 
         {/* Pricing card */}
         <div className={styles.card}>
@@ -42,50 +58,14 @@ export default function Pricing() {
             </svg>
             {pricingContent.cta}
           </a>
-        </div>
 
-        {/* FAQ accordion — directly below pricing */}
-        <div className={styles.faqBlock}>
-          <h3 className={styles.faqHeading}>Часті запитання</h3>
-          <div className={styles.faqList}>
-            {courseFaqItems.map((item) => {
-              const isOpen = openId === item.id;
-              return (
-                <div key={item.id} className={styles.faqItem}>
-                  <button
-                    className={styles.faqTrigger}
-                    onClick={() => toggle(item.id)}
-                    aria-expanded={isOpen}
-                    aria-controls={`faq-panel-${item.id}`}
-                  >
-                    <span className={styles.faqQuestion}>{item.question}</span>
-                    <span
-                      className={`${styles.faqIcon} ${isOpen ? styles.faqIconOpen : ''}`}
-                      aria-hidden="true"
-                    >
-                      <svg width="18" height="18" viewBox="0 0 20 20" fill="none">
-                        <path
-                          d="M10 4v12M4 10h12"
-                          stroke="currentColor"
-                          strokeWidth="1.5"
-                          strokeLinecap="round"
-                        />
-                      </svg>
-                    </span>
-                  </button>
-                  <div
-                    id={`faq-panel-${item.id}`}
-                    role="region"
-                    className={`${styles.faqPanel} ${isOpen ? styles.faqPanelOpen : ''}`}
-                  >
-                    <div className={styles.faqPanelInner}>
-                      <p className={styles.faqAnswer}>{item.answer}</p>
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
+          {/* Trust badge */}
+          <p className={styles.trustBadge}>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className={styles.trustIcon}>
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+            </svg>
+            {pricingContent.trustBadge}
+          </p>
         </div>
       </div>
     </section>
