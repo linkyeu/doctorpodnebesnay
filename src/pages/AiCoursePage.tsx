@@ -16,7 +16,7 @@ export default function AiCoursePage() {
 
     const metaDesc = document.querySelector('meta[name="description"]');
     const descContent =
-      'Готові ШІ-рішення для лікарів — документація за 5 хвилин, друга думка з джерелами, відповіді на ChatGPT-питання пацієнтів. 799₴, одноразова покупка.';
+      'Готові ШІ-рішення для лікарів — документація за 5 хвилин, друга думка з джерелами, відповіді на ChatGPT-питання пацієнтів. 799 ₴, одноразова покупка.';
     if (metaDesc) {
       metaDesc.setAttribute('content', descContent);
     } else {

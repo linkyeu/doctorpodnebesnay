@@ -1,4 +1,4 @@
-/* ─── Section: light background ─── */
+/* ─── Section ─── */
 
 .section {
   background: var(--color-bg-alt);
@@ -8,217 +8,177 @@
 .container {
   max-width: var(--max-width);
   margin: 0 auto;
-  text-align: center;
 }
 
 .heading {
   font-size: var(--text-3xl);
   text-align: center;
-  margin-bottom: var(--space-4);
+  margin-bottom: var(--space-3);
   color: var(--color-text);
 }
 
-.subtitle {
+.subheading {
   font-size: var(--text-base);
+  text-align: center;
   color: var(--color-text-muted);
-  max-width: 600px;
+  max-width: 480px;
   margin: 0 auto var(--space-10);
   line-height: var(--leading-normal);
 }
 
-/* ─── Book Image ─── */
+/* ─── Timeline: 3 Steps ─── */
 
-.bookWrapper {
-  max-width: 100%;
-  margin: 0 auto var(--space-10);
-  display: flex;
-  justify-content: center;
-}
-
-.bookImage {
-  width: 100%;
-  max-width: 320px;
-  height: auto;
-  display: block;
-  opacity: 0;
-  transform: scale(0.95);
-  mix-blend-mode: multiply;
-  transition:
-    opacity var(--transition-reveal),
-    transform var(--transition-reveal);
-}
-
-:global(.visible) .bookImage {
-  opacity: 1;
-  transform: scale(1);
-  animation: bookFloat 6s ease-in-out infinite;
-}
-
-@keyframes bookFloat {
-  0%, 100% { transform: translateY(0) scale(1); }
-  50% { transform: translateY(-5px) scale(1); }
-}
-
-@media (min-width: 768px) {
-  .bookImage { max-width: 400px; }
-}
-
-/* ─── Preview Pages ─── */
-
-.previewPages {
-  margin-bottom: var(--space-10);
-}
-
-.previewHeading {
-  font-size: var(--text-lg);
-  font-weight: var(--weight-semibold);
-  color: var(--color-text);
-  text-align: center;
-  margin-bottom: var(--space-6);
-}
-
-.previewGrid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--space-4);
-}
-
-@media (min-width: 768px) {
-  .previewGrid {
-    grid-template-columns: repeat(4, 1fr);
-  }
-}
-
-.previewPage {
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-sm);
-  padding: var(--space-5) var(--space-4);
-  position: relative;
-  overflow: hidden;
-  text-align: left;
-  transition:
-    border-color var(--transition-fast),
-    box-shadow var(--transition-fast);
-}
-
-.previewPage:hover {
-  border-color: var(--color-primary-light);
-  box-shadow: var(--shadow-md);
-}
-
-.previewCategory {
-  font-size: 10px;
-  font-weight: var(--weight-bold);
-  text-transform: uppercase;
-  letter-spacing: 0.8px;
-  color: var(--color-primary-light);
-  margin-bottom: var(--space-2);
-}
-
-.previewNum {
-  font-size: var(--text-2xl);
-  font-weight: var(--weight-bold);
-  color: var(--color-primary);
-  opacity: 0.12;
-  position: absolute;
-  top: var(--space-3);
-  right: var(--space-4);
-  line-height: 1;
-}
-
-.previewTitle {
-  font-size: var(--text-sm);
-  font-weight: var(--weight-semibold);
-  color: var(--color-text);
-  line-height: var(--leading-snug);
-  margin-bottom: var(--space-3);
-}
-
-.previewBlur {
+.timeline {
   display: flex;
   flex-direction: column;
-  gap: 6px;
-}
-
-.blurLine {
-  height: 6px;
-  background: var(--color-bg-alt);
-  border-radius: 3px;
-}
-
-/* ─── Feature Cards ─── */
-
-.featureCards {
-  display: grid;
-  grid-template-columns: 1fr;
   gap: var(--space-6);
-  justify-items: center;
-  text-align: center;
-  margin-bottom: var(--space-4);
+  margin-bottom: var(--space-8);
+  position: relative;
 }
 
 @media (min-width: 768px) {
-  .featureCards {
-    grid-template-columns: repeat(3, 1fr);
+  .timeline {
+    flex-direction: row;
+    gap: var(--space-6);
   }
 }
 
-.featureCard {
+/* ─── Step Card ─── */
+
+.step {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: var(--space-6) var(--space-5) var(--space-8);
+  position: relative;
   background: var(--color-surface);
   border: 1px solid var(--color-border);
-  border-radius: var(--radius-sm);
-  padding: var(--space-6);
-  max-width: 350px;
-  width: 100%;
-  text-align: center;
+  border-radius: var(--radius-lg);
   opacity: 0;
-  transform: translateY(16px);
+  transform: translateY(24px);
   transition:
     opacity var(--transition-reveal),
     transform var(--transition-reveal),
-    border-color var(--transition-fast),
-    box-shadow var(--transition-fast);
-  transition-delay: calc(var(--card-index, 0) * 100ms);
+    box-shadow var(--transition-fast),
+    border-color var(--transition-fast);
+  transition-delay: calc(var(--card-index, 0) * 150ms);
 }
 
-:global(.visible) .featureCard {
+@media (hover: hover) {
+  .step:hover {
+    border-color: rgba(27, 58, 75, 0.15);
+    box-shadow:
+      0 8px 32px rgba(27, 58, 75, 0.08),
+      0 2px 8px rgba(0, 0, 0, 0.03);
+  }
+}
+
+:global(.visible) .step {
   opacity: 1;
   transform: translateY(0);
 }
 
-.featureCard:hover {
-  border-color: var(--color-primary-light);
-  box-shadow: var(--shadow-md);
+/* ─── Desktop connector arrows between cards ─── */
+
+@media (min-width: 768px) {
+  .step:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    right: calc(-1 * var(--space-6) / 2 - 8px);
+    top: 50%;
+    transform: translateY(-50%);
+    width: 16px;
+    height: 16px;
+    border-right: 2px solid var(--color-accent);
+    border-bottom: 2px solid var(--color-accent);
+    transform: translateY(-50%) rotate(-45deg);
+    opacity: 0.4;
+    z-index: 3;
+  }
 }
 
-.featureIconWrapper {
+/* ─── Step Illustration ─── */
+
+.illustrationWrapper {
+  width: 120px;
+  height: 120px;
+  flex-shrink: 0;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  position: relative;
+  z-index: 2;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 52px;
-  height: 52px;
-  margin: 0 auto var(--space-3);
-  background: var(--color-primary-lighter);
-  border-radius: var(--radius-md);
-  color: var(--color-primary-light);
+  margin-bottom: var(--space-4);
 }
 
-.featureCardTitle {
-  font-size: var(--text-base);
-  font-weight: var(--weight-semibold);
+@media (min-width: 768px) {
+  .illustrationWrapper {
+    width: 160px;
+    height: 160px;
+  }
+}
+
+.illustration {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.emojiFallback {
+  font-size: 3rem;
+  line-height: 1;
+}
+
+/* ─── Step Content ─── */
+
+.stepContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 0;
+}
+
+/* ─── Step Number Badge ─── */
+
+.stepNum {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-full);
+  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-light, #2d5a6e));
+  color: #fff;
+  font-size: var(--text-xs);
+  font-weight: var(--weight-bold);
+  margin-bottom: var(--space-3);
+  font-variant-numeric: tabular-nums;
+  box-shadow: 0 2px 8px rgba(27, 58, 75, 0.18);
+}
+
+.stepTitle {
+  font-size: var(--text-lg);
+  font-weight: var(--weight-bold);
   color: var(--color-text);
   margin-bottom: var(--space-2);
   line-height: var(--leading-snug);
 }
 
-.featureCardText {
+.stepText {
   font-size: var(--text-sm);
   line-height: var(--leading-normal);
   color: var(--color-text-muted);
+  max-width: 300px;
+  margin: 0 auto;
 }
 
-.featureFooter {
+/* ─── Footer ─── */
+
+.footer {
   font-size: var(--text-sm);
   color: var(--color-text-muted);
   text-align: center;
@@ -227,17 +187,15 @@
   line-height: var(--leading-normal);
 }
 
-/* ─── Workflow Examples (dark sub-section) ─── */
+/* ─── Workflow Examples (light sub-section) ─── */
 
 .workflows {
-  background: var(--color-bg-dark);
-  margin: 0 calc(-1 * var(--space-6));
-  padding: var(--space-12) var(--space-6) var(--space-16);
+  padding: var(--space-12) 0 var(--space-16);
 }
 
 .workflowHeading {
   font-size: var(--text-2xl);
-  color: var(--color-text-on-dark);
+  color: var(--color-text);
   text-align: center;
   margin: 0 0 var(--space-8);
 }
@@ -250,7 +208,7 @@
   margin: 0 auto;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 640px) {
   .workflowGrid {
     grid-template-columns: 1fr 1fr;
   }
@@ -259,153 +217,145 @@
 /* ─── Workflow Card ─── */
 
 .workflowCard {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: var(--radius-sm);
-  padding: var(--space-6);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-8) var(--space-6);
   display: flex;
   flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: var(--space-4);
   opacity: 0;
-  transform: translateY(16px);
+  transform: translateY(24px) scale(0.97);
   transition:
-    border-color var(--transition-fast),
-    background var(--transition-fast),
-    opacity 500ms ease,
-    transform 500ms ease;
-  transition-delay: calc(var(--card-index, 0) * 100ms);
+    border-color var(--transition-base),
+    box-shadow var(--transition-base),
+    transform var(--transition-base),
+    opacity 500ms ease;
+  transition-delay: calc(var(--card-index, 0) * 120ms);
 }
 
 :global(.visible) .workflowCard {
   opacity: 1;
-  transform: translateY(0);
+  transform: translateY(0) scale(1);
 }
 
-.workflowCard:hover {
-  border-color: rgba(255, 255, 255, 0.15);
-  background: rgba(255, 255, 255, 0.07);
+@media (hover: hover) {
+  .workflowCard:hover {
+    transform: translateY(-3px);
+    box-shadow:
+      0 12px 32px rgba(27, 58, 75, 0.1),
+      0 2px 8px rgba(200, 149, 108, 0.06);
+    border-color: rgba(27, 58, 75, 0.12);
+  }
 }
 
-.workflowHeader {
+/* ─── Hero Multiplier (the star of the card) ─── */
+
+.wfHero {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: var(--space-3);
-  margin-bottom: var(--space-5);
+  gap: 2px;
 }
 
-.emoji {
-  font-size: 1.4rem;
-  flex-shrink: 0;
+.multiplierBig {
+  font-family: var(--font-display);
+  font-size: clamp(2.75rem, 6vw, 3.5rem);
+  font-weight: var(--weight-bold);
+  color: var(--color-primary);
+  line-height: 1;
+  letter-spacing: -0.03em;
 }
+
+.multiplierSub {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: var(--weight-semibold);
+}
+
+/* ─── Title ─── */
 
 .workflowTitle {
-  font-size: var(--text-base);
-  font-weight: var(--weight-semibold);
-  color: var(--color-text-on-dark);
-  margin: 0;
-}
-
-/* ─── Progress bars ─── */
-
-.bars {
-  margin-bottom: var(--space-4);
-}
-
-.barRow {
-  display: flex;
-  align-items: center;
-  gap: var(--space-3);
-}
-
-.barLabelBefore,
-.barLabelAfter {
-  font-size: 10px;
-  font-weight: var(--weight-bold);
-  letter-spacing: 0.5px;
-  text-transform: uppercase;
-  width: 3.2rem;
-  flex-shrink: 0;
-}
-
-.barLabelBefore {
-  color: rgba(255, 255, 255, 0.4);
-}
-
-.barLabelAfter {
-  color: var(--color-cta);
-}
-
-.barTrack {
-  flex: 1;
-  height: 7px;
-  background: rgba(255, 255, 255, 0.08);
-  border-radius: var(--radius-full);
-  overflow: hidden;
-}
-
-.barFill {
-  height: 100%;
-  border-radius: var(--radius-full);
-  width: 0;
-  transition: width 600ms ease-out;
-  transition-delay: calc(200ms + var(--card-index, 0) * 100ms);
-}
-
-:global(.visible) .barFill {
-  width: var(--bar-width);
-}
-
-.barBefore {
-  background: #D97B5C;
-}
-
-.barAfter {
-  background: var(--color-cta);
-}
-
-.barText {
-  font-size: var(--text-xs);
-  color: rgba(255, 255, 255, 0.5);
-  margin: var(--space-1) 0 var(--space-3) 0;
-  padding-left: calc(3.2rem + var(--space-3));
-  text-align: left;
-}
-
-/* ─── Multiplier badge ─── */
-
-.multiplier {
-  display: inline-block;
-  align-self: flex-start;
-  font-size: 10px;
-  font-weight: var(--weight-semibold);
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  color: var(--color-cta);
-  background: var(--color-cta-light);
-  padding: 2px 10px;
-  border-radius: var(--radius-full);
-  margin-bottom: var(--space-4);
-}
-
-/* ─── Detail text ─── */
-
-.detail {
   font-size: var(--text-sm);
-  color: rgba(255, 255, 255, 0.55);
-  line-height: var(--leading-normal);
+  font-weight: var(--weight-semibold);
+  color: var(--color-text);
   margin: 0;
-  padding-top: var(--space-4);
-  border-top: 1px solid rgba(255, 255, 255, 0.06);
-  text-align: left;
+  line-height: var(--leading-snug);
 }
 
-/* ─── Workflow footer ─── */
+/* ─── "Crossed-out price" time comparison ─── */
+
+.timeCompare {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-2);
+  justify-content: center;
+  margin-top: auto;
+  padding-top: var(--space-2);
+}
+
+.timeOld {
+  font-size: var(--text-lg);
+  font-variant-numeric: tabular-nums;
+  color: var(--color-text-muted);
+  text-decoration: line-through;
+  text-decoration-thickness: 2px;
+  text-decoration-color: rgba(27, 58, 75, 0.35);
+  opacity: 0.55;
+}
+
+.timeArrow {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  opacity: 0.4;
+}
+
+.timeNew {
+  font-size: clamp(1.25rem, 3vw, 1.5rem);
+  font-weight: var(--weight-bold);
+  color: var(--color-primary);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ─── Workflow Tagline ─── */
+
+.workflowTagline {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: var(--text-xl);
+  color: var(--color-primary);
+  text-align: center;
+  max-width: 500px;
+  margin: var(--space-10) auto var(--space-2);
+  line-height: var(--leading-snug);
+  position: relative;
+  padding: var(--space-6) var(--space-8);
+}
+
+.workflowTagline::before {
+  content: '\201C';
+  position: absolute;
+  top: -0.1em;
+  left: 0;
+  font-size: 3rem;
+  color: var(--color-accent);
+  opacity: 0.4;
+  font-family: var(--font-display);
+  line-height: 1;
+}
+
+/* ─── Workflow Footer ─── */
 
 .workflowFooter {
   text-align: center;
   font-size: var(--text-sm);
-  color: rgba(255, 255, 255, 0.45);
+  color: var(--color-text-muted);
   max-width: 500px;
-  margin: var(--space-8) auto 0;
+  margin: var(--space-4) auto 0;
   font-style: italic;
   line-height: var(--leading-normal);
 }
@@ -413,21 +363,10 @@
 /* ─── Reduced motion ─── */
 
 @media (prefers-reduced-motion: reduce) {
-  .bookImage {
-    opacity: 1;
-    transform: none;
-    transition: none;
-    animation: none;
-  }
-
-  .featureCard,
+  .step,
   .workflowCard {
     opacity: 1;
     transform: none;
-  }
-
-  .barFill {
-    width: var(--bar-width);
     transition: none;
   }
 }

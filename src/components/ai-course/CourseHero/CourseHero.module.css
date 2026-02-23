@@ -155,7 +155,8 @@
   max-width: 660px;
   margin: 0 auto;
   margin-top: auto;
-  padding: 0 var(--space-6, 24px) var(--space-10, 40px);
+  margin-bottom: auto;
+  padding: 0 var(--space-6, 24px);
   text-align: center;
   display: flex;
   flex-direction: column;
