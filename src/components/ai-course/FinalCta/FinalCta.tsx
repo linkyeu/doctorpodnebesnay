@@ -15,8 +15,6 @@ export default function CourseFinalCta() {
         <a
           href={TELEGRAM_PURCHASE_LINK}
           className={styles.cta}
-          target="_blank"
-          rel="noopener noreferrer"
         >
           {finalCtaContent.cta}
         </a>

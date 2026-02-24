@@ -1,0 +1,243 @@
+/* ─── Thank You Page ─── */
+
+.page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-bg-dark);
+  color: var(--color-text-on-dark);
+  padding: var(--space-8) var(--space-6);
+  position: relative;
+  overflow: hidden;
+}
+
+/* ─── Animated mesh background (reuse FinalCta pattern) ─── */
+
+.meshBg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.orb1,
+.orb2,
+.orb3 {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.35;
+}
+
+.orb1 {
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, #1B3A4B 0%, transparent 70%);
+  top: -100px;
+  left: -80px;
+  animation: orbFloat1 10s ease-in-out infinite;
+}
+
+.orb2 {
+  width: 350px;
+  height: 350px;
+  background: radial-gradient(circle, #C8956C 0%, transparent 70%);
+  bottom: -80px;
+  right: -60px;
+  animation: orbFloat2 12s ease-in-out infinite;
+}
+
+.orb3 {
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, #1B3A4B 0%, transparent 70%);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: orbFloat3 8s ease-in-out infinite;
+}
+
+@keyframes orbFloat1 {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(40px, 30px); }
+}
+
+@keyframes orbFloat2 {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(-30px, -40px); }
+}
+
+@keyframes orbFloat3 {
+  0%, 100% { transform: translate(-50%, -50%) scale(1); }
+  50% { transform: translate(-50%, -50%) scale(1.2); }
+}
+
+/* ─── Card ─── */
+
+.card {
+  position: relative;
+  z-index: 1;
+  background: var(--color-surface);
+  color: var(--color-text);
+  border-radius: 16px;
+  padding: var(--space-10) var(--space-8);
+  max-width: 480px;
+  width: 100%;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  text-align: center;
+  animation: cardReveal 600ms ease both;
+}
+
+@keyframes cardReveal {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (min-width: 768px) {
+  .card {
+    padding: var(--space-12) var(--space-10);
+  }
+}
+
+/* ─── Check icon ─── */
+
+.checkCircle {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: var(--color-cta-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto var(--space-6);
+}
+
+.checkIcon {
+  color: var(--color-cta);
+}
+
+/* ─── Typography ─── */
+
+.heading {
+  font-size: var(--text-2xl);
+  color: var(--color-primary);
+  margin-bottom: var(--space-4);
+  line-height: var(--leading-snug);
+}
+
+.text {
+  font-size: var(--text-base);
+  color: var(--color-text-muted);
+  line-height: var(--leading-normal);
+  margin-bottom: var(--space-8);
+}
+
+.highlight {
+  color: var(--color-text);
+  font-weight: var(--weight-semibold);
+}
+
+/* ─── Form ─── */
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  width: 100%;
+}
+
+.emailInput {
+  width: 100%;
+  padding: var(--space-4) var(--space-5);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  font-size: var(--text-base);
+  font-family: var(--font-body);
+  color: var(--color-text);
+  background: var(--color-bg);
+  transition: border-color var(--transition-fast);
+  outline: none;
+}
+
+.emailInput::placeholder {
+  color: var(--color-text-muted);
+}
+
+.emailInput:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--color-primary-lighter);
+}
+
+.submitBtn {
+  width: 100%;
+  padding: var(--space-4) var(--space-6);
+  background: var(--color-cta);
+  color: white;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-weight: var(--weight-semibold);
+  font-size: var(--text-lg);
+  font-family: var(--font-body);
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(22, 163, 74, 0.3);
+  transition:
+    background var(--transition-fast),
+    box-shadow var(--transition-fast);
+}
+
+.submitBtn:hover {
+  background: var(--color-cta-hover);
+  box-shadow: 0 6px 20px rgba(22, 163, 74, 0.4);
+}
+
+.submitBtn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* ─── Success state ─── */
+
+.successMessage {
+  font-size: var(--text-base);
+  color: var(--color-cta);
+  font-weight: var(--weight-semibold);
+  line-height: var(--leading-normal);
+}
+
+/* ─── Footer link ─── */
+
+.backLink {
+  position: relative;
+  z-index: 1;
+  margin-top: var(--space-8);
+  font-size: var(--text-sm);
+  color: rgba(255, 255, 255, 0.5);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.backLink:hover {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* ─── Reduced motion ─── */
+
+@media (prefers-reduced-motion: reduce) {
+  .card {
+    animation: none;
+  }
+
+  .orb1,
+  .orb2,
+  .orb3 {
+    animation: none;
+  }
+}

@@ -22,8 +22,6 @@ export default function StickyMobileCta() {
       <a
         href={TELEGRAM_PURCHASE_LINK}
         className={styles.button}
-        target="_blank"
-        rel="noopener noreferrer"
       >
         Спробувати — 799 ₴
       </a>

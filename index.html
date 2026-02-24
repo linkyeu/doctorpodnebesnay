@@ -139,6 +139,11 @@
     </script>
   </head>
   <body>
+    <!-- Netlify Forms: hidden form for SPA build detection -->
+    <form name="ai-helper-waitlist" netlify netlify-honeypot="bot-field" hidden>
+      <input name="email" type="email" />
+    </form>
+
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
