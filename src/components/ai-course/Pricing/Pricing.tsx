@@ -50,8 +50,6 @@ export default function Pricing() {
           <a
             href={TELEGRAM_PURCHASE_LINK}
             className={styles.cta}
-            target="_blank"
-            rel="noopener noreferrer"
           >
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className={styles.ctaIcon}>
               <path d="M21 3L1 11l7 2m13-10l-7 14-4-6m11-8l-13 10" />

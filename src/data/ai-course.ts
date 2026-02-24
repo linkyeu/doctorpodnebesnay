@@ -1,5 +1,6 @@
-export const TELEGRAM_PURCHASE_LINK =
-  'https://t.me/doctorpidnebesna?text=Хочу%20купити%20%D0%A8%D0%86-помічник%20лікаря';
+// Fake door test: CTA → thank you page (was Telegram link)
+// Original: 'https://t.me/doctorpidnebesna?text=Хочу%20купити%20%D0%A8%D0%86-помічник%20лікаря'
+export const TELEGRAM_PURCHASE_LINK = '/ai-course/thank-you';
 
 // ── Shared interfaces ──
 
