@@ -112,7 +112,7 @@ export default function ThankYouPage() {
           <>
             <p className={styles.text}>
               ШІ-помічник лікаря виходить{' '}
-              <span className={styles.highlight}>1 березня 2026</span>.
+              <span className={styles.highlight}>3 березня 2026</span>.
               Залиште email — отримаєте{' '}
               <span className={styles.highlight}>знижку 30%</span> у день
               запуску.
@@ -155,7 +155,7 @@ export default function ThankYouPage() {
           </>
         ) : (
           <p className={styles.successMessage}>
-            Готово! Ми напишемо вам 1 березня.
+            Готово! Ми напишемо вам 3 березня.
           </p>
         )}
       </div>
