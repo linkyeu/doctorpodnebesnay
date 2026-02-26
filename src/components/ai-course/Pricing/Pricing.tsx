@@ -7,7 +7,7 @@ import {
 
 export default function Pricing() {
   return (
-    <section className={styles.section}>
+    <section id="pricing" className={styles.section}>
       <div className={styles.dotGrid} aria-hidden="true" />
       <div className={styles.container}>
         {/* Section title */}
