@@ -2,6 +2,11 @@ import styles from './CourseHero.module.css';
 import { heroContent } from '../../../data/ai-course';
 
 export default function CourseHero() {
+  const scrollToPricing = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
     <section className={styles.hero}>
       <div className={styles.heroBackground}>
@@ -20,6 +25,7 @@ export default function CourseHero() {
         <div className={styles.ctaWrapper}>
           <a
             href="#pricing"
+            onClick={scrollToPricing}
             className={styles.cta}
           >
             {heroContent.cta}
