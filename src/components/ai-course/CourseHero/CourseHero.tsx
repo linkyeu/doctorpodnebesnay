@@ -11,7 +11,7 @@ export default function CourseHero() {
     <section className={styles.hero}>
       <div className={styles.heroBackground}>
         <img
-          src="/images/ai-course/hero-after.jpg"
+          src="/images/ai-course/hero-after.webp"
           alt=""
           className={styles.heroImage}
           draggable={false}
