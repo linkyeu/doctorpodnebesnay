@@ -4,6 +4,7 @@ import CourseHero from '../components/ai-course/CourseHero/CourseHero';
 import PainPoints from '../components/ai-course/PainPoints/PainPoints';
 import Personas from '../components/ai-course/Personas/Personas';
 import Solution from '../components/ai-course/Solution/Solution';
+import ProductPreview from '../components/ai-course/ProductPreview/ProductPreview';
 import AuthorTrust from '../components/ai-course/AuthorTrust/AuthorTrust';
 import Pricing from '../components/ai-course/Pricing/Pricing';
 import CourseFaq from '../components/ai-course/CourseFaq/CourseFaq';
@@ -73,6 +74,7 @@ export default function AiCoursePage() {
       <PainPoints />
       <Personas />
       <Solution />
+      <ProductPreview />
       <AuthorTrust />
       <Pricing />
       <CourseFaq />
