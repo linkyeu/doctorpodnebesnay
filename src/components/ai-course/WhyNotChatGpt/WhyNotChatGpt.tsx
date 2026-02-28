@@ -44,7 +44,7 @@ function PointIcon({ icon }: { icon: WhyNotPoint['icon'] }) {
 
 export default function WhyNotChatGpt() {
   return (
-    <section className={styles.section}>
+    <section id="why-not-chatgpt" className={styles.section}>
       <div className={styles.container}>
         <h2 className={styles.heading}>{whyNotChatGptHeading}</h2>
         <div className={styles.grid}>
