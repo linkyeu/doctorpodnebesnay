@@ -26,7 +26,7 @@ export default function ThankYouPage() {
 
     const metaDesc = document.querySelector('meta[name="description"]');
     if (metaDesc) {
-      metaDesc.setAttribute('content', 'Дякуємо за інтерес до ШІ-помічника лікаря. Залиште email — отримаєте знижку 30% у день запуску.');
+      metaDesc.setAttribute('content', 'Дякуємо за інтерес до ШІ-помічника лікаря. Залиште email — отримаєте знижку у день запуску.');
     }
 
     // noindex — this is a conversion page, not for search
@@ -111,8 +111,7 @@ export default function ThankYouPage() {
         {!submitted ? (
           <>
             <p className={styles.text}>
-              ШІ-помічник лікаря виходить{' '}
-              <span className={styles.highlight}>3 березня 2026</span>.
+              ШІ-помічник лікаря зараз у фінальній підготовці.
               Залиште email — отримаєте{' '}
               <span className={styles.highlight}>знижку 30%</span> у день
               запуску.
@@ -155,7 +154,7 @@ export default function ThankYouPage() {
           </>
         ) : (
           <p className={styles.successMessage}>
-            Готово! Ми напишемо вам 3 березня.
+            Готово! Ми напишемо вам, щойно довідник буде готовий.
           </p>
         )}
       </div>

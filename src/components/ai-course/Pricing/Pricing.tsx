@@ -35,7 +35,6 @@ export default function Pricing() {
         <div className={styles.card}>
           <div className={styles.priceRow}>
             <span className={styles.price}>{pricingContent.price}</span>
-            <span className={styles.priceEuro}>{pricingContent.priceEuro}</span>
           </div>
           <p className={styles.subtitle}>{pricingContent.subtitle}</p>
           <ul className={styles.features}>
@@ -46,7 +45,7 @@ export default function Pricing() {
               </li>
             ))}
           </ul>
-          <p className={styles.urgency}>{pricingContent.urgency}</p>
+          {/* urgency text removed — no deadline set */}
           <a
             href={TELEGRAM_PURCHASE_LINK}
             className={styles.cta}
