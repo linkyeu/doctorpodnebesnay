@@ -42,7 +42,7 @@ export interface HowItWorksStep {
 export const howItWorksSteps: HowItWorksStep[] = [
   {
     id: 'step-choose',
-    image: '/images/ai-course/steps/step-1-choose.png',
+    image: '/images/ai-course/steps/step-1-choose.webp',
     emoji: '📋',
     num: '01',
     title: 'Обираєте задачу',
@@ -51,7 +51,7 @@ export const howItWorksSteps: HowItWorksStep[] = [
   },
   {
     id: 'step-use',
-    image: '/images/ai-course/steps/step-2-use.png',
+    image: '/images/ai-course/steps/step-2-use.webp',
     emoji: '⚡',
     num: '02',
     title: 'Використовуєте готове рішення',
@@ -60,7 +60,7 @@ export const howItWorksSteps: HowItWorksStep[] = [
   },
   {
     id: 'step-result',
-    image: '/images/ai-course/steps/step-3-result.png',
+    image: '/images/ai-course/steps/step-3-result.webp',
     emoji: '✅',
     num: '03',
     title: 'Отримуєте результат за хвилини',
@@ -259,28 +259,28 @@ export const personas: Persona[] = [
   {
     id: 'persona-young',
     emoji: '🩺',
-    image: '/images/ai-course/personas/young-doctor.png',
+    image: '/images/ai-course/personas/young-doctor.webp',
     heading: 'Молодий лікар без досвідченого наставника',
     text: 'Колеги теж початківці, спитати нікого. Страшно щось пропустити або призначити неправильно. ШІ-помічник стає вашою «другою думкою» — з джерелами.',
   },
   {
     id: 'persona-experienced',
     emoji: '📚',
-    image: '/images/ai-course/personas/experienced-doctor.png',
+    image: '/images/ai-course/personas/experienced-doctor.webp',
     heading: 'Досвідчений лікар, який хоче йти в ногу з часом',
     text: 'Ви 15+ років у професії і знаєте свою справу. Але молодші колеги вже використовують ШІ — і встигають більше. Час не відставати, а робити це правильно.',
   },
   {
     id: 'persona-afterleave',
     emoji: '🔄',
-    image: '/images/ai-course/personas/after-leave-doctor.png',
+    image: '/images/ai-course/personas/after-leave-doctor.webp',
     heading: 'Повернулись після декрету чи перерви',
     text: 'Протоколи змінились, з\'явились нові стандарти, а часу на «перечитати все» немає. ШІ допоможе швидко увійти в курс і почуватися впевнено з першого дня.',
   },
   {
     id: 'persona-curious',
     emoji: '💡',
-    image: '/images/ai-course/personas/curious-doctor.png',
+    image: '/images/ai-course/personas/curious-doctor.webp',
     heading: 'Просто хочете працювати ефективніше з ШІ',
     text: 'Ви чули про ChatGPT, але не розумієте, як це застосувати в медицині безпечно. Хочете розібратись раз — і використовувати щодня, щоб звільнити час на пацієнтів.',
   },
@@ -295,7 +295,7 @@ export const instructors: Instructor[] = [
     title: 'Сімейний лікар · 13+ років практики · клініка «Добробут», Київ',
     bio: '10 000+ консультацій. Автор @medicalforua (24 000+ підписників). Щодня працює з тими ж протоколами і документацією. Перевірила кожне рішення на реальних клінічних випадках.',
     initials: 'ЛП',
-    photo: '/images/doctor-lyuba-portrait.png',
+    photo: '/images/doctor-lyuba-portrait.webp',
     socialLinks: [
       { platform: 'instagram', url: 'https://www.instagram.com/doctorpidnebesna' },
       { platform: 'telegram', url: 'https://t.me/medicalforua' },
@@ -307,7 +307,7 @@ export const instructors: Instructor[] = [
     title: 'ШІ-інженер у IBM · 12+ років в IT',
     bio: 'Розробляв ШІ-системи для healthcare та обробки тексту. Створив кожне рішення так, щоб ШІ давав точні відповіді з джерелами — а не фантазії.',
     initials: 'ДФ',
-    photo: '/images/ai-course/instructor-denys.png',
+    photo: '/images/ai-course/instructor-denys.webp',
     socialLinks: [
       { platform: 'linkedin', url: 'https://www.linkedin.com/in/denys-filippov/' },
     ],

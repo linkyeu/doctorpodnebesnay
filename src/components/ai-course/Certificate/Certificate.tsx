@@ -14,7 +14,7 @@ export default function Certificate() {
         <p className={styles.text}>{certificateContent.text}</p>
         <div className={styles.imageWrapper}>
           <img
-            src="/images/ai-course/certificate-mockup.png"
+            src="/images/ai-course/certificate-mockup.webp"
             alt="Приклад сертифікату курсу"
             className={styles.image}
             loading="lazy"
