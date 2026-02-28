@@ -18,7 +18,7 @@ export default function Bio() {
         {/* Photo */}
         <div className={styles.photoWrapper}>
           <img
-            src="/images/doctor-lyuba-portrait.png"
+            src="/images/doctor-lyuba-portrait.webp"
             alt="Любов Піднебесна — сімейний лікар з 13-річним досвідом"
             className={styles.photoImg}
             loading="lazy"
