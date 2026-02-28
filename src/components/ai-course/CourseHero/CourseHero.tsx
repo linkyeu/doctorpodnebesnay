@@ -2,9 +2,9 @@ import styles from './CourseHero.module.css';
 import { heroContent } from '../../../data/ai-course';
 
 export default function CourseHero() {
-  const scrollToPricing = (e: React.MouseEvent<HTMLAnchorElement>) => {
+  const scrollToDetails = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
-    document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' });
+    document.getElementById('why-not-chatgpt')?.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
@@ -24,8 +24,8 @@ export default function CourseHero() {
         <p className={styles.subtitle}>{heroContent.subtitle}</p>
         <div className={styles.ctaWrapper}>
           <a
-            href="#pricing"
-            onClick={scrollToPricing}
+            href="#why-not-chatgpt"
+            onClick={scrollToDetails}
             className={styles.cta}
           >
             {heroContent.cta}
