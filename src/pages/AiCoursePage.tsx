@@ -5,6 +5,7 @@ import PainPoints from '../components/ai-course/PainPoints/PainPoints';
 import WhyNotChatGpt from '../components/ai-course/WhyNotChatGpt/WhyNotChatGpt';
 import Personas from '../components/ai-course/Personas/Personas';
 import Solution from '../components/ai-course/Solution/Solution';
+import WhatsInside from '../components/ai-course/WhatsInside/WhatsInside';
 import AuthorTrust from '../components/ai-course/AuthorTrust/AuthorTrust';
 import Pricing from '../components/ai-course/Pricing/Pricing';
 import CourseFaq from '../components/ai-course/CourseFaq/CourseFaq';
@@ -75,6 +76,7 @@ export default function AiCoursePage() {
       <WhyNotChatGpt />
       <Personas />
       <Solution />
+      <WhatsInside />
       <AuthorTrust />
       <Pricing />
       <CourseFaq />
