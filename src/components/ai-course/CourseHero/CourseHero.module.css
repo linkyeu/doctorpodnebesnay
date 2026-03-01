@@ -73,10 +73,13 @@
 /* ─── Title ─── */
 
 .title {
+  font-family: var(--font-body);
   font-size: var(--text-4xl, 2.5rem);
   line-height: var(--leading-tight, 1.2);
   color: #fff;
-  font-weight: var(--weight-bold, 700);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
   text-shadow: 0 2px 30px rgba(0, 0, 0, 0.5);
 }
 
