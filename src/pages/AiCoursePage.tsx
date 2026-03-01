@@ -3,7 +3,8 @@ import styles from './AiCoursePage.module.css';
 import CourseHero from '../components/ai-course/CourseHero/CourseHero';
 import PainPoints from '../components/ai-course/PainPoints/PainPoints';
 import WhyNotChatGpt from '../components/ai-course/WhyNotChatGpt/WhyNotChatGpt';
-import Personas from '../components/ai-course/Personas/Personas';
+// Personas section removed — replaced by one-liner in hero subtitle
+// import Personas from '../components/ai-course/Personas/Personas';
 // Solution temporarily hidden — its content is covered by WhatsInside
 // import Solution from '../components/ai-course/Solution/Solution';
 import WhatsInside from '../components/ai-course/WhatsInside/WhatsInside';
@@ -75,7 +76,7 @@ export default function AiCoursePage() {
       <CourseHero />
       <PainPoints />
       <WhyNotChatGpt />
-      <Personas />
+      {/* Personas removed — audience breadth covered by hero subtitle */}
       <WhatsInside />
       <AuthorTrust />
       <Pricing />
