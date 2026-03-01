@@ -26,7 +26,7 @@ export default function CourseHero() {
       <div className={styles.heroOverlay} />
 
       <div className={styles.content}>
-        <h1 className={styles.title}>{heroContent.title}</h1>
+        <h1 className={styles.title} dangerouslySetInnerHTML={{ __html: heroContent.title }} />
         <p className={styles.subtitle}>{heroContent.subtitle}</p>
         <div className={styles.ctaWrapper}>
           <a
