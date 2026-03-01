@@ -133,6 +133,12 @@
 /* ─── Mobile adjustments ─── */
 
 @media (max-width: 767px) {
+  .hero {
+    min-height: auto; /* don't force full screen on mobile */
+    aspect-ratio: 3 / 4; /* match mobile image proportions */
+    max-height: 100svh;
+  }
+
   .title {
     font-size: 1.75rem;
     line-height: 1.15;

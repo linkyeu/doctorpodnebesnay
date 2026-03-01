@@ -10,12 +10,18 @@ export default function CourseHero() {
   return (
     <section className={styles.hero}>
       <div className={styles.heroBackground}>
-        <img
-          src="/images/ai-course/hero-after.webp"
-          alt=""
-          className={styles.heroImage}
-          draggable={false}
-        />
+        <picture>
+          <source
+            media="(max-width: 767px)"
+            srcSet="/images/ai-course/hero-mobile.webp"
+          />
+          <img
+            src="/images/ai-course/hero-desktop.webp"
+            alt=""
+            className={styles.heroImage}
+            draggable={false}
+          />
+        </picture>
       </div>
       <div className={styles.heroOverlay} />
 
