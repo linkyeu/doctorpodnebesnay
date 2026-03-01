@@ -1,12 +1,7 @@
 import styles from './CourseHero.module.css';
-import { heroContent } from '../../../data/ai-course';
+import { heroContent, TELEGRAM_PURCHASE_LINK } from '../../../data/ai-course';
 
 export default function CourseHero() {
-  const scrollToDetails = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    e.preventDefault();
-    document.getElementById('why-not-chatgpt')?.scrollIntoView({ behavior: 'smooth' });
-  };
-
   return (
     <section className={styles.hero}>
       <div className={styles.heroBackground}>
@@ -27,11 +22,13 @@ export default function CourseHero() {
 
       <div className={styles.content}>
         <h1 className={styles.title} dangerouslySetInnerHTML={{ __html: heroContent.title }} />
-        <p className={styles.subtitle}>{heroContent.subtitle}</p>
+        <p className={styles.subtitle} dangerouslySetInnerHTML={{ __html: heroContent.subtitle }} />
+        {'productLine' in heroContent && (
+          <p className={styles.productLine}>{(heroContent as any).productLine}</p>
+        )}
         <div className={styles.ctaWrapper}>
           <a
-            href="#why-not-chatgpt"
-            onClick={scrollToDetails}
+            href={TELEGRAM_PURCHASE_LINK}
             className={styles.cta}
           >
             {heroContent.cta}

@@ -43,11 +43,10 @@
     grid-template-columns: 1fr 1fr;
   }
 
-  /* Last item centered if odd count */
+  /* Last item spans full width if odd count */
   .taskCard:last-child:nth-child(odd) {
     grid-column: 1 / -1;
-    max-width: 380px;
-    justify-self: center;
+    max-width: 100%;
   }
 }
 

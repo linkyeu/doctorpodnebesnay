@@ -2,13 +2,11 @@ import { useEffect } from 'react';
 import styles from './AiCoursePage.module.css';
 import CourseHero from '../components/ai-course/CourseHero/CourseHero';
 import PainPoints from '../components/ai-course/PainPoints/PainPoints';
-import WhyNotChatGpt from '../components/ai-course/WhyNotChatGpt/WhyNotChatGpt';
-// Personas section removed — replaced by one-liner in hero subtitle
-// import Personas from '../components/ai-course/Personas/Personas';
-// Solution temporarily hidden — its content is covered by WhatsInside
-// import Solution from '../components/ai-course/Solution/Solution';
+// WhyNotChatGpt merged into PainPoints (4 points + early CTA)
+import BeforeAfter from '../components/ai-course/BeforeAfter/BeforeAfter';
 import WhatsInside from '../components/ai-course/WhatsInside/WhatsInside';
 import AuthorTrust from '../components/ai-course/AuthorTrust/AuthorTrust';
+import Baggage from '../components/ai-course/Baggage/Baggage';
 import Pricing from '../components/ai-course/Pricing/Pricing';
 import CourseFaq from '../components/ai-course/CourseFaq/CourseFaq';
 import CourseFinalCta from '../components/ai-course/FinalCta/FinalCta';
@@ -75,10 +73,10 @@ export default function AiCoursePage() {
     <div className={styles.coursePage}>
       <CourseHero />
       <PainPoints />
-      <WhyNotChatGpt />
-      {/* Personas removed — audience breadth covered by hero subtitle */}
+      <BeforeAfter />
       <WhatsInside />
       <AuthorTrust />
+      <Baggage />
       <Pricing />
       <CourseFaq />
       <CourseFinalCta />

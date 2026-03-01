@@ -164,3 +164,65 @@
     gap: var(--space-3);
   }
 }
+
+/* ─── Social proof quotes ─── */
+
+.socialProof {
+  margin-top: var(--space-10);
+  padding-top: var(--space-8);
+  border-top: 1px solid var(--color-border);
+}
+
+.socialHeading {
+  font-size: var(--text-xl);
+  color: var(--color-text);
+  text-align: center;
+  margin-bottom: var(--space-6);
+}
+
+.quotes {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+@media (min-width: 768px) {
+  .quotes {
+    flex-direction: row;
+    gap: var(--space-5);
+  }
+}
+
+.quote {
+  flex: 1;
+  background: var(--color-bg-alt);
+  border-radius: var(--radius-sm);
+  padding: var(--space-5);
+  margin: 0;
+  border: 1px solid var(--color-border);
+}
+
+.quoteText {
+  font-size: var(--text-sm);
+  line-height: var(--leading-relaxed);
+  color: var(--color-text);
+  font-style: italic;
+  margin: 0 0 var(--space-3);
+}
+
+.quoteFooter {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.quoteAuthor {
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+  color: var(--color-primary);
+}
+
+.quoteRole {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+}

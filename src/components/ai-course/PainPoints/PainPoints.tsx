@@ -1,5 +1,5 @@
 import styles from './PainPoints.module.css';
-import { painPoints, painAccent } from '../../../data/ai-course';
+import { painPoints, painAccent, TELEGRAM_PURCHASE_LINK } from '../../../data/ai-course';
 import type { PainPoint } from '../../../data/ai-course';
 
 function PainIcon({ icon }: { icon: PainPoint['icon'] }) {
@@ -93,6 +93,9 @@ export default function PainPoints() {
         <blockquote className={styles.accent}>
           <p className={styles.accentText}>{painAccent.text}</p>
           <p className={styles.accentStat}>{painAccent.stat}</p>
+          <a href={TELEGRAM_PURCHASE_LINK} className={styles.accentCta}>
+            {painAccent.cta}
+          </a>
         </blockquote>
       </div>
     </section>

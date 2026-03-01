@@ -23,7 +23,7 @@ export default function StickyMobileCta() {
         href={TELEGRAM_PURCHASE_LINK}
         className={styles.button}
       >
-        Забрати довідник — 799 ₴
+        Отримати довідник — 799 ₴
       </a>
     </div>
   );

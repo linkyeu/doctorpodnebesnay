@@ -3,7 +3,7 @@
 
 .section {
   background: var(--color-bg-alt);
-  padding: var(--space-12) var(--space-6);
+  padding: var(--space-16) var(--space-6);
 }
 
 .container {
