@@ -45,10 +45,10 @@
   z-index: 1;
   background: linear-gradient(
     to bottom,
-    rgba(10, 22, 40, 0.35) 0%,
-    rgba(10, 22, 40, 0.5) 35%,
-    rgba(10, 22, 40, 0.78) 65%,
-    rgba(10, 22, 40, 0.94) 100%
+    rgba(10, 22, 40, 0.18) 0%,
+    rgba(10, 22, 40, 0.35) 30%,
+    rgba(10, 22, 40, 0.6) 60%,
+    rgba(10, 22, 40, 0.85) 100%
   );
   pointer-events: none;
 }
@@ -58,11 +58,11 @@
 .content {
   position: relative;
   z-index: 10;
-  max-width: 660px;
+  max-width: 740px;
   margin: 0 auto;
   margin-top: auto;
   margin-bottom: auto;
-  padding: 0 var(--space-6, 24px);
+  padding: clamp(60px, 8vh, 120px) var(--space-6, 24px) 0;
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -83,29 +83,50 @@
   text-shadow: 0 2px 30px rgba(0, 0, 0, 0.5);
 }
 
+/* ─── Source note (footnote under title) ─── */
+
+.sourceNote {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.45);
+  letter-spacing: 0.02em;
+  margin-top: -16px;
+  margin-bottom: -8px;
+}
+
 /* ─── Subtitle ─── */
 
 .subtitle {
-  font-size: var(--text-base, 1rem);
-  color: rgba(255, 255, 255, 0.85);
-  line-height: var(--leading-normal, 1.6);
-  max-width: 520px;
-  text-shadow: 0 1px 12px rgba(0, 0, 0, 0.4);
+  font-size: 1.125rem;
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.6;
+  max-width: 600px;
+  text-shadow: 0 1px 16px rgba(0, 0, 0, 0.5);
 }
 
 /* ─── Product line (price anchor in hero) ─── */
 
 .productLine {
   display: inline-block;
-  font-size: var(--text-sm, 0.875rem);
-  color: rgba(255, 255, 255, 0.7);
-  letter-spacing: 0.06em;
+  font-size: 0.8125rem;
+  color: rgba(255, 255, 255, 0.9);
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
   border-radius: 100px;
-  padding: 6px 20px;
+  padding: 8px 24px;
   text-shadow: 0 1px 8px rgba(0, 0, 0, 0.3);
-  margin-top: -8px;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+/* ─── Trust micro-text under CTA ─── */
+
+.trustLine {
+  font-size: 0.8125rem;
+  color: rgba(255, 255, 255, 0.6);
+  letter-spacing: 0.02em;
+  margin-top: -12px;
 }
 
 /* ─── CTA button ─── */
@@ -153,14 +174,22 @@
 
 @media (max-width: 767px) {
   .hero {
-    min-height: auto; /* don't force full screen on mobile */
-    aspect-ratio: 3 / 4; /* match mobile image proportions */
-    max-height: 100svh;
+    min-height: 100svh;
+    min-height: 100dvh;
   }
 
   .title {
     font-size: 1.75rem;
     line-height: 1.15;
+  }
+
+  .subtitle {
+    font-size: 1.0625rem;
+    line-height: 1.55;
+  }
+
+  .subtitle :global(br) {
+    display: none;
   }
 
   .content {
@@ -172,7 +201,11 @@
 
 @media (min-width: 768px) {
   .hero {
-    min-height: 80vh;
+    min-height: 100vh;
+  }
+
+  .subtitle {
+    font-size: 1.25rem;
   }
 
   .content {

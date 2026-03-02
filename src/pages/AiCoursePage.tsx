@@ -6,6 +6,7 @@ import PainPoints from '../components/ai-course/PainPoints/PainPoints';
 import BeforeAfter from '../components/ai-course/BeforeAfter/BeforeAfter';
 import WhatsInside from '../components/ai-course/WhatsInside/WhatsInside';
 import AuthorTrust from '../components/ai-course/AuthorTrust/AuthorTrust';
+import SocialProof from '../components/ai-course/SocialProof/SocialProof';
 import Baggage from '../components/ai-course/Baggage/Baggage';
 import Pricing from '../components/ai-course/Pricing/Pricing';
 import CourseFaq from '../components/ai-course/CourseFaq/CourseFaq';
@@ -76,6 +77,7 @@ export default function AiCoursePage() {
       <BeforeAfter />
       <WhatsInside />
       <AuthorTrust />
+      <SocialProof />
       <Baggage />
       <Pricing />
       <CourseFaq />

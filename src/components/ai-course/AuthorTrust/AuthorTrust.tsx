@@ -1,5 +1,5 @@
 import { useScrollReveal } from '../../../hooks/useScrollReveal';
-import { instructors, authorTrustSubtitle, socialProofHeading, socialProofQuotes } from '../../../data/ai-course';
+import { instructors, authorTrustSubtitle } from '../../../data/ai-course';
 import styles from './AuthorTrust.module.css';
 
 function SocialIcon({ platform }: { platform: string }) {
@@ -92,21 +92,6 @@ export default function AuthorTrust() {
           ))}
         </div>
 
-        {/* Social proof quotes */}
-        <div className={styles.socialProof}>
-          <h3 className={styles.socialHeading}>{socialProofHeading}</h3>
-          <div className={styles.quotes}>
-            {socialProofQuotes.map((q) => (
-              <blockquote key={q.id} className={styles.quote}>
-                <p className={styles.quoteText}>«{q.text}»</p>
-                <footer className={styles.quoteFooter}>
-                  <span className={styles.quoteAuthor}>{q.author}</span>
-                  <span className={styles.quoteRole}>{q.role}</span>
-                </footer>
-              </blockquote>
-            ))}
-          </div>
-        </div>
 
       </div>
     </section>

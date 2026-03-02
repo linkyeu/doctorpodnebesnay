@@ -4,6 +4,8 @@ import {
   whatsInsideSubtitle,
   whatsInsideTasks,
   whatsInsideFormat,
+  heroContent,
+  TELEGRAM_PURCHASE_LINK,
 } from '../../../data/ai-course';
 
 export default function WhatsInside() {
@@ -11,7 +13,7 @@ export default function WhatsInside() {
     <section id="whats-inside" className={styles.section}>
       <div className={styles.container}>
         <h2 className={styles.heading}>{whatsInsideHeading}</h2>
-        <p className={styles.subtitle}>{whatsInsideSubtitle}</p>
+        {whatsInsideSubtitle && <p className={styles.subtitle}>{whatsInsideSubtitle}</p>}
 
         {/* Task cards */}
         <div className={styles.taskGrid}>
@@ -50,7 +52,15 @@ export default function WhatsInside() {
             </svg>
           </div>
           <p className={styles.formatMain}>{whatsInsideFormat.line1}</p>
-          <p className={styles.formatSub}>{whatsInsideFormat.line2}</p>
+          {whatsInsideFormat.line2 && <p className={styles.formatSub}>{whatsInsideFormat.line2}</p>}
+        </div>
+
+        {/* CTA after value demonstration */}
+        <div className={styles.ctaBlock}>
+          <a href={TELEGRAM_PURCHASE_LINK} className={styles.cta}>
+            {heroContent.cta}
+          </a>
+          <p className={styles.trustLine}>Одноразова покупка · Без підписок · Гарантія повернення</p>
         </div>
       </div>
     </section>

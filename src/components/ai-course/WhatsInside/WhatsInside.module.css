@@ -30,22 +30,27 @@
 
 .taskGrid {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--space-4);
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-3);
   margin-bottom: var(--space-10);
   max-width: 800px;
   margin-left: auto;
   margin-right: auto;
 }
 
+/* Last item spans full width if odd count */
+.taskCard:last-child:nth-child(odd) {
+  grid-column: 1 / -1;
+  max-width: 50%;
+  margin: 0 auto;
+}
+
 @media (min-width: 640px) {
   .taskGrid {
-    grid-template-columns: 1fr 1fr;
+    gap: var(--space-4);
   }
 
-  /* Last item spans full width if odd count */
   .taskCard:last-child:nth-child(odd) {
-    grid-column: 1 / -1;
     max-width: 100%;
   }
 }
@@ -54,37 +59,65 @@
 
 .taskCard {
   display: flex;
-  align-items: flex-start;
-  gap: var(--space-4);
-  padding: var(--space-5) var(--space-6);
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: var(--space-2);
+  padding: var(--space-4) var(--space-3);
   background: var(--color-bg-alt);
   border-radius: var(--radius-md);
   border: 1px solid rgba(27, 58, 75, 0.06);
-  border-left: 3px solid var(--color-accent);
+  border-top: 3px solid var(--color-accent);
   transition:
     border-color var(--transition-fast),
     box-shadow var(--transition-fast),
     transform var(--transition-fast);
 }
 
+@media (min-width: 640px) {
+  .taskCard {
+    flex-direction: row;
+    align-items: flex-start;
+    text-align: left;
+    gap: var(--space-4);
+    padding: var(--space-5) var(--space-6);
+    border-top: none;
+    border-left: 3px solid var(--color-accent);
+  }
+}
+
 @media (hover: hover) {
   .taskCard:hover {
     border-color: rgba(27, 58, 75, 0.12);
-    border-left-color: var(--color-primary);
+    border-top-color: var(--color-primary);
     box-shadow: 0 4px 16px rgba(27, 58, 75, 0.07);
     transform: translateY(-2px);
+  }
+}
+
+@media (hover: hover) and (min-width: 640px) {
+  .taskCard:hover {
+    border-top-color: rgba(27, 58, 75, 0.12);
+    border-left-color: var(--color-primary);
   }
 }
 
 /* ─── 3D glass icon ─── */
 
 .taskIcon {
-  width: 56px;
-  height: 56px;
+  width: 44px;
+  height: 44px;
   flex-shrink: 0;
   border-radius: 50%;
   overflow: hidden;
   background: #fff;
+}
+
+@media (min-width: 640px) {
+  .taskIcon {
+    width: 56px;
+    height: 56px;
+  }
 }
 
 .taskImage {
@@ -100,6 +133,13 @@
   flex-direction: column;
   gap: var(--space-1);
   min-width: 0;
+  align-items: center;
+}
+
+@media (min-width: 640px) {
+  .taskBody {
+    align-items: flex-start;
+  }
 }
 
 .taskName {
@@ -148,4 +188,45 @@
   font-size: var(--text-sm);
   color: rgba(255, 255, 255, 0.75);
   line-height: var(--leading-normal);
+}
+
+/* ─── CTA block after value ─── */
+
+.ctaBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-3);
+  margin-top: var(--space-10);
+}
+
+.cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-cta);
+  color: #fff;
+  padding: var(--space-4, 16px) var(--space-8, 32px);
+  border-radius: var(--radius-sm, 8px);
+  font-weight: var(--weight-semibold, 600);
+  font-size: var(--text-base, 1rem);
+  text-decoration: none;
+  box-shadow: 0 4px 14px rgba(22, 163, 74, 0.35);
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.cta:hover {
+  background: var(--color-cta-hover);
+  color: #fff;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(22, 163, 74, 0.4);
+}
+
+.trustLine {
+  font-size: 0.8125rem;
+  color: var(--color-text-muted);
+  letter-spacing: 0.02em;
 }

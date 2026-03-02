@@ -22,9 +22,12 @@ export default function CourseHero() {
 
       <div className={styles.content}>
         <h1 className={styles.title} dangerouslySetInnerHTML={{ __html: heroContent.title }} />
+        {heroContent.sourceNote && (
+          <p className={styles.sourceNote}>{heroContent.sourceNote}</p>
+        )}
         <p className={styles.subtitle} dangerouslySetInnerHTML={{ __html: heroContent.subtitle }} />
-        {'productLine' in heroContent && (
-          <p className={styles.productLine}>{(heroContent as any).productLine}</p>
+        {heroContent.productLine && (
+          <p className={styles.productLine}>{heroContent.productLine}</p>
         )}
         <div className={styles.ctaWrapper}>
           <a
@@ -34,6 +37,7 @@ export default function CourseHero() {
             {heroContent.cta}
           </a>
         </div>
+        <p className={styles.trustLine}>Без підписок · Гарантія повернення</p>
       </div>
     </section>
   );

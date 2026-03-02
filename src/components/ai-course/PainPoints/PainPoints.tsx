@@ -92,10 +92,7 @@ export default function PainPoints() {
         </div>
         <blockquote className={styles.accent}>
           <p className={styles.accentText}>{painAccent.text}</p>
-          <p className={styles.accentStat}>{painAccent.stat}</p>
-          <a href={TELEGRAM_PURCHASE_LINK} className={styles.accentCta}>
-            {painAccent.cta}
-          </a>
+          {painAccent.stat && <p className={styles.accentStat}>{painAccent.stat}</p>}
         </blockquote>
       </div>
     </section>

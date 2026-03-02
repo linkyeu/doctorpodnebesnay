@@ -15,7 +15,7 @@
   color: var(--color-text-on-dark);
 }
 
-/* ─── 2-column grid on desktop, single column on mobile ─── */
+/* ─── 3-column grid on desktop, single column on mobile ─── */
 
 .grid {
   display: grid;
@@ -25,7 +25,7 @@
 
 @media (min-width: 768px) {
   .grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: var(--space-6);
   }
 }
