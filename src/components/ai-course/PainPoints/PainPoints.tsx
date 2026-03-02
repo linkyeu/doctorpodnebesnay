@@ -1,5 +1,5 @@
 import styles from './PainPoints.module.css';
-import { painPoints, painAccent, TELEGRAM_PURCHASE_LINK } from '../../../data/ai-course';
+import { painPoints, painAccent } from '../../../data/ai-course';
 import type { PainPoint } from '../../../data/ai-course';
 
 function PainIcon({ icon }: { icon: PainPoint['icon'] }) {
