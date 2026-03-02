@@ -1,4 +1,4 @@
-/* ─── Social Proof — beta tester testimonials ─── */
+/* ─── Social Proof — testimonials ─── */
 
 .section {
   background: var(--color-bg-alt);
@@ -20,17 +20,136 @@
   line-height: var(--leading-snug);
 }
 
+/* ─── Desktop: 3-col grid ─── */
+
 .grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--space-6);
+  display: none;
 }
 
 @media (min-width: 768px) {
   .grid {
+    display: grid;
     grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-6);
   }
 }
+
+/* ─── Mobile: carousel with side arrows ─── */
+
+.carouselWrapper {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+@media (min-width: 768px) {
+  .carouselWrapper {
+    display: none;
+  }
+}
+
+.trackClip {
+  flex: 1;
+  overflow: hidden;
+  min-width: 0;
+}
+
+.track {
+  display: flex;
+  transition: transform 0.35s ease;
+}
+
+.slide {
+  min-width: 100%;
+  box-sizing: border-box;
+  background: var(--color-surface);
+  border-radius: var(--radius-md);
+  padding: var(--space-6) var(--space-6) var(--space-5);
+  margin: 0;
+  border: 1px solid var(--color-border);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.slide::before {
+  content: '\ab';
+  font-size: 2.5rem;
+  line-height: 1;
+  color: var(--color-accent);
+  font-family: var(--font-display);
+  font-weight: var(--weight-bold);
+}
+
+/* ─── Side nav buttons ─── */
+
+.navBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  color: var(--color-text-muted);
+  cursor: pointer;
+  transition:
+    background var(--transition-fast),
+    color var(--transition-fast),
+    border-color var(--transition-fast);
+  flex-shrink: 0;
+}
+
+.navBtnLeft,
+.navBtnRight {
+  /* side arrows visible only on mobile via parent .carouselWrapper */
+}
+
+.navBtn:hover {
+  background: var(--color-primary-lighter);
+  color: var(--color-primary);
+  border-color: var(--color-primary-light);
+}
+
+.navBtn:active {
+  transform: scale(0.95);
+}
+
+/* ─── Dots (below carousel, mobile only) ─── */
+
+.dots {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  margin-top: var(--space-4);
+}
+
+@media (min-width: 768px) {
+  .dots {
+    display: none;
+  }
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: var(--radius-full);
+  background: var(--color-border);
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: background var(--transition-fast), width var(--transition-fast);
+}
+
+.dotActive {
+  background: var(--color-primary);
+  width: 24px;
+  border-radius: 4px;
+}
+
+/* ─── Desktop card styles ─── */
 
 .card {
   background: var(--color-surface);
@@ -49,15 +168,16 @@
   box-shadow: var(--shadow-md);
 }
 
-/* Quote mark */
 .card::before {
-  content: '«';
+  content: '\ab';
   font-size: 2.5rem;
   line-height: 1;
   color: var(--color-accent);
   font-family: var(--font-display);
   font-weight: var(--weight-bold);
 }
+
+/* ─── Quote content ─── */
 
 .quoteText {
   font-size: var(--text-sm);
@@ -105,11 +225,4 @@
 .role {
   font-size: var(--text-xs);
   color: var(--color-text-muted);
-}
-
-.note {
-  text-align: center;
-  font-size: var(--text-xs);
-  color: var(--color-text-muted);
-  margin-top: var(--space-6);
 }

@@ -10,12 +10,6 @@ export default function Pricing() {
     <section id="pricing" className={styles.section}>
       <div className={styles.dotGrid} aria-hidden="true" />
       <div className={styles.container}>
-        {/* Section title */}
-        <h2 className={styles.sectionTitle}>{pricingContent.sectionTitle}</h2>
-
-        {/* Time saving reminder */}
-        <p className={styles.timeSaving}>{pricingContent.timeSaving}</p>
-
         {/* Competitor price comparison */}
         <div className={styles.priceAnchor}>
           {competitorPrices.map((c, i) => (
@@ -24,18 +18,10 @@ export default function Pricing() {
               <span className={styles.competitorPrice}>{c.price}</span>
             </div>
           ))}
-          <div className={styles.divider} />
-          <div className={styles.ourPriceRow}>
-            <span className={styles.ourPriceName}>ШІ-помічник лікаря</span>
-            <span className={styles.ourPrice}>{pricingContent.price}</span>
-          </div>
         </div>
 
-        {/* Pricing card */}
+        {/* Pricing card — no separate big price number */}
         <div className={styles.card}>
-          <div className={styles.priceRow}>
-            <span className={styles.price}>{pricingContent.price}</span>
-          </div>
           <p className={styles.subtitle}>{pricingContent.subtitle}</p>
           <ul className={styles.features}>
             {pricingContent.features.map((f, i) => (
@@ -45,7 +31,7 @@ export default function Pricing() {
               </li>
             ))}
           </ul>
-          {/* urgency text removed — no deadline set */}
+          {/* CTA — second price mention */}
           <a
             href={TELEGRAM_PURCHASE_LINK}
             className={styles.cta}

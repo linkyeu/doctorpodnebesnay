@@ -1,6 +1,6 @@
 .section {
   background: var(--color-bg);
-  padding: var(--space-16) var(--space-6);
+  padding: var(--space-12) var(--space-6);
 }
 
 .container {
@@ -10,50 +10,33 @@
 }
 
 .heading {
-  font-size: var(--text-3xl);
+  font-size: var(--text-2xl);
   color: var(--color-text);
-  margin-bottom: var(--space-4);
-}
-
-.subtitle {
-  font-size: var(--text-base);
-  color: var(--color-text-muted);
-  line-height: var(--leading-normal);
-  max-width: 540px;
-  margin: 0 auto var(--space-10);
-}
-
-/* ─── Instructor cards ─── */
-
-.instructors {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-6);
-  margin-bottom: var(--space-8);
+  margin-bottom: var(--space-6);
+  line-height: var(--leading-snug);
 }
 
 @media (min-width: 768px) {
-  .instructors {
-    flex-direction: row;
-    gap: var(--space-8);
-    align-items: flex-start;
+  .heading {
+    font-size: var(--text-3xl);
   }
 }
 
-.card {
+/* ─── Compact author card ─── */
+
+.mainCard {
   display: flex;
   flex-direction: column;
   align-items: center;
-  text-align: center;
-  flex: 1;
+  margin-bottom: var(--space-4);
 }
 
 .photoWrapper {
-  width: 120px;
-  height: 120px;
+  width: 130px;
+  height: 130px;
   border-radius: var(--radius-full);
   overflow: hidden;
-  margin-bottom: var(--space-4);
+  margin-bottom: var(--space-3);
   background: var(--color-primary-lighter);
   display: flex;
   align-items: center;
@@ -63,8 +46,8 @@
 
 @media (min-width: 768px) {
   .photoWrapper {
-    width: 140px;
-    height: 140px;
+    width: 150px;
+    height: 150px;
   }
 }
 
@@ -80,149 +63,25 @@
   color: var(--color-primary);
 }
 
-.info {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
 .name {
   font-size: var(--text-lg);
   font-weight: var(--weight-bold);
   color: var(--color-text);
-  margin-bottom: var(--space-1);
+  margin-bottom: 2px;
 }
 
 .title {
   font-size: var(--text-sm);
-  color: var(--color-primary-light);
-  font-weight: var(--weight-medium);
-  margin-bottom: var(--space-3);
+  color: var(--color-text-muted);
   line-height: var(--leading-snug);
 }
 
-.bio {
+/* ─── Tech line ─── */
+
+.techLine {
   font-size: var(--text-sm);
   color: var(--color-text-muted);
-  line-height: var(--leading-normal);
-  margin-bottom: var(--space-3);
-}
-
-.socials {
-  display: flex;
-  gap: var(--space-3);
-}
-
-.socialLink {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 36px;
-  height: 36px;
-  border-radius: var(--radius-full);
-  background: var(--color-primary-lighter);
-  color: var(--color-primary-light);
-  transition:
-    background var(--transition-fast),
-    color var(--transition-fast);
-}
-
-.socialLink:hover {
-  background: var(--color-primary);
-  color: #fff;
-}
-
-/* ─── Trust badges ─── */
-
-.badges {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: var(--space-5);
-  flex-wrap: wrap;
-  padding-top: var(--space-6);
+  padding-top: var(--space-3);
   border-top: 1px solid var(--color-border);
-}
-
-.badge {
-  display: flex;
-  align-items: center;
-  gap: var(--space-2);
-  font-size: var(--text-sm);
-  color: var(--color-text-muted);
-  font-weight: var(--weight-medium);
-}
-
-.badge svg {
-  color: var(--color-cta);
-  flex-shrink: 0;
-}
-
-@media (max-width: 767px) {
-  .badges {
-    flex-direction: column;
-    gap: var(--space-3);
-  }
-}
-
-/* ─── Social proof quotes ─── */
-
-.socialProof {
-  margin-top: var(--space-10);
-  padding-top: var(--space-8);
-  border-top: 1px solid var(--color-border);
-}
-
-.socialHeading {
-  font-size: var(--text-xl);
-  color: var(--color-text);
-  text-align: center;
-  margin-bottom: var(--space-6);
-}
-
-.quotes {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-4);
-}
-
-@media (min-width: 768px) {
-  .quotes {
-    flex-direction: row;
-    gap: var(--space-5);
-  }
-}
-
-.quote {
-  flex: 1;
-  background: var(--color-bg-alt);
-  border-radius: var(--radius-sm);
-  padding: var(--space-5);
   margin: 0;
-  border: 1px solid var(--color-border);
-}
-
-.quoteText {
-  font-size: var(--text-sm);
-  line-height: var(--leading-relaxed);
-  color: var(--color-text);
-  font-style: italic;
-  margin: 0 0 var(--space-3);
-}
-
-.quoteFooter {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-
-.quoteAuthor {
-  font-size: var(--text-sm);
-  font-weight: var(--weight-semibold);
-  color: var(--color-primary);
-}
-
-.quoteRole {
-  font-size: var(--text-xs);
-  color: var(--color-text-muted);
 }

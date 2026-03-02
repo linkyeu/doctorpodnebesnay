@@ -1,9 +1,7 @@
 import styles from './WhatsInside.module.css';
 import {
   whatsInsideHeading,
-  whatsInsideSubtitle,
   whatsInsideTasks,
-  whatsInsideFormat,
   heroContent,
   TELEGRAM_PURCHASE_LINK,
 } from '../../../data/ai-course';
@@ -13,7 +11,6 @@ export default function WhatsInside() {
     <section id="whats-inside" className={styles.section}>
       <div className={styles.container}>
         <h2 className={styles.heading}>{whatsInsideHeading}</h2>
-        {whatsInsideSubtitle && <p className={styles.subtitle}>{whatsInsideSubtitle}</p>}
 
         {/* Task cards */}
         <div className={styles.taskGrid}>
@@ -36,31 +33,12 @@ export default function WhatsInside() {
           ))}
         </div>
 
-        {/* Format badge */}
-        <div className={styles.formatBadge}>
-          <div className={styles.formatIcons} aria-hidden="true">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" />
-              <polyline points="14 2 14 8 20 8" />
-              <line x1="16" y1="13" x2="8" y2="13" />
-              <line x1="16" y1="17" x2="8" y2="17" />
-            </svg>
-            <span>+</span>
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-              <polygon points="23 7 16 12 23 17 23 7" />
-              <rect x="1" y="5" width="15" height="14" rx="2" ry="2" />
-            </svg>
-          </div>
-          <p className={styles.formatMain}>{whatsInsideFormat.line1}</p>
-          {whatsInsideFormat.line2 && <p className={styles.formatSub}>{whatsInsideFormat.line2}</p>}
-        </div>
-
         {/* CTA after value demonstration */}
         <div className={styles.ctaBlock}>
           <a href={TELEGRAM_PURCHASE_LINK} className={styles.cta}>
             {heroContent.cta}
           </a>
-          <p className={styles.trustLine}>Одноразова покупка · Без підписок · Гарантія повернення</p>
+          <p className={styles.trustLine}>Без підписок · Гарантія повернення</p>
         </div>
       </div>
     </section>

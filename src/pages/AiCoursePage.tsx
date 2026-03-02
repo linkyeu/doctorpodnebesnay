@@ -7,10 +7,10 @@ import BeforeAfter from '../components/ai-course/BeforeAfter/BeforeAfter';
 import WhatsInside from '../components/ai-course/WhatsInside/WhatsInside';
 import AuthorTrust from '../components/ai-course/AuthorTrust/AuthorTrust';
 import SocialProof from '../components/ai-course/SocialProof/SocialProof';
-import Baggage from '../components/ai-course/Baggage/Baggage';
+// ProductOverview removed — duplicated WhatsInside content, broke narrative flow (Ilyakhov audit)
 import Pricing from '../components/ai-course/Pricing/Pricing';
-import CourseFaq from '../components/ai-course/CourseFaq/CourseFaq';
-import CourseFinalCta from '../components/ai-course/FinalCta/FinalCta';
+// FAQ removed — objections already covered in Pricing features
+// FinalCta removed — Pricing is the last product section with CTA, no need to duplicate
 import CourseFooter from '../components/ai-course/CourseFooter/CourseFooter';
 import StickyMobileCta from '../components/ai-course/StickyMobileCta/StickyMobileCta';
 
@@ -78,10 +78,7 @@ export default function AiCoursePage() {
       <WhatsInside />
       <AuthorTrust />
       <SocialProof />
-      <Baggage />
       <Pricing />
-      <CourseFaq />
-      <CourseFinalCta />
       <CourseFooter />
       <StickyMobileCta />
     </div>

@@ -1,0 +1,106 @@
+/* ─── Product Overview — what's inside the toolkit ─── */
+
+.section {
+  background: var(--color-bg-dark);
+  padding: var(--space-16) var(--space-6);
+}
+
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  text-align: center;
+}
+
+.heading {
+  font-size: var(--text-3xl);
+  font-weight: var(--weight-bold);
+  color: var(--color-text-on-dark);
+  margin-bottom: var(--space-3);
+  line-height: var(--leading-snug);
+}
+
+.subtitle {
+  font-size: var(--text-base);
+  color: rgba(241, 241, 239, 0.7);
+  margin-bottom: var(--space-10);
+  max-width: 520px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: var(--leading-relaxed);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-5);
+  margin-bottom: var(--space-8);
+}
+
+@media (min-width: 640px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Center last row items when fewer than 3 */
+@media (min-width: 1024px) {
+  .grid {
+    justify-items: center;
+  }
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-md);
+  padding: var(--space-6);
+  text-align: left;
+  max-width: 360px;
+  width: 100%;
+}
+
+@media (min-width: 1024px) {
+  /* Last row with 2 items: center them */
+  .card:nth-child(4) {
+    grid-column: 1 / 2;
+    justify-self: end;
+  }
+  .card:nth-child(5) {
+    grid-column: 2 / 3;
+    justify-self: start;
+  }
+}
+
+.emoji {
+  font-size: 1.5rem;
+  display: block;
+  margin-bottom: var(--space-3);
+}
+
+.cardTitle {
+  font-size: var(--text-base);
+  font-weight: var(--weight-semibold);
+  color: #fff;
+  margin-bottom: var(--space-2);
+  line-height: var(--leading-snug);
+}
+
+.cardText {
+  font-size: var(--text-sm);
+  color: rgba(241, 241, 239, 0.65);
+  line-height: var(--leading-relaxed);
+  margin: 0;
+}
+
+.footer {
+  font-size: var(--text-sm);
+  color: rgba(241, 241, 239, 0.5);
+  font-style: italic;
+  margin: 0;
+}
