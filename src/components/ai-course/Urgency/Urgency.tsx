@@ -7,6 +7,11 @@ export default function Urgency() {
         <p className={styles.line}>Пацієнти стають вимогливішими.</p>
         <p className={styles.line}>Темп медицини зростає.</p>
         <p className={styles.line}>Конкуренція — теж.</p>
+        <p className={styles.line}>
+          ШІ не замінює лікаря.
+          <br />
+          Але лікар, який працює з ШІ грамотно, працює швидше.
+        </p>
         <p className={styles.punchline}>
           Питання не в тому, чи використовувати ШІ.
           <br />
