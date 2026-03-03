@@ -146,6 +146,11 @@
         y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
       })(window, document, "clarity", "script", "vng8mrud0l");
     </script>
+    <script>
+      if (document.cookie.includes("clarity_internal=true")) {
+        window.clarity("set", "internal", "true");
+      }
+    </script>
   </head>
   <body>
     <!-- Netlify Forms: hidden form for SPA build detection -->
