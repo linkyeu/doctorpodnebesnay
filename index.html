@@ -117,38 +117,44 @@
     }
     </script>
 
-    <!-- Google Analytics 4 -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9Z9VXG1NZK"></script>
+    <!-- Google Analytics 4 (production only) -->
     <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-9Z9VXG1NZK');
+      if (location.hostname === "doctorpidnebesna.com") {
+        var s = document.createElement('script');
+        s.async = true;
+        s.src = "https://www.googletagmanager.com/gtag/js?id=G-9Z9VXG1NZK";
+        document.head.appendChild(s);
 
-      // Track Telegram CTA clicks as conversions
-      document.addEventListener('click', function(e) {
-        var link = e.target.closest('a[href*="t.me"]');
-        if (link) {
-          gtag('event', 'telegram_cta_click', {
-            event_category: 'conversion',
-            event_label: link.textContent.trim(),
-            transport_type: 'beacon'
-          });
-        }
-      });
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-9Z9VXG1NZK');
+
+        // Track Telegram CTA clicks as conversions
+        document.addEventListener('click', function(e) {
+          var link = e.target.closest('a[href*="t.me"]');
+          if (link) {
+            gtag('event', 'telegram_cta_click', {
+              event_category: 'conversion',
+              event_label: link.textContent.trim(),
+              transport_type: 'beacon'
+            });
+          }
+        });
+      }
     </script>
 
-    <!-- Microsoft Clarity -->
+    <!-- Microsoft Clarity (production only) -->
     <script type="text/javascript">
-      (function(c,l,a,r,i,t,y){
-        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-      })(window, document, "clarity", "script", "vng8mrud0l");
-    </script>
-    <script>
-      if (document.cookie.includes("clarity_internal=true")) {
-        window.clarity("set", "internal", "true");
+      if (location.hostname === "doctorpidnebesna.com") {
+        (function(c,l,a,r,i,t,y){
+          c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+          t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+          y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+        })(window, document, "clarity", "script", "vng8mrud0l");
+        if (document.cookie.includes("clarity_internal=true")) {
+          window.clarity("set", "internal", "true");
+        }
       }
     </script>
   </head>
