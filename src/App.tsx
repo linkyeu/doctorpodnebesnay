@@ -1,11 +1,11 @@
 import { lazy, Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import LandingPage from './pages/LandingPage';
+import AiCoursePage from './pages/AiCoursePage';
 // import BlogListingPage from './pages/BlogListingPage'; // Hidden until articles are polished
 // import BlogArticlePage from './pages/BlogArticlePage'; // Hidden until articles are polished
 import styles from './App.module.css';
 
-const AiCoursePage = lazy(() => import('./pages/AiCoursePage'));
 const ThankYouPage = lazy(() => import('./pages/ThankYouPage'));
 
 export default function App() {

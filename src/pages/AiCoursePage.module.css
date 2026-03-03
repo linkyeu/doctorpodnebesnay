@@ -7,24 +7,3 @@
   font-family: var(--font-body);
 }
 
-/* Fade-in on page load */
-.coursePage {
-  animation: coursePageFadeIn 600ms ease both;
-}
-
-@keyframes coursePageFadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(12px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .coursePage {
-    animation: none;
-  }
-}

@@ -17,10 +17,22 @@
         link.rel = 'preload';
         link.as = 'image';
         link.type = 'image/webp';
+        link.fetchPriority = 'high';
         link.href = isMobile ? '/images/ai-course/hero-mobile.webp' : '/images/ai-course/hero-desktop.webp';
         document.head.appendChild(link);
       }
     </script>
+    <!-- Critical CSS for /ai-course hero shell (painted before JS loads) -->
+    <style>
+      #ai-shell{position:relative;min-height:100svh;min-height:100dvh;background:#0a1628;overflow:hidden;display:flex;flex-direction:column}
+      #ai-shell .sh-bg{position:absolute;inset:0;z-index:0}
+      #ai-shell .sh-bg img{display:block;width:100%;height:100%;object-fit:cover;object-position:center top}
+      #ai-shell .sh-ov{position:absolute;inset:0;z-index:1;background:linear-gradient(to bottom,rgba(10,22,40,.18) 0%,rgba(10,22,40,.35) 30%,rgba(10,22,40,.6) 60%,rgba(10,22,40,.85) 100%);pointer-events:none}
+      #ai-shell .sh-ct{position:relative;z-index:10;max-width:740px;margin:auto auto;padding:clamp(60px,8vh,120px) 24px 0;text-align:center;display:flex;flex-direction:column;align-items:center;gap:24px}
+      #ai-shell .sh-t{font-family:Manrope,sans-serif;font-size:2.5rem;line-height:1.2;color:#fff;font-weight:800;text-transform:uppercase;letter-spacing:.03em;text-shadow:0 2px 30px rgba(0,0,0,.5)}
+      @media(max-width:767px){#ai-shell .sh-t{font-size:1.75rem;line-height:1.15}#ai-shell .sh-ct{padding-bottom:40px}}
+      @media(min-width:768px){#ai-shell .sh-ct{padding-bottom:64px}}
+    </style>
 
     <!-- Open Graph (Telegram, Facebook, LinkedIn link previews) -->
     <meta property="og:type" content="website" />
@@ -135,43 +147,48 @@
     }
     </script>
 
-    <!-- Google Analytics 4 (production only) -->
+    <!-- GA4 + Clarity — deferred until after first paint (production only) -->
     <script>
       if (location.hostname === "doctorpidnebesna.com") {
-        var s = document.createElement('script');
-        s.async = true;
-        s.src = "https://www.googletagmanager.com/gtag/js?id=G-9Z9VXG1NZK";
-        document.head.appendChild(s);
+        function __loadAnalytics() {
+          // GA4
+          var s = document.createElement('script');
+          s.async = true;
+          s.src = "https://www.googletagmanager.com/gtag/js?id=G-9Z9VXG1NZK";
+          document.head.appendChild(s);
 
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-9Z9VXG1NZK');
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          window.gtag = gtag;
+          gtag('js', new Date());
+          gtag('config', 'G-9Z9VXG1NZK');
 
-        // Track Telegram CTA clicks as conversions
-        document.addEventListener('click', function(e) {
-          var link = e.target.closest('a[href*="t.me"]');
-          if (link) {
-            gtag('event', 'telegram_cta_click', {
-              event_category: 'conversion',
-              event_label: link.textContent.trim(),
-              transport_type: 'beacon'
-            });
+          // Track Telegram CTA clicks as conversions
+          document.addEventListener('click', function(e) {
+            var link = e.target.closest('a[href*="t.me"]');
+            if (link) {
+              gtag('event', 'telegram_cta_click', {
+                event_category: 'conversion',
+                event_label: link.textContent.trim(),
+                transport_type: 'beacon'
+              });
+            }
+          });
+
+          // Clarity
+          (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+          })(window, document, "clarity", "script", "vng8mrud0l");
+          if (document.cookie.includes("clarity_internal=true")) {
+            window.clarity("set", "internal", "true");
           }
-        });
-      }
-    </script>
-
-    <!-- Microsoft Clarity (production only) -->
-    <script type="text/javascript">
-      if (location.hostname === "doctorpidnebesna.com") {
-        (function(c,l,a,r,i,t,y){
-          c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-          t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-          y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-        })(window, document, "clarity", "script", "vng8mrud0l");
-        if (document.cookie.includes("clarity_internal=true")) {
-          window.clarity("set", "internal", "true");
+        }
+        if ('requestIdleCallback' in window) {
+          requestIdleCallback(__loadAnalytics);
+        } else {
+          setTimeout(__loadAnalytics, 3500);
         }
       }
     </script>
@@ -183,6 +200,20 @@
     </form>
 
     <div id="root"></div>
+    <script>
+      if (location.pathname.startsWith('/ai-course')) {
+        var isMob = window.innerWidth < 768;
+        var src = isMob ? '/images/ai-course/hero-mobile.webp' : '/images/ai-course/hero-desktop.webp';
+        document.getElementById('root').innerHTML =
+          '<section id="ai-shell">' +
+            '<div class="sh-bg"><img src="' + src + '" alt="" fetchpriority="high"></div>' +
+            '<div class="sh-ov"></div>' +
+            '<div class="sh-ct">' +
+              '<h1 class="sh-t">66% лікарів вже використовують ШІ.<br>Ви — серед них?</h1>' +
+            '</div>' +
+          '</section>';
+      }
+    </script>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
