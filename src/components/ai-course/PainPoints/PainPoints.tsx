@@ -93,6 +93,9 @@ export default function PainPoints() {
         <blockquote className={styles.accent}>
           <p className={styles.accentText}>{painAccent.text}</p>
           {painAccent.stat && <p className={styles.accentStat}>{painAccent.stat}</p>}
+          <p className={styles.audienceLine}>
+            Для лікарів на будь-якому етапі — від інтернатури до 20 років практики
+          </p>
         </blockquote>
       </div>
     </section>

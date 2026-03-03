@@ -3,7 +3,7 @@ import styles from './AiCoursePage.module.css';
 import CourseHero from '../components/ai-course/CourseHero/CourseHero';
 import PainPoints from '../components/ai-course/PainPoints/PainPoints';
 // WhyNotChatGpt merged into PainPoints (4 points + early CTA)
-import Personas from '../components/ai-course/Personas/Personas';
+// Personas removed — duplicated PainPoints content, audience line merged into PainPoints accent block (Ilyakhov audit)
 import BeforeAfter from '../components/ai-course/BeforeAfter/BeforeAfter';
 import WhatsInside from '../components/ai-course/WhatsInside/WhatsInside';
 import AuthorTrust from '../components/ai-course/AuthorTrust/AuthorTrust';
@@ -76,7 +76,6 @@ export default function AiCoursePage() {
     <div className={styles.coursePage}>
       <CourseHero />
       <PainPoints />
-      <Personas />
       <BeforeAfter />
       <WhatsInside />
       <AuthorTrust />
