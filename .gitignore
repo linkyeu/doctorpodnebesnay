@@ -31,6 +31,7 @@ dist-ssr
 # Netlify
 .netlify/
 
+tmp/
 .playwright-mcp
 .claude
 #*LUBA.md
