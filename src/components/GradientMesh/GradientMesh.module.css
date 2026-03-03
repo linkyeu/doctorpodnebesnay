@@ -292,6 +292,19 @@
 }
 
 /* ═══════════════════════════════════════════
+   Mobile — drop GPU layers to reduce compositing
+   ═══════════════════════════════════════════ */
+
+@media (max-width: 768px) {
+  .ribbon1, .ribbon2, .ribbon3, .ribbon4 {
+    will-change: auto;
+  }
+  .bubble1, .bubble2, .bubble3, .bubble4, .bubble5, .bubble6 {
+    will-change: auto;
+  }
+}
+
+/* ═══════════════════════════════════════════
    Desktop — scale up ribbons & bubbles
    ═══════════════════════════════════════════ */
 
