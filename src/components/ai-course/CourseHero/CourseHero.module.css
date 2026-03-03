@@ -178,6 +178,10 @@
     min-height: 100dvh;
   }
 
+  .heroImage {
+    animation: none; /* disable zoom — causes scroll jank on mobile */
+  }
+
   .title {
     font-size: 1.75rem;
     line-height: 1.15;
