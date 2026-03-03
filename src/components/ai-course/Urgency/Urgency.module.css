@@ -1,0 +1,30 @@
+.section {
+  background: var(--color-bg-dark);
+  padding: var(--space-12) var(--space-6);
+  text-align: center;
+}
+
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.line {
+  font-size: var(--text-xl);
+  color: rgba(255, 255, 255, 0.7);
+  line-height: var(--leading-snug);
+  margin: 0 0 var(--space-1) 0;
+}
+
+.punchline {
+  margin-top: var(--space-6);
+  font-size: var(--text-2xl);
+  font-weight: var(--weight-bold);
+  color: var(--color-text-on-dark);
+  line-height: var(--leading-snug);
+}
+
+.punchline em {
+  font-style: normal;
+  color: var(--color-accent);
+}

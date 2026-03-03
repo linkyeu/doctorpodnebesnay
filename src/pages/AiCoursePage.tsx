@@ -3,11 +3,13 @@ import styles from './AiCoursePage.module.css';
 import CourseHero from '../components/ai-course/CourseHero/CourseHero';
 import PainPoints from '../components/ai-course/PainPoints/PainPoints';
 // WhyNotChatGpt merged into PainPoints (4 points + early CTA)
+import Personas from '../components/ai-course/Personas/Personas';
 import BeforeAfter from '../components/ai-course/BeforeAfter/BeforeAfter';
 import WhatsInside from '../components/ai-course/WhatsInside/WhatsInside';
 import AuthorTrust from '../components/ai-course/AuthorTrust/AuthorTrust';
 import SocialProof from '../components/ai-course/SocialProof/SocialProof';
 // ProductOverview removed — duplicated WhatsInside content, broke narrative flow (Ilyakhov audit)
+import Urgency from '../components/ai-course/Urgency/Urgency';
 import Pricing from '../components/ai-course/Pricing/Pricing';
 // FAQ removed — objections already covered in Pricing features
 // FinalCta removed — Pricing is the last product section with CTA, no need to duplicate
@@ -74,10 +76,12 @@ export default function AiCoursePage() {
     <div className={styles.coursePage}>
       <CourseHero />
       <PainPoints />
+      <Personas />
       <BeforeAfter />
       <WhatsInside />
       <AuthorTrust />
       <SocialProof />
+      <Urgency />
       <Pricing />
       <CourseFooter />
       <StickyMobileCta />
