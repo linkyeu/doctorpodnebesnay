@@ -15,6 +15,9 @@ export default function CourseHero() {
             alt=""
             className={styles.heroImage}
             draggable={false}
+            fetchPriority="high"
+            loading="eager"
+            decoding="async"
           />
         </picture>
       </div>

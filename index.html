@@ -5,6 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Др. Піднебесна — Доказове батьківство без паніки | Сімейний лікар</title>
     <meta name="description" content="Лікар Любов Піднебесна: консультації для українських батьків по всьому світу. Розвінчуємо міфи, спираємось на науку. Сімейний лікар з 13-річним досвідом." />
+    <!-- Set correct title/description + preload hero image before React hydration for /ai-course -->
+    <script>
+      if (location.pathname.startsWith('/ai-course')) {
+        document.title = 'ШІ-помічник лікаря — поверніть собі 2 години на день | Др. Піднебесна';
+        var m = document.querySelector('meta[name="description"]');
+        if (m) m.content = 'Готові ШІ-рішення для лікарів — документація за 5 хвилин, друга думка з джерелами, відповіді на ChatGPT-питання пацієнтів. 799 ₴, одноразова покупка.';
+        // Preload hero image — LCP element, start downloading immediately
+        var isMobile = window.innerWidth < 768;
+        var link = document.createElement('link');
+        link.rel = 'preload';
+        link.as = 'image';
+        link.type = 'image/webp';
+        link.href = isMobile ? '/images/ai-course/hero-mobile.webp' : '/images/ai-course/hero-desktop.webp';
+        document.head.appendChild(link);
+      }
+    </script>
 
     <!-- Open Graph (Telegram, Facebook, LinkedIn link previews) -->
     <meta property="og:type" content="website" />
@@ -23,7 +39,9 @@
     <link rel="canonical" href="https://doctorpidnebesna.com/" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Manrope:wght@200..800&display=swap" rel="stylesheet" />
+    <!-- Non-render-blocking font load: display=swap handles FOUT -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Manrope:wght@200..800&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Manrope:wght@200..800&display=swap" rel="stylesheet" /></noscript>
 
     <!-- Structured Data (JSON-LD) -->
     <script type="application/ld+json">
