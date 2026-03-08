@@ -14,12 +14,12 @@ export default function ToolkitNav({ blocks }: ToolkitNavProps) {
   const topSections = [
     { id: 'intro', label: 'Що це таке' },
     { id: 'safety', label: 'Правила безпеки' },
+    { id: 'tool-comparison', label: 'Інструменти' },
+    { id: 'setup', label: 'Налаштування' },
   ];
 
   const bottomSections = [
-    { id: 'tool-comparison', label: 'Інструменти' },
-    { id: 'setup', label: 'Налаштування' },
-{ id: 'appendix-glossary', label: 'Глосарій' },
+    { id: 'appendix-glossary', label: 'Глосарій' },
   ];
 
   const staticIds = [
