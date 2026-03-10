@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { essentialSetupSections, advancedSetupSections } from '../../../data/ai-toolkit';
+import { essentialSetupSections } from '../../../data/ai-toolkit';
 import type { SetupSection } from '../../../data/ai-toolkit';
 import styles from './ToolkitSetup.module.css';
 
@@ -34,6 +34,22 @@ function SetupCardContent({ section }: { section: SetupSection }) {
           ))}
         </ol>
       )}
+
+      {section.screenshots?.map((shot) => (
+        <figure key={shot.src} className={styles.screenshotFigure}>
+          <div className={styles.screenshotWrapper}>
+            <img
+              className={styles.screenshotImg}
+              src={shot.src}
+              alt={shot.alt}
+              loading="lazy"
+            />
+          </div>
+          {shot.caption && (
+            <figcaption className={styles.screenshotCaption}>{shot.caption}</figcaption>
+          )}
+        </figure>
+      ))}
 
       {section.codeBlocks?.map((block) => (
         <div key={block.label} className={styles.codeBlock}>
@@ -93,9 +109,23 @@ function SetupCardContent({ section }: { section: SetupSection }) {
   );
 }
 
-export default function ToolkitSetup() {
-  const [advancedOpen, setAdvancedOpen] = useState(false);
+export function ToolkitSetupContent() {
+  return (
+    <div className={styles.setupList}>
+      {essentialSetupSections.map((section, index) => (
+        <div key={section.id} className={styles.setupCard}>
+          <div className={styles.cardHeader}>
+            <span className={styles.stepNumber}>{index + 1}</span>
+            <h3 className={styles.setupTitle}>{section.title}</h3>
+          </div>
+          <SetupCardContent section={section} />
+        </div>
+      ))}
+    </div>
+  );
+}
 
+export default function ToolkitSetup() {
   return (
     <section className={styles.section}>
       <div className={styles.container} id="setup">
@@ -103,46 +133,16 @@ export default function ToolkitSetup() {
           Налаштування iнструментiв
         </h2>
 
-        <div className={styles.freeBanner}>
-          Все налаштування нижче працюють на безкоштовному планi ChatGPT та Perplexity
-        </div>
-
         <div className={styles.setupList}>
           {essentialSetupSections.map((section, index) => (
             <div key={section.id} className={styles.setupCard}>
               <div className={styles.cardHeader}>
                 <span className={styles.stepNumber}>{index + 1}</span>
                 <h3 className={styles.setupTitle}>{section.title}</h3>
-                <span className={styles.freeBadge}>Безкоштовно</span>
               </div>
               <SetupCardContent section={section} />
             </div>
           ))}
-        </div>
-
-        <button
-          type="button"
-          className={styles.advancedToggle}
-          onClick={() => setAdvancedOpen(!advancedOpen)}
-          aria-expanded={advancedOpen}
-        >
-          <span className={`${styles.chevron} ${advancedOpen ? styles.chevronOpen : ''}`}>
-            &#9656;
-          </span>
-          <span>Коли освоїтесь — додатковi налаштування ({advancedSetupSections.length})</span>
-        </button>
-
-        <div className={`${styles.advancedContent} ${advancedOpen ? styles.advancedContentOpen : ''}`}>
-          <div className={styles.setupList}>
-            {advancedSetupSections.map((section) => (
-              <div key={section.id} className={styles.setupCard}>
-                <h3 className={styles.setupTitle} style={{ marginBottom: 'var(--space-3)' }}>
-                  {section.title}
-                </h3>
-                <SetupCardContent section={section} />
-              </div>
-            ))}
-          </div>
         </div>
       </div>
     </section>

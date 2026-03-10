@@ -1,22 +1,41 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { blocks } from '../data/ai-toolkit';
 import ToolkitNav from '../components/ai-toolkit/ToolkitNav/ToolkitNav';
-import ToolkitIntro from '../components/ai-toolkit/ToolkitIntro/ToolkitIntro';
+import { SafetyRules } from '../components/ai-toolkit/ToolkitIntro/ToolkitIntro';
 import BlockHeader from '../components/ai-toolkit/BlockHeader/BlockHeader';
 import SolutionCard from '../components/ai-toolkit/SolutionCard/SolutionCard';
-import ToolComparison from '../components/ai-toolkit/ToolComparison/ToolComparison';
 import ToolkitMistakes from '../components/ai-toolkit/ToolkitMistakes/ToolkitMistakes';
-import ToolkitSetup from '../components/ai-toolkit/ToolkitSetup/ToolkitSetup';
+import { ToolkitSetupContent } from '../components/ai-toolkit/ToolkitSetup/ToolkitSetup';
+import PasswordGate from '../components/ai-toolkit/PasswordGate/PasswordGate';
 import styles from './AiToolkitPage.module.css';
 
+function StepHeader({ step, title, description }: { step: number; title: string; description?: string }) {
+  return (
+    <div className={styles.stepHeader}>
+      <div className={styles.stepTitleRow}>
+        <span className={styles.stepCircle} aria-hidden="true">{step}</span>
+        <h2 className={styles.stepTitle}>Крок {step}: {title}</h2>
+      </div>
+      {description && <p className={styles.stepDescription}>{description}</p>}
+    </div>
+  );
+}
+
 export default function AiToolkitPage() {
+  const [authenticated, setAuthenticated] = useState(() => {
+    const stored = localStorage.getItem('toolkit_auth');
+    if (!stored) return false;
+    const ts = parseInt(stored, 10);
+    return Date.now() - ts < 30 * 24 * 60 * 60 * 1000;
+  });
+
   useEffect(() => {
     document.title =
-      'ШІ-помічник лікаря — 19 готових рішень для щоденної практики';
+      'ШІ-помічник лікаря — 18 готових рішень для щоденної практики';
 
     const metaDesc = document.querySelector('meta[name="description"]');
     const descContent =
-      'Довідник готових ШІ-рішень для лікарів: промпти для документації, діагностики, комунікації з пацієнтами. 19 рішень з чеклістами безпеки.';
+      'Довідник готових ШІ-рішень для лікарів: промпти для документації, діагностики, комунікації з пацієнтами. Готові рішення з чеклістами безпеки.';
     if (metaDesc) {
       metaDesc.setAttribute('content', descContent);
     } else {
@@ -27,7 +46,7 @@ export default function AiToolkitPage() {
     }
 
     const ogTags: Record<string, string> = {
-      'og:title': 'ШІ-помічник лікаря — 19 готових рішень',
+      'og:title': 'ШІ-помічник лікаря — 18 готових рішень',
       'og:description': descContent,
       'og:url': 'https://doctorpidnebesna.com/toolkit',
       'og:type': 'website',
@@ -64,31 +83,49 @@ export default function AiToolkitPage() {
     };
   }, []);
 
+  if (!authenticated) {
+    return <PasswordGate onSuccess={() => setAuthenticated(true)} />;
+  }
+
   return (
     <div className={styles.toolkitPage}>
       <ToolkitNav blocks={blocks} />
       <main className={styles.content}>
-        <ToolkitIntro />
-        <ToolComparison />
-        <ToolkitSetup />
-        {blocks.map((block) => (
-          <section
-            key={block.id}
-            className={styles.blockSection}
-            style={{ '--block-bg': `color-mix(in srgb, ${block.color} 4%, transparent)` } as React.CSSProperties}
-          >
-            <BlockHeader block={block} />
-            <div className={styles.solutionsGrid}>
-              {block.solutions.map((solution) => (
-                <SolutionCard
-                  key={solution.id}
-                  solution={solution}
-                  blockColor={block.color}
-                />
-              ))}
+        {/* Крок 1: Налаштуйте інструменти */}
+        <section className={styles.stepSection} id="step-setup">
+          <StepHeader step={1} title="Налаштуйте інструменти" description="Зареєструйтесь в одному інструменті — це безкоштовно і займе 5 хвилин." />
+          <ToolkitSetupContent />
+        </section>
+
+        {/* Крок 2: Правила безпеки */}
+        <section className={styles.stepSection} id="step-safety">
+          <StepHeader step={2} title="Правила безпеки" description="Прочитайте 5 правил — це захистить від помилок ШІ." />
+          <SafetyRules />
+        </section>
+
+        {/* Крок 3: Оберіть задачу */}
+        <section className={styles.stepSection} id="step-solutions">
+          <StepHeader step={3} title="Оберіть задачу" description="Знайдіть свою задачу, скопіюйте промпт і вставте в ChatGPT." />
+          {blocks.map((block) => (
+            <div
+              key={block.id}
+              className={styles.blockSection}
+              style={{ '--block-bg': `color-mix(in srgb, ${block.color} 4%, transparent)` } as React.CSSProperties}
+            >
+              <BlockHeader block={block} />
+              <div className={styles.solutionsGrid}>
+                {block.solutions.map((solution) => (
+                  <SolutionCard
+                    key={solution.id}
+                    solution={solution}
+                    blockColor={block.color}
+                  />
+                ))}
+              </div>
             </div>
-          </section>
-        ))}
+          ))}
+        </section>
+
         <ToolkitMistakes />
       </main>
     </div>
