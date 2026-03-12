@@ -68,17 +68,20 @@ export default function ToolkitThankYouPage() {
 
         <p className={styles.text}>
           Дякуємо за покупку <strong>AI-інструментів для лікарів</strong>.
-          Довідник буде надіслано на вашу пошту протягом кількох хвилин.
         </p>
+
+        <div className={styles.accessBlock}>
+          <p className={styles.accessLabel}>Ваш пароль для доступу:</p>
+          <p className={styles.password}>toolkit2026</p>
+          <a href="/toolkit" className={styles.accessBtn}>
+            Відкрити довідник →
+          </a>
+        </div>
 
         <p className={styles.textMuted}>
-          Якщо лист не прийшов — перевірте папку «Спам» або напишіть нам у Telegram.
+          Пароль також надіслано на вашу пошту. Збережіть його — він знадобиться для повторного входу.
         </p>
       </div>
-
-      <a href="/toolkit" className={styles.backLink}>
-        ← Повернутися на сторінку продукту
-      </a>
     </div>
   );
 }

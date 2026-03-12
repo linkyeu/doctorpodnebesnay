@@ -147,20 +147,51 @@
   line-height: var(--leading-normal);
 }
 
-/* ─── Footer link ─── */
+/* ─── Access block ─── */
 
-.backLink {
-  position: relative;
-  z-index: 1;
-  margin-top: var(--space-8);
-  font-size: var(--text-sm);
-  color: rgba(255, 255, 255, 0.5);
-  text-decoration: none;
-  transition: color var(--transition-fast);
+.accessBlock {
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  border-radius: 12px;
+  padding: var(--space-6) var(--space-6);
+  margin: var(--space-6) 0;
 }
 
-.backLink:hover {
-  color: rgba(255, 255, 255, 0.8);
+.accessLabel {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-2);
+}
+
+.password {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: var(--text-xl);
+  font-weight: 700;
+  color: var(--color-text);
+  letter-spacing: 0.05em;
+  background: white;
+  border: 1px dashed #a7f3d0;
+  border-radius: 8px;
+  padding: var(--space-3) var(--space-4);
+  margin-bottom: var(--space-5);
+  user-select: all;
+}
+
+.accessBtn {
+  display: inline-block;
+  background: var(--color-cta);
+  color: white;
+  font-size: var(--text-base);
+  font-weight: 600;
+  padding: var(--space-3) var(--space-8);
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background var(--transition-fast), transform var(--transition-fast);
+}
+
+.accessBtn:hover {
+  background: #15803d;
+  transform: translateY(-1px);
 }
 
 /* ─── Reduced motion ─── */
