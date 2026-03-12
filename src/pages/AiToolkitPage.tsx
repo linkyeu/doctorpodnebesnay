@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { blocks } from '../data/ai-toolkit';
 import ToolkitNav from '../components/ai-toolkit/ToolkitNav/ToolkitNav';
 import { SafetyRules } from '../components/ai-toolkit/ToolkitIntro/ToolkitIntro';
@@ -21,6 +21,54 @@ function StepHeader({ step, title, description }: { step: number; title: string;
   );
 }
 
+function CollapsibleStep({
+  id,
+  step,
+  title,
+  description,
+  expanded,
+  onToggle,
+  children,
+}: {
+  id: string;
+  step: number;
+  title: string;
+  description?: string;
+  expanded: boolean;
+  onToggle: () => void;
+  children: React.ReactNode;
+}) {
+  return (
+    <section className={styles.stepSection} id={id}>
+      <button
+        type="button"
+        className={styles.collapsibleSummary}
+        onClick={onToggle}
+        aria-expanded={expanded}
+        aria-controls={`${id}-content`}
+      >
+        <div className={styles.stepHeader} style={{ marginBottom: 0, position: 'static', padding: 0 }}>
+          <div className={styles.stepTitleRow}>
+            <span className={styles.stepCircle} aria-hidden="true">{step}</span>
+            <h2 className={styles.stepTitle}>Крок {step}: {title}</h2>
+            <span className={`${styles.chevron} ${expanded ? styles.chevronOpen : ''}`} aria-hidden="true" />
+          </div>
+          {description && <p className={styles.stepDescription}>{description}</p>}
+        </div>
+      </button>
+      <div
+        id={`${id}-content`}
+        role="region"
+        className={`${styles.collapsibleContent} ${expanded ? styles.collapsibleContentOpen : ''}`}
+      >
+        <div className={styles.collapsibleInner}>
+          {children}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 export default function AiToolkitPage() {
   const [authenticated, setAuthenticated] = useState(() => {
     const stored = localStorage.getItem('toolkit_auth');
@@ -28,6 +76,43 @@ export default function AiToolkitPage() {
     const ts = parseInt(stored, 10);
     return Date.now() - ts < 30 * 24 * 60 * 60 * 1000;
   });
+
+  const [isReturningUser] = useState(
+    () => localStorage.getItem('toolkit_visited') === 'true'
+  );
+
+  const [expandedSteps, setExpandedSteps] = useState<Record<string, boolean>>(() => {
+    // Check hash for deep links
+    const hash = window.location.hash;
+    const returning = localStorage.getItem('toolkit_visited') === 'true';
+    const defaultExpanded = !returning;
+
+    return {
+      'step-setup': hash === '#step-setup' ? true : defaultExpanded,
+      'step-safety': hash === '#step-safety' ? true : defaultExpanded,
+    };
+  });
+
+  // Mark as visited on first mount
+  useEffect(() => {
+    localStorage.setItem('toolkit_visited', 'true');
+  }, []);
+
+  // Handle hash changes (e.g. clicking nav links)
+  useEffect(() => {
+    const handleHashChange = () => {
+      const hash = window.location.hash.replace('#', '');
+      if (hash === 'step-setup' || hash === 'step-safety') {
+        setExpandedSteps((prev) => ({ ...prev, [hash]: true }));
+      }
+    };
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, []);
+
+  const toggleStep = useCallback((id: string) => {
+    setExpandedSteps((prev) => ({ ...prev, [id]: !prev[id] }));
+  }, []);
 
   useEffect(() => {
     document.title =
@@ -87,25 +172,46 @@ export default function AiToolkitPage() {
     return <PasswordGate onSuccess={() => setAuthenticated(true)} />;
   }
 
+  const bothCollapsed = !expandedSteps['step-setup'] && !expandedSteps['step-safety'];
+
   return (
     <div className={styles.toolkitPage}>
       <ToolkitNav blocks={blocks} />
       <main className={styles.content}>
+        {/* Hint banner for returning users when both steps are collapsed */}
+        {isReturningUser && bothCollapsed && (
+          <div className={styles.returnHint}>
+            Вже налаштували? Переходьте до рішень ↓
+          </div>
+        )}
+
         {/* Крок 1: Налаштуйте інструменти */}
-        <section className={styles.stepSection} id="step-setup">
-          <StepHeader step={1} title="Налаштуйте інструменти" description="Зареєструйтесь в одному інструменті — це безкоштовно і займе 5 хвилин." />
+        <CollapsibleStep
+          id="step-setup"
+          step={1}
+          title="Налаштуйте інструменти"
+          description="Налаштуємо ChatGPT і NotebookLM — два інструменти для вашої практики."
+          expanded={expandedSteps['step-setup']}
+          onToggle={() => toggleStep('step-setup')}
+        >
           <ToolkitSetupContent />
-        </section>
+        </CollapsibleStep>
 
         {/* Крок 2: Правила безпеки */}
-        <section className={styles.stepSection} id="step-safety">
-          <StepHeader step={2} title="Правила безпеки" description="Прочитайте 5 правил — це захистить від помилок ШІ." />
+        <CollapsibleStep
+          id="step-safety"
+          step={2}
+          title="Правила безпеки"
+          description="Прочитайте 5 правил — це захистить від помилок ШІ."
+          expanded={expandedSteps['step-safety']}
+          onToggle={() => toggleStep('step-safety')}
+        >
           <SafetyRules />
-        </section>
+        </CollapsibleStep>
 
         {/* Крок 3: Оберіть задачу */}
         <section className={styles.stepSection} id="step-solutions">
-          <StepHeader step={3} title="Оберіть задачу" description="Знайдіть свою задачу, скопіюйте промпт і вставте в ChatGPT." />
+          <StepHeader step={3} title="Оберіть задачу" description="Знайдіть свою задачу, скопіюйте промпт і вставте в інструмент." />
           {blocks.map((block) => (
             <div
               key={block.id}
