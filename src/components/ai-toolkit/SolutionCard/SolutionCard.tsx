@@ -133,10 +133,10 @@ export default function SolutionCard({ solution, blockColor, startHere }: Soluti
             {/* Tool intro — for workflow/hybrid cards */}
             {solution.toolIntro && <ToolIntro intro={solution.toolIntro} />}
 
-            {/* Instruction line for prompt cards without a promptNote */}
-            {cardType === 'prompt' && !solution.promptNote && (
+            {/* Instruction line for all prompt cards */}
+            {cardType === 'prompt' && (
               <p className={styles.toolInstruction}>
-                → Скопіюйте промпт нижче і вставте в новий чат{' '}
+                → Скопіюйте промпт, замініть <span className={styles.placeholderHint}>[виділене]</span> на ваші дані і вставте в{' '}
                 <a href={getToolUrl(solution.tool)} target="_blank" rel="noopener noreferrer">
                   {getToolDisplayName(solution.tool)}
                 </a>
@@ -156,15 +156,6 @@ export default function SolutionCard({ solution, blockColor, startHere }: Soluti
                 )}
               </>
             )}
-
-            <div className={styles.example}>
-              <h4 className={styles.exampleHeading}>
-                {cardType === 'prompt' ? 'Приклад запиту' : 'Приклад результату'}
-              </h4>
-              <div className={styles.exampleCard}>
-                <p className={styles.exampleText}>{solution.example.input}</p>
-              </div>
-            </div>
           </div>
         </div>
       </div>
