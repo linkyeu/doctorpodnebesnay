@@ -5,7 +5,7 @@
 **Технологія:** HTML/CSS/JS — збирати через Claude Code
 **Деплой:** GitHub Pages (doctorpidnebesna.com/ai-course) або окремий субдомен
 **Копі:** `content/landing-copy-ai-course.md`
-**Бренд:** `brand/brand-guidelines.md`
+**Бренд:** `products/luba-brand/brand/brand-guidelines.md`
 
 ---
 

@@ -66,14 +66,6 @@ export interface MistakeCard {
 
 export const mistakes: MistakeCard[] = [
   {
-    id: 'fake-refs',
-    emoji: '\uD83D\uDCDA',
-    title: 'Довіряти посиланням',
-    stat: '45% реальних цитат мають помилки в авторі, році або DOI',
-    statSource: 'JMIR 2025',
-    fix: 'Завжди перевіряйте DOI перед цитуванням',
-  },
-  {
     id: 'no-web',
     emoji: '\uD83C\uDF10',
     title: 'Не вмикати web-пошук',
@@ -89,22 +81,6 @@ export const mistakes: MistakeCard[] = [
     statSource: 'guide test',
     fix: 'Завжди звіряйте з офіційним довідником',
   },
-  {
-    id: 'rephrase',
-    emoji: '\uD83D\uDD04',
-    title: 'Не перефразовувати питання',
-    stat: 'Точність падає з 80% до 42% при зміні формулювання',
-    statSource: 'PMC 2025',
-    fix: 'Запитайте те саме інакше, порівняйте відповіді',
-  },
-  {
-    id: 'binary-question',
-    emoji: '⚖️',
-    title: 'Питання з вiдповiддю "так/нi"',
-    stat: 'AI дає категоричну вiдповiдь на питання, яке в реальностi має спектр ймовiрностей',
-    statSource: 'prompt design',
-    fix: 'Замiсть "Це X?" → "Якi дiагнози ймовiрнi i яка ймовiрнiсть кожного?"',
-  },
 ];
 
 // ── Safety rules ──
@@ -113,47 +89,44 @@ export interface SafetyRule {
   id: number;
   title: string;
   description: string;
+  image?: string;
   example?: { bad: string; good: string };
 }
 
 export const safetyRules: SafetyRule[] = [
   {
     id: 1,
-    title: 'AI = чернетка, ви = фiнальне рiшення',
-    description: 'AI генерує текст на основi ймовiрностей, а не медичних знань. Ви несете вiдповiдальнiсть за КОЖНЕ клiнiчне рiшення.',
+    title: 'ШІ = чернетка, ви = рішення',
+    description: 'ШІ генерує текст на основі ймовірностей, а не медичних знань. Використовуйте як стартову точку, ніколи як фінальну відповідь. Ви несете відповідальність за кожне клінічне рішення.',
+    image: '/images/toolkit/safety/rule-1.png',
   },
   {
     id: 2,
-    title: 'Не довiряйте посиланням — перевiряйте',
-    description: 'Навiть серед реальних цитат 45% мiстять помилки — неправильний рiк, автори, DOI. Завжди перевiряйте в PubMed, BNF, офiцiйних настановах.',
+    title: 'Захищайте дані пацієнтів',
+    description: 'НІКОЛИ не вводьте ПІБ, дату народження, номер медичної картки, адресу. Замість цього: "Жінка, 36 років, скарги на..."',
+    image: '/images/toolkit/safety/rule-2.png',
   },
   {
     id: 3,
-    title: 'Не вводьте персональнi данi пацiєнта',
-    description: 'НIКОЛИ не вводьте ПIБ, дату народження, номер медичної картки, адресу. Замiсть цього: "Жiнка, 36 рокiв".',
+    title: 'Перевіряйте клінічні дані',
+    description: 'ШІ може згенерувати неправильні дози, застарілі протоколи, вигадані цитати. Завжди звіряйте клінічні дані з офіційними джерелами — BNF, PubMed, настанови МОЗ.',
+    image: '/images/toolkit/safety/rule-3.png',
   },
   {
     id: 4,
-    title: 'Просiть AI сперечатися з вами',
-    description: 'Замiсть "Пiдтвердь, що це синусит" запитайте "Якi аргументи ПРОТИ дiагнозу синусит при таких симптомах?"',
+    title: 'Не підтверджуйте — ставте під сумнів',
+    description: 'Не просіть ШІ підтвердити ваш діагноз — це підсилює помилку підтвердження. Запитайте: "Які аргументи ПРОТИ цього діагнозу?" Це найкращий захист від когнітивних пасток.',
+    image: '/images/toolkit/safety/rule-4.png',
     example: {
-      bad: 'Пiдтвердь, що це синусит',
-      good: 'Якi аргументи ПРОТИ дiагнозу синусит при таких симптомах?',
+      bad: 'Підтверди, що це синусит',
+      good: 'Які аргументи ПРОТИ діагнозу синусит при таких симптомах?',
     },
   },
   {
     id: 5,
-    title: 'Перехресна перевiрка = ваша страховка',
-    description: 'Для важливих клiнiчних рiшень: запитайте в ChatGPT, перефразуйте i запитайте ще раз, перевiрте за гайдлайном.',
-  },
-  {
-    id: 6,
-    title: 'Ймовiрнiсть > Так/Нi',
-    description: 'Багато медичних питань не мають однозначної вiдповiдi. Якщо запитати "Це пневмонiя?" — AI вiдповiсть "так" або "нi". Але реальнiсть — це спектр ймовiрностей.',
-    example: {
-      bad: 'Це пневмонiя?',
-      good: 'Якi дiагнози ймовiрнi при цих симптомах? Вкажи ймовiрнiсть кожного та аргументи за/проти.',
-    },
+    title: 'ШІ впевнений, навіть коли помиляється',
+    description: 'ШІ ніколи не скаже "я не знаю." Він згенерує впевнену відповідь навіть коли правильна відповідь — "недостатньо даних." Чим впевненіше звучить — тим важливіше перевірити.',
+    image: '/images/toolkit/safety/rule-5.png',
   },
 ];
 
@@ -657,7 +630,7 @@ const blockDSolutions: Solution[] = [
     title: 'Пiдкаст-резюме: 200 сторiнок → 15 хвилин',
     tool: 'NotebookLM',
     toolIntro: {
-      text: 'NotebookLM — безкоштовний AI-iнструмент вiд Google. Завантажте будь-який PDF — i вiн створить подкаст-розмову двох AI-ведучих, якi обговорюють ваш документ українською.',
+      text: 'Завантажте PDF → NotebookLM створить подкаст-розмову двох AI-ведучих, якi обговорюють ваш документ.',
       url: 'https://notebooklm.google.com',
       urlLabel: 'Вiдкрити NotebookLM',
     },
@@ -682,7 +655,7 @@ const blockDSolutions: Solution[] = [
     title: 'Пропустили вебiнар? Конспект за 5 хвилин',
     tool: 'NotebookLM',
     toolIntro: {
-      text: 'NotebookLM — безкоштовний AI-iнструмент вiд Google. Вставте посилання на YouTube-лекцiю — i вiн дасть вiдповiдi на основi того, що було сказано у вiдео.',
+      text: 'Вставте YouTube-посилання → отримайте конспект лекцiї з цитатами з вiдео.',
       url: 'https://notebooklm.google.com',
       urlLabel: 'Вiдкрити NotebookLM',
     },
@@ -717,7 +690,7 @@ const blockDSolutions: Solution[] = [
     title: 'Протокол → FAQ за 30 секунд (без промптiв)',
     tool: 'NotebookLM',
     toolIntro: {
-      text: 'NotebookLM — безкоштовний AI-iнструмент вiд Google. Завантажте протокол — вiн автоматично створить FAQ, резюме або навчальний матерiал. Нiяких промптiв не потрiбно — тiльки натиснути кнопку.',
+      text: 'Завантажте протокол → натиснiть FAQ / Study Guide / Briefing Doc — все автоматично, без промптiв.',
       url: 'https://notebooklm.google.com',
       urlLabel: 'Вiдкрити NotebookLM',
     },
@@ -817,6 +790,7 @@ export interface SetupSection {
   table?: { headers: string[]; rows: string[][] };
   examples?: string[];
   screenshots?: SetupScreenshot[];
+  demoNotebookUrl?: string;
 }
 
 export const setupSections: SetupSection[] = [
@@ -961,7 +935,7 @@ export const setupSections: SetupSection[] = [
   {
     id: 'B6',
     title: 'Створiть перший ноутбук в NotebookLM',
-    intro: 'NotebookLM — безкоштовний AI-iнструмент вiд Google. Вiн працює ТIЛЬКИ з вашими документами: завантажуєте PDF протоколу — отримуєте вiдповiдi з цитатами i номерами сторiнок. Iдеально для роботи з протоколами МОЗ, гайдлайнами, статтями.',
+    intro: 'ChatGPT знає все, але може помилятися. NotebookLM знає ТIЛЬКИ ваш PDF — i цитує зi сторiнками. Просте правило: є PDF протоколу чи гайдлайну → NotebookLM. Загальне питання → ChatGPT. Iнтерфейс NotebookLM англiйською — це нормально, вiдповiдi будуть українською.',
     steps: [
       'Вiдкрийте notebooklm.google.com',
       'Увiйдiть через Google-акаунт (той самий, що для Gmail чи YouTube)',
@@ -970,6 +944,7 @@ export const setupSections: SetupSection[] = [
       'Готово — задавайте питання в чатi злiва, наприклад: "Якi показання до призначення антибiотикiв?"',
     ],
     note: 'Пiдказка: створiть окремi ноутбуки за темами — "Педiатрiя", "Кардiологiя", "Антибiотики". Кожен ноутбук вмiщує до 50 джерел.',
+    demoNotebookUrl: '#',
   },
   {
     id: 'B5',

@@ -4,22 +4,9 @@ import ToolkitNav from '../components/ai-toolkit/ToolkitNav/ToolkitNav';
 import { SafetyRules } from '../components/ai-toolkit/ToolkitIntro/ToolkitIntro';
 import BlockHeader from '../components/ai-toolkit/BlockHeader/BlockHeader';
 import SolutionCard from '../components/ai-toolkit/SolutionCard/SolutionCard';
-import ToolkitMistakes from '../components/ai-toolkit/ToolkitMistakes/ToolkitMistakes';
 import { ToolkitSetupContent } from '../components/ai-toolkit/ToolkitSetup/ToolkitSetup';
 import PasswordGate from '../components/ai-toolkit/PasswordGate/PasswordGate';
 import styles from './AiToolkitPage.module.css';
-
-function StepHeader({ step, title, description }: { step: number; title: string; description?: string }) {
-  return (
-    <div className={styles.stepHeader}>
-      <div className={styles.stepTitleRow}>
-        <span className={styles.stepCircle} aria-hidden="true">{step}</span>
-        <h2 className={styles.stepTitle}>Крок {step}: {title}</h2>
-      </div>
-      {description && <p className={styles.stepDescription}>{description}</p>}
-    </div>
-  );
-}
 
 function CollapsibleStep({
   id,
@@ -77,19 +64,15 @@ export default function AiToolkitPage() {
     return Date.now() - ts < 30 * 24 * 60 * 60 * 1000;
   });
 
-  const [isReturningUser] = useState(
-    () => localStorage.getItem('toolkit_visited') === 'true'
-  );
-
   const [expandedSteps, setExpandedSteps] = useState<Record<string, boolean>>(() => {
     // Check hash for deep links
     const hash = window.location.hash;
     const returning = localStorage.getItem('toolkit_visited') === 'true';
-    const defaultExpanded = !returning;
 
     return {
-      'step-setup': hash === '#step-setup' ? true : defaultExpanded,
-      'step-safety': hash === '#step-safety' ? true : defaultExpanded,
+      'step-setup': hash === '#step-setup' ? true : !returning,
+      'step-safety': hash === '#step-safety' ? true : false,
+      'step-solutions': hash === '#step-solutions' ? true : false,
     };
   });
 
@@ -102,7 +85,7 @@ export default function AiToolkitPage() {
   useEffect(() => {
     const handleHashChange = () => {
       const hash = window.location.hash.replace('#', '');
-      if (hash === 'step-setup' || hash === 'step-safety') {
+      if (hash === 'step-setup' || hash === 'step-safety' || hash === 'step-solutions') {
         setExpandedSteps((prev) => ({ ...prev, [hash]: true }));
       }
     };
@@ -172,20 +155,22 @@ export default function AiToolkitPage() {
     return <PasswordGate onSuccess={() => setAuthenticated(true)} />;
   }
 
-  const bothCollapsed = !expandedSteps['step-setup'] && !expandedSteps['step-safety'];
-
   return (
     <div className={styles.toolkitPage}>
       <ToolkitNav blocks={blocks} />
       <main className={styles.content}>
-        {/* Hint banner for returning users when both steps are collapsed */}
-        {isReturningUser && bothCollapsed && (
-          <div className={styles.returnHint}>
-            Вже налаштували? Переходьте до рішень ↓
-          </div>
-        )}
+        <header className={styles.welcomeHeader}>
+          <h1 className={styles.welcomeTitle}>ШІ-помічник лікаря</h1>
+          <p className={styles.welcomeSubtitle}>
+            19 готових рішень для вашої щоденної практики
+          </p>
+          <p className={styles.welcomeInstruction}>
+            Почніть з Кроку 1 — налаштуйте інструменти. Далі — правила безпеки.
+            Потім — оберіть рішення для вашої задачі.
+          </p>
+        </header>
 
-        {/* Крок 1: Налаштуйте інструменти */}
+{/* Крок 1: Налаштуйте інструменти */}
         <CollapsibleStep
           id="step-setup"
           step={1}
@@ -202,7 +187,7 @@ export default function AiToolkitPage() {
           id="step-safety"
           step={2}
           title="Правила безпеки"
-          description="Прочитайте 5 правил — це захистить від помилок ШІ."
+          description="Прочитайте правила — це захистить від помилок ШІ."
           expanded={expandedSteps['step-safety']}
           onToggle={() => toggleStep('step-safety')}
         >
@@ -210,8 +195,14 @@ export default function AiToolkitPage() {
         </CollapsibleStep>
 
         {/* Крок 3: Оберіть задачу */}
-        <section className={styles.stepSection} id="step-solutions">
-          <StepHeader step={3} title="Знайдіть своє рішення" description="Оберіть задачу, скопіюйте промпт і вставте в інструмент." />
+        <CollapsibleStep
+          id="step-solutions"
+          step={3}
+          title="Знайдіть своє рішення"
+          description="Оберіть задачу, скопіюйте промпт і вставте в інструмент."
+          expanded={expandedSteps['step-solutions']}
+          onToggle={() => toggleStep('step-solutions')}
+        >
           {blocks.map((block) => (
             <div
               key={block.id}
@@ -231,9 +222,7 @@ export default function AiToolkitPage() {
               </div>
             </div>
           ))}
-        </section>
-
-        <ToolkitMistakes />
+        </CollapsibleStep>
       </main>
     </div>
   );
