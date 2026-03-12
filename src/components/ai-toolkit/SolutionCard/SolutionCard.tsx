@@ -31,9 +31,10 @@ function getToolDisplayName(tool: string): string {
 interface SolutionCardProps {
   solution: Solution;
   blockColor: string;
+  startHere?: boolean;
 }
 
-export default function SolutionCard({ solution, blockColor }: SolutionCardProps) {
+export default function SolutionCard({ solution, blockColor, startHere }: SolutionCardProps) {
   const revealRef = useScrollReveal<HTMLDivElement>();
   const [expanded, setExpanded] = useState(false);
   const [copied, setCopied] = useState(false);
@@ -81,7 +82,12 @@ export default function SolutionCard({ solution, blockColor }: SolutionCardProps
                 <span className={styles.solutionId}>{solution.id}</span>
                 {solution.title}
               </h3>
-              <ToolBadge tool={solution.tool} />
+              <div className={styles.badges}>
+                {startHere && (
+                  <span className={styles.startHereBadge}>⭐ Почніть з цього</span>
+                )}
+                <ToolBadge tool={solution.tool} />
+              </div>
             </div>
           </div>
 

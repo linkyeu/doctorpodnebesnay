@@ -211,7 +211,7 @@ export default function AiToolkitPage() {
 
         {/* Крок 3: Оберіть задачу */}
         <section className={styles.stepSection} id="step-solutions">
-          <StepHeader step={3} title="Оберіть задачу" description="Знайдіть свою задачу, скопіюйте промпт і вставте в інструмент." />
+          <StepHeader step={3} title="Знайдіть своє рішення" description="Оберіть задачу, скопіюйте промпт і вставте в інструмент." />
           {blocks.map((block) => (
             <div
               key={block.id}
@@ -225,6 +225,7 @@ export default function AiToolkitPage() {
                     key={solution.id}
                     solution={solution}
                     blockColor={block.color}
+                    startHere={solution.id === 'A1'}
                   />
                 ))}
               </div>

@@ -12,10 +12,8 @@ export default function ToolkitNav({ blocks }: ToolkitNavProps) {
   const navRef = useRef<HTMLElement>(null);
 
   const topSections = [
-    { id: 'intro', label: 'Що це таке' },
-    { id: 'safety', label: 'Правила безпеки' },
-    { id: 'tool-comparison', label: 'Інструменти' },
-    { id: 'setup', label: 'Налаштування' },
+    { id: 'step-setup', label: 'Крок 1: Налаштування' },
+    { id: 'step-safety', label: 'Крок 2: Безпека' },
   ];
 
   const bottomSections = [
@@ -68,7 +66,10 @@ export default function ToolkitNav({ blocks }: ToolkitNavProps) {
     (id: string) => {
       const el = document.getElementById(id);
       if (el) {
-        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        // Manual offset calculation — more reliable than scrollIntoView
+        // when sticky headers are present
+        const y = el.getBoundingClientRect().top + window.scrollY - 80;
+        window.scrollTo({ top: Math.max(0, y), behavior: 'smooth' });
       }
       setIsOpen(false);
     },

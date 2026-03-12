@@ -509,7 +509,7 @@ const blockCSolutions: Solution[] = [
     },
   },
   {
-    id: 'C6',
+    id: 'C5',
     block: 'C',
     title: 'Консультацiя з рiдкiсного / атипового випадку',
     tool: 'ChatGPT',
@@ -583,7 +583,7 @@ const blockDSolutions: Solution[] = [
     },
   },
   {
-    id: 'D4',
+    id: 'D3',
     block: 'D',
     cardType: 'hybrid',
     title: 'Резюме статтi, книги або курсу',
@@ -628,7 +628,7 @@ const blockDSolutions: Solution[] = [
     },
   },
   {
-    id: 'D5',
+    id: 'D4',
     block: 'D',
     cardType: 'workflow',
     title: 'Пiдкаст-резюме: 200 сторiнок → 15 хвилин',
@@ -653,7 +653,7 @@ const blockDSolutions: Solution[] = [
     },
   },
   {
-    id: 'D7',
+    id: 'D5',
     block: 'D',
     cardType: 'hybrid',
     title: 'Пропустили вебiнар? Конспект за 5 хвилин',
@@ -688,7 +688,7 @@ const blockDSolutions: Solution[] = [
     },
   },
   {
-    id: 'D8',
+    id: 'D6',
     block: 'D',
     cardType: 'workflow',
     title: 'Протокол → FAQ за 30 секунд (без промптiв)',
@@ -713,7 +713,7 @@ const blockDSolutions: Solution[] = [
     },
   },
   {
-    id: 'D6',
+    id: 'D7',
     block: 'D',
     cardType: 'workflow',
     title: 'Щотижневий огляд лiтератури — бути в курсi без вигорання',
@@ -766,7 +766,7 @@ export const blocks: Block[] = [
   {
     id: 'D',
     title: 'Знання та розвиток',
-    subtitle: 'запобiгає ВИГОРАННЮ',
+    subtitle: 'тримайте руку на пульсi',
     color: BLOCK_COLORS.D,
     solutions: blockDSolutions,
   },
