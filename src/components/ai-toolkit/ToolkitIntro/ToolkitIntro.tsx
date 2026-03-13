@@ -8,17 +8,6 @@ export function SafetyRules() {
     <div className={styles.safetyGrid}>
       {safetyRules.map((rule) => (
         <div key={rule.id} className={styles.safetyCard}>
-          {rule.image && (
-            <div className={styles.safetyImageWrapper}>
-              <img
-                src={rule.image}
-                alt=""
-                aria-hidden="true"
-                className={styles.safetyImage}
-                loading="lazy"
-              />
-            </div>
-          )}
           <div className={styles.safetyCardBody}>
             <span className={styles.safetyNumber}>{rule.id}</span>
             <div className={styles.safetyContent}>

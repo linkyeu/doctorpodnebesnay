@@ -17,6 +17,8 @@ Landing page for Dr. Luba — a family doctor specializing in evidence-based par
 
 No test runner is configured.
 
+**ALWAYS verify website changes in the browser** (localhost dev server) after editing page content, components, or data files. Visual spot-check catches rendering issues that build/lint miss.
+
 ## Tech Stack
 
 - React 19, TypeScript 5.9 (strict), Vite 7, React Router v7 (`react-router-dom`)
@@ -63,7 +65,7 @@ React Router app with two routes defined in `App.tsx`:
 - `public/images/doctor-lyuba-portrait.png` — Professional photo cutout (waist-up, transparent bg)
 - `public/images/navigator/tiles/` — 24 line-art illustration PNGs for NavigatorTiles (Gemini-generated)
 - `public/images/services/` — 3 step-process illustrations (`step-1-describe.png`, `step-2-answer.png`, `step-3-followup.png`)
-- `public/images/when-to-contact/` — 7 topic illustrations (6 on-brand gradient+leaves style + 1 simpler outline style — see Graphic Design Guide)
+- `public/images/when-to-contact/` — 7 topic illustrations (6 on-brand gradient+leaves style + 1 simpler outline style)
 
 ## Mobile First
 
@@ -104,38 +106,3 @@ React Router app with two routes defined in `App.tsx`:
 - `.sr-only` utility class available in global.css
 - `prefers-reduced-motion: reduce` disables all animations (mesh, marquee, reveals)
 
-## Graphic Design Guide
-
-All illustrations are generated with **Google Gemini** unless noted. Use this guide when creating new graphics to keep them visually consistent.
-
-### Line-art icons (Navigator, WhenToContact, Services)
-
-The primary illustration style used across most sections:
-
-- Minimal line-art, ~3px stroke in deep teal-navy (`#1B3A4B`–`#2C3E50`)
-- Sparse accent fills in muted dusty rose and teal
-- Scattered small decorative leaf/petal shapes in rose and slate-teal
-- Soft vertical gradient background: warm ivory/cream top → muted teal-blue bottom
-- Square PNG format
-
-### Hero illustration (`hero-illustration.png`)
-
-- Flowing organic curves forming a stylized mother cradling a child
-- Same teal-navy strokes + rose center accent as the line-art icons
-- Same petal scatter and gradient background
-
-### Hero background (`hero-bg.png`)
-
-- Abstract flowing ribbon waves in teal and warm amber/gold
-- Soft bokeh circles scattered throughout
-- Fades to white at bottom-right
-- Used behind the gradient mesh overlay in the Hero section
-
-### Doctor portrait (`doctor-lyuba-portrait.png`)
-
-- Real photograph — not illustrated
-- Professional photo, transparent/white background cutout, waist-up pose
-
-### Style inconsistency note: `pregnancy.png`
-
-The `when-to-contact/pregnancy.png` uses a simpler style — a single continuous outline silhouette on a plain white background (no gradient, no leaf scatter). It matches the teal-navy stroke color only. When creating new WhenToContact illustrations, use the consistent gradient+leaves style from the other 6 illustrations, not this simpler variant.

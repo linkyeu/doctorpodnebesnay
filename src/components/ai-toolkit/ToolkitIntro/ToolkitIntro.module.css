@@ -17,23 +17,6 @@
   overflow: hidden;
 }
 
-.safetyImageWrapper {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: var(--space-4) var(--space-4) 0;
-  max-height: 140px;
-  overflow: hidden;
-}
-
-.safetyImage {
-  width: 120px;
-  height: 120px;
-  object-fit: contain;
-  mask-image: radial-gradient(ellipse 70% 70% at center, black 60%, transparent 100%);
-  -webkit-mask-image: radial-gradient(ellipse 70% 70% at center, black 60%, transparent 100%);
-}
-
 .safetyCardBody {
   display: flex;
   gap: var(--space-3);
