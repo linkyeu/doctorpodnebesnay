@@ -16,7 +16,7 @@
 
 .heading {
   font-family: var(--font-body);
-  font-size: var(--text-3xl);
+  font-size: var(--text-xl);
   font-weight: var(--weight-bold);
   color: var(--color-primary);
   margin-bottom: var(--space-8);
@@ -39,44 +39,131 @@
   gap: var(--space-6);
 }
 
-.subsectionHeader {
+/* ── Subsection Toggle (Block-header style) ── */
+
+.subsectionToggle {
+  display: block;
+  width: 100%;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  text-align: left;
+  font: inherit;
+  color: inherit;
+}
+
+.subsectionToggle:focus-visible {
+  outline: 2px solid var(--block-color);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+.subsectionTopBar {
+  height: 6px;
+  background-color: var(--block-color);
+  border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+}
+
+.subsectionContent {
   display: flex;
   align-items: center;
-  gap: var(--space-3);
-  padding-bottom: var(--space-3);
-  border-bottom: 3px solid var(--color-primary);
+  gap: var(--space-4);
+  padding: var(--space-6) var(--space-4);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-top: none;
+  border-radius: 0 0 var(--radius-md) var(--radius-md);
+  box-shadow: var(--shadow-sm);
 }
 
-.subsectionHeader_chatgpt {
-  border-bottom-color: #16A34A;
+.subsectionBadge {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-full);
+  background-color: var(--block-color);
 }
 
-.subsectionHeader_notebooklm {
-  border-bottom-color: #2563EB;
+.subsectionBadgeLetter {
+  font-family: var(--font-body);
+  font-size: var(--text-xl);
+  font-weight: var(--weight-bold);
+  color: #fff;
+  line-height: 1;
+}
+
+.subsectionText {
+  flex: 1;
+  min-width: 0;
 }
 
 .subsectionTitle {
   font-family: var(--font-body);
-  font-size: var(--text-xl);
+  font-size: var(--text-lg);
   font-weight: var(--weight-bold);
-  color: var(--color-primary);
+  color: var(--color-text);
   margin: 0;
   line-height: var(--leading-snug);
 }
 
-.subsectionHeader_chatgpt .subsectionTitle {
-  color: #16A34A;
-}
+/* ── Subsection Chevron ── */
 
-.subsectionHeader_notebooklm .subsectionTitle {
-  color: #2563EB;
-}
-
-.subsectionIcon {
+.subsectionChevron {
+  display: inline-block;
   width: 1.25rem;
   height: 1.25rem;
+  margin-left: auto;
   flex-shrink: 0;
-  color: currentColor;
+  transition: transform 0.3s ease;
+  position: relative;
+}
+
+.subsectionChevron::before {
+  content: '';
+  display: block;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-right: 2px solid var(--block-color);
+  border-bottom: 2px solid var(--block-color);
+  transform: rotate(-45deg);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -0.3rem;
+  margin-left: -0.35rem;
+}
+
+.subsectionChevronOpen {
+  transform: rotate(180deg);
+}
+
+/* ── Subsection Collapsible (same grid animation as page-level) ── */
+
+.subsectionCollapsible {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.3s ease;
+}
+
+.subsectionCollapsibleOpen {
+  grid-template-rows: 1fr;
+}
+
+.subsectionInner {
+  overflow: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .subsectionCollapsible {
+    transition: none;
+  }
+  .subsectionChevron {
+    transition: none;
+  }
 }
 
 /* ── Cards ── */
@@ -115,7 +202,7 @@
 
 .setupTitle {
   font-family: var(--font-body);
-  font-size: var(--text-lg);
+  font-size: var(--text-base);
   font-weight: var(--weight-semibold);
   color: var(--color-primary);
   margin-bottom: 0;
@@ -543,44 +630,6 @@
   border-left: 3px solid var(--color-primary);
 }
 
-/* ── Demo Notebook Callout ── */
-
-.demoNotebookCallout {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-3);
-  padding: var(--space-4);
-  margin-bottom: var(--space-4);
-  background: #eff6ff;
-  border-radius: var(--radius-md);
-  border: 1px dashed #2563EB;
-}
-
-.demoNotebookText {
-  font-family: var(--font-body);
-  font-size: var(--text-sm);
-  line-height: var(--leading-normal);
-  color: var(--color-text);
-  margin: 0;
-}
-
-.demoNotebookLink {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-2);
-  font-family: var(--font-body);
-  font-size: var(--text-sm);
-  font-weight: var(--weight-semibold);
-  color: #2563EB;
-  text-decoration: none;
-  transition: opacity var(--transition-fast);
-}
-
-.demoNotebookLink:hover {
-  opacity: 0.8;
-  text-decoration: underline;
-}
-
 /* ── Note ── */
 
 .setupNote {
@@ -600,5 +649,23 @@
 @media (min-width: 768px) {
   .container {
     padding: 0 var(--space-8);
+  }
+
+  .subsectionContent {
+    padding: var(--space-8) var(--space-6);
+    gap: var(--space-6);
+  }
+
+  .subsectionBadge {
+    width: 56px;
+    height: 56px;
+  }
+
+  .subsectionBadgeLetter {
+    font-size: var(--text-2xl);
+  }
+
+  .subsectionTopBar {
+    height: 8px;
   }
 }
