@@ -1,42 +1,31 @@
-import {
-  safetyRules,
-} from '../../../data/ai-toolkit';
+import { aiPitfalls } from '../../../data/ai-toolkit';
 import styles from './ToolkitIntro.module.css';
 
-export function SafetyRules() {
+export function AiPitfalls() {
   return (
-    <div className={styles.safetyGrid}>
-      {safetyRules.map((rule) => (
-        <div key={rule.id} className={styles.safetyCard}>
-          <div className={styles.safetyCardBody}>
-            <span className={styles.safetyNumber}>{rule.id}</span>
-            <div className={styles.safetyContent}>
-              <h4 className={styles.safetyTitle}>{rule.title}</h4>
-              <p className={styles.safetyDescription}>{rule.description}</p>
-              {rule.example && (
-                <div className={styles.safetyExample}>
-                  <div className={styles.exampleBad}>
-                    <span className={styles.exampleLabel}>
-                      &#x274C; Погано:
-                    </span>{' '}
-                    {rule.example.bad}
-                  </div>
-                  <div className={styles.exampleGood}>
-                    <span className={styles.exampleLabel}>
-                      &#x2705; Добре:
-                    </span>{' '}
-                    {rule.example.good}
-                  </div>
-                </div>
-              )}
+    <>
+      <div className={styles.pitfallList}>
+        {aiPitfalls.map((pitfall) => (
+          <div key={pitfall.id} className={styles.pitfallCard}>
+            <img
+              src={pitfall.image}
+              alt=""
+              aria-hidden="true"
+              className={styles.pitfallImage}
+              loading="lazy"
+            />
+            <div className={styles.pitfallText}>
+              <h4 className={styles.pitfallTitle}>{pitfall.title}</h4>
+              <p className={styles.pitfallDescription}>{pitfall.description}</p>
+              <p className={styles.pitfallSolution}>&#x2705; {pitfall.solution}</p>
             </div>
           </div>
-        </div>
-      ))}
-    </div>
+        ))}
+      </div>
+    </>
   );
 }
 
 export default function ToolkitIntro() {
-  return <SafetyRules />;
+  return <AiPitfalls />;
 }

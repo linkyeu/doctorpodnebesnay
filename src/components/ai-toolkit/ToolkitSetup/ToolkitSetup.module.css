@@ -195,6 +195,12 @@
   color: #16A34A;
 }
 
+.instructionStepNum_notebooklm {
+  background: #eff6ff;
+  border-color: #2563EB;
+  color: #2563EB;
+}
+
 .instructionStepText {
   font-family: var(--font-body);
   font-size: var(--text-sm);

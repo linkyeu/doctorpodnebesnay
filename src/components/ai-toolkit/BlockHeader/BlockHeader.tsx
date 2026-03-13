@@ -11,15 +11,16 @@ function pluralize(n: number): string {
 
 interface BlockHeaderProps {
   block: Block;
+  expanded?: boolean;
+  onToggle?: () => void;
 }
 
-export default function BlockHeader({ block }: BlockHeaderProps) {
-  return (
-    <div
-      id={`block-${block.id}`}
-      className={styles.header}
-      style={{ '--block-color': block.color } as React.CSSProperties}
-    >
+export default function BlockHeader({ block, expanded, onToggle }: BlockHeaderProps) {
+  const isCollapsible = expanded !== undefined && onToggle !== undefined;
+  const contentId = `block-${block.id}-content`;
+
+  const inner = (
+    <>
       <div className={styles.topBar} />
       <div className={styles.content}>
         <div className={styles.badge}>
@@ -33,7 +34,36 @@ export default function BlockHeader({ block }: BlockHeaderProps) {
             {pluralize(block.solutions.length)}
           </span>
         </div>
+        {isCollapsible && (
+          <span className={`${styles.chevron} ${expanded ? styles.chevronOpen : ''}`} aria-hidden="true" />
+        )}
       </div>
+    </>
+  );
+
+  if (isCollapsible) {
+    return (
+      <button
+        type="button"
+        id={`block-${block.id}`}
+        className={`${styles.header} ${styles.headerButton}`}
+        style={{ '--block-color': block.color } as React.CSSProperties}
+        onClick={onToggle}
+        aria-expanded={expanded}
+        aria-controls={contentId}
+      >
+        {inner}
+      </button>
+    );
+  }
+
+  return (
+    <div
+      id={`block-${block.id}`}
+      className={styles.header}
+      style={{ '--block-color': block.color } as React.CSSProperties}
+    >
+      {inner}
     </div>
   );
 }

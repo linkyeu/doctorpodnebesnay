@@ -85,11 +85,12 @@ function InstructionStep({
   number: number;
   text: React.ReactNode;
   screenshot?: { src: string; alt: string; caption?: string; video?: { mp4: string; webm: string } };
-  variant?: 'chatgpt';
+  variant?: 'chatgpt' | 'notebooklm';
 }) {
   const numClass = [
     styles.instructionStepNum,
     variant === 'chatgpt' && styles.instructionStepNum_chatgpt,
+    variant === 'notebooklm' && styles.instructionStepNum_notebooklm,
   ].filter(Boolean).join(' ');
 
   return (
@@ -115,12 +116,6 @@ function ChatGPTSetup() {
 
   return (
     <div className={styles.subsection}>
-      <div className={`${styles.subsectionHeader} ${styles.subsectionHeader_chatgpt}`}>
-        <svg className={styles.subsectionIcon} width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
-        </svg>
-        <h3 className={styles.subsectionTitle}>Налаштуйте ChatGPT</h3>
-      </div>
 
       {/* ── Card 1: Custom Instructions ── */}
       <div className={styles.setupCard}>
@@ -231,13 +226,41 @@ function NotebookLMSetup() {
 
         {b6.intro && <PurposeCallout text={b6.intro} />}
 
-        {b6.steps && (
-          <ol className={styles.setupSteps}>
-            {b6.steps.map((step) => (
-              <li key={step} className={styles.setupStep}>{step}</li>
-            ))}
-          </ol>
-        )}
+        <InstructionStep
+          number={1}
+          variant="notebooklm"
+          text={<>Вiдкрийте <strong>notebooklm.google.com</strong> → увiйдiть через Google-акаунт → натиснiть <strong>"New notebook"</strong></>}
+          screenshot={b6.screenshots?.[0] ? {
+            src: b6.screenshots[0].src,
+            alt: b6.screenshots[0].alt,
+            caption: undefined,
+            video: b6.screenshots[0].video,
+          } : undefined}
+        />
+
+        <InstructionStep
+          number={2}
+          variant="notebooklm"
+          text={<>Натиснiть <strong>"Add source"</strong> → оберiть <strong>"PDF"</strong> → завантажте один протокол або настанову</>}
+          screenshot={b6.screenshots?.[1] ? {
+            src: b6.screenshots[1].src,
+            alt: b6.screenshots[1].alt,
+            caption: undefined,
+            video: b6.screenshots[1].video,
+          } : undefined}
+        />
+
+        <InstructionStep
+          number={3}
+          variant="notebooklm"
+          text={<>Задайте питання в чатi — наприклад: <strong>«Якi показання до призначення антибiотикiв?»</strong> — i отримайте вiдповiдь <strong>з цитатами та номерами сторiнок</strong></>}
+          screenshot={b6.screenshots?.[2] ? {
+            src: b6.screenshots[2].src,
+            alt: b6.screenshots[2].alt,
+            caption: undefined,
+            video: b6.screenshots[2].video,
+          } : undefined}
+        />
 
         {b6.demoNotebookUrl && (
           <div className={styles.demoNotebookCallout}>

@@ -83,44 +83,37 @@ export const mistakes: MistakeCard[] = [
   },
 ];
 
-// ── Safety rules ──
+// ── AI Pitfalls (built-in protection) ──
 
-export interface SafetyRule {
+export interface AiPitfall {
   id: number;
   title: string;
   description: string;
-  example?: { bad: string; good: string };
+  solution: string;
+  image: string;
 }
 
-export const safetyRules: SafetyRule[] = [
+export const aiPitfalls: AiPitfall[] = [
   {
     id: 1,
-    title: 'ШІ = чернетка, ви = рішення',
-    description: 'ШІ генерує текст на основі ймовірностей, а не медичних знань. Використовуйте як стартову точку, ніколи як фінальну відповідь. Ви несете відповідальність за кожне клінічне рішення.',
+    title: 'Галюцинації',
+    description: 'ШІ може вигадувати факти, цитати і джерела',
+    solution: 'NotebookLM шукає у ваших джерелах',
+    image: '/images/toolkit/safety/pitfall-1.png',
   },
   {
     id: 2,
-    title: 'Захищайте дані пацієнтів',
-    description: 'НІКОЛИ не вводьте ПІБ, дату народження, номер медичної картки, адресу. Замість цього: "Жінка, 36 років, скарги на..."',
+    title: 'Підлабузництво',
+    description: 'ШІ схильний погоджуватись, навіть коли ви помиляєтесь',
+    solution: 'Custom Instructions + «що ПРОТИ?»',
+    image: '/images/toolkit/safety/pitfall-2.png',
   },
   {
     id: 3,
-    title: 'Перевіряйте клінічні дані',
-    description: 'ШІ може згенерувати неправильні дози, застарілі протоколи, вигадані цитати. Завжди звіряйте клінічні дані з офіційними джерелами — BNF, PubMed, настанови МОЗ.',
-  },
-  {
-    id: 4,
-    title: 'Не підтверджуйте — ставте під сумнів',
-    description: 'Не просіть ШІ підтвердити ваш діагноз — це підсилює помилку підтвердження. Запитайте: "Які аргументи ПРОТИ цього діагнозу?" Це найкращий захист від когнітивних пасток.',
-    example: {
-      bad: 'Підтверди, що це синусит',
-      good: 'Які аргументи ПРОТИ діагнозу синусит при таких симптомах?',
-    },
-  },
-  {
-    id: 5,
-    title: 'ШІ впевнений, навіть коли помиляється',
-    description: 'ШІ ніколи не скаже "я не знаю." Він згенерує впевнену відповідь навіть коли правильна відповідь — "недостатньо даних." Чим впевненіше звучить — тим важливіше перевірити.',
+    title: 'Застарілі дані',
+    description: 'ШІ навчений на старих даних і не знає нових протоколів',
+    solution: 'NotebookLM працює з вашими файлами',
+    image: '/images/toolkit/safety/pitfall-3.png',
   },
 ];
 
@@ -394,7 +387,7 @@ const blockCSolutions: Solution[] = [
   {
     id: 'C2',
     block: 'C',
-    title: 'Аналiз лабораторних результатiв — побачити зв\'язки',
+    title: 'Аналiз лабораторних результатiв',
     tool: 'ChatGPT',
     prompt: `Ти — клiнiчний лаборант-консультант.
 
@@ -521,37 +514,7 @@ const blockDSolutions: Solution[] = [
   {
     id: 'D1',
     block: 'D',
-    title: 'Переклад медичної статтi + резюме',
-    tool: 'DeepL + ChatGPT',
-    prompt: `Ти — медичний перекладач з досвiдом роботи з науковими текстами.
-
-Переклади медичний текст з англiйської на українську i додай резюме.
-
-Правила перекладу:
-- Латинськi термiни залиш в дужках при першому згадуваннi
-- Збережи оригiнальнi назви препаратiв (МНН)
-- Розшифруй абревiатури при першому вживаннi
-- Збережи структуру оригiналу (абзаци, списки, таблицi)
-
-Текст для перекладу:
-[ВСТАВТЕ ТЕКСТ СТАТТI]
-
-Пiсля перекладу додай:
-
-РЕЗЮМЕ ДЛЯ ЛIКАРЯ (3-5 пунктiв):
-1. Головне питання дослiдження
-2. Ключовi результати (з цифрами)
-3. Що це означає для практики
-4. Обмеження (1-2 пункти)`,
-    placeholders: ['ВСТАВТЕ ТЕКСТ СТАТТI'],
-    example: {
-      input: '"Cognitive behavioral therapy versus pharmacotherapy for the treatment of generalized anxiety disorder in primary care settings..."',
-    },
-  },
-  {
-    id: 'D2',
-    block: 'D',
-    title: 'Доказова вiдповiдь з джерелами',
+    title: 'Знайти вiдповiдь у протоколi за 10 секунд',
     tool: 'NotebookLM',
     promptNote: 'Спочатку завантажте гайдлайн/настанову як PDF в NotebookLM',
     prompt: `[ВАШЕ КЛIНIЧНЕ ПИТАННЯ]
@@ -565,7 +528,7 @@ const blockDSolutions: Solution[] = [
     },
   },
   {
-    id: 'D3',
+    id: 'D2',
     block: 'D',
     cardType: 'hybrid',
     title: 'Резюме статтi, книги або курсу',
@@ -610,7 +573,7 @@ const blockDSolutions: Solution[] = [
     },
   },
   {
-    id: 'D4',
+    id: 'D3',
     block: 'D',
     cardType: 'workflow',
     title: 'Пiдкаст-резюме: 200 сторiнок → 15 хвилин',
@@ -635,7 +598,7 @@ const blockDSolutions: Solution[] = [
     },
   },
   {
-    id: 'D5',
+    id: 'D4',
     block: 'D',
     cardType: 'hybrid',
     title: 'Пропустили вебiнар? Конспект за 5 хвилин',
@@ -670,7 +633,7 @@ const blockDSolutions: Solution[] = [
     },
   },
   {
-    id: 'D6',
+    id: 'D5',
     block: 'D',
     cardType: 'workflow',
     title: 'Протокол → FAQ за 30 секунд (без промптiв)',
@@ -695,7 +658,7 @@ const blockDSolutions: Solution[] = [
     },
   },
   {
-    id: 'D7',
+    id: 'D6',
     block: 'D',
     cardType: 'workflow',
     title: 'Щотижневий огляд лiтератури — бути в курсi без вигорання',
@@ -921,15 +884,39 @@ export const setupSections: SetupSection[] = [
   {
     id: 'B6',
     title: 'Створiть перший ноутбук в NotebookLM',
-    intro: 'ChatGPT знає все, але може помилятися. NotebookLM знає ТIЛЬКИ ваш PDF — i цитує зi сторiнками. Просте правило: є PDF протоколу чи гайдлайну → NotebookLM. Загальне питання → ChatGPT. Iнтерфейс NotebookLM англiйською — це нормально, вiдповiдi будуть українською.',
+    intro: 'NotebookLM працює з ВАШИМИ файлами: завантажуєте PDF протоколу → задаєте питання → отримуєте вiдповiдь з цитатами та номерами сторiнок. Жодних вигаданих джерел. Просте правило: є PDF протоколу → NotebookLM. Загальне питання → ChatGPT. Iнтерфейс англiйською — це нормально, вiдповiдi будуть українською.',
     steps: [
-      'Вiдкрийте notebooklm.google.com',
-      'Увiйдiть через Google-акаунт (той самий, що для Gmail чи YouTube)',
-      'Натиснiть "New notebook" (синя кнопка злiва)',
+      'Вiдкрийте notebooklm.google.com → увiйдiть через Google-акаунт → натиснiть "New notebook"',
       'Натиснiть "Add source" → оберiть "PDF" → завантажте один протокол або настанову',
-      'Готово — задавайте питання в чатi злiва, наприклад: "Якi показання до призначення антибiотикiв?"',
+      'Задайте питання в чатi — наприклад: "Якi показання до призначення антибiотикiв?" — i отримайте вiдповiдь з цитатами та номерами сторiнок',
     ],
-    note: 'Пiдказка: створiть окремi ноутбуки за темами — "Педiатрiя", "Кардiологiя", "Антибiотики". Кожен ноутбук вмiщує до 50 джерел.',
+    screenshots: [
+      {
+        src: '/images/toolkit/setup/notebooklm-create.webp',
+        alt: 'Створення нового ноутбуку в NotebookLM',
+        video: {
+          mp4: '/images/toolkit/setup/notebooklm-create.mp4',
+          webm: '/images/toolkit/setup/notebooklm-create.webm',
+        },
+      },
+      {
+        src: '/images/toolkit/setup/notebooklm-upload.webp',
+        alt: 'Завантаження PDF протоколу в NotebookLM',
+        video: {
+          mp4: '/images/toolkit/setup/notebooklm-upload.mp4',
+          webm: '/images/toolkit/setup/notebooklm-upload.webm',
+        },
+      },
+      {
+        src: '/images/toolkit/setup/notebooklm-wow.webp',
+        alt: 'NotebookLM вiдповiдає з цитатами та номерами сторiнок',
+        video: {
+          mp4: '/images/toolkit/setup/notebooklm-wow.mp4',
+          webm: '/images/toolkit/setup/notebooklm-wow.webm',
+        },
+      },
+    ],
+    note: '',
     demoNotebookUrl: '#',
   },
   {

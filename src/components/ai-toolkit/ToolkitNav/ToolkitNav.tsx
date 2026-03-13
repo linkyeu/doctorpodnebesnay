@@ -13,7 +13,7 @@ export default function ToolkitNav({ blocks }: ToolkitNavProps) {
 
   const topSections = [
     { id: 'step-setup', label: 'Крок 1: Налаштування' },
-    { id: 'step-safety', label: 'Крок 2: Безпека' },
+    { id: 'step-safety', label: 'Крок 2: Захист' },
   ];
 
   const bottomSections = [

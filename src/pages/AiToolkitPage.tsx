@@ -1,7 +1,7 @@
 import { useEffect, useState, useCallback } from 'react';
 import { blocks } from '../data/ai-toolkit';
 import ToolkitNav from '../components/ai-toolkit/ToolkitNav/ToolkitNav';
-import { SafetyRules } from '../components/ai-toolkit/ToolkitIntro/ToolkitIntro';
+import { AiPitfalls } from '../components/ai-toolkit/ToolkitIntro/ToolkitIntro';
 import BlockHeader from '../components/ai-toolkit/BlockHeader/BlockHeader';
 import SolutionCard from '../components/ai-toolkit/SolutionCard/SolutionCard';
 import { ToolkitSetupContent } from '../components/ai-toolkit/ToolkitSetup/ToolkitSetup';
@@ -64,6 +64,14 @@ export default function AiToolkitPage() {
     return Date.now() - ts < 30 * 24 * 60 * 60 * 1000;
   });
 
+  const [expandedBlocks, setExpandedBlocks] = useState<Record<string, boolean>>(() =>
+    Object.fromEntries(blocks.map((b) => [b.id, false]))
+  );
+
+  const toggleBlock = useCallback((id: string) => {
+    setExpandedBlocks((prev) => ({ ...prev, [id]: !prev[id] }));
+  }, []);
+
   const [expandedSteps, setExpandedSteps] = useState<Record<string, boolean>>(() => {
     // Check hash for deep links
     const hash = window.location.hash;
@@ -99,7 +107,7 @@ export default function AiToolkitPage() {
 
   useEffect(() => {
     document.title =
-      'ШІ-помічник лікаря — 18 готових рішень для щоденної практики';
+      'ШІ-помічник лікаря — 17 готових рішень для щоденної практики';
 
     const metaDesc = document.querySelector('meta[name="description"]');
     const descContent =
@@ -114,7 +122,7 @@ export default function AiToolkitPage() {
     }
 
     const ogTags: Record<string, string> = {
-      'og:title': 'ШІ-помічник лікаря — 18 готових рішень',
+      'og:title': 'ШІ-помічник лікаря — 17 готових рішень',
       'og:description': descContent,
       'og:url': 'https://doctorpidnebesna.com/toolkit',
       'og:type': 'website',
@@ -159,17 +167,6 @@ export default function AiToolkitPage() {
     <div className={styles.toolkitPage}>
       <ToolkitNav blocks={blocks} />
       <main className={styles.content}>
-        <header className={styles.welcomeHeader}>
-          <h1 className={styles.welcomeTitle}>ШІ-помічник лікаря</h1>
-          <p className={styles.welcomeSubtitle}>
-            19 готових рішень для вашої щоденної практики
-          </p>
-          <p className={styles.welcomeInstruction}>
-            Почніть з Кроку 1 — налаштуйте інструменти. Далі — правила безпеки.
-            Потім — оберіть рішення для вашої задачі.
-          </p>
-        </header>
-
 {/* Крок 1: Налаштуйте інструменти */}
         <CollapsibleStep
           id="step-setup"
@@ -182,16 +179,16 @@ export default function AiToolkitPage() {
           <ToolkitSetupContent />
         </CollapsibleStep>
 
-        {/* Крок 2: Правила безпеки */}
+        {/* Крок 2: Відомі вади ChatGPT */}
         <CollapsibleStep
           id="step-safety"
           step={2}
-          title="Правила безпеки"
-          description="Прочитайте правила — це захистить від помилок ШІ."
+          title="Відомі вади ChatGPT"
+          description="У ChatGPT є три системні слабкості. У довіднику вони вже враховані — вам не потрібно про них думати."
           expanded={expandedSteps['step-safety']}
           onToggle={() => toggleStep('step-safety')}
         >
-          <SafetyRules />
+          <AiPitfalls />
         </CollapsibleStep>
 
         {/* Крок 3: Оберіть задачу */}
@@ -199,7 +196,7 @@ export default function AiToolkitPage() {
           id="step-solutions"
           step={3}
           title="Знайдіть своє рішення"
-          description="Оберіть задачу, скопіюйте промпт і вставте в інструмент."
+          description="Оберіть задачу і слідкуйте інструкціям"
           expanded={expandedSteps['step-solutions']}
           onToggle={() => toggleStep('step-solutions')}
         >
@@ -209,16 +206,27 @@ export default function AiToolkitPage() {
               className={styles.blockSection}
               style={{ '--block-bg': `color-mix(in srgb, ${block.color} 4%, transparent)` } as React.CSSProperties}
             >
-              <BlockHeader block={block} />
-              <div className={styles.solutionsGrid}>
-                {block.solutions.map((solution) => (
-                  <SolutionCard
-                    key={solution.id}
-                    solution={solution}
-                    blockColor={block.color}
-                    startHere={solution.id === 'A1'}
-                  />
-                ))}
+              <BlockHeader
+                block={block}
+                expanded={expandedBlocks[block.id]}
+                onToggle={() => toggleBlock(block.id)}
+              />
+              <div
+                id={`block-${block.id}-content`}
+                role="region"
+                className={`${styles.blockCollapsible} ${expandedBlocks[block.id] ? styles.blockCollapsibleOpen : ''}`}
+              >
+                <div className={styles.blockInner}>
+                  <div className={styles.solutionsGrid}>
+                    {block.solutions.map((solution) => (
+                      <SolutionCard
+                        key={solution.id}
+                        solution={solution}
+                        blockColor={block.color}
+                      />
+                    ))}
+                  </div>
+                </div>
               </div>
             </div>
           ))}
