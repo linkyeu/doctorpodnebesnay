@@ -4,28 +4,12 @@ interface ToolBadgeProps {
   tool: string;
 }
 
-const TOOL_EMOJI: Record<string, string> = {
-  ChatGPT: '\u{1F4AC}',
-  Perplexity: '\u{1F50D}',
-  NotebookLM: '\u{1F4D3}',
-  'Glass Health': '\u{1F3E5}',
-  DeepL: '\u{1F310}',
-  'Gamma.app': '\u{1F4CA}',
-  'tabletki.ua': '\u{1F48A}',
+const TOOL_COLORS: Record<string, { bg: string; text: string }> = {
+  'ChatGPT': { bg: 'rgba(22,163,74, 0.1)', text: '#15803D' },
+  'NotebookLM': { bg: 'rgba(37,99,235, 0.1)', text: '#1D4ED8' },
+  'Perplexity': { bg: 'rgba(124,58,237, 0.1)', text: '#6D28D9' },
+  'tabletki.ua': { bg: 'rgba(220,38,38, 0.1)', text: '#B91C1C' },
 };
-
-/**
- * Resolve emoji for a single tool name (case-insensitive substring match).
- */
-function getEmoji(name: string): string {
-  const trimmed = name.trim();
-  for (const [key, emoji] of Object.entries(TOOL_EMOJI)) {
-    if (trimmed.toLowerCase().includes(key.toLowerCase())) {
-      return emoji;
-    }
-  }
-  return '\u{1F6E0}'; // wrench fallback
-}
 
 /**
  * Split compound tool strings like "ChatGPT або Glass Health" or "tabletki.ua + ChatGPT"
@@ -40,14 +24,18 @@ export default function ToolBadge({ tool }: ToolBadgeProps) {
 
   return (
     <span className={styles.wrapper}>
-      {tools.map((t) => (
-        <span key={t} className={styles.badge}>
-          <span className={styles.emoji} aria-hidden="true">
-            {getEmoji(t)}
+      {tools.map((t) => {
+        const colors = TOOL_COLORS[t];
+        return (
+          <span
+            key={t}
+            className={styles.badge}
+            style={colors ? { backgroundColor: colors.bg, color: colors.text } : undefined}
+          >
+            {t}
           </span>
-          {t}
-        </span>
-      ))}
+        );
+      })}
     </span>
   );
 }

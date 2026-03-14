@@ -20,25 +20,24 @@ export default function BlockHeader({ block, expanded, onToggle }: BlockHeaderPr
   const contentId = `block-${block.id}-content`;
 
   const inner = (
-    <>
-      <div className={styles.topBar} />
-      <div className={styles.content}>
-        <div className={styles.badge}>
-          <span className={styles.letter}>{block.id}</span>
-        </div>
+    <div className={styles.content}>
+      <div className={styles.accentLine} />
+      <div className={styles.row}>
+        <span className={styles.letterPill}>
+          {block.id}
+        </span>
         <div className={styles.text}>
           <h2 className={styles.title}>{block.title}</h2>
           <p className={styles.subtitle}>{block.subtitle}</p>
-          <span className={styles.count}>
-            {block.solutions.length}{' '}
-            {pluralize(block.solutions.length)}
-          </span>
         </div>
+        <span className={styles.count}>
+          {block.solutions.length} {pluralize(block.solutions.length)}
+        </span>
         {isCollapsible && (
           <span className={`${styles.chevron} ${expanded ? styles.chevronOpen : ''}`} aria-hidden="true" />
         )}
       </div>
-    </>
+    </div>
   );
 
   if (isCollapsible) {

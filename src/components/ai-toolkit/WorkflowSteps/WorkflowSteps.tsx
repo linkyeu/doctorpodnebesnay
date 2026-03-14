@@ -50,7 +50,7 @@ interface WorkflowStepsProps {
 export default function WorkflowSteps({ steps, note }: WorkflowStepsProps) {
   return (
     <div className={styles.wrapper}>
-      <h4 className={styles.heading}>Як зробити:</h4>
+      <h4 className={styles.heading}>Інструкція</h4>
       <ol className={styles.list}>
         {steps.map((step, i) => (
           <li key={i} className={styles.step}>

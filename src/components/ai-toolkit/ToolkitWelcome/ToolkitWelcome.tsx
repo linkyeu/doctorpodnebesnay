@@ -36,7 +36,7 @@ export default function ToolkitWelcome({ onTabChange, onScrollToSolution }: Tool
         aria-expanded={expanded}
         aria-controls="welcome-content"
       >
-        <span className={styles.headerText}>Як працює довідник</span>
+        <span className={styles.headerText}>💡 Як працює довідник</span>
         <span className={`${styles.chevron} ${expanded ? styles.chevronOpen : ''}`} aria-hidden="true">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
             <polyline points="6 9 12 15 18 9" />
@@ -53,7 +53,7 @@ export default function ToolkitWelcome({ onTabChange, onScrollToSolution }: Tool
           {/* Block 1 — What is this */}
           <div className={styles.intro}>
             <p className={styles.body}>
-              Це не курс. Це довідник — відкривайте, коли потрібно. Кожне рішення — окрема задача з вашої практики: виписка, діагноз, аналізи, протоколи.
+              Це не курс. Це довідник — відкривайте, коли потрібно. Всередині — <strong>16 готових рішень</strong> для щоденної практики (виписки, діагностика, аналізи, протоколи) + <strong>6 блокнотів з протоколами МОЗ</strong>, де відповідь — з цитатою.
             </p>
             <p className={styles.body}>
               Ви працюєте з двома інструментами — обидва безкоштовні:
@@ -121,9 +121,9 @@ export default function ToolkitWelcome({ onTabChange, onScrollToSolution }: Tool
                     className={styles.stepLink}
                     onClick={() => { onTabChange('notebooks'); collapse(); }}
                   >
-                    Перевірте по протоколу
+                    Запитай протокол
                   </button>
-                  <span className={styles.stepMeta}> — відкрийте готовий ноутбук з протоколом МОЗ і задайте питання. Відповідь — з цитатою.</span>
+                  <span className={styles.stepMeta}> — готові блокноти з протоколами МОЗ. Задайте питання — відповідь з цитатою і номером сторінки.</span>
                 </div>
               </li>
               <li className={styles.step}>

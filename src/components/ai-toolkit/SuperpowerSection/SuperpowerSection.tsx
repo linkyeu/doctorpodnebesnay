@@ -1,138 +1,33 @@
-import { superpowerData, setupSections } from '../../../data/ai-toolkit';
-import { InstructionStep, PurposeCallout } from '../ToolkitSetup/ToolkitSetup';
+import { useState } from 'react';
+import { superpowerData } from '../../../data/ai-toolkit';
 import styles from './SuperpowerSection.module.css';
 
 export default function SuperpowerSection() {
-  const { explainer, trustPoints, readyNotebooks, audioDemo } =
-    superpowerData;
-
-  const b6 = setupSections.find(s => s.id === 'B6')!;
+  const { trustPoints, readyNotebooks } = superpowerData;
+  const [detailsOpen, setDetailsOpen] = useState(false);
 
   return (
     <div className={styles.section}>
-      {/* 2a: Audio Overview Demo (WOW-first) */}
-      <div className={styles.audioDemoHero}>
-        <div className={styles.audioDemoOverline}>Послухайте</div>
-        <h3 className={styles.audioDemoTitle}>🎧 Протокол МОЗ як подкаст</h3>
-        {audioDemo ? (
-          <>
-            <p className={styles.audioDemoLabel}>
-              AI перетворив протокол на 15-хвилинне обговорення. Два AI-ведучі розбирають ключові моменти. Послухайте 60 секунд:
-            </p>
-            {audioDemo.type === 'audio' ? (
-              <audio
-                className={styles.audioDemoPlayer}
-                controls
-                preload="metadata"
-                src={audioDemo.src}
-              >
-                Ваш браузер не підтримує аудіо.
-              </audio>
-            ) : (
-              <video
-                className={styles.audioDemoVideo}
-                controls
-                preload="metadata"
-                poster={audioDemo.poster}
-                src={audioDemo.src}
-              >
-                Ваш браузер не підтримує відео.
-              </video>
-            )}
-            <p className={styles.audioDemoCaption}>
-              {audioDemo.title} · {audioDemo.duration}
-            </p>
-          </>
-        ) : (
-          <p className={styles.audioDemoLabel}>
-            NotebookLM перетворює будь-який протокол на подкаст-обговорення двох AI-ведучих. 200 сторінок → 15 хвилин аудіо. Слухайте по дорозі на роботу.
+      {/* 1: Video demo — placeholder until recorded */}
+      <div id="video-demo" className={styles.videoDemo}>
+        <div className={styles.videoDemoPlaceholder}>
+          <span className={styles.videoDemoIcon} aria-hidden="true">🎬</span>
+          <p className={styles.videoDemoTitle}>Демо-відео (30 сек)</p>
+          <p className={styles.videoDemoDescription}>
+            Відкриваємо готовий блокнот з протоколом МОЗ → задаємо питання природною мовою → отримуємо відповідь з цитатою та номером сторінки
           </p>
-        )}
-        <p className={styles.audioDemoSubtitle}>
-          Це Audio Overview — фіча NotebookLM від Google
+          <span className={styles.videoDemoTag}>Відео буде тут</span>
+        </div>
+        <p className={styles.sourcesLine}>
+          Працює з будь-яким джерелом: протоколи МОЗ · підручники · статті · відео · лекції
         </p>
       </div>
 
-      {/* 2b: Brief Explainer (condensed) — light grey card */}
-      <div className={styles.explainerCard}>
-        <h3 className={styles.explainerTitle}>📖 {explainer.title}</h3>
-        <p className={styles.explainerText}>{explainer.content}</p>
-
-        {/* Compact ChatGPT vs NotebookLM comparison */}
-        <div className={styles.comparisonGrid}>
-          <div className={styles.comparisonCol} data-type="chatgpt">
-            <strong className={styles.comparisonLabel}>⚠️ ChatGPT:</strong> може вигадувати факти
-          </div>
-          <div className={styles.comparisonCol} data-type="notebooklm">
-            <strong className={styles.comparisonLabel}>✅ NotebookLM:</strong> тільки з ваших джерел
-          </div>
-        </div>
-      </div>
-
-      {/* 2c: Trust Points — light grey card */}
-      <div className={styles.trustCard}>
-        <h3 className={styles.trustTitle}>✅ Чому можна довiряти</h3>
-        <ul className={styles.trustList}>
-          {trustPoints.map((point, i) => (
-            <li key={i} className={styles.trustItem}>
-              <span className={styles.trustCheckmark} aria-hidden="true">✓</span>
-              {point}
-            </li>
-          ))}
-        </ul>
-      </div>
-
-      {/* 2d: Setup Guide — light blue card */}
-      <div className={styles.setupCard}>
-        <h3 className={styles.setupTitle}>🔧 Як створити свій ноутбук</h3>
-
-        <div className={styles.setupGuide}>
-          {b6.intro && <PurposeCallout text={b6.intro} />}
-
-          <InstructionStep
-            number={1}
-            variant="notebooklm"
-            text={<>Вiдкрийте <strong>notebooklm.google.com</strong> → увiйдiть через Google-акаунт → натиснiть <strong>&quot;New notebook&quot;</strong></>}
-            screenshot={b6.screenshots?.[0] ? {
-              src: b6.screenshots[0].src,
-              alt: b6.screenshots[0].alt,
-              caption: undefined,
-              video: b6.screenshots[0].video,
-            } : undefined}
-          />
-
-          <InstructionStep
-            number={2}
-            variant="notebooklm"
-            text={<>Натиснiть <strong>&quot;Додати джерела&quot;</strong> → додайте матерiал у будь-якому форматi</>}
-            screenshot={b6.screenshots?.[1] ? {
-              src: b6.screenshots[1].src,
-              alt: b6.screenshots[1].alt,
-              caption: undefined,
-              video: b6.screenshots[1].video,
-            } : undefined}
-          />
-
-          <InstructionStep
-            number={3}
-            variant="notebooklm"
-            text={<>Задайте питання в чатi — наприклад: <strong>&laquo;Якi показання до призначення антибiотикiв?&raquo;</strong> — i отримайте вiдповiдь <strong>з цитатами та номерами сторiнок</strong></>}
-            screenshot={b6.screenshots?.[2] ? {
-              src: b6.screenshots[2].src,
-              alt: b6.screenshots[2].alt,
-              caption: undefined,
-              video: b6.screenshots[2].video,
-            } : undefined}
-          />
-        </div>
-      </div>
-
-      {/* 2e: SUPER BONUS — Ready Notebooks — bold orange gradient */}
-      <div className={styles.bonusWrapper}>
-        <div className={styles.bonusOverline}>🎁 SUPER BONUS</div>
-        <h3 className={styles.bonusTitle}>Готовi ноутбуки — просто вiдкрийте</h3>
+      {/* 2: Ready Notebooks */}
+      <div id="ready-notebooks" className={styles.bonusWrapper}>
+        <h3 className={styles.bonusTitle}>Готові блокноти — просто відкрийте</h3>
         <p className={styles.bonusDescription}>
-          Ми вже завантажили протоколи МОЗ та мiжнароднi гайдлайни. Клiкнiть → одразу задавайте питання. Не потрiбно нiчого завантажувати.
+          Ми вже завантажили протоколи МОЗ та міжнародні гайдлайни. Клікніть → одразу задавайте питання. Не потрібно нічого завантажувати.
         </p>
         {readyNotebooks.length > 0 ? (
           <div className={styles.notebookList}>
@@ -159,20 +54,61 @@ export default function SuperpowerSection() {
                   rel="noopener noreferrer"
                   className={styles.notebookLink}
                 >
-                  Вiдкрити ноутбук →
+                  Відкрити блокнот →
                 </a>
               </div>
             ))}
           </div>
         ) : (
           <p className={styles.bonusEmpty}>
-            Ноутбуки готуються — скоро тут з'являться готовi протоколи МОЗ,
-            мiжнароднi гайдлайни та iншi корисни матерiали.
+            Блокноти готуються — скоро тут з'являться готові протоколи МОЗ,
+            міжнародні гайдлайни та інші корисні матеріали.
           </p>
         )}
         <p className={styles.bonusAudioNote}>
-          🎧 Кожен ноутбук має Audio Overview — послухайте протокол як подкаст
+          🎧 Кожен блокнот має Audio Overview — послухайте протокол як подкаст
         </p>
+      </div>
+
+      {/* 3: Collapsed "Як це працює" */}
+      <div id="how-it-works" className={styles.detailsWrapper}>
+        <button
+          type="button"
+          className={styles.detailsToggle}
+          onClick={() => setDetailsOpen((prev) => !prev)}
+          aria-expanded={detailsOpen}
+          aria-controls="details-content"
+        >
+          <span>ℹ️ Як це працює</span>
+          <span className={`${styles.detailsChevron} ${detailsOpen ? styles.detailsChevronOpen : ''}`} aria-hidden="true">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <polyline points="6 9 12 15 18 9" />
+            </svg>
+          </span>
+        </button>
+
+        <div
+          id="details-content"
+          className={`${styles.detailsContent} ${detailsOpen ? styles.detailsContentOpen : ''}`}
+        >
+          <div className={styles.detailsInner}>
+            <p className={styles.detailsText}>
+              <strong>NotebookLM</strong> — безкоштовний інструмент від Google. Він працює ТІЛЬКИ з вашими документами: завантажуєте протокол, статтю або підручник → задаєте питання → отримуєте відповідь з точною цитатою і номером сторінки. Жодних вигаданих фактів.
+            </p>
+
+            <div className={styles.trustCard}>
+              <h4 className={styles.trustTitle}>Чому можна довіряти</h4>
+              <ul className={styles.trustList}>
+                {trustPoints.map((point, i) => (
+                  <li key={i} className={styles.trustItem}>
+                    <span className={styles.trustCheckmark} aria-hidden="true">✓</span>
+                    {point}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

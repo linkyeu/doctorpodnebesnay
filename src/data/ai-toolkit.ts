@@ -35,6 +35,7 @@ export interface Solution {
   steps?: SolutionStep[];
   copyablePrompts?: CopyablePromptGroup[];
   readyNotebook?: { title: string; url: string };
+  illustration?: string;
 }
 
 export interface Block {
@@ -125,6 +126,25 @@ export const aiPitfalls: AiPitfall[] = [
 
 
 // ── Solutions ──
+
+const solutionIllustrations: Record<string, string> = {
+  'D1': '/images/toolkit/illustrations/solutions/D1-vypyska.png',
+  'D2': '/images/toolkit/illustrations/solutions/D2-forms.png',
+  'C1': '/images/toolkit/illustrations/solutions/C1-patient.png',
+  'C2': '/images/toolkit/illustrations/solutions/C2-message.png',
+  'C3': '/images/toolkit/illustrations/solutions/C3-difficult.png',
+  'C4': '/images/toolkit/illustrations/solutions/C4-chatgpt-said.png',
+  'B1': '/images/toolkit/illustrations/solutions/B1-diagnosis.png',
+  'B2': '/images/toolkit/illustrations/solutions/B2-analyzy.png',
+  'B3': '/images/toolkit/illustrations/solutions/B3-treatment.png',
+  'B4': '/images/toolkit/illustrations/solutions/B4-compare.png',
+  'B5': '/images/toolkit/illustrations/solutions/B5-atypical.png',
+  'A1': '/images/toolkit/illustrations/solutions/A1-protocol.png',
+  'A2': '/images/toolkit/illustrations/solutions/A2-summary.png',
+  'A3': '/images/toolkit/illustrations/solutions/A3-podcast.png',
+  'A4': '/images/toolkit/illustrations/solutions/A4-webinar.png',
+  'A5': '/images/toolkit/illustrations/solutions/A5-auto-guide.png',
+};
 
 const blockASolutions: Solution[] = [
   {
@@ -548,22 +568,13 @@ const blockDSolutions: Solution[] = [
     title: 'Знайти відповідь у протоколі за 10 секунд',
     tool: 'NotebookLM',
     steps: [
-      { text: 'Перейдіть на [**NotebookLM**](https://notebooklm.google.com)' },
-      { text: 'Натисніть **Створити новий блокнот** → **Додати джерела** → додайте матеріал у будь-якому форматі' },
-      { text: 'Задайте питання у чаті — скопіюйте один із запитів нижче або сформулюйте своє', screenshot: { src: '', alt: 'Повний процес роботи з NotebookLM', placeholder: '📹 ВІДЕО: Створити новий блокнот → Додати джерела → додаємо матеріал → задаємо питання → відповідь з цитатами (~30 сек)' } },
+      { text: 'Завантажте потрібний протокол (PDF) з офіційного джерела — наприклад, з [**dec.gov.ua**](https://dec.gov.ua)' },
+      { text: 'Перейдіть на [**NotebookLM**](https://notebooklm.google.com) → **Створити новий блокнот** → **Додати джерела** → завантажте PDF протоколу' },
+      { text: 'Задайте питання у чаті', screenshot: { src: '', alt: 'Повний процес роботи з NotebookLM', placeholder: '📹 ВІДЕО: Створити новий блокнот → Додати джерела → додаємо протокол → задаємо питання → відповідь з цитатами (~30 сек)' } },
     ],
     prompt: '',
-    copyablePrompts: [
-      {
-        label: 'Приклади запитів',
-        prompts: [
-          'Які діагностичні критерії [ЗАХВОРЮВАННЯ] згідно з цим протоколом?',
-          'Яка тактика ведення [СТАН] у [ВІКОВА ГРУПА]?',
-          'Що змінилось у рекомендаціях порівняно з попередньою версією протоколу?',
-        ],
-      },
-    ],
-    placeholders: ['ЗАХВОРЮВАННЯ', 'СТАН', 'ВІКОВА ГРУПА'],
+    copyablePrompts: [],
+    placeholders: [],
     example: {
       input: 'Завантажено гайдлайн ESC щодо артеріальної гіпертензії. Питання: "Яка цільова систолічна АТ для пацієнта 70 років з ЦД 2 типу та ХХН 3 стадії?"',
     },
@@ -575,10 +586,10 @@ const blockDSolutions: Solution[] = [
     title: 'Книга або стаття → резюме з цитатами',
     tool: 'NotebookLM',
     steps: [
-      { text: 'Перейдіть на [**NotebookLM**](https://notebooklm.google.com)' },
-      { text: 'Натисніть **Створити новий блокнот** → **Додати джерела** → додайте матеріал у будь-якому форматі' },
+      { text: 'Підготуйте книгу або статтю у будь-якому форматі — PDF, посилання, Google Doc або текст' },
+      { text: 'Перейдіть на [**NotebookLM**](https://notebooklm.google.com) → **Створити новий блокнот** → **Додати джерела** → завантажте ваш матеріал' },
       { text: 'Відкрийте панель **Студія** (праворуч) → натисніть **Звіти** → оберіть **Короткий огляд** (резюме) або **Навчальний посібник** — NotebookLM згенерує автоматично' },
-      { text: 'Для глибших питань — задавайте у чаті зліва, скопіюйте один із запитів нижче', screenshot: { src: '', alt: 'Панель Студія в NotebookLM', placeholder: '📹 ВІДЕО: Додати джерела → додаємо матеріал → Студія → Звіти → Короткий огляд → результат з цитатами (~15 сек)' } },
+      { text: 'Для глибших питань — задавайте у чаті зліва', screenshot: { src: '', alt: 'Панель Студія в NotebookLM', placeholder: '📹 ВІДЕО: Додати джерела → додаємо матеріал → Студія → Звіти → Короткий огляд → результат з цитатами (~15 сек)' } },
     ],
     prompt: '',
     copyablePrompts: [
@@ -684,6 +695,11 @@ const blockDSolutions: Solution[] = [
 ];
 
 // ── Blocks (D→C→B→A: doctor's workday flow) ──
+
+// Inject illustrations into all solutions
+[blockASolutions, blockBSolutions, blockCSolutions, blockDSolutions].flat().forEach(s => {
+  s.illustration = solutionIllustrations[s.id];
+});
 
 export const blocks: Block[] = [
   {

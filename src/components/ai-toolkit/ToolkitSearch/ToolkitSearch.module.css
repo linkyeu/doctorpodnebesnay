@@ -1,3 +1,5 @@
+/* ─── Toolkit Search — Clean inline ─── */
+
 .wrapper {
   position: relative;
   margin-bottom: var(--space-6);
@@ -5,70 +7,60 @@
 
 .icon {
   position: absolute;
-  left: var(--space-3);
+  left: 14px;
   top: 50%;
   transform: translateY(-50%);
-  color: var(--color-text-muted);
+  color: var(--tk-text-subtle, #A1A1AA);
   pointer-events: none;
 }
 
 .input {
   width: 100%;
   box-sizing: border-box;
-  font-family: var(--font-body);
-  font-size: var(--text-base);
-  padding: var(--space-3) var(--space-4) var(--space-3) calc(var(--space-3) + 16px + var(--space-2));
-  border: 2px solid var(--color-border);
-  border-radius: var(--radius-md);
-  background: var(--color-surface);
-  color: var(--color-text);
+  font-family: var(--tk-font-ui, 'DM Sans', system-ui, sans-serif);
+  font-size: var(--tk-text-sm, 0.875rem);
+  padding: 12px 40px 12px 40px;
+  border: 1px solid var(--tk-border, #E4E4E7);
+  border-radius: 10px;
+  background: var(--tk-surface, #FFFFFF);
+  color: var(--tk-text, #18181B);
   outline: none;
-  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+  transition: border-color 150ms ease, box-shadow 150ms ease;
 }
 
 .input::placeholder {
-  color: var(--color-text-muted);
-  font-size: var(--text-sm);
+  color: var(--tk-text-subtle, #A1A1AA);
 }
 
 .input:focus {
-  border-color: var(--color-primary);
-  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-primary) 12%, transparent);
+  border-color: var(--tk-text-muted, #71717A);
+  box-shadow: 0 0 0 3px rgba(113, 113, 122, 0.08);
 }
 
 .clear {
   all: unset;
   position: absolute;
-  right: var(--space-3);
+  right: 12px;
   top: 50%;
   transform: translateY(-50%);
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 24px;
-  height: 24px;
-  border-radius: var(--radius-full);
-  font-size: var(--text-xs);
-  color: var(--color-text-muted);
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  font-size: 0.7rem;
+  color: var(--tk-text-subtle, #A1A1AA);
   cursor: pointer;
-  transition: background-color var(--transition-fast), color var(--transition-fast);
+  transition: background-color 150ms ease, color 150ms ease;
 }
 
 .clear:hover {
-  background-color: var(--color-bg-alt);
-  color: var(--color-text);
+  background-color: var(--tk-surface-alt, #F4F4F5);
+  color: var(--tk-text, #18181B);
 }
 
 .clear:focus-visible {
-  outline: 2px solid var(--color-primary);
+  outline: 2px solid var(--tk-blue, #2563EB);
   outline-offset: 2px;
-}
-
-/* Empty state */
-.empty {
-  text-align: center;
-  padding: var(--space-10) var(--space-4);
-  color: var(--color-text-muted);
-  font-family: var(--font-body);
-  font-size: var(--text-sm);
 }

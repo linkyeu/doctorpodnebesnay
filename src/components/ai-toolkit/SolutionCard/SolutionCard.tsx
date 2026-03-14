@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useCallback } from 'react';
 import type { Solution } from '../../../data/ai-toolkit';
 import { useScrollReveal } from '../../../hooks/useScrollReveal';
 import ToolBadge from '../ToolBadge/ToolBadge';
@@ -14,7 +14,6 @@ function getToolUrl(tool: string): string {
     'NotebookLM': 'https://notebooklm.google.com',
     'Perplexity': 'https://perplexity.ai',
   };
-  // Try each part of "DeepL + ChatGPT" until we find a known URL
   const parts = tool.split(/\s*[+або]\s*/);
   for (const part of parts) {
     const trimmed = part.trim();
@@ -28,6 +27,17 @@ function getToolDisplayName(tool: string): string {
   return primary === 'DeepL' ? 'ChatGPT' : primary;
 }
 
+/** Extract a short preview from the prompt text */
+function getPreview(solution: Solution): string {
+  if (solution.promptNote) return solution.promptNote;
+  const text = solution.prompt;
+  if (!text) return '';
+  // Take first 120 chars, cut at last space
+  const cut = text.slice(0, 120);
+  const lastSpace = cut.lastIndexOf(' ');
+  return (lastSpace > 60 ? cut.slice(0, lastSpace) : cut) + '…';
+}
+
 interface SolutionCardProps {
   solution: Solution;
   blockColor: string;
@@ -35,15 +45,11 @@ interface SolutionCardProps {
 
 export default function SolutionCard({ solution, blockColor }: SolutionCardProps) {
   const revealRef = useScrollReveal<HTMLDivElement>();
-  const [expanded, setExpanded] = useState(false);
+  const [expanded, setExpanded] = useState(() => {
+    return window.location.hash === `#solution-${solution.id}`;
+  });
   const [copied, setCopied] = useState(false);
   const cardType = solution.cardType ?? 'prompt';
-
-  useEffect(() => {
-    if (window.location.hash === `#solution-${solution.id}`) {
-      setExpanded(true);
-    }
-  }, [solution.id]);
 
   const toggle = useCallback(() => {
     setExpanded(prev => !prev);
@@ -57,6 +63,8 @@ export default function SolutionCard({ solution, blockColor }: SolutionCardProps
     });
   }, [solution.prompt]);
 
+  const preview = getPreview(solution);
+
   return (
     <div
       id={`solution-${solution.id}`}
@@ -64,32 +72,44 @@ export default function SolutionCard({ solution, blockColor }: SolutionCardProps
       className={`${styles.card} reveal`}
       style={{ '--block-color': blockColor } as React.CSSProperties}
     >
-      <div className={styles.topBar} />
-
-      <div className={styles.body}>
-        {/* Clickable header */}
-        <button
-          type="button"
-          className={styles.headerClickable}
-          onClick={toggle}
-          aria-expanded={expanded}
-          aria-controls={`details-${solution.id}`}
-        >
-          <div className={styles.headerContent}>
-            <div className={styles.header}>
-              <h3 className={styles.title}>
-                <span className={styles.solutionId}>{solution.id}</span>
-                {solution.title}
-              </h3>
-              <div className={styles.badges}>
-                <span className={styles.toolLabel}>
-                  {/[+]|або/i.test(solution.tool) ? 'Інструменти:' : 'Інструмент:'}
-                </span>
-                <ToolBadge tool={solution.tool} />
-              </div>
+      {/* Gradient header area */}
+      <button
+        type="button"
+        className={styles.headerClickable}
+        onClick={toggle}
+        aria-expanded={expanded}
+        aria-controls={`details-${solution.id}`}
+      >
+        <div className={styles.gradientHeader}>
+          <div className={styles.headerTop}>
+            <span className={styles.solutionId}>{solution.id}</span>
+            <div className={styles.badges}>
+              <ToolBadge tool={solution.tool} />
             </div>
           </div>
+          {solution.illustration ? (
+            <div className={styles.titleRow}>
+              <img
+                src={solution.illustration}
+                alt=""
+                aria-hidden="true"
+                className={styles.titleIllustration}
+                width="64"
+                height="64"
+                loading="lazy"
+              />
+              <h3 className={styles.title}>{solution.title}</h3>
+            </div>
+          ) : (
+            <h3 className={styles.title}>{solution.title}</h3>
+          )}
+        </div>
 
+        {/* White content area */}
+        <div className={styles.body}>
+          {!expanded && preview && (
+            <p className={styles.preview}>{preview}</p>
+          )}
           <svg
             className={`${styles.chevron} ${expanded ? styles.chevronExpanded : ''}`}
             width="20"
@@ -106,10 +126,12 @@ export default function SolutionCard({ solution, blockColor }: SolutionCardProps
               strokeLinejoin="round"
             />
           </svg>
-        </button>
+        </div>
+      </button>
 
-        {/* Copy shortcut in collapsed state — only for prompt cards */}
-        {!expanded && cardType === 'prompt' && (
+      {/* Copy shortcut in collapsed state — only for prompt cards */}
+      {!expanded && cardType === 'prompt' && (
+        <div style={{ padding: '0 1rem 0.75rem' }}>
           <button
             type="button"
             className={styles.copyShortcut}
@@ -118,21 +140,23 @@ export default function SolutionCard({ solution, blockColor }: SolutionCardProps
           >
             {copied ? '✓ Скопійовано' : '📋 Копіювати запит'}
           </button>
-        )}
+        </div>
+      )}
 
-        {/* Collapsible details */}
-        <div
-          id={`details-${solution.id}`}
-          className={styles.details}
-          data-expanded={expanded}
-          role="region"
-          aria-labelledby={`title-${solution.id}`}
-        >
-          <div className={styles.detailsInner}>
+      {/* Collapsible details */}
+      <div
+        id={`details-${solution.id}`}
+        className={styles.details}
+        data-expanded={expanded}
+        role="region"
+        aria-labelledby={`title-${solution.id}`}
+      >
+        <div className={styles.detailsInner}>
+          <div style={{ padding: '0 1rem 1rem' }}>
             {/* Tool intro — for workflow/hybrid cards */}
             {solution.toolIntro && <ToolIntro intro={solution.toolIntro} />}
 
-            {/* Instruction line for all prompt cards */}
+            {/* Instruction line for prompt cards */}
             {cardType === 'prompt' && (
               <p className={styles.toolInstruction}>
                 → Скопіюйте запит, замініть <span className={styles.placeholderHint}>[виділене]</span> на ваші дані і вставте в{' '}
@@ -165,7 +189,6 @@ export default function SolutionCard({ solution, blockColor }: SolutionCardProps
                 )}
               </>
             )}
-
           </div>
         </div>
       </div>

@@ -1,13 +1,35 @@
-import { useRef } from 'react';
+import { useRef, useEffect } from 'react';
 import styles from './ToolkitSearch.module.css';
 
 interface ToolkitSearchProps {
   value: string;
   onChange: (value: string) => void;
+  isOpen?: boolean;
+  onOpenChange?: (open: boolean) => void;
 }
 
-export default function ToolkitSearch({ value, onChange }: ToolkitSearchProps) {
+export default function ToolkitSearch({ value, onChange, isOpen, onOpenChange }: ToolkitSearchProps) {
   const inputRef = useRef<HTMLInputElement>(null);
+
+  // Focus input when overlay opens
+  useEffect(() => {
+    if (isOpen && inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, [isOpen]);
+
+  // Close on Escape
+  useEffect(() => {
+    if (!isOpen) return;
+    const handleKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        onOpenChange?.(false);
+        onChange('');
+      }
+    };
+    document.addEventListener('keydown', handleKey);
+    return () => document.removeEventListener('keydown', handleKey);
+  }, [isOpen, onOpenChange, onChange]);
 
   return (
     <div className={styles.wrapper}>
@@ -28,7 +50,7 @@ export default function ToolkitSearch({ value, onChange }: ToolkitSearchProps) {
         className={styles.input}
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        placeholder="Що шукаєте? (напр. виписка, аналізи, протокол)"
+        placeholder="Пошук рішень…"
         aria-label="Пошук рішень"
         autoComplete="off"
       />

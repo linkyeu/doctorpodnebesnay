@@ -1,0 +1,44 @@
+/* ─── Toolkit Design System — Linear/Stripe Minimal ─── */
+/* Scoped to .toolkit-scope to avoid leaking into main site */
+
+.toolkit-scope {
+  /* Backgrounds */
+  --tk-bg: #FAFAFA;
+  --tk-surface: #FFFFFF;
+  --tk-surface-alt: #F4F4F5;
+  --tk-sidebar: #1A1A2E;
+  --tk-sidebar-text: #A1A1AA;
+  --tk-sidebar-active: #FFFFFF;
+
+  /* Text */
+  --tk-text: #18181B;
+  --tk-text-muted: #71717A;
+  --tk-text-subtle: #A1A1AA;
+
+  /* Borders */
+  --tk-border: #E4E4E7;
+  --tk-border-subtle: #F4F4F5;
+
+  /* Block accents */
+  --tk-purple: #7C3AED;
+  --tk-orange: #EA580C;
+  --tk-green: #16A34A;
+  --tk-blue: #2563EB;
+
+  /* Typography */
+  --tk-font-ui: 'DM Sans', system-ui, sans-serif;
+  --tk-font-mono: 'JetBrains Mono', 'SF Mono', monospace;
+
+  /* Type scale */
+  --tk-text-xs: 0.75rem;
+  --tk-text-sm: 0.875rem;
+  --tk-text-base: 1rem;
+  --tk-text-lg: 1.125rem;
+  --tk-text-xl: 1.25rem;
+  --tk-text-2xl: 1.5rem;
+
+  /* Apply toolkit font globally within scope */
+  font-family: var(--tk-font-ui);
+  color: var(--tk-text);
+  background-color: var(--tk-bg);
+}

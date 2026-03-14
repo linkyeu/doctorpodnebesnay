@@ -12,7 +12,7 @@ interface ToolkitNavProps {
 
 const TABS: { id: TabId; label: string; icon: string }[] = [
   { id: 'solutions', label: 'Рішення', icon: '◆' },
-  { id: 'notebooks', label: 'Notebooks', icon: '◎' },
+  { id: 'notebooks', label: 'Запитай протокол', icon: '◎' },
   { id: 'setup', label: 'Налаштування', icon: '⚙' },
 ];
 
@@ -156,18 +156,7 @@ export default function ToolkitNav({ blocks, activeTab, onTabChange }: ToolkitNa
         </div>
       )}
 
-      {activeTab === 'notebooks' && (
-        <div>
-          <div className={styles.sectionLabel}>Зміст</div>
-          <ul className={styles.list} role="list">
-            <li><button type="button" className={styles.staticItem} onClick={() => handleClick('audio-demo')}>🎧 Подкаст-демо</button></li>
-            <li><button type="button" className={styles.staticItem} onClick={() => handleClick('explainer')}>📖 Що таке NotebookLM</button></li>
-            <li><button type="button" className={styles.staticItem} onClick={() => handleClick('trust')}>✅ Чому можна довіряти</button></li>
-            <li><button type="button" className={styles.staticItem} onClick={() => handleClick('setup-guide')}>🔧 Як створити ноутбук</button></li>
-            <li><button type="button" className={styles.staticItem} onClick={() => handleClick('ready-notebooks')}>🎁 Готові ноутбуки</button></li>
-          </ul>
-        </div>
-      )}
+      {activeTab === 'notebooks' && null}
 
     </>
   );
