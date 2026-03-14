@@ -1,6 +1,47 @@
 import type { SolutionStep } from '../../../data/ai-toolkit';
 import styles from './WorkflowSteps.module.css';
 
+/**
+ * Parse step text with inline markup:
+ *   **bold**  → <strong>
+ *   [text](url) → <a>
+ */
+function parseStepText(text: string): React.ReactNode[] {
+  const parts: React.ReactNode[] = [];
+  // Combined regex: match **bold** or [text](url)
+  const re = /\*\*(.+?)\*\*|\[(.+?)\]\((.+?)\)/g;
+  let lastIndex = 0;
+  let match: RegExpExecArray | null;
+
+  while ((match = re.exec(text)) !== null) {
+    // Push preceding plain text
+    if (match.index > lastIndex) {
+      parts.push(text.slice(lastIndex, match.index));
+    }
+    if (match[1] !== undefined) {
+      // **bold**
+      parts.push(<strong key={match.index}>{match[1]}</strong>);
+    } else if (match[2] !== undefined && match[3] !== undefined) {
+      // [text](url) — strip ** from link text for bold links like [**NotebookLM**](url)
+      const linkText = match[2].replace(/^\*\*(.+)\*\*$/, '$1');
+      const isBold = linkText !== match[2];
+      parts.push(
+        <a key={match.index} href={match[3]} target="_blank" rel="noopener noreferrer" className={styles.stepLink} style={isBold ? { fontWeight: 'var(--weight-bold)' } : undefined}>
+          {linkText}
+        </a>
+      );
+    }
+    lastIndex = match.index + match[0].length;
+  }
+
+  // Push trailing plain text
+  if (lastIndex < text.length) {
+    parts.push(text.slice(lastIndex));
+  }
+
+  return parts;
+}
+
 interface WorkflowStepsProps {
   steps: SolutionStep[];
   note?: string;
@@ -13,7 +54,10 @@ export default function WorkflowSteps({ steps, note }: WorkflowStepsProps) {
       <ol className={styles.list}>
         {steps.map((step, i) => (
           <li key={i} className={styles.step}>
-            <span className={styles.stepText}>{step.text}</span>
+            <span className={styles.stepText}>
+              <span className={styles.stepNumber}>{i + 1}</span>
+              {parseStepText(step.text)}
+            </span>
             {step.screenshot && (
               <figure className={styles.screenshotFigure}>
                 <div className={styles.screenshotWrapper}>
@@ -43,7 +87,7 @@ export default function WorkflowSteps({ steps, note }: WorkflowStepsProps) {
           </li>
         ))}
       </ol>
-      {note && <p className={styles.note}>{note}</p>}
+      {note && <p className={styles.note}>{parseStepText(note)}</p>}
     </div>
   );
 }

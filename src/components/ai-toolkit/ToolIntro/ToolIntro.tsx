@@ -9,14 +9,16 @@ export default function ToolIntro({ intro }: ToolIntroProps) {
   return (
     <div className={styles.wrapper}>
       <p className={styles.text}>{intro.text}</p>
-      <a
-        href={intro.url}
-        target="_blank"
-        rel="noopener noreferrer"
-        className={styles.link}
-      >
-        {intro.urlLabel} <span aria-hidden="true">→</span>
-      </a>
+      {intro.urlLabel && (
+        <a
+          href={intro.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={styles.link}
+        >
+          {intro.urlLabel} <span aria-hidden="true">→</span>
+        </a>
+      )}
     </div>
   );
 }
