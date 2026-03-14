@@ -42,9 +42,9 @@ export default function PasswordGate({ onSuccess }: PasswordGateProps) {
   return (
     <div className={styles.gate}>
       <div className={styles.card}>
-        <h1 className={styles.title}>ШI-помiчник лiкаря</h1>
+        <h1 className={styles.title}>ШІ-помічник лікаря</h1>
         <p className={styles.subtitle}>
-          Введiть пароль, який ви отримали пiсля покупки
+          Введіть пароль, який ви отримали після покупки
         </p>
 
         <form onSubmit={handleSubmit} className={styles.form}>
@@ -61,15 +61,15 @@ export default function PasswordGate({ onSuccess }: PasswordGateProps) {
             autoComplete="off"
           />
           {error && (
-            <p className={styles.error}>Невiрний пароль. Спробуйте ще раз.</p>
+            <p className={styles.error}>Невірний пароль. Спробуйте ще раз.</p>
           )}
           <button type="submit" className={styles.button} disabled={checking || !password.trim()}>
-            {checking ? 'Перевiрка...' : 'Вiдкрити довiдник'}
+            {checking ? 'Перевірка...' : 'Відкрити довідник'}
           </button>
         </form>
 
         <p className={styles.hint}>
-          Забули пароль? Напишiть нам у{' '}
+          Забули пароль? Напишіть нам у{' '}
           <a href="https://t.me/medicalforua" target="_blank" rel="noopener noreferrer">
             Telegram
           </a>

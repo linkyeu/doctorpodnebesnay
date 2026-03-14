@@ -44,15 +44,15 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 56px;
-  height: 56px;
+  width: 44px;
+  height: 44px;
   border-radius: var(--radius-full);
   background-color: var(--block-color);
 }
 
 .letter {
   font-family: var(--font-body);
-  font-size: var(--text-2xl);
+  font-size: var(--text-xl);
   font-weight: var(--weight-bold);
   color: #fff;
   line-height: 1;
@@ -65,7 +65,7 @@
 
 .title {
   font-family: var(--font-body);
-  font-size: var(--text-xl);
+  font-size: var(--text-lg);
   font-weight: var(--weight-semibold);
   line-height: var(--leading-snug);
   color: var(--color-text);
@@ -123,16 +123,16 @@
 
 @media (min-width: 768px) {
   .badge {
-    width: 72px;
-    height: 72px;
+    width: 56px;
+    height: 56px;
   }
 
   .letter {
-    font-size: var(--text-3xl);
+    font-size: var(--text-2xl);
   }
 
   .title {
-    font-size: var(--text-2xl);
+    font-size: var(--text-xl);
   }
 
   .content {

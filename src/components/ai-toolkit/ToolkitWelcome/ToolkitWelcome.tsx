@@ -18,18 +18,21 @@ export default function ToolkitWelcome() {
   return (
     <div className={styles.banner} role="status">
       <div className={styles.content}>
-        <p className={styles.title}>16 готових рішень для щоденної практики</p>
+        <p className={styles.title}>16 рішень. 2 інструменти.</p>
         <div className={styles.tools}>
           <p className={styles.tool}>
-            Знайдіть свою задачу → скопіюйте запит → вставте в <strong>ChatGPT</strong> або <strong>NotebookLM</strong>
+            <strong>ChatGPT</strong> — загальні питання, документи, готові запити
+          </p>
+          <p className={styles.tool}>
+            <strong>NotebookLM</strong> — коли є конкретне джерело (протокол, стаття, книга, відео, сайт)
           </p>
         </div>
         <p className={styles.body}>
-          Кожне рішення — покрокова інструкція з готовим запитом. Працює з безкоштовними інструментами.
+          Знайдіть задачу → дотримуйтесь простої інструкції з декількох кроків.
         </p>
       </div>
       <button type="button" className={styles.dismiss} onClick={dismiss}>
-        Закрити
+        Зрозуміло
       </button>
     </div>
   );

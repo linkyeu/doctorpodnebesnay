@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useState } from 'react';
 import { setupSections } from '../../../data/ai-toolkit';
 import styles from './ToolkitSetup.module.css';
 
@@ -14,13 +14,13 @@ function CopyButton({ text }: { text: string }) {
 
   return (
     <button className={styles.copyButton} onClick={handleCopy} type="button">
-      {copied ? '✓ Скопiйовано' : 'Копiювати'}
+      {copied ? '✓ Скопійовано' : 'Копіювати'}
     </button>
   );
 }
 
 /** Full-width screenshot with caption — supports optional video overlay */
-function Screenshot({
+export function Screenshot({
   src,
   alt,
   caption,
@@ -61,7 +61,7 @@ function Screenshot({
 }
 
 /** Purpose callout — explains WHY this setting matters */
-function PurposeCallout({ text }: { text: string }) {
+export function PurposeCallout({ text }: { text: string }) {
   return (
     <div className={styles.purposeCallout}>
       <span className={styles.purposeIcon} aria-hidden="true">
@@ -76,7 +76,7 @@ function PurposeCallout({ text }: { text: string }) {
 }
 
 /** Instruction step block — number + text + optional screenshot below */
-function InstructionStep({
+export function InstructionStep({
   number,
   text,
   screenshot,
@@ -110,192 +110,85 @@ function InstructionStep({
    ChatGPT Subsection
    ═══════════════════════════════════════════════════════════════ */
 
-function ChatGPTSetup({ expanded, onToggle }: { expanded: boolean; onToggle: () => void }) {
+function ChatGPTSetup() {
   const b1 = setupSections.find(s => s.id === 'B1')!;
   const b4 = setupSections.find(s => s.id === 'B4')!;
 
   return (
-    <div className={styles.subsection}>
-      <button
-        type="button"
-        className={styles.subsectionToggle}
-        style={{ '--block-color': '#2563EB' } as React.CSSProperties}
-        onClick={onToggle}
-        aria-expanded={expanded}
-        aria-controls="setup-chatgpt-content"
-      >
-        <div className={styles.subsectionTopBar} />
-        <div className={styles.subsectionContent}>
-          <div className={styles.subsectionText}>
-            <h3 className={styles.subsectionTitle}>Налаштуйте ChatGPT пiд свою спецiальнiсть</h3>
+    <div className={styles.setupCard}>
+      <PurposeCallout text="Навіщо: без цього ChatGPT кожного разу починає з нуля — не знає вашу спеціальність, мову, стиль відповідей. Налаштовуєте один раз — працює в кожній розмові автоматично." />
+
+      <InstructionStep
+        number={1}
+        variant="chatgpt"
+        text={<>Натисніть на аватар (внизу зліва) → <strong>Персоналізація</strong></>}
+        screenshot={b1.screenshots?.[0] ? {
+          src: b1.screenshots[0].src,
+          alt: b1.screenshots[0].alt,
+          caption: undefined,
+          video: b1.screenshots[0].video,
+        } : undefined}
+      />
+
+      <InstructionStep
+        number={2}
+        variant="chatgpt"
+        text={<>У <strong>«Базовий стиль і тон»</strong> оберіть <strong>«Професійний»</strong></>}
+        screenshot={b1.screenshots?.[2] ? {
+          src: b1.screenshots[2].src,
+          alt: b1.screenshots[2].alt,
+          caption: undefined,
+          video: b1.screenshots[2].video,
+        } : undefined}
+      />
+
+      <InstructionStep
+        number={3}
+        variant="chatgpt"
+        text={<>Прокрутіть до <strong>«Спеціальні інструкції»</strong> — скопіюйте та вставте текст нижче, замінивши <strong>[СПЕЦІАЛЬНІСТЬ]</strong> та <strong>[ДОРОСЛИМИ / ДІТЬМИ / ВСІМА]</strong> на свої дані:</>}
+        screenshot={b1.screenshots?.[3] ? {
+          src: b1.screenshots[3].src,
+          alt: b1.screenshots[3].alt,
+          caption: undefined,
+          video: b1.screenshots[3].video,
+        } : undefined}
+      />
+
+      {b1.codeBlocks?.[0] && (
+        <div className={styles.singleCodeBlock}>
+          <div className={styles.singleCodeHeader}>
+            <span className={styles.singleCodeLabel}>{b1.codeBlocks[0].label}</span>
+            <CopyButton text={b1.codeBlocks[0].code} />
           </div>
-          <span className={`${styles.subsectionChevron} ${expanded ? styles.subsectionChevronOpen : ''}`} aria-hidden="true" />
+          <pre className={styles.codeContent}>{b1.codeBlocks[0].code}</pre>
         </div>
-      </button>
+      )}
 
-      <div
-        id="setup-chatgpt-content"
-        role="region"
-        className={`${styles.subsectionCollapsible} ${expanded ? styles.subsectionCollapsibleOpen : ''}`}
-      >
-        <div className={styles.subsectionInner}>
-          <div className={styles.setupCard}>
-            <PurposeCallout text="Навiщо: без цього налаштування ChatGPT кожного разу починає з нуля — не знає вашу спецiальнiсть, мову, стиль вiдповiдей. Налаштовуєте один раз — працює в кожнiй розмовi автоматично." />
+      <InstructionStep
+        number={4}
+        variant="chatgpt"
+        text={<>Заповніть <strong>«Псевдонім»</strong> (ваше ім'я) та <strong>«Професія»</strong> (наприклад: сімейний лікар, педіатр)</>}
+        screenshot={b1.screenshots?.[1] ? {
+          src: b1.screenshots[1].src,
+          alt: b1.screenshots[1].alt,
+          caption: undefined,
+          video: b1.screenshots[1].video,
+        } : undefined}
+      />
 
-            <InstructionStep
-              number={1}
-              variant="chatgpt"
-              text={<>Натиснiть на аватар (внизу злiва) → <strong>Персоналiзацiя</strong></>}
-              screenshot={b1.screenshots?.[0] ? {
-                src: b1.screenshots[0].src,
-                alt: b1.screenshots[0].alt,
-                caption: undefined,
-                video: b1.screenshots[0].video,
-              } : undefined}
-            />
-
-            <InstructionStep
-              number={2}
-              variant="chatgpt"
-              text={<>У <strong>«Базовий стиль i тон»</strong> оберiть <strong>«Професiйний»</strong></>}
-              screenshot={b1.screenshots?.[2] ? {
-                src: b1.screenshots[2].src,
-                alt: b1.screenshots[2].alt,
-                caption: undefined,
-                video: b1.screenshots[2].video,
-              } : undefined}
-            />
-
-            <InstructionStep
-              number={3}
-              variant="chatgpt"
-              text={<>Прокрутiть до <strong>«Спецiальнi iнструкцiї»</strong> — скопiюйте та вставте текст нижче, замiнивши <strong>[СПЕЦIАЛЬНIСТЬ]</strong> та <strong>[ДОРОСЛИМИ / ДIТЬМИ / ВСIМА]</strong> на свої данi:</>}
-              screenshot={b1.screenshots?.[3] ? {
-                src: b1.screenshots[3].src,
-                alt: b1.screenshots[3].alt,
-                caption: undefined,
-                video: b1.screenshots[3].video,
-              } : undefined}
-            />
-
-            {b1.codeBlocks?.[0] && (
-              <div className={styles.singleCodeBlock}>
-                <div className={styles.singleCodeHeader}>
-                  <span className={styles.singleCodeLabel}>{b1.codeBlocks[0].label}</span>
-                  <CopyButton text={b1.codeBlocks[0].code} />
-                </div>
-                <pre className={styles.codeContent}>{b1.codeBlocks[0].code}</pre>
-              </div>
-            )}
-
-            <InstructionStep
-              number={4}
-              variant="chatgpt"
-              text={<>Заповнiть <strong>«Псевдонiм»</strong> (ваше iм'я) та <strong>«Професiя»</strong> (наприклад: сiмейний лiкар, педiатр)</>}
-              screenshot={b1.screenshots?.[1] ? {
-                src: b1.screenshots[1].src,
-                alt: b1.screenshots[1].alt,
-                caption: undefined,
-                video: b1.screenshots[1].video,
-              } : undefined}
-            />
-
-            {b4.screenshots?.[0] && (
-              <InstructionStep
-                number={5}
-                variant="chatgpt"
-                text={<>Налаштування → <strong>«Керування даними»</strong> → <strong>«Полiпшити модель для всiх»</strong> → ВИМКНIТЬ</>}
-                screenshot={{
-                  src: b4.screenshots[0].src,
-                  alt: b4.screenshots[0].alt,
-                  caption: undefined,
-                  video: b4.screenshots[0].video,
-                }}
-              />
-            )}
-
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-/* ═══════════════════════════════════════════════════════════════
-   NotebookLM Subsection
-   ═══════════════════════════════════════════════════════════════ */
-
-function NotebookLMSetup({ expanded, onToggle }: { expanded: boolean; onToggle: () => void }) {
-  const b6 = setupSections.find(s => s.id === 'B6')!;
-
-  return (
-    <div className={styles.subsection}>
-      <button
-        type="button"
-        className={styles.subsectionToggle}
-        style={{ '--block-color': '#2563EB' } as React.CSSProperties}
-        onClick={onToggle}
-        aria-expanded={expanded}
-        aria-controls="setup-notebooklm-content"
-      >
-        <div className={styles.subsectionTopBar} />
-        <div className={styles.subsectionContent}>
-          <div className={styles.subsectionText}>
-            <h3 className={styles.subsectionTitle}>Налаштуйте NotebookLM</h3>
-          </div>
-          <span className={`${styles.subsectionChevron} ${expanded ? styles.subsectionChevronOpen : ''}`} aria-hidden="true" />
-        </div>
-      </button>
-
-      <div
-        id="setup-notebooklm-content"
-        role="region"
-        className={`${styles.subsectionCollapsible} ${expanded ? styles.subsectionCollapsibleOpen : ''}`}
-      >
-        <div className={styles.subsectionInner}>
-          <div className={styles.setupCard}>
-            {b6.intro && <PurposeCallout text={b6.intro} />}
-
-            <InstructionStep
-              number={1}
-              variant="notebooklm"
-              text={<>Вiдкрийте <strong>notebooklm.google.com</strong> → увiйдiть через Google-акаунт → натиснiть <strong>"New notebook"</strong></>}
-              screenshot={b6.screenshots?.[0] ? {
-                src: b6.screenshots[0].src,
-                alt: b6.screenshots[0].alt,
-                caption: undefined,
-                video: b6.screenshots[0].video,
-              } : undefined}
-            />
-
-            <InstructionStep
-              number={2}
-              variant="notebooklm"
-              text={<>Натиснiть <strong>"Add source"</strong> → оберiть <strong>"PDF"</strong> → завантажте один протокол або настанову</>}
-              screenshot={b6.screenshots?.[1] ? {
-                src: b6.screenshots[1].src,
-                alt: b6.screenshots[1].alt,
-                caption: undefined,
-                video: b6.screenshots[1].video,
-              } : undefined}
-            />
-
-            <InstructionStep
-              number={3}
-              variant="notebooklm"
-              text={<>Задайте питання в чатi — наприклад: <strong>«Якi показання до призначення антибiотикiв?»</strong> — i отримайте вiдповiдь <strong>з цитатами та номерами сторiнок</strong></>}
-              screenshot={b6.screenshots?.[2] ? {
-                src: b6.screenshots[2].src,
-                alt: b6.screenshots[2].alt,
-                caption: undefined,
-                video: b6.screenshots[2].video,
-              } : undefined}
-            />
-
-            {b6.note && <p className={styles.setupNote}>{b6.note}</p>}
-          </div>
-        </div>
-      </div>
+      {b4.screenshots?.[0] && (
+        <InstructionStep
+          number={5}
+          variant="chatgpt"
+          text={<>Налаштування → <strong>«Керування даними»</strong> → <strong>«Поліпшити модель для всіх»</strong> → ВИМКНІТЬ</>}
+          screenshot={{
+            src: b4.screenshots[0].src,
+            alt: b4.screenshots[0].alt,
+            caption: undefined,
+            video: b4.screenshots[0].video,
+          }}
+        />
+      )}
     </div>
   );
 }
@@ -305,19 +198,9 @@ function NotebookLMSetup({ expanded, onToggle }: { expanded: boolean; onToggle: 
    ═══════════════════════════════════════════════════════════════ */
 
 export function ToolkitSetupContent() {
-  const [expanded, setExpanded] = useState<Record<string, boolean>>({
-    chatgpt: true,
-    notebooklm: true,
-  });
-
-  const toggle = useCallback((id: string) => {
-    setExpanded((prev) => ({ ...prev, [id]: !prev[id] }));
-  }, []);
-
   return (
     <div className={styles.setupList}>
-      <ChatGPTSetup expanded={expanded.chatgpt} onToggle={() => toggle('chatgpt')} />
-      <NotebookLMSetup expanded={expanded.notebooklm} onToggle={() => toggle('notebooklm')} />
+      <ChatGPTSetup />
     </div>
   );
 }
