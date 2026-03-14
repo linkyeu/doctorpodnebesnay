@@ -54,7 +54,7 @@ export default function PromptBox({ prompt, note }: PromptBoxProps) {
           type="button"
           className={styles.copyBtn}
           onClick={handleCopy}
-          aria-label="Скопіювати промпт"
+          aria-label="Скопіювати запит"
         >
           📋 Скопіювати
         </button>

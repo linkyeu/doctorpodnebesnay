@@ -9,7 +9,7 @@ export default function ToolkitMistakes() {
           Типові помилки при роботі з ШІ
         </h2>
         <p className={styles.subtitle}>
-          Ми перевірили кожен промпт на реальних задачах — ось що знайшли
+          Ми перевірили кожен запит на реальних задачах — ось що знайшли
         </p>
         <div className={styles.grid}>
           {mistakes.map((m) => (

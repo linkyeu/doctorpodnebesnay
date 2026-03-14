@@ -51,7 +51,7 @@ function CopyablePrompt({ prompt }: { prompt: string }) {
           type="button"
           className={styles.copyBtn}
           onClick={handleCopy}
-          aria-label="Скопіювати промпт"
+          aria-label="Скопіювати запит"
         >
           📋
         </button>

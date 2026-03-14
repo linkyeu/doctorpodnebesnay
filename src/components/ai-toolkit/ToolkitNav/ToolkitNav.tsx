@@ -11,12 +11,11 @@ export default function ToolkitNav({ blocks }: ToolkitNavProps) {
   const [activeId, setActiveId] = useState<string>('');
   const navRef = useRef<HTMLElement>(null);
 
-  const topSections = [
-    { id: 'step-setup', label: 'Крок 1: Налаштування' },
-    { id: 'step-safety', label: 'Крок 2: Захист' },
-  ];
+  const topSections: { id: string; label: string }[] = [];
 
   const bottomSections = [
+    { id: 'section-superpower', label: 'NotebookLM — ваші документи' },
+    { id: 'section-setup', label: 'Налаштування ChatGPT' },
     { id: 'appendix-glossary', label: 'Глосарій' },
   ];
 

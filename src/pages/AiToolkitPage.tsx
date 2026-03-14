@@ -1,16 +1,28 @@
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useState, useCallback, useMemo } from 'react';
 import { blocks } from '../data/ai-toolkit';
+import type { Solution } from '../data/ai-toolkit';
 import ToolkitNav from '../components/ai-toolkit/ToolkitNav/ToolkitNav';
-import { AiPitfalls } from '../components/ai-toolkit/ToolkitIntro/ToolkitIntro';
 import BlockHeader from '../components/ai-toolkit/BlockHeader/BlockHeader';
 import SolutionCard from '../components/ai-toolkit/SolutionCard/SolutionCard';
 import { ToolkitSetupContent } from '../components/ai-toolkit/ToolkitSetup/ToolkitSetup';
+import SuperpowerSection from '../components/ai-toolkit/SuperpowerSection/SuperpowerSection';
 import PasswordGate from '../components/ai-toolkit/PasswordGate/PasswordGate';
+import ToolkitWelcome from '../components/ai-toolkit/ToolkitWelcome/ToolkitWelcome';
+import ToolkitSearch from '../components/ai-toolkit/ToolkitSearch/ToolkitSearch';
 import styles from './AiToolkitPage.module.css';
 
-function CollapsibleStep({
+function matchesSolution(solution: Solution, query: string): boolean {
+  const q = query.toLowerCase();
+  return (
+    solution.title.toLowerCase().includes(q) ||
+    solution.prompt.toLowerCase().includes(q) ||
+    (solution.tool ?? '').toLowerCase().includes(q)
+  );
+}
+
+/** Simple collapsible section — no step numbers, no "Крок" */
+function CollapsibleSection({
   id,
-  step,
   title,
   description,
   expanded,
@@ -18,7 +30,6 @@ function CollapsibleStep({
   children,
 }: {
   id: string;
-  step: number;
   title: string;
   description?: string;
   expanded: boolean;
@@ -26,7 +37,7 @@ function CollapsibleStep({
   children: React.ReactNode;
 }) {
   return (
-    <section className={styles.stepSection} id={id}>
+    <section className={styles.collapsibleSection} id={id}>
       <button
         type="button"
         className={styles.collapsibleSummary}
@@ -34,13 +45,12 @@ function CollapsibleStep({
         aria-expanded={expanded}
         aria-controls={`${id}-content`}
       >
-        <div className={styles.stepHeader} style={{ marginBottom: 0, position: 'static', padding: 0 }}>
-          <div className={styles.stepTitleRow}>
-            <span className={styles.stepCircle} aria-hidden="true">{step}</span>
-            <h2 className={styles.stepTitle}>Крок {step}: {title}</h2>
+        <div className={styles.sectionHeader}>
+          <div className={styles.sectionTitleRow}>
+            <h2 className={styles.sectionTitle}>{title}</h2>
             <span className={`${styles.chevron} ${expanded ? styles.chevronOpen : ''}`} aria-hidden="true" />
           </div>
-          {description && <p className={styles.stepDescription}>{description}</p>}
+          {description && <p className={styles.sectionDescription}>{description}</p>}
         </div>
       </button>
       <div
@@ -64,54 +74,67 @@ export default function AiToolkitPage() {
     return Date.now() - ts < 30 * 24 * 60 * 60 * 1000;
   });
 
-  const [expandedBlocks, setExpandedBlocks] = useState<Record<string, boolean>>(() =>
-    Object.fromEntries(blocks.map((b) => [b.id, false]))
-  );
+  const [expandedBlocks, setExpandedBlocks] = useState<Record<string, boolean>>(() => {
+    const initial = Object.fromEntries(blocks.map((b) => [b.id, false]));
+    // Deep link to a specific solution? Expand its parent block
+    const hash = window.location.hash.replace('#', '');
+    if (hash.startsWith('solution-')) {
+      const solutionId = hash.replace('solution-', '');
+      const parent = blocks.find(b => b.solutions.some(s => s.id === solutionId));
+      if (parent) {
+        initial[parent.id] = true;
+        return initial;
+      }
+    }
+    return initial;
+  });
 
   const toggleBlock = useCallback((id: string) => {
     setExpandedBlocks((prev) => ({ ...prev, [id]: !prev[id] }));
   }, []);
 
-  const [expandedSteps, setExpandedSteps] = useState<Record<string, boolean>>(() => {
-    // Check hash for deep links
+  const [expandedSections, setExpandedSections] = useState<Record<string, boolean>>(() => {
     const hash = window.location.hash;
-    const returning = localStorage.getItem('toolkit_visited') === 'true';
-
     return {
-      'step-setup': hash === '#step-setup' ? true : !returning,
-      'step-safety': hash === '#step-safety' ? true : false,
-      'step-solutions': hash === '#step-solutions' ? true : false,
+      'section-superpower': hash === '#section-superpower',
+      'section-setup': hash === '#section-setup',
     };
   });
 
-  // Mark as visited on first mount
-  useEffect(() => {
-    localStorage.setItem('toolkit_visited', 'true');
-  }, []);
-
-  // Handle hash changes (e.g. clicking nav links)
   useEffect(() => {
     const handleHashChange = () => {
       const hash = window.location.hash.replace('#', '');
-      if (hash === 'step-setup' || hash === 'step-safety' || hash === 'step-solutions') {
-        setExpandedSteps((prev) => ({ ...prev, [hash]: true }));
+      if (hash === 'section-setup' || hash === 'section-superpower') {
+        setExpandedSections((prev) => ({ ...prev, [hash]: true }));
       }
     };
     window.addEventListener('hashchange', handleHashChange);
     return () => window.removeEventListener('hashchange', handleHashChange);
   }, []);
 
-  const toggleStep = useCallback((id: string) => {
-    setExpandedSteps((prev) => ({ ...prev, [id]: !prev[id] }));
+  const toggleSection = useCallback((id: string) => {
+    setExpandedSections((prev) => ({ ...prev, [id]: !prev[id] }));
   }, []);
+
+  const [searchQuery, setSearchQuery] = useState('');
+
+  const filteredResults = useMemo(() => {
+    const q = searchQuery.trim();
+    if (!q) return null;
+    return blocks.flatMap((block) =>
+      block.solutions
+        .filter((s) => matchesSolution(s, q))
+        .map((solution) => ({ solution, blockColor: block.color }))
+    );
+  }, [searchQuery]);
 
   useEffect(() => {
     document.title =
-      'ШІ-помічник лікаря — 17 готових рішень для щоденної практики';
+      'ШІ-помічник лікаря — 16 готових рішень для щоденної практики';
 
     const metaDesc = document.querySelector('meta[name="description"]');
     const descContent =
-      'Довідник готових ШІ-рішень для лікарів: промпти для документації, діагностики, комунікації з пацієнтами. Готові рішення з чеклістами безпеки.';
+      'Довідник готових ШІ-рішень для лікарів: готові запити для документації, діагностики, комунікації з пацієнтами. Рішення з чеклістами безпеки.';
     if (metaDesc) {
       metaDesc.setAttribute('content', descContent);
     } else {
@@ -122,7 +145,7 @@ export default function AiToolkitPage() {
     }
 
     const ogTags: Record<string, string> = {
-      'og:title': 'ШІ-помічник лікаря — 17 готових рішень',
+      'og:title': 'ШІ-помічник лікаря — 16 готових рішень',
       'og:description': descContent,
       'og:url': 'https://doctorpidnebesna.com/toolkit',
       'og:type': 'website',
@@ -167,70 +190,97 @@ export default function AiToolkitPage() {
     <div className={styles.toolkitPage}>
       <ToolkitNav blocks={blocks} />
       <main className={styles.content}>
-{/* Крок 1: Налаштуйте інструменти */}
-        <CollapsibleStep
-          id="step-setup"
-          step={1}
-          title="Налаштуйте інструменти"
-          description="Налаштуємо ChatGPT і NotebookLM — два інструменти для вашої практики."
-          expanded={expandedSteps['step-setup']}
-          onToggle={() => toggleStep('step-setup')}
-        >
-          <ToolkitSetupContent />
-        </CollapsibleStep>
+        <h1 className="sr-only">ШІ-помічник лікаря — 16 готових рішень для щоденної практики</h1>
+        <ToolkitWelcome />
+        <ToolkitSearch value={searchQuery} onChange={setSearchQuery} />
 
-        {/* Крок 2: Відомі вади ChatGPT */}
-        <CollapsibleStep
-          id="step-safety"
-          step={2}
-          title="Відомі вади ChatGPT"
-          description="У ChatGPT є три системні слабкості. У довіднику вони вже враховані — вам не потрібно про них думати."
-          expanded={expandedSteps['step-safety']}
-          onToggle={() => toggleStep('step-safety')}
-        >
-          <AiPitfalls />
-        </CollapsibleStep>
-
-        {/* Крок 3: Оберіть задачу */}
-        <CollapsibleStep
-          id="step-solutions"
-          step={3}
-          title="Знайдіть своє рішення"
-          description="Оберіть задачу і слідкуйте інструкціям"
-          expanded={expandedSteps['step-solutions']}
-          onToggle={() => toggleStep('step-solutions')}
-        >
-          {blocks.map((block) => (
-            <div
-              key={block.id}
-              className={styles.blockSection}
-              style={{ '--block-bg': `color-mix(in srgb, ${block.color} 4%, transparent)` } as React.CSSProperties}
-            >
-              <BlockHeader
-                block={block}
-                expanded={expandedBlocks[block.id]}
-                onToggle={() => toggleBlock(block.id)}
-              />
-              <div
-                id={`block-${block.id}-content`}
-                role="region"
-                className={`${styles.blockCollapsible} ${expandedBlocks[block.id] ? styles.blockCollapsibleOpen : ''}`}
-              >
-                <div className={styles.blockInner}>
-                  <div className={styles.solutionsGrid}>
-                    {block.solutions.map((solution) => (
-                      <SolutionCard
-                        key={solution.id}
-                        solution={solution}
-                        blockColor={block.color}
-                      />
-                    ))}
+        {/* Filtered results when searching */}
+        {filteredResults ? (
+          filteredResults.length > 0 ? (
+            <div className={styles.searchResults}>
+              <p className={styles.searchCount}>
+                {filteredResults.length}{' '}
+                {filteredResults.length === 1 ? 'рішення' : filteredResults.length < 5 ? 'рішення' : 'рішень'}
+              </p>
+              <div className={styles.solutionsGrid}>
+                {filteredResults.map(({ solution, blockColor }) => (
+                  <SolutionCard
+                    key={solution.id}
+                    solution={solution}
+                    blockColor={blockColor}
+                  />
+                ))}
+              </div>
+            </div>
+          ) : (
+            <p className={styles.searchEmpty}>
+              Нічого не знайдено. Спробуйте інший запит.
+            </p>
+          )
+        ) : (
+          <>
+            {/* Solutions — directly on page, no step wrapper */}
+            {blocks.map((block) => (
+              <div key={block.id}>
+                <div
+                  className={styles.blockSection}
+                  style={{ '--block-bg': `color-mix(in srgb, ${block.color} 4%, transparent)` } as React.CSSProperties}
+                >
+                  <BlockHeader
+                    block={block}
+                    expanded={expandedBlocks[block.id]}
+                    onToggle={() => toggleBlock(block.id)}
+                  />
+                  <div
+                    id={`block-${block.id}-content`}
+                    role="region"
+                    className={`${styles.blockCollapsible} ${expandedBlocks[block.id] ? styles.blockCollapsibleOpen : ''}`}
+                  >
+                    <div className={styles.blockInner}>
+                      <div className={styles.solutionsGrid}>
+                        {block.solutions.map((solution) => (
+                          <SolutionCard
+                            key={solution.id}
+                            solution={solution}
+                            blockColor={block.color}
+                          />
+                        ))}
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
+            ))}
+            {/* Ready notebooks callout — above superpower section */}
+            <div className={styles.readyNotebooksCallout}>
+              <span className={styles.readyNotebooksIcon} aria-hidden="true">🎁</span>
+              <p className={styles.readyNotebooksText}>
+                6 ноутбуків з протоколами МОЗ та міжнародними гайдлайнами — готові до використання
+              </p>
             </div>
-          ))}
-        </CollapsibleStep>
+            {/* NotebookLM — collapsible, no step number */}
+            <CollapsibleSection
+              id="section-superpower"
+              title="NotebookLM — AI, який працює тільки з вашими документами"
+              description="AI від Google, який працює ТІЛЬКИ з вашими документами. Без вигаданих фактів."
+              expanded={expandedSections['section-superpower']}
+              onToggle={() => toggleSection('section-superpower')}
+            >
+              <SuperpowerSection />
+            </CollapsibleSection>
+
+            {/* ChatGPT setup — collapsible, no step number */}
+            <CollapsibleSection
+              id="section-setup"
+              title="Налаштування ChatGPT"
+              description="Наступний крок · 2 хв. Уже спробували рішення вище? Налаштуйте ChatGPT під себе."
+              expanded={expandedSections['section-setup']}
+              onToggle={() => toggleSection('section-setup')}
+            >
+              <ToolkitSetupContent />
+            </CollapsibleSection>
+          </>
+        )}
       </main>
     </div>
   );

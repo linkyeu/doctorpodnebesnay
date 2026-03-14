@@ -114,9 +114,9 @@ export default function SolutionCard({ solution, blockColor }: SolutionCardProps
             type="button"
             className={styles.copyShortcut}
             onClick={handleCopyShortcut}
-            aria-label="Скопіювати промпт"
+            aria-label="Скопіювати запит"
           >
-            {copied ? '✓ Скопійовано' : '📋 Копіювати промпт'}
+            {copied ? '✓ Скопійовано' : '📋 Копіювати запит'}
           </button>
         )}
 
@@ -135,7 +135,7 @@ export default function SolutionCard({ solution, blockColor }: SolutionCardProps
             {/* Instruction line for all prompt cards */}
             {cardType === 'prompt' && (
               <p className={styles.toolInstruction}>
-                → Скопіюйте промпт, замініть <span className={styles.placeholderHint}>[виділене]</span> на ваші дані і вставте в{' '}
+                → Скопіюйте запит, замініть <span className={styles.placeholderHint}>[виділене]</span> на ваші дані і вставте в{' '}
                 <a href={getToolUrl(solution.tool)} target="_blank" rel="noopener noreferrer">
                   {getToolDisplayName(solution.tool)}
                 </a>
@@ -166,39 +166,6 @@ export default function SolutionCard({ solution, blockColor }: SolutionCardProps
               </>
             )}
 
-            {/* Ready notebook callout */}
-            {solution.readyNotebook && (
-              <div className={styles.readyNotebook}>
-                <div className={styles.readyNotebookContent}>
-                  <span className={styles.readyNotebookIcon} aria-hidden="true">🎁</span>
-                  <div>
-                    <p className={styles.readyNotebookTitle}>
-                      Готовий ноутбук: {solution.readyNotebook.title}
-                    </p>
-                    <div className={styles.readyNotebookLinks}>
-                      <a
-                        href={solution.readyNotebook.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className={styles.readyNotebookLink}
-                      >
-                        Відкрити в NotebookLM →
-                      </a>
-                      <a
-                        href="#section-superpower"
-                        className={styles.readyNotebookCreate}
-                        onClick={(e) => {
-                          e.preventDefault();
-                          document.getElementById('section-superpower')?.scrollIntoView({ behavior: 'smooth' });
-                        }}
-                      >
-                        Або створіть свій → Крок 2
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            )}
           </div>
         </div>
       </div>
