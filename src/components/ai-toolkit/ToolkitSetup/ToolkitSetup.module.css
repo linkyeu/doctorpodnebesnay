@@ -23,6 +23,17 @@
   line-height: var(--leading-tight);
 }
 
+/* ── Setup Hero ── */
+
+.setupHero {
+  width: 100%;
+  max-width: 480px;
+  height: auto;
+  display: block;
+  margin: 0 auto var(--space-6);
+  opacity: 0.85;
+}
+
 /* ── Setup Guide ── */
 
 .setupList {

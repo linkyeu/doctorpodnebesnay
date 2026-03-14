@@ -2,31 +2,30 @@ import { useState, useEffect, useCallback, useRef } from 'react';
 import type { Block } from '../../../data/ai-toolkit';
 import styles from './ToolkitNav.module.css';
 
+export type TabId = 'solutions' | 'notebooks' | 'setup';
+
 interface ToolkitNavProps {
   blocks: Block[];
+  activeTab: TabId;
+  onTabChange: (tab: TabId) => void;
 }
 
-export default function ToolkitNav({ blocks }: ToolkitNavProps) {
+const TABS: { id: TabId; label: string; icon: string }[] = [
+  { id: 'solutions', label: 'Рішення', icon: '◆' },
+  { id: 'notebooks', label: 'Notebooks', icon: '◎' },
+  { id: 'setup', label: 'Налаштування', icon: '⚙' },
+];
+
+export default function ToolkitNav({ blocks, activeTab, onTabChange }: ToolkitNavProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [activeId, setActiveId] = useState<string>('');
   const navRef = useRef<HTMLElement>(null);
 
-  const topSections: { id: string; label: string }[] = [];
-
-  const bottomSections = [
-    { id: 'section-superpower', label: 'NotebookLM — ваші документи' },
-    { id: 'section-setup', label: 'Налаштування ChatGPT' },
-    { id: 'appendix-glossary', label: 'Глосарій' },
-  ];
-
-  const staticIds = [
-    ...topSections.map((s) => s.id),
-    ...bottomSections.map((s) => s.id),
-  ];
-
-  // Scrollspy: observe block and solution headings
+  // Scrollspy: observe block and solution headings (only on solutions tab)
   useEffect(() => {
-    const ids: string[] = [...staticIds];
+    if (activeTab !== 'solutions') return;
+
+    const ids: string[] = [];
     for (const block of blocks) {
       ids.push(`block-${block.id}`);
       for (const solution of block.solutions) {
@@ -42,7 +41,6 @@ export default function ToolkitNav({ blocks }: ToolkitNavProps) {
 
     const observer = new IntersectionObserver(
       (entries) => {
-        // Find the topmost visible entry
         const visible = entries
           .filter((e) => e.isIntersecting)
           .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
@@ -59,20 +57,27 @@ export default function ToolkitNav({ blocks }: ToolkitNavProps) {
 
     elements.forEach((el) => observer.observe(el));
     return () => observer.disconnect();
-  }, [blocks]);
+  }, [blocks, activeTab]);
 
   const handleClick = useCallback(
     (id: string) => {
       const el = document.getElementById(id);
       if (el) {
-        // Manual offset calculation — more reliable than scrollIntoView
-        // when sticky headers are present
         const y = el.getBoundingClientRect().top + window.scrollY - 80;
         window.scrollTo({ top: Math.max(0, y), behavior: 'smooth' });
       }
       setIsOpen(false);
     },
     [],
+  );
+
+  const handleTabClick = useCallback(
+    (tab: TabId) => {
+      onTabChange(tab);
+      setIsOpen(false);
+      window.scrollTo({ top: 0 });
+    },
+    [onTabChange],
   );
 
   // Close panel on Escape
@@ -96,67 +101,80 @@ export default function ToolkitNav({ blocks }: ToolkitNavProps) {
     }
   }, [isOpen]);
 
-  const tocContent = (
-    <ul className={styles.list} role="list">
-      {topSections.map((section) => (
-        <li key={section.id}>
+  const sidebarContent = (
+    <>
+      {/* Tab buttons */}
+      <div className={styles.tabSection}>
+        <div className={styles.sectionLabel}>Розділи</div>
+        {TABS.map((tab) => (
           <button
+            key={tab.id}
             type="button"
-            className={`${styles.staticItem} ${activeId === section.id ? styles.active : ''}`}
-            onClick={() => handleClick(section.id)}
+            className={`${styles.navTab} ${activeTab === tab.id ? styles.navTabActive : ''}`}
+            onClick={() => handleTabClick(tab.id)}
           >
-            {section.label}
+            <span className={styles.navTabIcon} aria-hidden="true">{tab.icon}</span>
+            {tab.label}
           </button>
-        </li>
-      ))}
-      {blocks.map((block) => (
-        <li key={block.id} className={styles.blockGroup}>
-          <button
-            type="button"
-            className={`${styles.blockTitle} ${activeId === `block-${block.id}` ? styles.active : ''}`}
-            style={{ '--nav-color': block.color } as React.CSSProperties}
-            onClick={() => handleClick(`block-${block.id}`)}
-          >
-            <span
-              className={styles.blockDot}
-              style={{ backgroundColor: block.color }}
-            />
-            {block.title}
-          </button>
-          <ul className={styles.solutionList} role="list">
-            {block.solutions.map((solution) => (
-              <li key={solution.id}>
+        ))}
+      </div>
+
+      <div className={styles.divider} />
+
+      {/* Tab-specific content */}
+      {activeTab === 'solutions' && (
+        <div>
+          <div className={styles.sectionLabel}>Блоки</div>
+          <ul className={styles.list} role="list">
+            {blocks.map((block) => (
+              <li key={block.id} className={styles.blockGroup}>
                 <button
                   type="button"
-                  className={`${styles.solutionItem} ${activeId === `solution-${solution.id}` ? styles.active : ''}`}
-                  style={{ '--nav-color': block.color } as React.CSSProperties}
-                  onClick={() => handleClick(`solution-${solution.id}`)}
+                  className={`${styles.blockTitle} ${activeId === `block-${block.id}` ? styles.active : ''}`}
+                  onClick={() => handleClick(`block-${block.id}`)}
                 >
-                  <span className={styles.solutionId}>{solution.id}</span>
-                  {solution.title}
+                  <span className={styles.blockDot} style={{ backgroundColor: block.color }} />
+                  {block.title}
                 </button>
+                <ul className={styles.solutionList} role="list">
+                  {block.solutions.map((solution) => (
+                    <li key={solution.id}>
+                      <button
+                        type="button"
+                        className={`${styles.solutionItem} ${activeId === `solution-${solution.id}` ? styles.active : ''}`}
+                        onClick={() => handleClick(`solution-${solution.id}`)}
+                      >
+                        <span className={styles.solutionId}>{solution.id}</span>
+                        {solution.title}
+                      </button>
+                    </li>
+                  ))}
+                </ul>
               </li>
             ))}
           </ul>
-        </li>
-      ))}
-      {bottomSections.map((section) => (
-        <li key={section.id}>
-          <button
-            type="button"
-            className={`${styles.staticItem} ${activeId === section.id ? styles.active : ''}`}
-            onClick={() => handleClick(section.id)}
-          >
-            {section.label}
-          </button>
-        </li>
-      ))}
-    </ul>
+        </div>
+      )}
+
+      {activeTab === 'notebooks' && (
+        <div>
+          <div className={styles.sectionLabel}>Зміст</div>
+          <ul className={styles.list} role="list">
+            <li><button type="button" className={styles.staticItem} onClick={() => handleClick('audio-demo')}>🎧 Подкаст-демо</button></li>
+            <li><button type="button" className={styles.staticItem} onClick={() => handleClick('explainer')}>📖 Що таке NotebookLM</button></li>
+            <li><button type="button" className={styles.staticItem} onClick={() => handleClick('trust')}>✅ Чому можна довіряти</button></li>
+            <li><button type="button" className={styles.staticItem} onClick={() => handleClick('setup-guide')}>🔧 Як створити ноутбук</button></li>
+            <li><button type="button" className={styles.staticItem} onClick={() => handleClick('ready-notebooks')}>🎁 Готові ноутбуки</button></li>
+          </ul>
+        </div>
+      )}
+
+    </>
   );
 
   return (
     <>
-      {/* Mobile: sticky top bar + hamburger */}
+      {/* Mobile: sticky top bar */}
       <div className={styles.mobileBar}>
         <button
           type="button"
@@ -170,6 +188,19 @@ export default function ToolkitNav({ blocks }: ToolkitNavProps) {
           </span>
           <span className={styles.hamburgerLabel}>Зміст</span>
         </button>
+        {/* Mobile tab pills */}
+        <div className={styles.mobileTabs}>
+          {TABS.map((tab) => (
+            <button
+              key={tab.id}
+              type="button"
+              className={`${styles.mobileTabPill} ${activeTab === tab.id ? styles.mobileTabActive : ''}`}
+              onClick={() => handleTabClick(tab.id)}
+            >
+              {tab.label}
+            </button>
+          ))}
+        </div>
       </div>
 
       {/* Mobile: slide-out overlay */}
@@ -182,7 +213,7 @@ export default function ToolkitNav({ blocks }: ToolkitNavProps) {
       )}
       <div className={`${styles.mobilePanel} ${isOpen ? styles.panelOpen : ''}`}>
         <div className={styles.mobilePanelHeader}>
-          <h3 className={styles.mobilePanelTitle}>Зміст</h3>
+          <h3 className={styles.mobilePanelTitle}>Навігація</h3>
           <button
             type="button"
             className={styles.closeBtn}
@@ -192,13 +223,12 @@ export default function ToolkitNav({ blocks }: ToolkitNavProps) {
             ✕
           </button>
         </div>
-        {tocContent}
+        {sidebarContent}
       </div>
 
-      {/* Desktop: fixed sidebar */}
+      {/* Desktop: fixed dark sidebar — always visible */}
       <nav ref={navRef} className={styles.sidebar} aria-label="Навігація по розділах">
-        <h3 className={styles.sidebarTitle}>Зміст</h3>
-        {tocContent}
+        {sidebarContent}
       </nav>
     </>
   );

@@ -200,6 +200,13 @@ function ChatGPTSetup() {
 export function ToolkitSetupContent() {
   return (
     <div className={styles.setupList}>
+      <img
+        className={styles.setupHero}
+        src="/images/toolkit/illustrations/setup-hero.png"
+        alt=""
+        aria-hidden="true"
+        loading="lazy"
+      />
       <ChatGPTSetup />
     </div>
   );
