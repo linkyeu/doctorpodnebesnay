@@ -58,7 +58,7 @@
 
 .title {
   font-family: var(--font-body);
-  font-size: var(--text-lg);
+  font-size: var(--text-base);
   font-weight: var(--weight-semibold);
   line-height: var(--leading-snug);
   color: var(--color-text);
@@ -79,6 +79,14 @@
   flex-wrap: wrap;
   align-items: center;
   gap: var(--space-2);
+}
+
+.toolLabel {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+  color: var(--color-text-muted);
+  white-space: nowrap;
 }
 
 /* Chevron */
@@ -168,8 +176,74 @@
   }
 
   .title {
-    font-size: var(--text-xl);
+    font-size: var(--text-lg);
   }
+}
+
+/* Ready notebook callout */
+.readyNotebook {
+  margin-top: var(--space-2);
+  padding: var(--space-4);
+  background: linear-gradient(135deg, #F0F4FF 0%, #FFF7ED 100%);
+  border-radius: var(--radius-md);
+  border: 1px solid color-mix(in srgb, var(--color-accent) 40%, transparent);
+}
+
+.readyNotebookContent {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+}
+
+.readyNotebookIcon {
+  font-size: 1.25rem;
+  line-height: 1;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.readyNotebookTitle {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+  color: var(--color-primary);
+  margin: 0 0 var(--space-2);
+}
+
+.readyNotebookLinks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  align-items: center;
+}
+
+.readyNotebookLink {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+  color: var(--color-primary);
+  text-decoration: none;
+  padding: var(--space-1) var(--space-3);
+  border: 1px solid var(--color-primary);
+  border-radius: var(--radius-sm);
+  transition: background var(--transition-fast), color var(--transition-fast);
+}
+
+.readyNotebookLink:hover {
+  background: var(--color-primary);
+  color: var(--color-text-on-dark);
+}
+
+.readyNotebookCreate {
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.readyNotebookCreate:hover {
+  color: var(--color-primary);
 }
 
 @media (prefers-reduced-motion: reduce) {

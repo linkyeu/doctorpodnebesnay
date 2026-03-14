@@ -82,6 +82,9 @@ export default function SolutionCard({ solution, blockColor }: SolutionCardProps
                 {solution.title}
               </h3>
               <div className={styles.badges}>
+                <span className={styles.toolLabel}>
+                  {/[+]|або/i.test(solution.tool) ? 'Інструменти:' : 'Інструмент:'}
+                </span>
                 <ToolBadge tool={solution.tool} />
               </div>
             </div>
@@ -142,6 +145,16 @@ export default function SolutionCard({ solution, blockColor }: SolutionCardProps
             {/* Content depends on card type */}
             {cardType === 'prompt' ? (
               <PromptBox prompt={solution.prompt} note={solution.promptNote} />
+            ) : cardType === 'hybrid' && solution.prompt ? (
+              <>
+                <PromptBox prompt={solution.prompt} note={solution.promptNote} />
+                {solution.steps && (
+                  <WorkflowSteps steps={solution.steps} note="Перевiрка через NotebookLM:" />
+                )}
+                {solution.copyablePrompts && (
+                  <CopyablePrompts groups={solution.copyablePrompts} />
+                )}
+              </>
             ) : (
               <>
                 {solution.steps && (
@@ -151,6 +164,40 @@ export default function SolutionCard({ solution, blockColor }: SolutionCardProps
                   <CopyablePrompts groups={solution.copyablePrompts} />
                 )}
               </>
+            )}
+
+            {/* Ready notebook callout */}
+            {solution.readyNotebook && (
+              <div className={styles.readyNotebook}>
+                <div className={styles.readyNotebookContent}>
+                  <span className={styles.readyNotebookIcon} aria-hidden="true">🎁</span>
+                  <div>
+                    <p className={styles.readyNotebookTitle}>
+                      Готовий ноутбук: {solution.readyNotebook.title}
+                    </p>
+                    <div className={styles.readyNotebookLinks}>
+                      <a
+                        href={solution.readyNotebook.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={styles.readyNotebookLink}
+                      >
+                        Відкрити в NotebookLM →
+                      </a>
+                      <a
+                        href="#section-superpower"
+                        className={styles.readyNotebookCreate}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          document.getElementById('section-superpower')?.scrollIntoView({ behavior: 'smooth' });
+                        }}
+                      >
+                        Або створіть свій → Крок 2
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
             )}
           </div>
         </div>
