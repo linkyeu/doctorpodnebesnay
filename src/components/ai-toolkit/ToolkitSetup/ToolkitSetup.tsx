@@ -200,6 +200,12 @@ function ChatGPTSetup() {
 export function ToolkitSetupContent() {
   return (
     <div className={styles.setupList}>
+      <div className={styles.setupMotivation}>
+        <span className={styles.setupMotivationIcon} aria-hidden="true">⚡</span>
+        <p className={styles.setupMotivationText}>
+          <strong>Навіщо налаштовувати?</strong> Всі запити з довідника працюють і без цього. Але з налаштуваннями ChatGPT запам'ятає вашу спеціальність і мову — відповіді будуть точнішими. 2 хвилини один раз.
+        </p>
+      </div>
       <img
         className={styles.setupHero}
         src="/images/toolkit/illustrations/setup-hero.png"

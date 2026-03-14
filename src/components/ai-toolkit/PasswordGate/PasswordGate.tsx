@@ -40,11 +40,19 @@ export default function PasswordGate({ onSuccess }: PasswordGateProps) {
   );
 
   return (
-    <div className={styles.gate}>
-      <div className={styles.card}>
+    <div className={`${styles.gate} toolkit-scope`}>
+      <div className={styles.inner}>
+        <img
+          className={styles.hero}
+          src="/images/toolkit/illustrations/gate-hero.png"
+          alt=""
+          aria-hidden="true"
+          width="400"
+          height="225"
+        />
         <h1 className={styles.title}>ШІ-помічник лікаря</h1>
         <p className={styles.subtitle}>
-          Введіть пароль, який ви отримали після покупки
+          16 готових рішень для щоденної практики
         </p>
 
         <form onSubmit={handleSubmit} className={styles.form}>
@@ -56,7 +64,7 @@ export default function PasswordGate({ onSuccess }: PasswordGateProps) {
               setPassword(e.target.value);
               setError(false);
             }}
-            placeholder="Пароль"
+            placeholder="Введіть пароль"
             autoFocus
             autoComplete="off"
           />
@@ -64,14 +72,13 @@ export default function PasswordGate({ onSuccess }: PasswordGateProps) {
             <p className={styles.error}>Невірний пароль. Спробуйте ще раз.</p>
           )}
           <button type="submit" className={styles.button} disabled={checking || !password.trim()}>
-            {checking ? 'Перевірка...' : 'Відкрити довідник'}
+            {checking ? 'Перевірка...' : 'Відкрити'}
           </button>
         </form>
 
         <p className={styles.hint}>
-          Забули пароль? Напишіть нам у{' '}
-          <a href="https://t.me/medicalforua" target="_blank" rel="noopener noreferrer">
-            Telegram
+          Пароль у листі після оплати · <a href="https://t.me/medicalforua" target="_blank" rel="noopener noreferrer">
+            Написати в Telegram
           </a>
         </p>
       </div>
