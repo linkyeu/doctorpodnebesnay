@@ -21,11 +21,16 @@ export default function BlockHeader({ block, expanded, onToggle }: BlockHeaderPr
 
   const inner = (
     <div className={styles.content}>
-      <div className={styles.accentLine} />
       <div className={styles.row}>
-        <span className={styles.letterPill}>
-          {block.id}
-        </span>
+        <img
+          src={block.icon}
+          alt=""
+          aria-hidden="true"
+          className={styles.icon}
+          width="56"
+          height="56"
+          loading="lazy"
+        />
         <div className={styles.text}>
           <h2 className={styles.title}>{block.title}</h2>
           <p className={styles.subtitle}>{block.subtitle}</p>

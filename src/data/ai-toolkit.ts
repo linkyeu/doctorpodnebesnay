@@ -43,6 +43,7 @@ export interface Block {
   title: string;
   subtitle: string;
   color: string;
+  icon: string;
   solutions: Solution[];
 }
 
@@ -707,6 +708,7 @@ export const blocks: Block[] = [
     title: 'Протоколи, статті, лекції',
     subtitle: 'протоколи · резюме статей · конспекти лекцій · довідники',
     color: BLOCK_COLORS.A,
+    icon: '/images/toolkit/illustrations/solutions/A1-protocol.png',
     solutions: blockDSolutions,
   },
   {
@@ -714,6 +716,7 @@ export const blocks: Block[] = [
     title: 'Діагноз, аналізи, лікування',
     subtitle: 'диференційний діагноз · аналізи · план лікування',
     color: BLOCK_COLORS.B,
+    icon: '/images/toolkit/illustrations/solutions/B1-diagnosis.png',
     solutions: blockCSolutions,
   },
   {
@@ -721,6 +724,7 @@ export const blocks: Block[] = [
     title: 'Розмова з пацієнтом',
     subtitle: 'пояснення діагнозу · складні розмови · переклад',
     color: BLOCK_COLORS.C,
+    icon: '/images/toolkit/illustrations/solutions/C1-patient.png',
     solutions: blockBSolutions,
   },
   {
@@ -728,6 +732,7 @@ export const blocks: Block[] = [
     title: 'Виписки та форми',
     subtitle: 'виписки · довідки · форми МОЗ',
     color: BLOCK_COLORS.D,
+    icon: '/images/toolkit/illustrations/solutions/D1-vypyska.png',
     solutions: blockASolutions,
   },
 ];
