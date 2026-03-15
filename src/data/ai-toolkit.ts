@@ -35,7 +35,7 @@ export interface Solution {
   toolIntro?: ToolIntro;
   steps?: SolutionStep[];
   copyablePrompts?: CopyablePromptGroup[];
-  readyNotebook?: { title: string; url: string };
+  readyNotebooks?: ReadyNotebook[];
   illustration?: string;
 }
 
@@ -51,6 +51,18 @@ export interface Block {
 export interface GlossaryEntry {
   term: string;
   definition: string;
+}
+
+export interface ReadyNotebook {
+  id: string;
+  emoji: string;
+  title: string;
+  description: string;
+  url: string;
+  category: 'moz' | 'international' | 'formulary' | 'other';
+  sources: string;
+  exampleQueries: string[];
+  specialties: string[];
 }
 
 // ── Block colors ──
@@ -148,6 +160,107 @@ const solutionIllustrations: Record<string, string> = {
   'A4': '/images/toolkit/illustrations/solutions/A4-webinar.png',
   'A5': '/images/toolkit/illustrations/solutions/A5-auto-guide.png',
 };
+
+// ── Ready NotebookLM Notebooks (referenced by solutions below) ──
+
+export const readyNotebooksData: ReadyNotebook[] = [
+  {
+    id: 'nb-hypertension',
+    emoji: '❤️‍🩹',
+    title: 'Артеріальна гіпертензія',
+    description: 'Протоколи МОЗ, ESC/ESH 2023, WHO HEARTS — все в одному місці',
+    url: 'https://notebooklm.google.com/notebook/65e286f1-cbdd-4922-84ff-ce48d209b7cb',
+    category: 'moz',
+    sources: 'МОЗ, ESC, WHO, Cochrane, Compendium',
+    exampleQueries: [
+      'Яка тактика при АГ 2 стадії у пацієнта з ЦД2? Порівняй МОЗ та ESC',
+      'Коли починати медикаментозне лікування за МОЗ протоколом?',
+      'Побічні ефекти інгібіторів АПФ — що моніторити?',
+    ],
+    specialties: ['Сімейна медицина', 'Терапія', 'Кардіологія', 'Ендокринологія', 'Невідкладна допомога'],
+  },
+  {
+    id: 'nb-diabetes',
+    emoji: '🩸',
+    title: 'Цукровий діабет 2 типу',
+    description: 'МОЗ (наказ 1300), ADA 2025, NICE NG28 — актуальні стандарти',
+    url: 'https://notebooklm.google.com/notebook/880adc1b-c254-4f93-8b2a-43025bd0e00b',
+    category: 'moz',
+    sources: 'МОЗ, ADA, NICE, Cochrane, Compendium',
+    exampleQueries: [
+      'Пацієнт з ЦД2, HbA1c 8.5%, ІМТ 34 — друга лінія за МОЗ vs ADA?',
+      'Коли переводити на інсулін?',
+      'Які аналізи контролювати кожні 3 місяці?',
+    ],
+    specialties: ['Сімейна медицина', 'Терапія', 'Кардіологія', 'Ендокринологія', 'Невідкладна допомога'],
+  },
+  {
+    id: 'nb-comorbid',
+    emoji: '🔗',
+    title: 'Коморбідний пацієнт (АГ + ЦД2 + ХНН)',
+    description: 'Крос-перевірка протоколів — що можна, що протипоказано при поєднанні діагнозів',
+    url: 'https://notebooklm.google.com/notebook/dfaa98c2-86f8-438b-a739-66593f53df6f',
+    category: 'moz',
+    sources: 'МОЗ (АГ, ЦД2, ХНН), KDIGO, ESC, Compendium',
+    exampleQueries: [
+      'Пацієнт АГ + ЦД2 + ХНН 3б — які препарати протипоказані через нирки?',
+      'Метформін при ШКФ 35 — можна чи ні? Що кажуть МОЗ, ADA, KDIGO?',
+      'Цільовий АТ у пацієнта з діабетичною нефропатією?',
+    ],
+    specialties: ['Сімейна медицина', 'Терапія', 'Кардіологія', 'Ендокринологія'],
+  },
+  {
+    id: 'nb-antibiotics',
+    emoji: '💊',
+    title: 'Антибіотикотерапія',
+    description: 'Перша лінія при пневмонії, ІСШ, отиті — з урахуванням алергій та резистентності',
+    url: 'https://notebooklm.google.com/notebook/93a003f4-4068-487b-8b8a-da4b5562d699',
+    category: 'moz',
+    sources: 'МОЗ, WHO AWaRe, EUCAST, NICE, Compendium',
+    exampleQueries: [
+      'Позалікарняна пневмонія, легкий перебіг — антибіотик першої лінії? Алергія на пеніциліни?',
+      'ІСШ у вагітної — що безпечно за протоколом?',
+      'Дитина 5 років, гострий отит — чекати чи одразу антибіотик?',
+    ],
+    specialties: ['Сімейна медицина', 'Терапія', 'Педіатрія', 'Невідкладна допомога'],
+  },
+  {
+    id: 'nb-mental',
+    emoji: '🧠',
+    title: 'Тривога, депресія, ПТСР',
+    description: 'Скринінг (PHQ-9, GAD-7, PCL-5), тактика для сімейного лікаря, коли направити',
+    url: 'https://notebooklm.google.com/notebook/2f21f457-2a45-4856-85cc-e9d9d9972c35',
+    category: 'moz',
+    sources: 'МОЗ, WHO mhGAP, NICE, Cochrane',
+    exampleQueries: [
+      'Пацієнт: безсоння, тривога після обстрілу — ПТСР? Які скринінг-інструменти?',
+      'Коли сімейний лікар може призначати антидепресанти сам?',
+      'PHQ-9 бал 15 — яка тактика за протоколом?',
+    ],
+    specialties: ['Сімейна медицина', 'Терапія', 'Неврологія', 'Невідкладна допомога'],
+  },
+  {
+    id: 'nb-pediatrics',
+    emoji: '👶',
+    title: 'Педіатрія: найчастіші стани',
+    description: 'ГРВІ, бронхіт, отит, ГКІ, вакцинація — протоколи МОЗ + WHO IMCI',
+    url: 'https://notebooklm.google.com/notebook/583c3524-967d-4f28-a384-fb7651c1d0b0',
+    category: 'moz',
+    sources: 'МОЗ, WHO IMCI, Cochrane, Календар вакцинації',
+    exampleQueries: [
+      'Дитина 3 роки, t°39 третій день, кашель — алгоритм? Коли антибіотик?',
+      'Календар вакцинації — що робити якщо пропущено АКДП у 6 місяців?',
+      'Оцінка зневоднення у дитини з ГКІ — критерії госпіталізації?',
+    ],
+    specialties: ['Педіатрія', 'Сімейна медицина', 'Невідкладна допомога'],
+  },
+];
+
+function findNotebook(id: string): ReadyNotebook {
+  const nb = readyNotebooksData.find(n => n.id === id);
+  if (!nb) throw new Error(`Notebook ${id} not found`);
+  return nb;
+}
 
 const blockASolutions: Solution[] = [
   {
@@ -380,7 +493,7 @@ const blockBSolutions: Solution[] = [
         'ВІК, СТАТЬ, СИМПТОМИ, ОБСТЕЖЕННЯ': 'дівчинка 4 роки, біль у животі, нормальний ріст і вага, немає діареї',
       },
     },
-    readyNotebook: { title: 'Педіатрія: найчастіші стани', url: '#' },
+    readyNotebooks: [findNotebook('nb-pediatrics')],
   },
 ];
 
@@ -436,7 +549,7 @@ const blockCSolutions: Solution[] = [
       'У пацієнта з\'явились нові дані: [НОВІ СИМПТОМИ/РЕЗУЛЬТАТИ]. Як це змінює диференціал?',
       'Порівняй діагнози #1 і #2 — що їх розрізняє найкраще? Який один тест вирішить?',
     ],
-    readyNotebook: { title: 'Артеріальна гіпертензія', url: '#' },
+    readyNotebooks: [findNotebook('nb-hypertension'), findNotebook('nb-mental')],
   },
   {
     id: 'B1b',
@@ -555,7 +668,7 @@ const blockCSolutions: Solution[] = [
       'Пацієнт вже приймає [ПРЕПАРАТИ]. Чи є взаємодії з рекомендованим лікуванням?',
       'Яка альтернатива, якщо пацієнт не переносить [ПРЕПАРАТ]?',
     ],
-    readyNotebook: { title: 'Коморбідний пацієнт (АГ + ЦД2 + ХНН)', url: '#' },
+    readyNotebooks: [findNotebook('nb-diabetes'), findNotebook('nb-comorbid')],
   },
   {
     id: 'B4',
@@ -580,7 +693,7 @@ const blockCSolutions: Solution[] = [
     example: {
       input: 'Додано інструкції 6 препаратів: амлодипін, лерканідипін, метформін, аторвастатин, аспірин, омепразол. Пацієнт 68 років, ЦД 2 типу, ХХН 3 ст., ШКФ 42 мл/хв. Питання: "Які взаємодії між усіма 6 препаратами? Які потребують корекції дози при ШКФ 42? Який з двох антигіпертензивних краще при ХХН?"',
     },
-    readyNotebook: { title: 'Антибіотикотерапія', url: '#' },
+    readyNotebooks: [findNotebook('nb-antibiotics')],
   },
   {
     id: 'B5',
@@ -1050,145 +1163,7 @@ export interface ShowcaseVideo {
 
 export const showcaseVideos: ShowcaseVideo[] = [];
 
-// ── Superpower Section (Step 2) ──
-
-export interface PitfallNarrative {
-  problem: string;
-  solution: string;
-  image: string;
-}
-
-export interface ReadyNotebook {
-  id: string;
-  emoji: string;
-  title: string;
-  description: string;
-  url: string;
-  category: 'moz' | 'international' | 'formulary' | 'other';
-  sources: string;
-  exampleQueries: string[];
-  specialties: string[];
-}
-
-export interface SuperpowerData {
-  explainer: { title: string; content: string };
-  pitfalls: PitfallNarrative[];
-  trustPoints: string[];
-  readyNotebooks: ReadyNotebook[];
-  audioDemo?: { type: 'audio' | 'video'; src: string; poster?: string; title: string; duration: string };
-}
-
-export const superpowerData: SuperpowerData = {
-  audioDemo: undefined, // TODO: Denys to create Audio Overview demo (audio or screen recording)
-  explainer: {
-    title: 'Що таке NotebookLM?',
-    content:
-      'NotebookLM — безкоштовний AI-інструмент від Google. Він працює ТІЛЬКИ з вашими джерелами у будь-якому форматі: PDF, посилання, текст, YouTube, Google Docs — до 50 джерел одночасно. Додаєте джерело — отримуєте відповіді з точними цитатами і номерами сторінок. Жодних вигаданих фактів.',
-  },
-  pitfalls: aiPitfalls.map((p) => ({
-    problem: `${p.title}: ${p.description}`,
-    solution: p.solution,
-    image: p.image,
-  })),
-  trustPoints: [
-    'Відповідає ТІЛЬКИ з ваших документів — нічого зовнішнього',
-    'Показує точну цитату з джерела з номером сторінки',
-    'Продукт Google — безкоштовний, надійний, швидкий',
-    'Не вигадує — якщо відповіді немає в документах, скаже про це прямо',
-  ],
-  readyNotebooks: [
-    {
-      id: 'nb-hypertension',
-      emoji: '❤️‍🩹',
-      title: 'Артеріальна гіпертензія',
-      description: 'Протоколи МОЗ, ESC/ESH 2023, WHO HEARTS — все в одному місці',
-      url: 'https://notebooklm.google.com/notebook/65e286f1-cbdd-4922-84ff-ce48d209b7cb',
-      category: 'moz',
-      sources: 'МОЗ, ESC, WHO, Cochrane, Compendium',
-      exampleQueries: [
-        'Яка тактика при АГ 2 стадії у пацієнта з ЦД2? Порівняй МОЗ та ESC',
-        'Коли починати медикаментозне лікування за МОЗ протоколом?',
-        'Побічні ефекти інгібіторів АПФ — що моніторити?',
-      ],
-      specialties: ['Сімейна медицина', 'Терапія', 'Кардіологія', 'Ендокринологія', 'Невідкладна допомога'],
-    },
-    {
-      id: 'nb-diabetes',
-      emoji: '🩸',
-      title: 'Цукровий діабет 2 типу',
-      description: 'МОЗ (наказ 1300), ADA 2025, NICE NG28 — актуальні стандарти',
-      url: 'https://notebooklm.google.com/notebook/880adc1b-c254-4f93-8b2a-43025bd0e00b',
-      category: 'moz',
-      sources: 'МОЗ, ADA, NICE, Cochrane, Compendium',
-      exampleQueries: [
-        'Пацієнт з ЦД2, HbA1c 8.5%, ІМТ 34 — друга лінія за МОЗ vs ADA?',
-        'Коли переводити на інсулін?',
-        'Які аналізи контролювати кожні 3 місяці?',
-      ],
-      specialties: ['Сімейна медицина', 'Терапія', 'Кардіологія', 'Ендокринологія', 'Невідкладна допомога'],
-    },
-    {
-      id: 'nb-comorbid',
-      emoji: '🔗',
-      title: 'Коморбідний пацієнт (АГ + ЦД2 + ХНН)',
-      description: 'Крос-перевірка протоколів — що можна, що протипоказано при поєднанні діагнозів',
-      url: 'https://notebooklm.google.com/notebook/dfaa98c2-86f8-438b-a739-66593f53df6f',
-      category: 'moz',
-      sources: 'МОЗ (АГ, ЦД2, ХНН), KDIGO, ESC, Compendium',
-      exampleQueries: [
-        'Пацієнт АГ + ЦД2 + ХНН 3б — які препарати протипоказані через нирки?',
-        'Метформін при ШКФ 35 — можна чи ні? Що кажуть МОЗ, ADA, KDIGO?',
-        'Цільовий АТ у пацієнта з діабетичною нефропатією?',
-      ],
-      specialties: ['Сімейна медицина', 'Терапія', 'Кардіологія', 'Ендокринологія'],
-    },
-    {
-      id: 'nb-antibiotics',
-      emoji: '💊',
-      title: 'Антибіотикотерапія',
-      description: 'Перша лінія при пневмонії, ІСШ, отиті — з урахуванням алергій та резистентності',
-      url: 'https://notebooklm.google.com/notebook/93a003f4-4068-487b-8b8a-da4b5562d699',
-      category: 'moz',
-      sources: 'МОЗ, WHO AWaRe, EUCAST, NICE, Compendium',
-      exampleQueries: [
-        'Позалікарняна пневмонія, легкий перебіг — антибіотик першої лінії? Алергія на пеніциліни?',
-        'ІСШ у вагітної — що безпечно за протоколом?',
-        'Дитина 5 років, гострий отит — чекати чи одразу антибіотик?',
-      ],
-      specialties: ['Сімейна медицина', 'Терапія', 'Педіатрія', 'Невідкладна допомога'],
-    },
-    {
-      id: 'nb-mental',
-      emoji: '🧠',
-      title: 'Тривога, депресія, ПТСР',
-      description: 'Скринінг (PHQ-9, GAD-7, PCL-5), тактика для сімейного лікаря, коли направити',
-      url: 'https://notebooklm.google.com/notebook/2f21f457-2a45-4856-85cc-e9d9d9972c35',
-      category: 'moz',
-      sources: 'МОЗ, WHO mhGAP, NICE, Cochrane',
-      exampleQueries: [
-        'Пацієнт: безсоння, тривога після обстрілу — ПТСР? Які скринінг-інструменти?',
-        'Коли сімейний лікар може призначати антидепресанти сам?',
-        'PHQ-9 бал 15 — яка тактика за протоколом?',
-      ],
-      specialties: ['Сімейна медицина', 'Терапія', 'Неврологія', 'Невідкладна допомога'],
-    },
-    {
-      id: 'nb-pediatrics',
-      emoji: '👶',
-      title: 'Педіатрія: найчастіші стани',
-      description: 'ГРВІ, бронхіт, отит, ГКІ, вакцинація — протоколи МОЗ + WHO IMCI',
-      url: 'https://notebooklm.google.com/notebook/583c3524-967d-4f28-a384-fb7651c1d0b0',
-      category: 'moz',
-      sources: 'МОЗ, WHO IMCI, Cochrane, Календар вакцинації',
-      exampleQueries: [
-        'Дитина 3 роки, t°39 третій день, кашель — алгоритм? Коли антибіотик?',
-        'Календар вакцинації — що робити якщо пропущено АКДП у 6 місяців?',
-        'Оцінка зневоднення у дитини з ГКІ — критерії госпіталізації?',
-      ],
-      specialties: ['Педіатрія', 'Сімейна медицина', 'Невідкладна допомога'],
-    },
-  ],
-};
+// superpowerData removed — notebooks now in readyNotebooksData (top of file), referenced directly by solutions
 
 // ── Appendix: Glossary ──
 

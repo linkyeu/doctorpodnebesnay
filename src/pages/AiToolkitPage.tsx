@@ -6,7 +6,6 @@ import type { TabId } from '../components/ai-toolkit/ToolkitNav/ToolkitNav';
 import BlockHeader from '../components/ai-toolkit/BlockHeader/BlockHeader';
 import SolutionCard from '../components/ai-toolkit/SolutionCard/SolutionCard';
 import { ToolkitSetupContent } from '../components/ai-toolkit/ToolkitSetup/ToolkitSetup';
-import SuperpowerSection from '../components/ai-toolkit/SuperpowerSection/SuperpowerSection';
 import PasswordGate from '../components/ai-toolkit/PasswordGate/PasswordGate';
 import ToolkitWelcome from '../components/ai-toolkit/ToolkitWelcome/ToolkitWelcome';
 import ToolkitSearch from '../components/ai-toolkit/ToolkitSearch/ToolkitSearch';
@@ -270,12 +269,6 @@ export default function AiToolkitPage() {
           </div>
         )}
 
-        {/* Notebooks tab */}
-        {activeTab === 'notebooks' && (
-          <div className={styles.tabContent}>
-            <SuperpowerSection />
-          </div>
-        )}
 
         {/* Setup tab */}
         {activeTab === 'setup' && (
