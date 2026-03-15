@@ -882,7 +882,7 @@ const blockDSolutions: Solution[] = [
   },
 ];
 
-// ── Blocks (D→C→B→A: doctor's workday flow) ──
+// ── Blocks (patient encounter flow: diagnose → communicate → document → reference) ──
 
 // Inject illustrations into all solutions
 [blockASolutions, blockBSolutions, blockCSolutions, blockDSolutions].flat().forEach(s => {
@@ -890,14 +890,6 @@ const blockDSolutions: Solution[] = [
 });
 
 export const blocks: Block[] = [
-  {
-    id: 'A',
-    title: 'Протоколи, статті, лекції',
-    subtitle: 'протоколи · резюме статей · конспекти лекцій · довідники',
-    color: BLOCK_COLORS.A,
-    icon: '/images/toolkit/illustrations/solutions/A1-protocol.png',
-    solutions: blockDSolutions,
-  },
   {
     id: 'B',
     title: 'Діагноз, аналізи, лікування',
@@ -921,6 +913,14 @@ export const blocks: Block[] = [
     color: BLOCK_COLORS.D,
     icon: '/images/toolkit/illustrations/solutions/D-block-header.png',
     solutions: blockASolutions,
+  },
+  {
+    id: 'A',
+    title: 'Протоколи, статті, лекції',
+    subtitle: 'протоколи · резюме статей · конспекти лекцій · довідники',
+    color: BLOCK_COLORS.A,
+    icon: '/images/toolkit/illustrations/solutions/A1-protocol.png',
+    solutions: blockDSolutions,
   },
 ];
 
