@@ -85,14 +85,15 @@
 }
 
 .setupInner {
-  padding: 0 var(--space-5) var(--space-5);
+  padding: var(--space-2) var(--space-5) var(--space-5);
 }
 
 .setupDescription {
   font-family: var(--tk-font-ui);
-  font-size: var(--tk-text-base);
+  font-size: var(--tk-text-sm);
   color: var(--tk-text-muted);
-  margin: 0 0 var(--space-4);
+  margin: 0 0 var(--space-5);
+  line-height: 1.5;
 }
 
 .setupDoneBtn {

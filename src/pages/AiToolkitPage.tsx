@@ -44,7 +44,7 @@ function SetupSection() {
           </span>
           <div>
             <span className={styles.setupHeading}>
-              {isDone ? 'Налаштування ChatGPT' : 'Перший крок: навчіть ChatGPT думати як лікар'}
+              {isDone ? 'Налаштування ChatGPT' : 'Навчіть ChatGPT думати як лікар'}
             </span>
             {!expanded && (
               <span className={styles.setupSubtext}>
