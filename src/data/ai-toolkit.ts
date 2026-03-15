@@ -137,7 +137,7 @@ const solutionIllustrations: Record<string, string> = {
   'C3': '/images/toolkit/illustrations/solutions/C3-difficult.png',
   'C4': '/images/toolkit/illustrations/solutions/C4-chatgpt-said.png',
   'B1': '/images/toolkit/illustrations/solutions/B1-diagnosis.png',
-  'B1b': '/images/toolkit/illustrations/solutions/B1-diagnosis.png',
+  'B1b': '/images/toolkit/illustrations/solutions/B1b-checklist.png',
   'B2': '/images/toolkit/illustrations/solutions/B2-analyzy.png',
   'B3': '/images/toolkit/illustrations/solutions/B3-treatment.png',
   'B4': '/images/toolkit/illustrations/solutions/B4-compare.png',
@@ -641,7 +641,7 @@ const blockDSolutions: Solution[] = [
     steps: [
       { text: 'Завантажте потрібний протокол з офіційного джерела — наприклад, з [**dec.gov.ua**](https://dec.gov.ua)' },
       { text: 'Перейдіть на [**NotebookLM**](https://notebooklm.google.com) → **Створити новий блокнот** → **Додати джерела** → завантажте протокол' },
-      { text: 'Задавайте будь-які питання щодо цього протоколу. Кожна відповідь з цитатою і номером сторінки', screenshot: { src: '', alt: 'Повний процес роботи з NotebookLM', placeholder: '📹 ВІДЕО: Створити новий блокнот → Додати джерела → додаємо протокол → задаємо питання → відповідь з цитатами (~30 сек)' } },
+      { text: 'Задавайте будь-які питання щодо цього протоколу. Кожна відповідь з цитатою і номером сторінки', screenshot: { src: '/images/toolkit/solutions/vaccination-a1.webp', alt: 'Повний процес роботи з NotebookLM', video: { mp4: '/images/toolkit/solutions/vaccination-a1.mp4', webm: '/images/toolkit/solutions/vaccination-a1.webm' } } },
     ],
     prompt: '',
     copyablePrompts: [],
@@ -790,7 +790,7 @@ export const blocks: Block[] = [
     title: 'Діагноз, аналізи, лікування',
     subtitle: 'диференційний діагноз · аналізи · план лікування',
     color: BLOCK_COLORS.B,
-    icon: '/images/toolkit/illustrations/solutions/B1-diagnosis.png',
+    icon: '/images/toolkit/illustrations/solutions/B-block-header.png',
     solutions: blockCSolutions,
   },
   {
@@ -798,7 +798,7 @@ export const blocks: Block[] = [
     title: 'Розмова з пацієнтом',
     subtitle: 'пояснення діагнозу · складні розмови · переклад',
     color: BLOCK_COLORS.C,
-    icon: '/images/toolkit/illustrations/solutions/C1-patient.png',
+    icon: '/images/toolkit/illustrations/solutions/C-block-header.png',
     solutions: blockBSolutions,
   },
   {
@@ -806,7 +806,7 @@ export const blocks: Block[] = [
     title: 'Виписки та форми',
     subtitle: 'виписки · довідки · форми МОЗ',
     color: BLOCK_COLORS.D,
-    icon: '/images/toolkit/illustrations/solutions/D1-vypyska.png',
+    icon: '/images/toolkit/illustrations/solutions/D-block-header.png',
     solutions: blockASolutions,
   },
 ];

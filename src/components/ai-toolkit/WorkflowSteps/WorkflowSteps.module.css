@@ -74,7 +74,7 @@
 
 .screenshotWrapper {
   aspect-ratio: 16 / 9;
-  background: var(--color-bg-alt);
+  background: #fff;
   border-radius: var(--radius-md);
   border: 1px solid var(--color-border);
   overflow: hidden;

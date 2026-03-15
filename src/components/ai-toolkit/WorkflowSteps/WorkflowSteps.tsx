@@ -83,7 +83,7 @@ export default function WorkflowSteps({ steps, note, hideMedia }: WorkflowStepsP
                   <>
                     <video
                       className={styles.screenshotVideo}
-                      autoPlay muted loop playsInline preload="none"
+                      controls muted playsInline preload="metadata"
                       poster={screenshot.src}
                     >
                       <source src={screenshot.video.webm} type="video/webm" />
@@ -125,7 +125,7 @@ export function WorkflowMedia({ steps }: { steps: SolutionStep[] }) {
               <>
                 <video
                   className={styles.screenshotVideo}
-                  autoPlay muted loop playsInline preload="none"
+                  controls muted playsInline preload="metadata"
                   poster={screenshot.src}
                 >
                   <source src={screenshot.video.webm} type="video/webm" />
