@@ -96,22 +96,36 @@
 }
 
 .setupDoneBtn {
-  display: block;
-  margin: var(--space-5) auto 0;
-  padding: var(--space-2) var(--space-5);
+  all: unset;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: var(--space-5);
+  padding: 11px 22px;
+  border-radius: 8px;
+  background: #1B3A4B;
+  color: #fff;
   font-family: var(--tk-font-ui);
   font-size: var(--tk-text-sm);
   font-weight: 600;
-  color: white;
-  background: #7C3AED;
-  border: none;
-  border-radius: 8px;
   cursor: pointer;
-  transition: background 150ms ease;
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.06),
+    0 3px 10px color-mix(in srgb, #1B3A4B 15%, transparent);
+  transition: background 150ms ease, transform 150ms ease, box-shadow 150ms ease;
 }
 
 .setupDoneBtn:hover {
-  background: #6D28D9;
+  background: color-mix(in srgb, #1B3A4B 85%, black);
+  transform: translateY(-1px);
+  box-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.08),
+    0 6px 16px color-mix(in srgb, #1B3A4B 20%, transparent);
+}
+
+.setupDoneBtn:focus-visible {
+  outline: 2px solid #1B3A4B;
+  outline-offset: 2px;
 }
 
 /* ── Block Sections ── */
