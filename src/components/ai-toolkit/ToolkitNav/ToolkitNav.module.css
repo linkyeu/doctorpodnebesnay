@@ -207,7 +207,7 @@
 }
 
 .setupTitle {
-  font-size: var(--tk-text-xs);
+  /* same font-size as .blockTitle — inherited */
 }
 
 .setupIcon {
