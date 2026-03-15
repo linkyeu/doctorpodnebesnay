@@ -1,23 +1,7 @@
-import { useState } from 'react';
 import { setupSections } from '../../../data/ai-toolkit';
+import PromptBox from '../PromptBox/PromptBox';
 import styles from './ToolkitSetup.module.css';
 
-function CopyButton({ text }: { text: string }) {
-  const [copied, setCopied] = useState(false);
-
-  const handleCopy = () => {
-    navigator.clipboard.writeText(text).then(() => {
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
-    });
-  };
-
-  return (
-    <button className={styles.copyButton} onClick={handleCopy} type="button">
-      {copied ? '✓ Скопійовано' : 'Копіювати'}
-    </button>
-  );
-}
 
 /** Full-width screenshot with caption — supports optional video overlay */
 export function Screenshot({
@@ -127,15 +111,12 @@ export function ChatGPTSetup() {
         </div>
       </div>
 
-      {/* Copyable custom instructions — the only thing doctor needs to paste */}
+      {/* Copyable custom instructions — same PromptBox as solution cards */}
       {b1.codeBlocks?.[0] && (
-        <div className={styles.singleCodeBlock}>
-          <div className={styles.singleCodeHeader}>
-            <span className={styles.singleCodeLabel}>Скопіюйте та вставте в «Спеціальні інструкції», замінивши [СПЕЦІАЛЬНІСТЬ] та [ДОРОСЛИМИ / ДІТЬМИ / ВСІМА]:</span>
-            <CopyButton text={b1.codeBlocks[0].code} />
-          </div>
-          <pre className={styles.codeContent}>{b1.codeBlocks[0].code}</pre>
-        </div>
+        <PromptBox
+          prompt={b1.codeBlocks[0].code}
+          note="Скопіюйте та вставте в «Спеціальні інструкції», замінивши виділені поля на свої дані"
+        />
       )}
     </div>
   );
