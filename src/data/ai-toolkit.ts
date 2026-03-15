@@ -316,8 +316,8 @@ const blockASolutions: Solution[] = [
   {
     id: 'D2',
     block: 'A',
-    title: 'Оформлення офіційних медичних документів (форми МОЗ)',
-    subtitle: 'Заповнення облікових форм (027/о, 028/о, 003-4/о) за структурою Наказу МОЗ №110',
+    title: 'Форми МОЗ (027/о, 028/о, 003-4/о) — заповнені за хвилину',
+    subtitle: 'Вставте дані пацієнта — отримайте готову форму за структурою Наказу №110',
     tool: 'ChatGPT',
     prompt: `Ти — досвідчений лікар, який добре знає облікові форми медичної документації (Наказ МОЗ України №110 від 14.02.2012).
 
@@ -564,8 +564,8 @@ const blockCSolutions: Solution[] = [
   {
     id: 'B2',
     block: 'C',
-    title: 'Аналізи: відхилення, зв\'язки, наступні кроки',
-    subtitle: 'ШІ знаходить відхилення з урахуванням вікових норм та пояснює зв\'язки між показниками',
+    title: 'Аналізи — відхилення з урахуванням віку за секунди',
+    subtitle: 'ШІ знаходить відхилення, пояснює зв\'язки між показниками і каже що перевірити далі',
     tool: 'ChatGPT',
     prompt: `Ти — клінічний лаборант-консультант.
 
@@ -649,8 +649,8 @@ const blockCSolutions: Solution[] = [
     id: 'B4',
     block: 'C',
     cardType: 'hybrid',
-    title: 'Інструкції препаратів: взаємодії, порівняння, дозування',
-    subtitle: 'Завантажте інструкції всіх препаратів пацієнта → перевірте взаємодії, дози, протипоказання',
+    title: 'Пацієнт приймає 5-8 ліків — перевірити взаємодії за хвилину',
+    subtitle: 'Завантажте інструкції → NotebookLM знайде взаємодії, протипоказання, корекцію дозування',
     tool: 'NotebookLM',
     toolIntro: {
       text: 'Пацієнт приймає 5-8 препаратів — перевірити взаємодії між усіма вручну майже неможливо. Завантажте інструкції всіх препаратів в один блокнот — NotebookLM перехресно перевірить взаємодії, протипоказання та дозування з цитатами з офіційних інструкцій.',
@@ -673,8 +673,8 @@ const blockCSolutions: Solution[] = [
   {
     id: 'B5',
     block: 'C',
-    title: 'Атиповий випадок — що ми можемо не бачити?',
-    subtitle: 'Друга думка: рідкісні діагнози, когнітивні пастки, red flags',
+    title: 'Атиповий випадок — що я можу не бачити?',
+    subtitle: 'Друга думка: рідкісні діагнози, когнітивні пастки, червоні прапорці',
     tool: 'ChatGPT',
     prompt: `Мені потрібна "друга думка" по атиповому / незрозумілому випадку.
 
@@ -893,7 +893,7 @@ export const blocks: Block[] = [
   {
     id: 'B',
     title: 'Діагноз, аналізи, лікування',
-    subtitle: 'диференційний діагноз · аналізи · план лікування',
+    subtitle: 'Не пропустити діагноз · не помилитись з дозою',
     color: BLOCK_COLORS.B,
     icon: '/images/toolkit/illustrations/solutions/B-block-header.png',
     solutions: blockCSolutions,
@@ -901,7 +901,7 @@ export const blocks: Block[] = [
   {
     id: 'C',
     title: 'Розмова з пацієнтом',
-    subtitle: 'пояснення діагнозу · складні розмови',
+    subtitle: 'Коли не знаєш що сказати — а сказати треба',
     color: BLOCK_COLORS.C,
     icon: '/images/toolkit/illustrations/solutions/C-block-header.png',
     solutions: blockBSolutions,
@@ -909,7 +909,7 @@ export const blocks: Block[] = [
   {
     id: 'D',
     title: 'Виписки та форми',
-    subtitle: 'виписки · довідки · форми МОЗ',
+    subtitle: '40 хвилин документації → 2 хвилини',
     color: BLOCK_COLORS.D,
     icon: '/images/toolkit/illustrations/solutions/D-block-header.png',
     solutions: blockASolutions,
@@ -917,7 +917,7 @@ export const blocks: Block[] = [
   {
     id: 'A',
     title: 'Протоколи, статті, лекції',
-    subtitle: 'протоколи · резюме статей · конспекти лекцій · довідники',
+    subtitle: 'Відповідь з протоколу, книги чи лекції — за секунди, не за години',
     color: BLOCK_COLORS.A,
     icon: '/images/toolkit/illustrations/solutions/A1-protocol.png',
     solutions: blockDSolutions,
