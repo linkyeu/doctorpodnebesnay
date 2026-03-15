@@ -87,7 +87,7 @@
 
 /* ── White content area ── */
 .body {
-  padding: var(--space-3) var(--space-4) var(--space-4);
+  padding: var(--space-3) var(--space-4) var(--space-2);
   display: flex;
   flex-direction: column;
   gap: var(--space-3);
@@ -160,7 +160,13 @@
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  gap: var(--space-5);
+}
+
+.expandedContent {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: 0 1rem 1rem;
 }
 
 /* ── Badges row ── */
@@ -192,7 +198,7 @@
 
 /* ── Example accordion ── */
 .exampleAccordion {
-  margin-top: 16px;
+  margin-top: 0;
   border: 1px solid var(--tk-border);
   border-radius: 8px;
   overflow: hidden;
@@ -368,7 +374,7 @@
   }
 
   .body {
-    padding: var(--space-4) var(--space-6) var(--space-5);
+    padding: var(--space-4) var(--space-6) var(--space-3);
   }
 }
 

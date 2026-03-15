@@ -220,7 +220,7 @@ export default function SolutionCard({ solution, blockColor }: SolutionCardProps
         aria-labelledby={`title-${solution.id}`}
       >
         <div className={styles.detailsInner}>
-          <div style={{ padding: '0 1rem 1rem' }}>
+          <div className={styles.expandedContent}>
             {/* Tool intro — for workflow/hybrid cards */}
             {solution.toolIntro && <ToolIntro intro={solution.toolIntro} />}
 
