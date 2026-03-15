@@ -9,15 +9,29 @@
   padding: var(--space-4) var(--space-4) var(--space-16);
 }
 
-/* ── Tab content area ── */
+/* ── Setup Section (mandatory first step) ── */
 
-.tabContent {
-  animation: tabFadeIn 150ms ease;
+.setupSection {
+  margin-bottom: var(--space-8);
 }
 
-@keyframes tabFadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+.setupHeader {
+  margin-bottom: var(--space-6);
+}
+
+.setupHeading {
+  font-family: var(--tk-font-heading);
+  font-size: clamp(1.25rem, 2.5vw, 1.5rem);
+  font-weight: 700;
+  color: var(--tk-text);
+  margin: 0 0 var(--space-2);
+}
+
+.setupSubtext {
+  font-family: var(--tk-font-ui);
+  font-size: var(--tk-text-base);
+  color: var(--tk-text-muted);
+  margin: 0;
 }
 
 /* ── Block Sections ── */

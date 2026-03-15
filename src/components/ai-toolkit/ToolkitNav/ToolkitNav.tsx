@@ -2,30 +2,18 @@ import { useState, useEffect, useCallback, useRef } from 'react';
 import type { Block } from '../../../data/ai-toolkit';
 import styles from './ToolkitNav.module.css';
 
-export type TabId = 'solutions' | 'notebooks' | 'setup';
-
 interface ToolkitNavProps {
   blocks: Block[];
-  activeTab: TabId;
-  onTabChange: (tab: TabId) => void;
 }
 
-const TABS: { id: TabId; label: string; icon: string }[] = [
-  { id: 'solutions', label: 'Рішення', icon: '◆' },
-  { id: 'notebooks', label: 'Запитай протокол', icon: '◎' },
-  { id: 'setup', label: 'Налаштування', icon: '⚙' },
-];
-
-export default function ToolkitNav({ blocks, activeTab, onTabChange }: ToolkitNavProps) {
+export default function ToolkitNav({ blocks }: ToolkitNavProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [activeId, setActiveId] = useState<string>('');
   const navRef = useRef<HTMLElement>(null);
 
-  // Scrollspy: observe block and solution headings (only on solutions tab)
+  // Scrollspy: observe setup, block and solution headings
   useEffect(() => {
-    if (activeTab !== 'solutions') return;
-
-    const ids: string[] = [];
+    const ids: string[] = ['setup'];
     for (const block of blocks) {
       ids.push(`block-${block.id}`);
       for (const solution of block.solutions) {
@@ -57,7 +45,7 @@ export default function ToolkitNav({ blocks, activeTab, onTabChange }: ToolkitNa
 
     elements.forEach((el) => observer.observe(el));
     return () => observer.disconnect();
-  }, [blocks, activeTab]);
+  }, [blocks]);
 
   const handleClick = useCallback(
     (id: string) => {
@@ -69,15 +57,6 @@ export default function ToolkitNav({ blocks, activeTab, onTabChange }: ToolkitNa
       setIsOpen(false);
     },
     [],
-  );
-
-  const handleTabClick = useCallback(
-    (tab: TabId) => {
-      onTabChange(tab);
-      setIsOpen(false);
-      window.scrollTo({ top: 0 });
-    },
-    [onTabChange],
   );
 
   // Close panel on Escape
@@ -103,60 +82,48 @@ export default function ToolkitNav({ blocks, activeTab, onTabChange }: ToolkitNa
 
   const sidebarContent = (
     <>
-      {/* Tab buttons */}
-      <div className={styles.tabSection}>
-        <div className={styles.sectionLabel}>Розділи</div>
-        {TABS.map((tab) => (
-          <button
-            key={tab.id}
-            type="button"
-            className={`${styles.navTab} ${activeTab === tab.id ? styles.navTabActive : ''}`}
-            onClick={() => handleTabClick(tab.id)}
-          >
-            <span className={styles.navTabIcon} aria-hidden="true">{tab.icon}</span>
-            {tab.label}
-          </button>
-        ))}
-      </div>
+      {/* Setup link */}
+      <div className={styles.sectionLabel}>Розділи</div>
+      <button
+        type="button"
+        className={`${styles.blockTitle} ${activeId === 'setup' ? styles.active : ''}`}
+        onClick={() => handleClick('setup')}
+      >
+        <span className={styles.blockDot} style={{ backgroundColor: '#7C3AED' }} />
+        Налаштування ChatGPT
+      </button>
 
       <div className={styles.divider} />
 
-      {/* Tab-specific content */}
-      {activeTab === 'solutions' && (
-        <div>
-          <div className={styles.sectionLabel}>Блоки</div>
-          <ul className={styles.list} role="list">
-            {blocks.map((block) => (
-              <li key={block.id} className={styles.blockGroup}>
-                <button
-                  type="button"
-                  className={`${styles.blockTitle} ${activeId === `block-${block.id}` ? styles.active : ''}`}
-                  onClick={() => handleClick(`block-${block.id}`)}
-                >
-                  <span className={styles.blockDot} style={{ backgroundColor: block.color }} />
-                  {block.title}
-                </button>
-                <ul className={styles.solutionList} role="list">
-                  {block.solutions.map((solution) => (
-                    <li key={solution.id}>
-                      <button
-                        type="button"
-                        className={`${styles.solutionItem} ${activeId === `solution-${solution.id}` ? styles.active : ''}`}
-                        onClick={() => handleClick(`solution-${solution.id}`)}
-                      >
-                        {solution.title}
-                      </button>
-                    </li>
-                  ))}
-                </ul>
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
-
-      {activeTab === 'notebooks' && null}
-
+      {/* Blocks + solutions */}
+      <div className={styles.sectionLabel}>Блоки</div>
+      <ul className={styles.list} role="list">
+        {blocks.map((block) => (
+          <li key={block.id} className={styles.blockGroup}>
+            <button
+              type="button"
+              className={`${styles.blockTitle} ${activeId === `block-${block.id}` ? styles.active : ''}`}
+              onClick={() => handleClick(`block-${block.id}`)}
+            >
+              <span className={styles.blockDot} style={{ backgroundColor: block.color }} />
+              {block.title}
+            </button>
+            <ul className={styles.solutionList} role="list">
+              {block.solutions.map((solution) => (
+                <li key={solution.id}>
+                  <button
+                    type="button"
+                    className={`${styles.solutionItem} ${activeId === `solution-${solution.id}` ? styles.active : ''}`}
+                    onClick={() => handleClick(`solution-${solution.id}`)}
+                  >
+                    {solution.title}
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </li>
+        ))}
+      </ul>
     </>
   );
 
@@ -176,19 +143,6 @@ export default function ToolkitNav({ blocks, activeTab, onTabChange }: ToolkitNa
           </span>
           <span className={styles.hamburgerLabel}>Зміст</span>
         </button>
-        {/* Mobile tab pills */}
-        <div className={styles.mobileTabs}>
-          {TABS.map((tab) => (
-            <button
-              key={tab.id}
-              type="button"
-              className={`${styles.mobileTabPill} ${activeTab === tab.id ? styles.mobileTabActive : ''}`}
-              onClick={() => handleTabClick(tab.id)}
-            >
-              {tab.label}
-            </button>
-          ))}
-        </div>
       </div>
 
       {/* Mobile: slide-out overlay */}

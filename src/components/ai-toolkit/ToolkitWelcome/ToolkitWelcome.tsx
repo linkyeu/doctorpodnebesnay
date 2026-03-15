@@ -4,11 +4,10 @@ import styles from './ToolkitWelcome.module.css';
 const STORAGE_KEY = 'toolkit_orientation_seen';
 
 interface ToolkitWelcomeProps {
-  onTabChange: (tab: string) => void;
   onScrollToSolution: (id: string) => void;
 }
 
-export default function ToolkitWelcome({ onTabChange, onScrollToSolution }: ToolkitWelcomeProps) {
+export default function ToolkitWelcome({ onScrollToSolution }: ToolkitWelcomeProps) {
   const [expanded, setExpanded] = useState(() => {
     return !localStorage.getItem(STORAGE_KEY);
   });
@@ -83,7 +82,7 @@ export default function ToolkitWelcome({ onTabChange, onScrollToSolution }: Tool
 
           {/* Steps — vertical timeline */}
           <div className={styles.steps}>
-            <h3 className={styles.stepsHeading}>Три розділи зліва — три задачі</h3>
+            <h3 className={styles.stepsHeading}>Два кроки</h3>
             <ol className={styles.stepsList}>
               <li className={styles.step}>
                 <div className={styles.stepTrack}>
@@ -94,42 +93,29 @@ export default function ToolkitWelcome({ onTabChange, onScrollToSolution }: Tool
                   <button
                     type="button"
                     className={styles.stepLink}
-                    onClick={() => { onScrollToSolution('A1'); collapse(); }}
+                    onClick={() => {
+                      document.getElementById('setup')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                      collapse();
+                    }}
                   >
-                    Рішення
+                    Налаштуйте ChatGPT
                   </button>
-                  <span className={styles.stepMeta}> — готові запити для щоденної практики. Оберіть задачу, скопіюйте запит, замініть дані пацієнта, вставте в ChatGPT — готово.</span>
+                  <span className={styles.stepMeta}> — один раз, 2 хвилини. ChatGPT запам'ятає вашу спеціальність, мову та стиль відповідей. Обов'язковий крок.</span>
                 </div>
               </li>
               <li className={styles.step}>
                 <div className={styles.stepTrack}>
                   <span className={styles.stepNum}>2</span>
-                  <span className={styles.stepLine} aria-hidden="true" />
                 </div>
                 <div className={styles.stepBody}>
                   <button
                     type="button"
                     className={styles.stepLink}
-                    onClick={() => { onTabChange('notebooks'); collapse(); }}
+                    onClick={() => { onScrollToSolution('A1'); collapse(); }}
                   >
-                    Запитай протокол
+                    Використовуйте рішення
                   </button>
-                  <span className={styles.stepMeta}> — коли потрібно перевірити за протоколом. На відміну від ChatGPT, не вигадує — відповідає ТІЛЬКИ на основі завантажених протоколів МОЗ та інших доказових джерел: кожна відповідь з цитатою і номером сторінки. Якщо відповіді немає — скаже прямо, а не вигадає.</span>
-                </div>
-              </li>
-              <li className={styles.step}>
-                <div className={styles.stepTrack}>
-                  <span className={styles.stepNum}>3</span>
-                </div>
-                <div className={styles.stepBody}>
-                  <button
-                    type="button"
-                    className={styles.stepLink}
-                    onClick={() => { onTabChange('setup'); collapse(); }}
-                  >
-                    Налаштування
-                  </button>
-                  <span className={styles.stepMeta}> — необов'язково. Одноразове налаштування (2 хв), щоб ChatGPT запам'ятав вашу спеціальність, мову та стиль відповідей. Запити працюють і без цього.</span>
+                  <span className={styles.stepMeta}> — оберіть задачу, скопіюйте запит, замініть дані пацієнта, вставте в ChatGPT або NotebookLM — готово.</span>
                 </div>
               </li>
             </ol>

@@ -26,13 +26,6 @@
   }
 }
 
-/* ─── Tab section in sidebar ─── */
-.tabSection {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-
 .sectionLabel {
   font-family: var(--tk-font-ui);
   font-size: 10px;
@@ -42,42 +35,6 @@
   color: rgba(255, 255, 255, 0.25);
   padding: 0 8px;
   margin-bottom: 6px;
-}
-
-.navTab {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  width: 100%;
-  padding: 8px 10px;
-  border-radius: 8px;
-  font-family: var(--tk-font-ui);
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--tk-sidebar-text);
-  cursor: pointer;
-  border: none;
-  background: none;
-  text-align: left;
-  transition: background 150ms ease, color 150ms ease;
-}
-
-.navTab:hover {
-  background: rgba(255, 255, 255, 0.06);
-  color: var(--tk-sidebar-active);
-}
-
-.navTabActive {
-  background: rgba(255, 255, 255, 0.1);
-  color: var(--tk-sidebar-active);
-}
-
-.navTabIcon {
-  font-size: 14px;
-  opacity: 0.6;
-  flex-shrink: 0;
-  width: 18px;
-  text-align: center;
 }
 
 .divider {
@@ -127,44 +84,6 @@
 
 .hamburgerLabel {
   font-family: var(--tk-font-ui);
-}
-
-/* ─── Mobile tab pills ─── */
-.mobileTabs {
-  display: flex;
-  gap: 4px;
-  overflow-x: auto;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-}
-
-.mobileTabs::-webkit-scrollbar {
-  display: none;
-}
-
-.mobileTabPill {
-  flex-shrink: 0;
-  padding: 6px 12px;
-  border-radius: 6px;
-  font-family: var(--tk-font-ui);
-  font-size: 12px;
-  font-weight: 500;
-  color: var(--tk-sidebar-text);
-  background: none;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  cursor: pointer;
-  transition: all 150ms ease;
-  white-space: nowrap;
-}
-
-.mobileTabPill:hover {
-  background: rgba(255, 255, 255, 0.06);
-}
-
-.mobileTabActive {
-  background: rgba(255, 255, 255, 0.12);
-  color: var(--tk-sidebar-active);
-  border-color: rgba(255, 255, 255, 0.2);
 }
 
 /* ─── Mobile: overlay ─── */

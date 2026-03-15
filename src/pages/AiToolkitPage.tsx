@@ -2,10 +2,9 @@ import { useEffect, useState, useCallback, useMemo } from 'react';
 import { blocks } from '../data/ai-toolkit';
 import type { Solution } from '../data/ai-toolkit';
 import ToolkitNav from '../components/ai-toolkit/ToolkitNav/ToolkitNav';
-import type { TabId } from '../components/ai-toolkit/ToolkitNav/ToolkitNav';
 import BlockHeader from '../components/ai-toolkit/BlockHeader/BlockHeader';
 import SolutionCard from '../components/ai-toolkit/SolutionCard/SolutionCard';
-import { ToolkitSetupContent } from '../components/ai-toolkit/ToolkitSetup/ToolkitSetup';
+import { ChatGPTSetup } from '../components/ai-toolkit/ToolkitSetup/ToolkitSetup';
 import PasswordGate from '../components/ai-toolkit/PasswordGate/PasswordGate';
 import ToolkitWelcome from '../components/ai-toolkit/ToolkitWelcome/ToolkitWelcome';
 import ToolkitSearch from '../components/ai-toolkit/ToolkitSearch/ToolkitSearch';
@@ -21,13 +20,6 @@ function matchesSolution(solution: Solution, query: string): boolean {
   );
 }
 
-function getInitialTab(): TabId {
-  const hash = window.location.hash.replace('#', '');
-  if (hash === 'notebooks' || hash === 'section-superpower') return 'notebooks';
-  if (hash === 'setup' || hash === 'section-setup') return 'setup';
-  return 'solutions';
-}
-
 export default function AiToolkitPage() {
   const [authenticated, setAuthenticated] = useState(() => {
     const stored = localStorage.getItem('toolkit_auth');
@@ -35,8 +27,6 @@ export default function AiToolkitPage() {
     const ts = parseInt(stored, 10);
     return Date.now() - ts < 30 * 24 * 60 * 60 * 1000;
   });
-
-  const [activeTab, setActiveTab] = useState<TabId>(getInitialTab);
 
   const [expandedBlocks, setExpandedBlocks] = useState<Record<string, boolean>>(() => {
     const initial = Object.fromEntries(blocks.map((b) => [b.id, false]));
@@ -89,15 +79,31 @@ export default function AiToolkitPage() {
     );
   }, [searchQuery]);
 
-  // Update URL hash when tab changes
+  const handleScrollToSolution = useCallback((id: string) => {
+    const parent = blocks.find(b => b.solutions.some(s => s.id === id));
+    if (parent) {
+      setExpandedBlocks(prev => {
+        const next = Object.fromEntries(Object.keys(prev).map(k => [k, false]));
+        next[parent.id] = true;
+        return next;
+      });
+      requestAnimationFrame(() => {
+        const el = document.getElementById(`solution-${id}`);
+        el?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    }
+  }, []);
+
+  // On mount: scroll to hash target (#setup, #notebooks → setup, #solution-*)
   useEffect(() => {
-    const hashMap: Record<TabId, string> = {
-      solutions: '#solutions',
-      notebooks: '#notebooks',
-      setup: '#setup',
-    };
-    history.replaceState(null, '', hashMap[activeTab]);
-  }, [activeTab]);
+    const hash = window.location.hash.replace('#', '');
+    if (hash === 'setup' || hash === 'notebooks' || hash === 'section-superpower' || hash === 'section-setup') {
+      requestAnimationFrame(() => {
+        const el = document.getElementById('setup');
+        el?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    }
+  }, []);
 
   useEffect(() => {
     document.title =
@@ -171,110 +177,98 @@ export default function AiToolkitPage() {
 
   return (
     <div className={`${styles.toolkitPage} toolkit-scope`}>
-      <ToolkitNav blocks={blocks} activeTab={activeTab} onTabChange={setActiveTab} />
+      <ToolkitNav blocks={blocks} />
       <main className={styles.content}>
         <h1 className="sr-only">ШІ-помічник лікаря — 16 готових рішень для щоденної практики</h1>
-        <ToolkitWelcome
-          onTabChange={(tab) => setActiveTab(tab as TabId)}
-          onScrollToSolution={(id) => {
-            setActiveTab('solutions');
-            // Expand parent block and scroll to solution
-            const parent = blocks.find(b => b.solutions.some(s => s.id === id));
-            if (parent) {
-              setExpandedBlocks(prev => ({ ...prev, [parent.id]: true }));
-              requestAnimationFrame(() => {
-                const el = document.getElementById(`solution-${id}`);
-                el?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-              });
-            }
-          }}
+        <ToolkitWelcome onScrollToSolution={handleScrollToSolution} />
+
+        {/* Setup — mandatory first step */}
+        <section id="setup" className={styles.setupSection}>
+          <div className={styles.setupHeader}>
+            <h2 className={styles.setupHeading}>
+              Перший крок: навчіть ChatGPT думати як лікар
+            </h2>
+            <p className={styles.setupSubtext}>
+              Без цього — він відповідає як студент-першокурсник. З цим — як досвідчений колега. 2 хвилини, один раз.
+            </p>
+          </div>
+          <ChatGPTSetup />
+        </section>
+
+        {/* Search */}
+        <ToolkitSearch
+          value={searchQuery}
+          onChange={setSearchQuery}
+          isOpen={searchOpen}
+          onOpenChange={setSearchOpen}
         />
 
-        {/* Solutions tab */}
-        {activeTab === 'solutions' && (
-          <div className={styles.tabContent}>
-            <ToolkitSearch
-              value={searchQuery}
-              onChange={setSearchQuery}
-              isOpen={searchOpen}
-              onOpenChange={setSearchOpen}
-            />
-
-            {filteredResults ? (
-              filteredResults.length > 0 ? (
-                <div className={styles.searchResults}>
-                  <p className={styles.searchCount}>
-                    {filteredResults.length}{' '}
-                    {filteredResults.length === 1 ? 'рішення' : filteredResults.length < 5 ? 'рішення' : 'рішень'}
-                  </p>
-                  <div className={styles.solutionsGrid}>
-                    {filteredResults.map(({ solution, blockColor }) => (
-                      <SolutionCard
-                        key={solution.id}
-                        solution={solution}
-                        blockColor={blockColor}
-                      />
-                    ))}
-                  </div>
-                </div>
-              ) : (
-                <div className={styles.searchEmpty}>
-                  <img
-                    className={styles.searchEmptyImg}
-                    src="/images/toolkit/illustrations/search-empty.png"
-                    alt=""
-                    aria-hidden="true"
-                    width="120"
-                    height="120"
+        {/* Solutions */}
+        {filteredResults ? (
+          filteredResults.length > 0 ? (
+            <div className={styles.searchResults}>
+              <p className={styles.searchCount}>
+                {filteredResults.length}{' '}
+                {filteredResults.length === 1 ? 'рішення' : filteredResults.length < 5 ? 'рішення' : 'рішень'}
+              </p>
+              <div className={styles.solutionsGrid}>
+                {filteredResults.map(({ solution, blockColor }) => (
+                  <SolutionCard
+                    key={solution.id}
+                    solution={solution}
+                    blockColor={blockColor}
                   />
-                  <p className={styles.searchEmptyText}>Нічого не знайдено</p>
-                  <p className={styles.searchEmptyHint}>Спробуйте інший запит або перегляньте розділи нижче</p>
-                </div>
-              )
-            ) : (
-              <>
-                {blocks.map((block) => (
-                  <div key={block.id} className={styles.blockSection}>
-                    <BlockHeader
-                      block={block}
-                      expanded={expandedBlocks[block.id]}
-                      onToggle={() => toggleBlock(block.id)}
-                    />
+                ))}
+              </div>
+            </div>
+          ) : (
+            <div className={styles.searchEmpty}>
+              <img
+                className={styles.searchEmptyImg}
+                src="/images/toolkit/illustrations/search-empty.png"
+                alt=""
+                aria-hidden="true"
+                width="120"
+                height="120"
+              />
+              <p className={styles.searchEmptyText}>Нічого не знайдено</p>
+              <p className={styles.searchEmptyHint}>Спробуйте інший запит або перегляньте розділи нижче</p>
+            </div>
+          )
+        ) : (
+          <>
+            {blocks.map((block) => (
+              <div key={block.id} className={styles.blockSection}>
+                <BlockHeader
+                  block={block}
+                  expanded={expandedBlocks[block.id]}
+                  onToggle={() => toggleBlock(block.id)}
+                />
+                <div
+                  id={`block-${block.id}-content`}
+                  role="region"
+                  className={`${styles.blockCollapsible} ${expandedBlocks[block.id] ? styles.blockCollapsibleOpen : ''}`}
+                >
+                  <div className={styles.blockInner}>
                     <div
-                      id={`block-${block.id}-content`}
-                      role="region"
-                      className={`${styles.blockCollapsible} ${expandedBlocks[block.id] ? styles.blockCollapsibleOpen : ''}`}
+                      className={styles.solutionsRail}
+                      style={{ '--block-color': block.color } as React.CSSProperties}
                     >
-                      <div className={styles.blockInner}>
-                        <div
-                          className={styles.solutionsRail}
-                          style={{ '--block-color': block.color } as React.CSSProperties}
-                        >
-                          <div className={styles.solutionsGrid}>
-                            {block.solutions.map((solution) => (
-                              <SolutionCard
-                                key={`${solution.id}-${blockResetKey}`}
-                                solution={solution}
-                                blockColor={block.color}
-                              />
-                            ))}
-                          </div>
-                        </div>
+                      <div className={styles.solutionsGrid}>
+                        {block.solutions.map((solution) => (
+                          <SolutionCard
+                            key={`${solution.id}-${blockResetKey}`}
+                            solution={solution}
+                            blockColor={block.color}
+                          />
+                        ))}
                       </div>
                     </div>
                   </div>
-                ))}
-              </>
-            )}
-          </div>
-        )}
-
-
-        {/* Setup tab */}
-        {activeTab === 'setup' && (
-          <div className={styles.tabContent}>
-            <ToolkitSetupContent />
-          </div>
+                </div>
+              </div>
+            ))}
+          </>
         )}
       </main>
     </div>

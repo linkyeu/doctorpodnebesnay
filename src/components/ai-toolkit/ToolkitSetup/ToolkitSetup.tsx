@@ -110,7 +110,7 @@ export function InstructionStep({
    ChatGPT Subsection
    ═══════════════════════════════════════════════════════════════ */
 
-function ChatGPTSetup() {
+export function ChatGPTSetup() {
   const b1 = setupSections.find(s => s.id === 'B1')!;
   const b4 = setupSections.find(s => s.id === 'B4')!;
 
