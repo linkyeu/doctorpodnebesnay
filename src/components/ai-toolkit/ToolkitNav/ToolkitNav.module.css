@@ -206,6 +206,18 @@
   transition: background 150ms ease, color 150ms ease;
 }
 
+.setupTitle {
+  font-size: var(--tk-text-xs);
+}
+
+.setupIcon {
+  flex-shrink: 0;
+  font-size: 12px;
+  opacity: 0.5;
+  width: 6px;
+  text-align: center;
+}
+
 .blockTitle:hover {
   background: rgba(255, 255, 255, 0.06);
   color: var(--tk-sidebar-active);

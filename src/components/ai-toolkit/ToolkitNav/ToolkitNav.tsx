@@ -90,7 +90,7 @@ export default function ToolkitNav({ blocks }: ToolkitNavProps) {
             className={`${styles.blockTitle} ${styles.setupTitle} ${activeId === 'setup' ? styles.active : ''}`}
             onClick={() => handleClick('setup')}
           >
-            <span className={styles.blockDot} style={{ backgroundColor: '#7C3AED' }} />
+            <span className={styles.setupIcon} aria-hidden="true">⚙</span>
             Налаштування ChatGPT
           </button>
         </li>
