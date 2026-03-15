@@ -57,6 +57,9 @@ export default function AiToolkitPage() {
     return initial;
   });
 
+  // Counter to force-remount SolutionCards when blocks toggle (resets expanded state)
+  const [blockResetKey, setBlockResetKey] = useState(0);
+
   const toggleBlock = useCallback((id: string) => {
     setExpandedBlocks((prev) => {
       const isClosing = prev[id];
@@ -65,6 +68,13 @@ export default function AiToolkitPage() {
       if (!isClosing) next[id] = true;
       return next;
     });
+    // Increment reset key to force solution cards to remount (closing any expanded cards)
+    setBlockResetKey(k => k + 1);
+    // Scroll to the block header after animation completes
+    setTimeout(() => {
+      const el = document.getElementById(`block-${id}`);
+      el?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 350);
   }, []);
 
   const [searchQuery, setSearchQuery] = useState('');
@@ -240,7 +250,7 @@ export default function AiToolkitPage() {
                         <div className={styles.solutionsGrid}>
                           {block.solutions.map((solution) => (
                             <SolutionCard
-                              key={solution.id}
+                              key={`${solution.id}-${blockResetKey}`}
                               solution={solution}
                               blockColor={block.color}
                             />

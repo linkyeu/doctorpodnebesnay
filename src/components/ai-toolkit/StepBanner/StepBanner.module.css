@@ -1,0 +1,79 @@
+/* ─── StepBanner — 3-step usage guide ─── */
+
+.banner {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  padding: 10px 14px;
+  background: rgba(22, 163, 74, 0.06);
+  border: 1px solid rgba(22, 163, 74, 0.15);
+  border-radius: 8px;
+  margin-bottom: 16px;
+}
+
+.step {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--tk-green, #16A34A);
+  color: #fff;
+  font-family: var(--tk-font-ui, 'DM Sans', system-ui, sans-serif);
+  font-size: 0.7rem;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.label {
+  font-family: var(--tk-font-ui, 'DM Sans', system-ui, sans-serif);
+  font-size: 0.8rem;
+  color: #334155;
+  white-space: nowrap;
+}
+
+.highlight {
+  color: #15803D;
+  font-weight: 600;
+}
+
+.arrow {
+  color: #94A3B8;
+  font-size: 0.85rem;
+  flex-shrink: 0;
+}
+
+.link {
+  color: #15803D;
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+}
+
+.link:hover {
+  text-decoration: none;
+}
+
+@media (max-width: 480px) {
+  .banner {
+    gap: 6px;
+    padding: 8px 12px;
+  }
+
+  .arrow {
+    display: none;
+  }
+
+  .step {
+    flex-basis: 100%;
+  }
+}

@@ -48,6 +48,11 @@ interface WorkflowStepsProps {
 }
 
 export default function WorkflowSteps({ steps, note }: WorkflowStepsProps) {
+  // Collect all screenshots/videos from steps to render after the list
+  const media = steps
+    .map((step, i) => step.screenshot ? { screenshot: step.screenshot, index: i } : null)
+    .filter(Boolean) as { screenshot: NonNullable<SolutionStep['screenshot']>; index: number }[];
+
   return (
     <div className={styles.wrapper}>
       <h4 className={styles.heading}>Інструкція</h4>
@@ -58,36 +63,42 @@ export default function WorkflowSteps({ steps, note }: WorkflowStepsProps) {
               <span className={styles.stepNumber}>{i + 1}</span>
               {parseStepText(step.text)}
             </span>
-            {step.screenshot && (
-              <figure className={styles.screenshotFigure}>
-                <div className={styles.screenshotWrapper}>
-                  {step.screenshot.placeholder ? (
-                    <div className={styles.placeholder}>
-                      <span className={styles.placeholderText}>{step.screenshot.placeholder}</span>
-                    </div>
-                  ) : step.screenshot.video ? (
-                    <>
-                      <video
-                        className={styles.screenshotVideo}
-                        autoPlay muted loop playsInline preload="none"
-                        poster={step.screenshot.src}
-                      >
-                        <source src={step.screenshot.video.webm} type="video/webm" />
-                        <source src={step.screenshot.video.mp4} type="video/mp4" />
-                      </video>
-                      <img className={styles.screenshotImgFallback} src={step.screenshot.src} alt={step.screenshot.alt} loading="lazy" />
-                    </>
-                  ) : (
-                    <img className={styles.screenshotImg} src={step.screenshot.src} alt={step.screenshot.alt} loading="lazy" />
-                  )}
-                </div>
-                {step.screenshot.caption && <figcaption className={styles.screenshotCaption}>{step.screenshot.caption}</figcaption>}
-              </figure>
-            )}
           </li>
         ))}
       </ol>
       {note && <p className={styles.note}>{parseStepText(note)}</p>}
+
+      {/* Media section — screenshots and videos rendered after all steps */}
+      {media.length > 0 && (
+        <div className={styles.mediaSection}>
+          {media.map(({ screenshot, index }) => (
+            <figure key={index} className={styles.screenshotFigure}>
+              <div className={styles.screenshotWrapper}>
+                {screenshot.placeholder ? (
+                  <div className={styles.placeholder}>
+                    <span className={styles.placeholderText}>{screenshot.placeholder}</span>
+                  </div>
+                ) : screenshot.video ? (
+                  <>
+                    <video
+                      className={styles.screenshotVideo}
+                      autoPlay muted loop playsInline preload="none"
+                      poster={screenshot.src}
+                    >
+                      <source src={screenshot.video.webm} type="video/webm" />
+                      <source src={screenshot.video.mp4} type="video/mp4" />
+                    </video>
+                    <img className={styles.screenshotImgFallback} src={screenshot.src} alt={screenshot.alt} loading="lazy" />
+                  </>
+                ) : (
+                  <img className={styles.screenshotImg} src={screenshot.src} alt={screenshot.alt} loading="lazy" />
+                )}
+              </div>
+              {screenshot.caption && <figcaption className={styles.screenshotCaption}>{screenshot.caption}</figcaption>}
+            </figure>
+          ))}
+        </div>
+      )}
     </div>
   );
 }

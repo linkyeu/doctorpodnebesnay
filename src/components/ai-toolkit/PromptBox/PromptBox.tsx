@@ -47,22 +47,30 @@ export default function PromptBox({ prompt, note }: PromptBoxProps) {
 
   return (
     <div className={styles.wrapper}>
-      {copied ? (
-        <span className={styles.toast}>Скопійовано!</span>
-      ) : (
-        <button
-          type="button"
-          className={styles.copyBtn}
-          onClick={handleCopy}
-          aria-label="Скопіювати запит"
-        >
-          📋 Скопіювати
-        </button>
-      )}
+      <div className={styles.header}>
+        <span className={styles.headerLabel}>📋 Запит для ChatGPT</span>
+        {copied ? (
+          <span className={styles.toast}>✓ Скопійовано</span>
+        ) : (
+          <button
+            type="button"
+            className={styles.copyBtn}
+            onClick={handleCopy}
+            aria-label="Скопіювати запит"
+          >
+            Скопіювати
+          </button>
+        )}
+      </div>
 
-      {note && <p className={styles.note}>{note}</p>}
+      <div className={styles.promptArea}>
+        {note && <p className={styles.note}>{note}</p>}
+        <pre className={styles.prompt}>{highlightPlaceholders(prompt)}</pre>
+      </div>
 
-      <pre className={styles.prompt}>{highlightPlaceholders(prompt)}</pre>
+      <div className={styles.safetyFooter}>
+        ⚠️ Завжди перевіряйте відповідь ШІ перед застосуванням
+      </div>
     </div>
   );
 }

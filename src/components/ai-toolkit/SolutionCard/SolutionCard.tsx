@@ -1,8 +1,9 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, type ReactNode } from 'react';
 import type { Solution } from '../../../data/ai-toolkit';
 import { useScrollReveal } from '../../../hooks/useScrollReveal';
 import ToolBadge from '../ToolBadge/ToolBadge';
 import PromptBox from '../PromptBox/PromptBox';
+import StepBanner from '../StepBanner/StepBanner';
 import ToolIntro from '../ToolIntro/ToolIntro';
 import WorkflowSteps from '../WorkflowSteps/WorkflowSteps';
 import CopyablePrompts from '../CopyablePrompts/CopyablePrompts';
@@ -29,13 +30,64 @@ function getToolDisplayName(tool: string): string {
 
 /** Extract a short preview from the prompt text */
 function getPreview(solution: Solution): string {
+  if (solution.subtitle) return solution.subtitle;
   if (solution.promptNote) return solution.promptNote;
   const text = solution.prompt;
   if (!text) return '';
-  // Take first 120 chars, cut at last space
   const cut = text.slice(0, 120);
   const lastSpace = cut.lastIndexOf(' ');
   return (lastSpace > 60 ? cut.slice(0, lastSpace) : cut) + '…';
+}
+
+/**
+ * Build a filled version of the prompt by replacing [PLACEHOLDER] with filled values.
+ * Returns the full prompt text with filled values wrapped in {curly braces}.
+ */
+function buildFilledPrompt(prompt: string, values: Record<string, string>): string {
+  let filled = prompt;
+  for (const [key, value] of Object.entries(values)) {
+    filled = filled.replace(`[${key}]`, `{${value}}`);
+  }
+  return filled;
+}
+
+/**
+ * Highlights filled values {VALUE} in purple and remaining [PLACEHOLDER] in green.
+ */
+function highlightFilledPrompt(text: string): ReactNode[] {
+  const parts: ReactNode[] = [];
+  // Match {filled} or [placeholder]
+  const regex = /\{([^}]+)\}|\[([^\]]+)\]/g;
+  let lastIndex = 0;
+  let match: RegExpExecArray | null;
+
+  while ((match = regex.exec(text)) !== null) {
+    if (match.index > lastIndex) {
+      parts.push(text.slice(lastIndex, match.index));
+    }
+    if (match[1] !== undefined) {
+      // {filled value} — purple
+      parts.push(
+        <span key={match.index} className={styles.filledValue}>
+          {match[1]}
+        </span>,
+      );
+    } else if (match[2] !== undefined) {
+      // [placeholder] — green (unfilled)
+      parts.push(
+        <span key={match.index} className={styles.unfilled}>
+          [{match[2]}]
+        </span>,
+      );
+    }
+    lastIndex = regex.lastIndex;
+  }
+
+  if (lastIndex < text.length) {
+    parts.push(text.slice(lastIndex));
+  }
+
+  return parts;
 }
 
 interface SolutionCardProps {
@@ -49,7 +101,9 @@ export default function SolutionCard({ solution, blockColor }: SolutionCardProps
     return window.location.hash === `#solution-${solution.id}`;
   });
   const [copied, setCopied] = useState(false);
+  const [exampleOpen, setExampleOpen] = useState(false);
   const cardType = solution.cardType ?? 'prompt';
+  const hasPrompt = solution.prompt.length > 0;
 
   const toggle = useCallback(() => {
     setExpanded(prev => !prev);
@@ -64,6 +118,10 @@ export default function SolutionCard({ solution, blockColor }: SolutionCardProps
   }, [solution.prompt]);
 
   const preview = getPreview(solution);
+
+  // Only show example for cards with actual prompts (not pure NotebookLM workflow)
+  const showExample = solution.example && hasPrompt;
+  const hasValues = solution.example?.values && Object.keys(solution.example.values).length > 0;
 
   return (
     <div
@@ -82,7 +140,7 @@ export default function SolutionCard({ solution, blockColor }: SolutionCardProps
       >
         <div className={styles.gradientHeader}>
           <div className={styles.headerTop}>
-            <span className={styles.solutionId}>{solution.id}</span>
+            <span className={styles.solutionId} aria-hidden="true"></span>
             <div className={styles.badges}>
               <ToolBadge tool={solution.tool} />
             </div>
@@ -98,16 +156,26 @@ export default function SolutionCard({ solution, blockColor }: SolutionCardProps
                 height="64"
                 loading="lazy"
               />
-              <h3 className={styles.title}>{solution.title}</h3>
+              <div>
+                <h3 className={styles.title}>{solution.title}</h3>
+                {solution.subtitle && (
+                  <p className={styles.subtitle}>{solution.subtitle}</p>
+                )}
+              </div>
             </div>
           ) : (
-            <h3 className={styles.title}>{solution.title}</h3>
+            <>
+              <h3 className={styles.title}>{solution.title}</h3>
+              {solution.subtitle && (
+                <p className={styles.subtitle}>{solution.subtitle}</p>
+              )}
+            </>
           )}
         </div>
 
         {/* White content area */}
         <div className={styles.body}>
-          {!expanded && preview && (
+          {!expanded && !solution.subtitle && preview && (
             <p className={styles.preview}>{preview}</p>
           )}
           <svg
@@ -156,14 +224,12 @@ export default function SolutionCard({ solution, blockColor }: SolutionCardProps
             {/* Tool intro — for workflow/hybrid cards */}
             {solution.toolIntro && <ToolIntro intro={solution.toolIntro} />}
 
-            {/* Instruction line for prompt cards */}
+            {/* Step banner for prompt cards */}
             {cardType === 'prompt' && (
-              <p className={styles.toolInstruction}>
-                → Скопіюйте запит, замініть <span className={styles.placeholderHint}>[виділене]</span> на ваші дані і вставте в{' '}
-                <a href={getToolUrl(solution.tool)} target="_blank" rel="noopener noreferrer">
-                  {getToolDisplayName(solution.tool)}
-                </a>
-              </p>
+              <StepBanner
+                toolUrl={getToolUrl(solution.tool)}
+                toolName={getToolDisplayName(solution.tool)}
+              />
             )}
 
             {/* Content depends on card type */}
@@ -188,6 +254,50 @@ export default function SolutionCard({ solution, blockColor }: SolutionCardProps
                   <CopyablePrompts groups={solution.copyablePrompts} />
                 )}
               </>
+            )}
+
+            {/* Example accordion — only for cards with actual prompts */}
+            {showExample && (
+              <div className={styles.exampleAccordion}>
+                <button
+                  type="button"
+                  className={styles.exampleToggle}
+                  onClick={() => setExampleOpen(prev => !prev)}
+                  aria-expanded={exampleOpen}
+                >
+                  <span>💡 Приклад заповнення</span>
+                  <svg
+                    className={`${styles.exampleChevron} ${exampleOpen ? styles.exampleChevronOpen : ''}`}
+                    width="16"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    fill="none"
+                    aria-hidden="true"
+                  >
+                    <path d="M4 6L8 10L12 6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </button>
+                <div
+                  className={styles.exampleContent}
+                  data-open={exampleOpen}
+                >
+                  <div className={styles.exampleInner}>
+                    {hasValues ? (
+                      <div className={styles.examplePromptArea}>
+                        <pre className={styles.filledPrompt}>
+                          {highlightFilledPrompt(
+                            buildFilledPrompt(solution.prompt, solution.example!.values!)
+                          )}
+                        </pre>
+                      </div>
+                    ) : (
+                      <div className={styles.examplePromptArea}>
+                        <pre className={styles.exampleText}>{solution.example!.input}</pre>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </div>
             )}
           </div>
         </div>
