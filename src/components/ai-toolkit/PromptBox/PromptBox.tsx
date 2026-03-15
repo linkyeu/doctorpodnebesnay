@@ -67,10 +67,6 @@ export default function PromptBox({ prompt, note }: PromptBoxProps) {
         {note && <p className={styles.note}>{note}</p>}
         <pre className={styles.prompt}>{highlightPlaceholders(prompt)}</pre>
       </div>
-
-      <div className={styles.safetyFooter}>
-        ⚠️ Завжди перевіряйте відповідь ШІ перед застосуванням
-      </div>
     </div>
   );
 }

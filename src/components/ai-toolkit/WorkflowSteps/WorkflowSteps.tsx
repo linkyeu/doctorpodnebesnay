@@ -45,9 +45,10 @@ function parseStepText(text: string): React.ReactNode[] {
 interface WorkflowStepsProps {
   steps: SolutionStep[];
   note?: string;
+  hideMedia?: boolean;
 }
 
-export default function WorkflowSteps({ steps, note }: WorkflowStepsProps) {
+export default function WorkflowSteps({ steps, note, hideMedia }: WorkflowStepsProps) {
   // Collect all screenshots/videos from steps to render after the list
   const media = steps
     .map((step, i) => step.screenshot ? { screenshot: step.screenshot, index: i } : null)
@@ -69,7 +70,7 @@ export default function WorkflowSteps({ steps, note }: WorkflowStepsProps) {
       {note && <p className={styles.note}>{parseStepText(note)}</p>}
 
       {/* Media section — screenshots and videos rendered after all steps */}
-      {media.length > 0 && (
+      {!hideMedia && media.length > 0 && (
         <div className={styles.mediaSection}>
           {media.map(({ screenshot, index }) => (
             <figure key={index} className={styles.screenshotFigure}>
@@ -99,6 +100,46 @@ export default function WorkflowSteps({ steps, note }: WorkflowStepsProps) {
           ))}
         </div>
       )}
+    </div>
+  );
+}
+
+/** Render only the media from steps (for use when media needs to appear after other content) */
+export function WorkflowMedia({ steps }: { steps: SolutionStep[] }) {
+  const media = steps
+    .map((step, i) => step.screenshot ? { screenshot: step.screenshot, index: i } : null)
+    .filter(Boolean) as { screenshot: NonNullable<SolutionStep['screenshot']>; index: number }[];
+
+  if (media.length === 0) return null;
+
+  return (
+    <div className={styles.mediaSection}>
+      {media.map(({ screenshot, index }) => (
+        <figure key={index} className={styles.screenshotFigure}>
+          <div className={styles.screenshotWrapper}>
+            {screenshot.placeholder ? (
+              <div className={styles.placeholder}>
+                <span className={styles.placeholderText}>{screenshot.placeholder}</span>
+              </div>
+            ) : screenshot.video ? (
+              <>
+                <video
+                  className={styles.screenshotVideo}
+                  autoPlay muted loop playsInline preload="none"
+                  poster={screenshot.src}
+                >
+                  <source src={screenshot.video.webm} type="video/webm" />
+                  <source src={screenshot.video.mp4} type="video/mp4" />
+                </video>
+                <img className={styles.screenshotImgFallback} src={screenshot.src} alt={screenshot.alt} loading="lazy" />
+              </>
+            ) : (
+              <img className={styles.screenshotImg} src={screenshot.src} alt={screenshot.alt} loading="lazy" />
+            )}
+          </div>
+          {screenshot.caption && <figcaption className={styles.screenshotCaption}>{screenshot.caption}</figcaption>}
+        </figure>
+      ))}
     </div>
   );
 }

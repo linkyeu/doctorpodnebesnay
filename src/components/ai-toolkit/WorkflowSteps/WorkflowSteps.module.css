@@ -7,7 +7,7 @@
 .heading {
   font-family: var(--font-body);
   font-size: var(--text-sm);
-  font-weight: var(--weight-semibold);
+  font-weight: var(--weight-bold);
   color: var(--color-text);
 }
 
@@ -42,7 +42,7 @@
   width: 24px;
   height: 24px;
   border-radius: 50%;
-  background: var(--block-color, var(--color-primary));
+  background: var(--tk-green, #16A34A);
   color: #fff;
   font-size: 0.75rem;
   font-weight: var(--weight-bold);
@@ -52,10 +52,8 @@
 }
 
 .stepLink {
-  color: var(--block-color, var(--color-primary));
-  text-decoration: underline;
-  text-decoration-thickness: 1px;
-  text-underline-offset: 2px;
+  color: var(--tk-green, #16A34A);
+  text-decoration: none;
 }
 
 .stepLink:hover {

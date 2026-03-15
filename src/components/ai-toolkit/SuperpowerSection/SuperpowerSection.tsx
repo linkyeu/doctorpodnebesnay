@@ -1,10 +1,8 @@
-import { useState } from 'react';
 import { superpowerData } from '../../../data/ai-toolkit';
 import styles from './SuperpowerSection.module.css';
 
 export default function SuperpowerSection() {
-  const { trustPoints, readyNotebooks } = superpowerData;
-  const [detailsOpen, setDetailsOpen] = useState(false);
+  const { readyNotebooks } = superpowerData;
 
   return (
     <div className={styles.section}>
@@ -12,9 +10,9 @@ export default function SuperpowerSection() {
       <div id="video-demo" className={styles.videoDemo}>
         <div className={styles.videoDemoPlaceholder}>
           <span className={styles.videoDemoIcon} aria-hidden="true">🎬</span>
-          <p className={styles.videoDemoTitle}>Демо-відео (30 сек)</p>
+          <p className={styles.videoDemoTitle}>Демо-відео (40 сек)</p>
           <p className={styles.videoDemoDescription}>
-            Відкриваємо готовий блокнот з протоколом МОЗ → задаємо питання природною мовою → отримуємо відповідь з цитатою та номером сторінки
+            Завантажуємо Nelson, протокол МОЗ і WHO IMCI в один блокнот → одне питання → відповідь з цитатами з кожного джерела окремо
           </p>
           <span className={styles.videoDemoTag}>Відео буде тут</span>
         </div>
@@ -70,46 +68,6 @@ export default function SuperpowerSection() {
         </p>
       </div>
 
-      {/* 3: Collapsed "Як це працює" */}
-      <div id="how-it-works" className={styles.detailsWrapper}>
-        <button
-          type="button"
-          className={styles.detailsToggle}
-          onClick={() => setDetailsOpen((prev) => !prev)}
-          aria-expanded={detailsOpen}
-          aria-controls="details-content"
-        >
-          <span>ℹ️ Як це працює</span>
-          <span className={`${styles.detailsChevron} ${detailsOpen ? styles.detailsChevronOpen : ''}`} aria-hidden="true">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-              <polyline points="6 9 12 15 18 9" />
-            </svg>
-          </span>
-        </button>
-
-        <div
-          id="details-content"
-          className={`${styles.detailsContent} ${detailsOpen ? styles.detailsContentOpen : ''}`}
-        >
-          <div className={styles.detailsInner}>
-            <p className={styles.detailsText}>
-              <strong>NotebookLM</strong> — безкоштовний інструмент від Google. Він працює ТІЛЬКИ з вашими документами: завантажуєте протокол, статтю або підручник → задаєте питання → отримуєте відповідь з точною цитатою і номером сторінки. Жодних вигаданих фактів.
-            </p>
-
-            <div className={styles.trustCard}>
-              <h4 className={styles.trustTitle}>Чому можна довіряти</h4>
-              <ul className={styles.trustList}>
-                {trustPoints.map((point, i) => (
-                  <li key={i} className={styles.trustItem}>
-                    <span className={styles.trustCheckmark} aria-hidden="true">✓</span>
-                    {point}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
   );
 }

@@ -4,6 +4,7 @@ import styles from './CopyablePrompts.module.css';
 
 interface CopyablePromptsProps {
   groups: CopyablePromptGroup[];
+  heading?: string;
 }
 
 function highlightPlaceholders(text: string): ReactNode[] {
@@ -60,9 +61,10 @@ function CopyablePrompt({ prompt }: { prompt: string }) {
   );
 }
 
-export default function CopyablePrompts({ groups }: CopyablePromptsProps) {
+export default function CopyablePrompts({ groups, heading }: CopyablePromptsProps) {
   return (
     <div className={styles.wrapper}>
+      {heading && <h4 className={styles.heading}>{heading}</h4>}
       {groups.map((group, gi) => (
         <div key={gi} className={styles.group}>
           <h4 className={styles.groupLabel}>{group.label}</h4>

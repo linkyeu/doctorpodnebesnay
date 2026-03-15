@@ -5,7 +5,7 @@ import ToolBadge from '../ToolBadge/ToolBadge';
 import PromptBox from '../PromptBox/PromptBox';
 import StepBanner from '../StepBanner/StepBanner';
 import ToolIntro from '../ToolIntro/ToolIntro';
-import WorkflowSteps from '../WorkflowSteps/WorkflowSteps';
+import WorkflowSteps, { WorkflowMedia } from '../WorkflowSteps/WorkflowSteps';
 import CopyablePrompts from '../CopyablePrompts/CopyablePrompts';
 import styles from './SolutionCard.module.css';
 
@@ -237,12 +237,15 @@ export default function SolutionCard({ solution, blockColor }: SolutionCardProps
               <PromptBox prompt={solution.prompt} note={solution.promptNote} />
             ) : cardType === 'hybrid' && solution.prompt ? (
               <>
+                {solution.steps && (
+                  <WorkflowSteps steps={solution.steps} hideMedia />
+                )}
                 <PromptBox prompt={solution.prompt} note={solution.promptNote} />
                 {solution.steps && (
-                  <WorkflowSteps steps={solution.steps} note="Перевiрка через NotebookLM:" />
+                  <WorkflowMedia steps={solution.steps} />
                 )}
                 {solution.copyablePrompts && (
-                  <CopyablePrompts groups={solution.copyablePrompts} />
+                  <CopyablePrompts groups={solution.copyablePrompts} heading={solution.copyablePrompts.length > 1 ? 'Приклади запитів' : undefined} />
                 )}
               </>
             ) : (
@@ -251,7 +254,7 @@ export default function SolutionCard({ solution, blockColor }: SolutionCardProps
                   <WorkflowSteps steps={solution.steps} note={solution.promptNote} />
                 )}
                 {solution.copyablePrompts && (
-                  <CopyablePrompts groups={solution.copyablePrompts} />
+                  <CopyablePrompts groups={solution.copyablePrompts} heading={solution.copyablePrompts.length > 1 ? 'Приклади запитів' : undefined} />
                 )}
               </>
             )}

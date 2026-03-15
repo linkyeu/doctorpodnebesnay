@@ -144,7 +144,6 @@ export default function ToolkitNav({ blocks, activeTab, onTabChange }: ToolkitNa
                         className={`${styles.solutionItem} ${activeId === `solution-${solution.id}` ? styles.active : ''}`}
                         onClick={() => handleClick(`solution-${solution.id}`)}
                       >
-                        <span className={styles.solutionId}>{solution.id}</span>
                         {solution.title}
                       </button>
                     </li>

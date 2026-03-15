@@ -247,14 +247,19 @@ export default function AiToolkitPage() {
                       className={`${styles.blockCollapsible} ${expandedBlocks[block.id] ? styles.blockCollapsibleOpen : ''}`}
                     >
                       <div className={styles.blockInner}>
-                        <div className={styles.solutionsGrid}>
-                          {block.solutions.map((solution) => (
-                            <SolutionCard
-                              key={`${solution.id}-${blockResetKey}`}
-                              solution={solution}
-                              blockColor={block.color}
-                            />
-                          ))}
+                        <div
+                          className={styles.solutionsRail}
+                          style={{ '--block-color': block.color } as React.CSSProperties}
+                        >
+                          <div className={styles.solutionsGrid}>
+                            {block.solutions.map((solution) => (
+                              <SolutionCard
+                                key={`${solution.id}-${blockResetKey}`}
+                                solution={solution}
+                                blockColor={block.color}
+                              />
+                            ))}
+                          </div>
                         </div>
                       </div>
                     </div>

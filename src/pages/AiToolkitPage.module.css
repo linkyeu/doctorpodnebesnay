@@ -33,6 +33,17 @@
   gap: var(--space-4);
 }
 
+/* ── Solutions Rail (tree connector) ── */
+
+.solutionsRail {
+  margin-left: 32px;
+  padding-left: 24px;
+  border-left: 2px solid color-mix(in srgb, var(--block-color, #E4E4E7) 15%, transparent);
+  padding-top: var(--space-1);
+  padding-bottom: 0;
+}
+
+
 /* ── Block Collapsible ── */
 
 .blockCollapsible {
