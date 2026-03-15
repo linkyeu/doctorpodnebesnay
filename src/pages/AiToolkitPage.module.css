@@ -82,12 +82,19 @@
 
 .setupCollapsible > .setupInner {
   overflow: hidden;
+  min-height: 0;
 }
 
 .setupInner {
   padding: 0 var(--space-5) var(--space-6);
   /* Left padding matches toggle icon+gap so content aligns with heading text */
   padding-left: calc(var(--space-5) + 1.25rem + var(--space-3));
+}
+
+/* When collapsed, remove padding so no white strip shows */
+.setupCollapsible:not(.setupCollapsibleOpen) > .setupInner {
+  padding-top: 0;
+  padding-bottom: 0;
 }
 
 .setupDescription {
