@@ -36,7 +36,10 @@ export default function ToolkitWelcome({ onTabChange, onScrollToSolution }: Tool
         aria-expanded={expanded}
         aria-controls="welcome-content"
       >
-        <span className={styles.headerText}>💡 Як працює довідник</span>
+        <div className={styles.headerLeft}>
+          <span className={styles.headerIcon} aria-hidden="true">💡</span>
+          <span className={styles.headerText}>Як працює довідник</span>
+        </div>
         <span className={`${styles.chevron} ${expanded ? styles.chevronOpen : ''}`} aria-hidden="true">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
             <polyline points="6 9 12 15 18 9" />
@@ -50,72 +53,60 @@ export default function ToolkitWelcome({ onTabChange, onScrollToSolution }: Tool
         className={`${styles.content} ${expanded ? styles.contentOpen : ''}`}
       >
         <div className={styles.contentInner}>
-          {/* Block 1 — What is this */}
-          <div className={styles.intro}>
-            <p className={styles.body}>
-              Це не курс. Це довідник — відкривайте, коли потрібно. Всередині — <strong>16 готових рішень</strong> для щоденної практики (виписки, діагностика, аналізи, протоколи) + <strong>6 блокнотів з протоколами МОЗ</strong>, де відповідь — з цитатою.
-            </p>
-            <p className={styles.body}>
-              Ви працюєте з двома інструментами — обидва безкоштовні:
-            </p>
-          </div>
+          {/* Intro — one line */}
+          <p className={styles.intro}>
+            Це не курс. Це довідник — відкривайте, коли потрібно.
+          </p>
 
-          {/* Block 2 — Tool cards */}
+          {/* Tool cards — logo + name only */}
+          <p className={styles.toolsLabel}>Ви працюєте з двома інструментами:</p>
           <div className={styles.toolCards}>
-            <div className={`${styles.toolCard} ${styles.toolCardGreen}`}>
-              <div className={styles.toolCardHeader}>
-                <img src="/images/toolkit/chatgpt.svg" alt="" aria-hidden="true" className={styles.toolIcon} width="28" height="28" />
-                <span className={styles.toolName}>ChatGPT</span>
+            <div className={styles.toolCard}>
+              <div className={styles.toolLogo}>
+                <img src="/images/toolkit/chatgpt.svg" alt="" aria-hidden="true" width="28" height="28" />
               </div>
-              <div className={styles.workflowBox}>
-                <p className={styles.workflowText}>
-                  Скопіюйте запит з довідника → замініть дані пацієнта → вставте в ChatGPT → готово
-                </p>
-              </div>
-              <p className={styles.taskList}>Виписки · діагностика · аналізи · план лікування · спілкування з пацієнтами</p>
-              <span className={styles.freeTag}>✓ Безкоштовний</span>
+              <span className={styles.toolName}>ChatGPT</span>
             </div>
-
-            <div className={`${styles.toolCard} ${styles.toolCardYellow}`}>
-              <div className={styles.toolCardHeader}>
-                <img src="/images/toolkit/notebooklm.svg" alt="" aria-hidden="true" className={styles.toolIcon} width="28" height="28" />
-                <span className={styles.toolName}>NotebookLM</span>
+            <div className={styles.toolCard}>
+              <div className={styles.toolLogo}>
+                <img src="/images/toolkit/notebooklm.svg" alt="" aria-hidden="true" width="28" height="28" />
               </div>
-              <div className={styles.workflowBox}>
-                <p className={styles.workflowText}>
-                  Завантажте документ (протокол, статтю) → задайте питання → отримайте відповідь з цитатами
-                </p>
-              </div>
-              <p className={styles.taskList}>Протоколи МОЗ · інструкції препаратів · статті · лекції · підручники</p>
-              <span className={styles.freeTag}>✓ Безкоштовний (Google)</span>
+              <span className={styles.toolName}>NotebookLM</span>
             </div>
           </div>
 
+          {/* Why only two */}
           <div className={styles.whyTwo}>
-            <strong>Чому два?</strong>{' '}
-            ChatGPT може вигадати джерело. NotebookLM відповідає ТІЛЬКИ з ваших документів і показує цитату. Тому для перевірки по протоколу — завжди NotebookLM.
+            <strong>Чому лише два?</strong>{' '}
+            Існують десятки ШІ-інструментів. Ми протестували їх і залишили два, які покривають усі задачі лікаря — від документації до перевірки за протоколами. Без зайвого, без плутанини. Інші курси дають 10+ інструментів, які лякають і ніколи не використовуються. Тут — тільки те, що реально працює.
           </div>
 
-          {/* Block 3 — How to start */}
+          {/* Steps — vertical timeline */}
           <div className={styles.steps}>
-            <h3 className={styles.stepsHeading}>Як почати</h3>
+            <h3 className={styles.stepsHeading}>Три розділи зліва — три задачі</h3>
             <ol className={styles.stepsList}>
               <li className={styles.step}>
-                <span className={styles.stepNum}>1</span>
-                <div className={styles.stepContent}>
+                <div className={styles.stepTrack}>
+                  <span className={styles.stepNum}>1</span>
+                  <span className={styles.stepLine} aria-hidden="true" />
+                </div>
+                <div className={styles.stepBody}>
                   <button
                     type="button"
                     className={styles.stepLink}
                     onClick={() => { onScrollToSolution('A1'); collapse(); }}
                   >
-                    Оберіть задачу з Рішень нижче
+                    Рішення
                   </button>
-                  <span className={styles.stepMeta}> — скопіюйте запит, замініть дані пацієнта, вставте в ChatGPT.</span>
+                  <span className={styles.stepMeta}> — готові запити для щоденної практики. Оберіть задачу, скопіюйте запит, замініть дані пацієнта, вставте в ChatGPT — готово.</span>
                 </div>
               </li>
               <li className={styles.step}>
-                <span className={styles.stepNum}>2</span>
-                <div className={styles.stepContent}>
+                <div className={styles.stepTrack}>
+                  <span className={styles.stepNum}>2</span>
+                  <span className={styles.stepLine} aria-hidden="true" />
+                </div>
+                <div className={styles.stepBody}>
                   <button
                     type="button"
                     className={styles.stepLink}
@@ -123,27 +114,32 @@ export default function ToolkitWelcome({ onTabChange, onScrollToSolution }: Tool
                   >
                     Запитай протокол
                   </button>
-                  <span className={styles.stepMeta}> — готові блокноти з протоколами МОЗ. Задайте питання — відповідь з цитатою і номером сторінки.</span>
+                  <span className={styles.stepMeta}> — коли потрібно перевірити за протоколом. На відміну від ChatGPT, не вигадує — відповідає ТІЛЬКИ на основі завантажених протоколів МОЗ та інших доказових джерел: кожна відповідь з цитатою і номером сторінки. Якщо відповіді немає — скаже прямо, а не вигадає.</span>
                 </div>
               </li>
               <li className={styles.step}>
-                <span className={styles.stepNum}>3</span>
-                <div className={styles.stepContent}>
+                <div className={styles.stepTrack}>
+                  <span className={styles.stepNum}>3</span>
+                </div>
+                <div className={styles.stepBody}>
                   <button
                     type="button"
                     className={styles.stepLink}
                     onClick={() => { onTabChange('setup'); collapse(); }}
                   >
-                    Налаштуйте ChatGPT під себе
+                    Налаштування
                   </button>
-                  <span className={styles.stepMeta}> — 2 хв, один раз. ChatGPT запам'ятає вашу спеціальність, мову та стиль відповідей.</span>
+                  <span className={styles.stepMeta}> — необов'язково. Одноразове налаштування (2 хв), щоб ChatGPT запам'ятав вашу спеціальність, мову та стиль відповідей. Запити працюють і без цього.</span>
                 </div>
               </li>
             </ol>
           </div>
 
           <button type="button" className={styles.dismissBtn} onClick={collapse}>
-            Зрозуміло, почати →
+            Зрозуміло, почати
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <polyline points="9 18 15 12 9 6" />
+            </svg>
           </button>
         </div>
       </div>
