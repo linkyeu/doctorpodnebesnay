@@ -58,7 +58,13 @@ export default function AiToolkitPage() {
   });
 
   const toggleBlock = useCallback((id: string) => {
-    setExpandedBlocks((prev) => ({ ...prev, [id]: !prev[id] }));
+    setExpandedBlocks((prev) => {
+      const isClosing = prev[id];
+      // Collapse all, then open only the clicked one (unless closing it)
+      const next = Object.fromEntries(Object.keys(prev).map((k) => [k, false]));
+      if (!isClosing) next[id] = true;
+      return next;
+    });
   }, []);
 
   const [searchQuery, setSearchQuery] = useState('');
