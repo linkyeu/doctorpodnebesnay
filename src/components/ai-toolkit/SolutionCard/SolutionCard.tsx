@@ -302,6 +302,31 @@ export default function SolutionCard({ solution, blockColor }: SolutionCardProps
                 </div>
               </div>
             )}
+
+            {/* Ready notebooks bonus */}
+            {solution.readyNotebooks && solution.readyNotebooks.length > 0 && (
+              <div className={styles.readyNotebook}>
+                <div className={styles.readyNotebookContent}>
+                  <span className={styles.readyNotebookIcon} aria-hidden="true">📚</span>
+                  <div>
+                    <div className={styles.readyNotebookTitle}>Готові блокноти — просто відкрийте</div>
+                    <div className={styles.readyNotebookLinks}>
+                      {solution.readyNotebooks.map((nb) => (
+                        <a
+                          key={nb.id}
+                          href={nb.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className={styles.readyNotebookLink}
+                        >
+                          {nb.emoji} {nb.title} →
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>
