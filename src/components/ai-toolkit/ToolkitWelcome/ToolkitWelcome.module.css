@@ -6,13 +6,13 @@
 
   margin-bottom: var(--space-5, 20px);
   border-radius: 16px;
-  background: var(--tk-surface-alt, #F4F4F5);
-  border: 1px solid color-mix(in srgb, #1B3A4B 10%, #e8e8ec);
+  background: var(--tk-surface, #FFFFFF);
+  border: 1px solid color-mix(in srgb, var(--w-accent) 8%, var(--tk-border, #E4E4E7));
   overflow: hidden;
   box-shadow:
     0 1px 2px rgba(0, 0, 0, 0.03),
     0 4px 12px rgba(0, 0, 0, 0.04),
-    0 4px 20px rgba(27, 58, 75, 0.06);
+    0 4px 20px color-mix(in srgb, var(--w-accent) 4%, transparent);
 }
 
 /* ── Collapsible Header (always visible) ── */
@@ -26,12 +26,21 @@
   width: 100%;
   padding: 18px 24px;
   cursor: pointer;
-  background: none;
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--w-accent) 3%, white) 0%,
+    color-mix(in srgb, var(--w-accent) 1%, white) 100%
+  );
+  border-bottom: 1px solid var(--tk-border-subtle, #F4F4F5);
   transition: background 150ms ease;
 }
 
 .header:hover {
-  background: rgba(0, 0, 0, 0.02);
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--w-accent) 5%, white) 0%,
+    color-mix(in srgb, var(--w-accent) 2%, white) 100%
+  );
 }
 
 .header:focus-visible {
