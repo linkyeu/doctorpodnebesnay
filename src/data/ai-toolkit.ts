@@ -142,7 +142,7 @@ const solutionIllustrations: Record<string, string> = {
   'B3': '/images/toolkit/illustrations/solutions/B3-treatment.png',
   'B4': '/images/toolkit/illustrations/solutions/B4-compare.png',
   'B5': '/images/toolkit/illustrations/solutions/B5-atypical.png',
-  'A1': '/images/toolkit/illustrations/solutions/A1-protocol.png',
+  'A1': '/images/toolkit/illustrations/solutions/A1-find-answer.png',
   'A2': '/images/toolkit/illustrations/solutions/A2-summary.png',
   'A3': '/images/toolkit/illustrations/solutions/A3-podcast.png',
   'A4': '/images/toolkit/illustrations/solutions/A4-webinar.png',
@@ -661,7 +661,7 @@ const blockDSolutions: Solution[] = [
       { text: 'Підготуйте книгу або статтю у будь-якому форматі — PDF, посилання, Google Doc або текст' },
       { text: 'Перейдіть на [**NotebookLM**](https://notebooklm.google.com) → **Створити новий блокнот** → **Додати джерела** → завантажте ваш матеріал' },
       { text: 'Відкрийте панель **Студія** → натисніть **Звіти** → оберіть **Короткий огляд** (резюме) або **Навчальний посібник** — NotebookLM згенерує автоматично' },
-      { text: 'Для глибших питань — задавайте у чаті зліва', screenshot: { src: '', alt: 'Панель Студія в NotebookLM', placeholder: '📹 ВІДЕО: Додати джерела → додаємо матеріал → Студія → Звіти → Короткий огляд → результат з цитатами (~15 сек)' } },
+      { text: 'Для глибших питань — задавайте у чаті зліва', screenshot: { src: '/images/toolkit/solutions/book-summary-a2.webp', alt: 'Резюме книги в NotebookLM з цитатами', video: { mp4: '/images/toolkit/solutions/book-summary-a2.mp4', webm: '/images/toolkit/solutions/book-summary-a2.webm' } } },
     ],
     prompt: '',
     copyablePrompts: [
