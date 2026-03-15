@@ -39,18 +39,25 @@ function SetupSection() {
         aria-controls="setup-content"
       >
         <div className={styles.setupToggleLeft}>
-          <span className={styles.setupToggleIcon} aria-hidden="true">
-            {isDone ? '✓' : '⚡'}
-          </span>
+          {isDone ? (
+            <span className={styles.setupToggleIcon} aria-hidden="true">✓</span>
+          ) : (
+            <img
+              src="/images/toolkit/illustrations/icon-setup.png"
+              alt=""
+              aria-hidden="true"
+              className={styles.setupToggleImg}
+              width="48"
+              height="48"
+            />
+          )}
           <div>
             <span className={styles.setupHeading}>
               {isDone ? 'Налаштування ChatGPT' : 'Навчіть ChatGPT думати як лікар'}
             </span>
-            {!expanded && (
-              <span className={styles.setupSubtext}>
-                {isDone ? 'Налаштовано' : '2 хвилини, один раз'}
-              </span>
-            )}
+            <span className={styles.setupSubtext}>
+              {isDone ? 'Налаштовано' : '2 хвилини, один раз'}
+            </span>
           </div>
         </div>
         <svg

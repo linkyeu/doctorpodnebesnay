@@ -769,3 +769,35 @@
   border-radius: 12px;
   display: block;
 }
+
+/* ── Direct tool link button ── */
+
+.setupToolLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--tk-font-ui);
+  font-size: var(--tk-text-sm);
+  font-weight: 600;
+  color: #1B3A4B;
+  background: #fff;
+  border: 1px solid rgba(27, 58, 75, 0.15);
+  border-radius: 8px;
+  padding: 8px 16px;
+  text-decoration: none;
+  margin-bottom: var(--space-4);
+  box-shadow: 0 1px 3px rgba(27, 58, 75, 0.08), 0 1px 2px rgba(27, 58, 75, 0.06);
+  transition: all 0.15s ease;
+}
+
+.setupToolLink:hover {
+  background: #fafbfc;
+  border-color: rgba(27, 58, 75, 0.25);
+  transform: translateY(-1px);
+  box-shadow: 0 3px 8px rgba(27, 58, 75, 0.1), 0 1px 3px rgba(27, 58, 75, 0.08);
+}
+
+.setupToolLink:active {
+  transform: translateY(0);
+  box-shadow: 0 1px 2px rgba(27, 58, 75, 0.08);
+}

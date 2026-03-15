@@ -99,17 +99,28 @@ export function ChatGPTSetup() {
 
   return (
     <div className={styles.setupCard}>
-      {/* Single video — full setup walkthrough */}
+      {/* Full setup walkthrough video */}
       <div className={styles.setupVideoWrapper}>
-        <div className={styles.setupVideoPlaceholder}>
-          <span className={styles.setupVideoIcon} aria-hidden="true">🎬</span>
-          <p className={styles.setupVideoTitle}>Відео: повне налаштування ChatGPT (90 сек)</p>
-          <p className={styles.setupVideoDescription}>
-            Відкриваємо Персоналізацію → вставляємо інструкції → обираємо стиль → вимикаємо навчання на даних → готово
-          </p>
-          <span className={styles.setupVideoTag}>Відео буде тут</span>
-        </div>
+        <video
+          className={styles.setupVideo}
+          controls
+          preload="metadata"
+          poster="/images/toolkit/setup/settings-full.webp"
+        >
+          <source src="/images/toolkit/setup/settings-full.webm" type="video/webm" />
+          <source src="/images/toolkit/setup/settings-full.mp4" type="video/mp4" />
+        </video>
       </div>
+
+      {/* Direct link to ChatGPT */}
+      <a
+        href="https://chatgpt.com"
+        target="_blank"
+        rel="noopener noreferrer"
+        className={styles.setupToolLink}
+      >
+        Відкрити ChatGPT ↗
+      </a>
 
       {/* Copyable custom instructions — same PromptBox as solution cards */}
       {b1.codeBlocks?.[0] && (
