@@ -82,22 +82,18 @@ export default function ToolkitNav({ blocks }: ToolkitNavProps) {
 
   const sidebarContent = (
     <>
-      {/* Setup link */}
-      <div className={styles.sectionLabel}>Розділи</div>
-      <button
-        type="button"
-        className={`${styles.blockTitle} ${activeId === 'setup' ? styles.active : ''}`}
-        onClick={() => handleClick('setup')}
-      >
-        <span className={styles.blockDot} style={{ backgroundColor: '#7C3AED' }} />
-        Налаштування ChatGPT
-      </button>
-
-      <div className={styles.divider} />
-
-      {/* Blocks + solutions */}
-      <div className={styles.sectionLabel}>Блоки</div>
+      {/* Setup + Blocks */}
       <ul className={styles.list} role="list">
+        <li className={styles.blockGroup}>
+          <button
+            type="button"
+            className={`${styles.blockTitle} ${styles.setupTitle} ${activeId === 'setup' ? styles.active : ''}`}
+            onClick={() => handleClick('setup')}
+          >
+            <span className={styles.blockDot} style={{ backgroundColor: '#7C3AED' }} />
+            Налаштування ChatGPT
+          </button>
+        </li>
         {blocks.map((block) => (
           <li key={block.id} className={styles.blockGroup}>
             <button
