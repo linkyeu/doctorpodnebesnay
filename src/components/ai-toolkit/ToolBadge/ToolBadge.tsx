@@ -4,11 +4,10 @@ interface ToolBadgeProps {
   tool: string;
 }
 
-const TOOL_COLORS: Record<string, { bg: string; text: string }> = {
-  'ChatGPT': { bg: 'rgba(22,163,74, 0.1)', text: '#15803D' },
-  'NotebookLM': { bg: 'rgba(37,99,235, 0.1)', text: '#1D4ED8' },
-  'Perplexity': { bg: 'rgba(124,58,237, 0.1)', text: '#6D28D9' },
-  'tabletki.ua': { bg: 'rgba(220,38,38, 0.1)', text: '#B91C1C' },
+const TOOL_LOGOS: Record<string, string> = {
+  'ChatGPT': '/images/toolkit/chatgpt.svg',
+  'NotebookLM': '/images/toolkit/notebooklm.svg',
+  'Perplexity': '/images/toolkit/perplexity.svg',
 };
 
 /**
@@ -24,18 +23,22 @@ export default function ToolBadge({ tool }: ToolBadgeProps) {
 
   return (
     <span className={styles.wrapper}>
-      {tools.map((t) => {
-        const colors = TOOL_COLORS[t];
-        return (
-          <span
-            key={t}
-            className={styles.badge}
-            style={colors ? { backgroundColor: colors.bg, color: colors.text } : undefined}
-          >
-            {t}
-          </span>
-        );
-      })}
+      {tools.map((t, i) => (
+        <span key={t} className={styles.badge}>
+          {TOOL_LOGOS[t] && (
+            <img
+              src={TOOL_LOGOS[t]}
+              alt=""
+              aria-hidden="true"
+              className={styles.logo}
+              width="20"
+              height="20"
+            />
+          )}
+          {t}
+          {i < tools.length - 1 && <span className={styles.separator}>+</span>}
+        </span>
+      ))}
     </span>
   );
 }
