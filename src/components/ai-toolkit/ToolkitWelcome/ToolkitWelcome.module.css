@@ -6,13 +6,13 @@
 
   margin-bottom: var(--space-5, 20px);
   border-radius: 16px;
-  background: var(--tk-surface, #FFFFFF);
-  border: 1px solid color-mix(in srgb, var(--w-accent) 8%, var(--tk-border, #E4E4E7));
+  background: var(--tk-surface-alt, #F4F4F5);
+  border: 1px solid color-mix(in srgb, #1B3A4B 10%, #e8e8ec);
   overflow: hidden;
   box-shadow:
     0 1px 2px rgba(0, 0, 0, 0.03),
     0 4px 12px rgba(0, 0, 0, 0.04),
-    0 4px 20px color-mix(in srgb, var(--w-accent) 4%, transparent);
+    0 4px 20px rgba(27, 58, 75, 0.06);
 }
 
 /* ── Collapsible Header (always visible) ── */
@@ -26,21 +26,12 @@
   width: 100%;
   padding: 18px 24px;
   cursor: pointer;
-  background: linear-gradient(
-    135deg,
-    color-mix(in srgb, var(--w-accent) 3%, white) 0%,
-    color-mix(in srgb, var(--w-accent) 1%, white) 100%
-  );
-  border-bottom: 1px solid var(--tk-border-subtle, #F4F4F5);
+  background: none;
   transition: background 150ms ease;
 }
 
 .header:hover {
-  background: linear-gradient(
-    135deg,
-    color-mix(in srgb, var(--w-accent) 5%, white) 0%,
-    color-mix(in srgb, var(--w-accent) 2%, white) 100%
-  );
+  background: rgba(0, 0, 0, 0.02);
 }
 
 .header:focus-visible {
@@ -52,7 +43,7 @@
 .headerLeft {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
 }
 
 .headerIcon {
@@ -68,11 +59,25 @@
   flex-shrink: 0;
 }
 
+.headerIconDone {
+  font-size: 1.25rem;
+  flex-shrink: 0;
+}
+
 .headerText {
-  font-family: var(--tk-font-ui, 'DM Sans', system-ui, sans-serif);
-  font-size: 15px;
-  font-weight: 650;
+  font-family: var(--tk-font-heading, var(--tk-font-ui, 'DM Sans', system-ui, sans-serif));
+  font-size: 1.05rem;
+  font-weight: 700;
   color: var(--tk-text, #18181B);
+  display: block;
+}
+
+.headerSubtext {
+  font-family: var(--tk-font-ui, 'DM Sans', system-ui, sans-serif);
+  font-size: var(--tk-text-sm, 0.875rem);
+  color: var(--tk-text-muted, #71717A);
+  display: block;
+  margin-top: 2px;
 }
 
 .chevron {

@@ -12,6 +12,8 @@ export default function ToolkitWelcome({ onScrollToSolution }: ToolkitWelcomePro
     return !localStorage.getItem(STORAGE_KEY);
   });
 
+  const isDone = !!localStorage.getItem(STORAGE_KEY);
+
   const collapse = () => {
     localStorage.setItem(STORAGE_KEY, '1');
     setExpanded(false);
@@ -36,8 +38,17 @@ export default function ToolkitWelcome({ onScrollToSolution }: ToolkitWelcomePro
         aria-controls="welcome-content"
       >
         <div className={styles.headerLeft}>
-          <span className={styles.headerIcon} aria-hidden="true">💡</span>
-          <span className={styles.headerText}>Як працює довідник</span>
+          {isDone ? (
+            <span className={styles.headerIconDone} aria-hidden="true">✓</span>
+          ) : (
+            <span className={styles.headerIcon} aria-hidden="true">💡</span>
+          )}
+          <div>
+            <span className={styles.headerText}>Як працює довідник</span>
+            <span className={styles.headerSubtext}>
+              {isDone ? 'Ознайомлено' : 'Коротке введення'}
+            </span>
+          </div>
         </div>
         <span className={`${styles.chevron} ${expanded ? styles.chevronOpen : ''}`} aria-hidden="true">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
