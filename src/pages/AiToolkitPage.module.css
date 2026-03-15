@@ -85,7 +85,9 @@
 }
 
 .setupInner {
-  padding: var(--space-2) var(--space-5) var(--space-5);
+  padding: 0 var(--space-5) var(--space-6);
+  /* Left padding matches toggle icon+gap so content aligns with heading text */
+  padding-left: calc(var(--space-5) + 1.25rem + var(--space-3));
 }
 
 .setupDescription {
