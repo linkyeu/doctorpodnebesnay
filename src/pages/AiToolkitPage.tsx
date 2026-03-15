@@ -11,6 +11,78 @@ import ToolkitSearch from '../components/ai-toolkit/ToolkitSearch/ToolkitSearch'
 import '../styles/toolkit-tokens.css';
 import styles from './AiToolkitPage.module.css';
 
+const SETUP_DONE_KEY = 'toolkit_setup_done';
+
+function SetupSection() {
+  const [expanded, setExpanded] = useState(() => {
+    return !localStorage.getItem(SETUP_DONE_KEY);
+  });
+
+  const isDone = !!localStorage.getItem(SETUP_DONE_KEY);
+
+  const toggle = () => {
+    setExpanded(prev => !prev);
+  };
+
+  const markDone = () => {
+    localStorage.setItem(SETUP_DONE_KEY, '1');
+    setExpanded(false);
+  };
+
+  return (
+    <section id="setup" className={styles.setupSection}>
+      <button
+        type="button"
+        className={styles.setupToggle}
+        onClick={toggle}
+        aria-expanded={expanded}
+        aria-controls="setup-content"
+      >
+        <div className={styles.setupToggleLeft}>
+          <span className={styles.setupToggleIcon} aria-hidden="true">
+            {isDone ? '✓' : '⚡'}
+          </span>
+          <div>
+            <span className={styles.setupHeading}>
+              {isDone ? 'Налаштування ChatGPT' : 'Перший крок: навчіть ChatGPT думати як лікар'}
+            </span>
+            {!expanded && (
+              <span className={styles.setupSubtext}>
+                {isDone ? 'Налаштовано' : '2 хвилини, один раз'}
+              </span>
+            )}
+          </div>
+        </div>
+        <svg
+          className={`${styles.setupChevron} ${expanded ? styles.setupChevronOpen : ''}`}
+          width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"
+        >
+          <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      </button>
+
+      <div
+        id="setup-content"
+        className={`${styles.setupCollapsible} ${expanded ? styles.setupCollapsibleOpen : ''}`}
+      >
+        <div className={styles.setupInner}>
+          {!isDone && (
+            <p className={styles.setupDescription}>
+              Без цього — він відповідає як студент-першокурсник. З цим — як досвідчений колега.
+            </p>
+          )}
+          <ChatGPTSetup />
+          {!isDone && (
+            <button type="button" className={styles.setupDoneBtn} onClick={markDone}>
+              Готово, я налаштував ✓
+            </button>
+          )}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function matchesSolution(solution: Solution, query: string): boolean {
   const q = query.toLowerCase();
   return (
@@ -182,18 +254,8 @@ export default function AiToolkitPage() {
         <h1 className="sr-only">ШІ-помічник лікаря — 16 готових рішень для щоденної практики</h1>
         <ToolkitWelcome onScrollToSolution={handleScrollToSolution} />
 
-        {/* Setup — mandatory first step */}
-        <section id="setup" className={styles.setupSection}>
-          <div className={styles.setupHeader}>
-            <h2 className={styles.setupHeading}>
-              Перший крок: навчіть ChatGPT думати як лікар
-            </h2>
-            <p className={styles.setupSubtext}>
-              Без цього — він відповідає як студент-першокурсник. З цим — як досвідчений колега. 2 хвилини, один раз.
-            </p>
-          </div>
-          <ChatGPTSetup />
-        </section>
+        {/* Setup — mandatory first step, collapsible */}
+        <SetupSection />
 
         {/* Search */}
         <ToolkitSearch

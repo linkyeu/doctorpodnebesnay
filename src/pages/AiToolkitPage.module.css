@@ -9,29 +9,109 @@
   padding: var(--space-4) var(--space-4) var(--space-16);
 }
 
-/* ── Setup Section (mandatory first step) ── */
+/* ── Setup Section (collapsible, mandatory first step) ── */
 
 .setupSection {
-  margin-bottom: var(--space-8);
+  margin-bottom: var(--space-6);
+  background: var(--tk-surface-alt);
+  border-radius: 12px;
+  border: 1px solid var(--tk-border);
+  overflow: hidden;
 }
 
-.setupHeader {
-  margin-bottom: var(--space-6);
+.setupToggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: var(--space-4) var(--space-5);
+  border: none;
+  background: none;
+  cursor: pointer;
+  text-align: left;
+  gap: var(--space-3);
+}
+
+.setupToggleLeft {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  min-width: 0;
+}
+
+.setupToggleIcon {
+  font-size: 1.25rem;
+  flex-shrink: 0;
 }
 
 .setupHeading {
   font-family: var(--tk-font-heading);
-  font-size: clamp(1.25rem, 2.5vw, 1.5rem);
+  font-size: clamp(1rem, 2vw, 1.15rem);
   font-weight: 700;
   color: var(--tk-text);
-  margin: 0 0 var(--space-2);
+  display: block;
 }
 
 .setupSubtext {
   font-family: var(--tk-font-ui);
+  font-size: var(--tk-text-sm);
+  color: var(--tk-text-muted);
+  display: block;
+  margin-top: 2px;
+}
+
+.setupChevron {
+  flex-shrink: 0;
+  color: var(--tk-text-muted);
+  transition: transform 200ms ease;
+}
+
+.setupChevronOpen {
+  transform: rotate(180deg);
+}
+
+.setupCollapsible {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 250ms ease;
+}
+
+.setupCollapsibleOpen {
+  grid-template-rows: 1fr;
+}
+
+.setupCollapsible > .setupInner {
+  overflow: hidden;
+}
+
+.setupInner {
+  padding: 0 var(--space-5) var(--space-5);
+}
+
+.setupDescription {
+  font-family: var(--tk-font-ui);
   font-size: var(--tk-text-base);
   color: var(--tk-text-muted);
-  margin: 0;
+  margin: 0 0 var(--space-4);
+}
+
+.setupDoneBtn {
+  display: block;
+  margin: var(--space-5) auto 0;
+  padding: var(--space-2) var(--space-5);
+  font-family: var(--tk-font-ui);
+  font-size: var(--tk-text-sm);
+  font-weight: 600;
+  color: white;
+  background: #7C3AED;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 150ms ease;
+}
+
+.setupDoneBtn:hover {
+  background: #6D28D9;
 }
 
 /* ── Block Sections ── */
