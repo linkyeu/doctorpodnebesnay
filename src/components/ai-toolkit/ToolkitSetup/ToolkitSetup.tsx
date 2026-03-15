@@ -112,82 +112,30 @@ export function InstructionStep({
 
 export function ChatGPTSetup() {
   const b1 = setupSections.find(s => s.id === 'B1')!;
-  const b4 = setupSections.find(s => s.id === 'B4')!;
 
   return (
     <div className={styles.setupCard}>
-      <PurposeCallout text="Навіщо: без цього ChatGPT кожного разу починає з нуля — не знає вашу спеціальність, мову, стиль відповідей. Налаштовуєте один раз — працює в кожній розмові автоматично." />
+      {/* Single video — full setup walkthrough */}
+      <div className={styles.setupVideoWrapper}>
+        <div className={styles.setupVideoPlaceholder}>
+          <span className={styles.setupVideoIcon} aria-hidden="true">🎬</span>
+          <p className={styles.setupVideoTitle}>Відео: повне налаштування ChatGPT (90 сек)</p>
+          <p className={styles.setupVideoDescription}>
+            Відкриваємо Персоналізацію → вставляємо інструкції → обираємо стиль → вимикаємо навчання на даних → готово
+          </p>
+          <span className={styles.setupVideoTag}>Відео буде тут</span>
+        </div>
+      </div>
 
-      <InstructionStep
-        number={1}
-        variant="chatgpt"
-        text={<>Натисніть на аватар (внизу зліва) → <strong>Персоналізація</strong></>}
-        screenshot={b1.screenshots?.[0] ? {
-          src: b1.screenshots[0].src,
-          alt: b1.screenshots[0].alt,
-          caption: undefined,
-          video: b1.screenshots[0].video,
-        } : undefined}
-      />
-
-      <InstructionStep
-        number={2}
-        variant="chatgpt"
-        text={<>У <strong>«Базовий стиль і тон»</strong> оберіть <strong>«Професійний»</strong></>}
-        screenshot={b1.screenshots?.[2] ? {
-          src: b1.screenshots[2].src,
-          alt: b1.screenshots[2].alt,
-          caption: undefined,
-          video: b1.screenshots[2].video,
-        } : undefined}
-      />
-
-      <InstructionStep
-        number={3}
-        variant="chatgpt"
-        text={<>Прокрутіть до <strong>«Спеціальні інструкції»</strong> — скопіюйте та вставте текст нижче, замінивши <strong>[СПЕЦІАЛЬНІСТЬ]</strong> та <strong>[ДОРОСЛИМИ / ДІТЬМИ / ВСІМА]</strong> на свої дані:</>}
-        screenshot={b1.screenshots?.[3] ? {
-          src: b1.screenshots[3].src,
-          alt: b1.screenshots[3].alt,
-          caption: undefined,
-          video: b1.screenshots[3].video,
-        } : undefined}
-      />
-
+      {/* Copyable custom instructions — the only thing doctor needs to paste */}
       {b1.codeBlocks?.[0] && (
         <div className={styles.singleCodeBlock}>
           <div className={styles.singleCodeHeader}>
-            <span className={styles.singleCodeLabel}>{b1.codeBlocks[0].label}</span>
+            <span className={styles.singleCodeLabel}>Скопіюйте та вставте в «Спеціальні інструкції», замінивши [СПЕЦІАЛЬНІСТЬ] та [ДОРОСЛИМИ / ДІТЬМИ / ВСІМА]:</span>
             <CopyButton text={b1.codeBlocks[0].code} />
           </div>
           <pre className={styles.codeContent}>{b1.codeBlocks[0].code}</pre>
         </div>
-      )}
-
-      <InstructionStep
-        number={4}
-        variant="chatgpt"
-        text={<>Заповніть <strong>«Псевдонім»</strong> (ваше ім'я) та <strong>«Професія»</strong> (наприклад: сімейний лікар, педіатр)</>}
-        screenshot={b1.screenshots?.[1] ? {
-          src: b1.screenshots[1].src,
-          alt: b1.screenshots[1].alt,
-          caption: undefined,
-          video: b1.screenshots[1].video,
-        } : undefined}
-      />
-
-      {b4.screenshots?.[0] && (
-        <InstructionStep
-          number={5}
-          variant="chatgpt"
-          text={<>Налаштування → <strong>«Керування даними»</strong> → <strong>«Поліпшити модель для всіх»</strong> → ВИМКНІТЬ</>}
-          screenshot={{
-            src: b4.screenshots[0].src,
-            alt: b4.screenshots[0].alt,
-            caption: undefined,
-            video: b4.screenshots[0].video,
-          }}
-        />
       )}
     </div>
   );
