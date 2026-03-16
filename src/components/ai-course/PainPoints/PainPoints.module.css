@@ -37,10 +37,6 @@
   position: relative;
   overflow: hidden;
   text-align: center;
-  transition:
-    border-color var(--transition-base),
-    box-shadow var(--transition-base),
-    transform var(--transition-base);
 }
 
 /* Amber top accent line */
@@ -53,14 +49,6 @@
   height: 3px;
   background: linear-gradient(90deg, var(--color-accent), color-mix(in srgb, var(--color-accent) 40%, transparent));
   border-radius: 20px 20px 0 0;
-}
-
-@media (hover: hover) {
-  .card:hover {
-    border-color: color-mix(in srgb, var(--color-accent) 30%, transparent);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
-    transform: translateY(-2px);
-  }
 }
 
 .iconWrapper {
