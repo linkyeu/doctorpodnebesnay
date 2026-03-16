@@ -1,7 +1,7 @@
-/* ─── Before / After — clean symmetric layout ─── */
+/* ─── Before / After — warm background, refined cards ─── */
 
 .section {
-  background: var(--color-bg-alt);
+  background: #FFFBF7;
   padding: var(--space-16) var(--space-6);
 }
 
@@ -11,22 +11,24 @@
 }
 
 .heading {
-  font-size: var(--text-3xl);
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 700;
   color: var(--color-text);
   text-align: center;
   margin-bottom: var(--space-3);
+  letter-spacing: -0.02em;
 }
 
 .scenario {
   text-align: center;
-  font-size: var(--text-lg);
-  color: var(--color-text);
-  font-weight: var(--weight-semibold);
+  font-size: 1rem;
+  color: var(--color-text-muted);
   margin-bottom: var(--space-8);
-  max-width: 540px;
+  max-width: 600px;
   margin-left: auto;
   margin-right: auto;
-  line-height: var(--leading-snug);
+  line-height: 1.6;
+  font-style: italic;
 }
 
 /* ─── Two-column layout ─── */
@@ -46,20 +48,20 @@
 
 .column {
   flex: 1;
-  border-radius: var(--radius-md);
-  padding: var(--space-6);
+  border-radius: 20px;
+  padding: var(--space-8);
   display: flex;
   flex-direction: column;
 }
 
 .beforeCol {
-  background: rgba(239, 68, 68, 0.06);
-  border: 1px solid rgba(239, 68, 68, 0.15);
+  background: #FEF2F2;
+  border: 1px solid #FECACA;
 }
 
 .afterCol {
-  background: rgba(22, 163, 74, 0.06);
-  border: 1px solid rgba(22, 163, 74, 0.15);
+  background: #F0FDF4;
+  border: 1px solid #BBF7D0;
 }
 
 /* ─── Label ─── */
@@ -68,7 +70,7 @@
   display: flex;
   align-items: center;
   gap: var(--space-2);
-  font-size: var(--text-lg);
+  font-size: var(--text-base);
   font-weight: var(--weight-bold);
   margin-bottom: var(--space-4);
 }
@@ -82,7 +84,7 @@
 }
 
 .labelIcon {
-  font-size: var(--text-xl);
+  font-size: var(--text-lg);
   font-weight: var(--weight-bold);
 }
 
@@ -99,9 +101,9 @@
 /* ─── Time accent ─── */
 
 .time {
-  font-size: var(--text-2xl);
-  font-weight: var(--weight-bold);
-  margin: var(--space-4) 0 0 0;
+  font-size: 1.75rem;
+  font-weight: 800;
+  margin: var(--space-5) 0 0 0;
   text-align: center;
 }
 

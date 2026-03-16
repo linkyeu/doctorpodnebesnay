@@ -1,9 +1,23 @@
-/* ─── AI Course Page: SaaS/EdTech overrides ─── */
+/* ─── AI Course Page: DM Sans typography override ─── */
+/* Must override global h1-h6 { font-family: var(--font-display) } */
 
-/* Override heading fonts to Manrope (sans-serif) for the SaaS feel */
-.coursePage h2,
-.coursePage h3,
-.coursePage h4 {
-  font-family: var(--font-body);
+.coursePage {
+  font-family: 'DM Sans', var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
 }
 
+.coursePage h1,
+.coursePage h2,
+.coursePage h3,
+.coursePage h4,
+.coursePage h5,
+.coursePage h6,
+.coursePage p,
+.coursePage span,
+.coursePage a,
+.coursePage li,
+.coursePage blockquote,
+.coursePage cite {
+  font-family: 'DM Sans', system-ui, sans-serif !important;
+}

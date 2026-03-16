@@ -1,7 +1,7 @@
 /* ─── "What you get" — product contents section ─── */
 
 .section {
-  background: var(--color-surface);
+  background: var(--color-bg);
   padding: var(--space-16) var(--space-6);
 }
 
@@ -11,10 +11,12 @@
 }
 
 .heading {
-  font-size: var(--text-3xl);
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 700;
   color: var(--color-text);
   text-align: center;
-  margin-bottom: var(--space-8);
+  margin-bottom: var(--space-10);
+  letter-spacing: -0.02em;
 }
 
 /* ─── Task cards grid ─── */
@@ -22,9 +24,9 @@
 .taskGrid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: var(--space-3);
+  gap: var(--space-4);
   margin-bottom: var(--space-10);
-  max-width: 800px;
+  max-width: 900px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -32,7 +34,7 @@
 @media (min-width: 640px) {
   .taskGrid {
     grid-template-columns: repeat(2, 1fr);
-    gap: var(--space-4);
+    gap: var(--space-5);
   }
 }
 
@@ -50,57 +52,43 @@
 .taskCard {
   display: flex;
   flex-direction: row;
-  align-items: center;
+  align-items: flex-start;
   text-align: left;
   gap: var(--space-4);
-  padding: var(--space-4) var(--space-5);
-  background: var(--color-bg-alt);
-  border-radius: var(--radius-md);
-  border: 1px solid rgba(27, 58, 75, 0.06);
-  border-left: 3px solid var(--color-accent);
+  padding: var(--space-6);
+  background: var(--color-surface);
+  border-radius: 14px;
+  border: 1px solid var(--color-border);
   transition:
-    border-color var(--transition-fast),
-    box-shadow var(--transition-fast),
-    transform var(--transition-fast);
-}
-
-@media (min-width: 640px) {
-  .taskCard {
-    padding: var(--space-5) var(--space-6);
-  }
+    border-color var(--transition-base),
+    box-shadow var(--transition-base),
+    transform var(--transition-base);
 }
 
 @media (hover: hover) {
   .taskCard:hover {
-    border-color: rgba(27, 58, 75, 0.12);
-    border-left-color: var(--color-primary);
-    box-shadow: 0 4px 16px rgba(27, 58, 75, 0.07);
-    transform: translateY(-2px);
+    border-color: color-mix(in srgb, var(--color-primary) 20%, transparent);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 4px 16px rgba(0, 0, 0, 0.04);
+    transform: translateY(-1px);
   }
 }
 
 /* ─── Icon ─── */
 
 .taskIcon {
-  width: 44px;
-  height: 44px;
+  width: 56px;
+  height: 56px;
   flex-shrink: 0;
-  border-radius: 50%;
+  border-radius: 12px;
   overflow: hidden;
-  background: #fff;
-}
-
-@media (min-width: 640px) {
-  .taskIcon {
-    width: 56px;
-    height: 56px;
-  }
+  background: transparent;
 }
 
 .taskImage {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.06));
 }
 
 /* ─── Task text ─── */
@@ -114,7 +102,7 @@
 
 .taskName {
   font-size: var(--text-base);
-  font-weight: var(--weight-semibold);
+  font-weight: var(--weight-bold);
   color: var(--color-text);
   line-height: var(--leading-snug);
 }
@@ -140,12 +128,12 @@
   justify-content: center;
   background: var(--color-cta);
   color: #fff;
-  padding: var(--space-4, 16px) var(--space-8, 32px);
-  border-radius: var(--radius-sm, 8px);
-  font-weight: var(--weight-semibold, 600);
-  font-size: var(--text-base, 1rem);
+  padding: 18px 40px;
+  border-radius: 14px;
+  font-weight: 600;
+  font-size: 1.05rem;
   text-decoration: none;
-  box-shadow: 0 4px 14px rgba(22, 163, 74, 0.35);
+  box-shadow: 0 4px 14px rgba(22, 163, 74, 0.3);
   transition:
     background 0.2s ease,
     transform 0.2s ease,
@@ -156,11 +144,11 @@
   background: var(--color-cta-hover);
   color: #fff;
   transform: translateY(-1px);
-  box-shadow: 0 6px 20px rgba(22, 163, 74, 0.4);
+  box-shadow: 0 6px 20px rgba(22, 163, 74, 0.35);
 }
 
 .trustLine {
-  font-size: 0.8125rem;
+  font-size: 0.82rem;
   color: var(--color-text-muted);
   letter-spacing: 0.02em;
 }

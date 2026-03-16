@@ -1,5 +1,5 @@
 import { useScrollReveal } from '../../../hooks/useScrollReveal';
-import { mainInstructor, techAuthorLine } from '../../../data/ai-course';
+import { mainInstructor, techAuthorLine, authorTrustBadges } from '../../../data/ai-course';
 import styles from './AuthorTrust.module.css';
 
 export default function AuthorTrust() {
@@ -9,8 +9,6 @@ export default function AuthorTrust() {
   return (
     <section ref={sectionRef} className={`${styles.section} reveal`}>
       <div className={styles.container}>
-        <h2 className={styles.heading}>Створено лікарем і ШІ-інженером — для лікарів</h2>
-
         <div className={styles.mainCard}>
           <div className={styles.photoWrapper}>
             {inst.photo ? (
@@ -24,11 +22,24 @@ export default function AuthorTrust() {
               <div className={styles.initials}>{inst.initials}</div>
             )}
           </div>
-          <h3 className={styles.name}>{inst.name}</h3>
-          <p className={styles.title}>{inst.title}</p>
+          <div>
+            <h2 className={styles.name}>{inst.name}</h2>
+            <p className={styles.title}>{inst.title}</p>
+            {authorTrustBadges.length > 0 && (
+              <div className={styles.badges}>
+                {authorTrustBadges.map((badge, i) => (
+                  <span key={i} className={styles.badge}>
+                    <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                      <path d="M13 5L6 12 3 9" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                    </svg>
+                    {badge}
+                  </span>
+                ))}
+              </div>
+            )}
+            <p className={styles.techLine}>{techAuthorLine}</p>
+          </div>
         </div>
-
-        <p className={styles.techLine}>{techAuthorLine}</p>
       </div>
     </section>
   );

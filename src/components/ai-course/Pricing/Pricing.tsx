@@ -20,8 +20,11 @@ export default function Pricing() {
           ))}
         </div>
 
-        {/* Pricing card — no separate big price number */}
+        {/* Pricing card */}
         <div className={styles.card}>
+          <div className={styles.priceRow}>
+            <span className={styles.price}>{pricingContent.price}</span>
+          </div>
           <p className={styles.subtitle}>{pricingContent.subtitle}</p>
           <ul className={styles.features}>
             {pricingContent.features.map((f, i) => (

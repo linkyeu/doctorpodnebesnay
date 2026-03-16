@@ -1,27 +1,30 @@
+/* ─── Urgency — warm light background ─── */
+
 .section {
-  background: var(--color-bg-dark);
-  padding: var(--space-12) var(--space-6);
+  background: #FFFBF7;
+  padding: var(--space-16) var(--space-6);
   text-align: center;
 }
 
 .container {
-  max-width: 600px;
+  max-width: 640px;
   margin: 0 auto;
 }
 
 .line {
-  font-size: var(--text-xl);
-  color: rgba(255, 255, 255, 0.7);
-  line-height: var(--leading-snug);
+  font-size: 1.05rem;
+  color: var(--color-text-muted);
+  line-height: 1.8;
   margin: 0 0 var(--space-1) 0;
 }
 
 .punchline {
-  margin-top: var(--space-6);
-  font-size: var(--text-2xl);
-  font-weight: var(--weight-bold);
-  color: var(--color-text-on-dark);
-  line-height: var(--leading-snug);
+  margin-top: var(--space-8);
+  font-size: clamp(1.4rem, 3vw, 1.85rem);
+  font-weight: 700;
+  color: var(--color-text);
+  line-height: 1.3;
+  letter-spacing: -0.01em;
 }
 
 .punchline em {
