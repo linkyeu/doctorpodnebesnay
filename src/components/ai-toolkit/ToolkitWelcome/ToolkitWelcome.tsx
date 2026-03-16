@@ -41,7 +41,7 @@ export default function ToolkitWelcome({ onScrollToSolution }: ToolkitWelcomePro
           {isDone ? (
             <span className={styles.headerIconDone} aria-hidden="true">✓</span>
           ) : (
-            <span className={styles.headerIcon} aria-hidden="true">💡</span>
+            <span className={styles.headerIcon} aria-hidden="true">👋</span>
           )}
           <div>
             <span className={styles.headerText}>Як працює довідник</span>
@@ -63,32 +63,35 @@ export default function ToolkitWelcome({ onScrollToSolution }: ToolkitWelcomePro
         className={`${styles.content} ${expanded ? styles.contentOpen : ''}`}
       >
         <div className={styles.contentInner}>
-          {/* Intro — one line */}
+          {/* Intro */}
           <p className={styles.intro}>
-            Це не курс. Це довідник — відкривайте, коли потрібно.
+            Готові запити для ChatGPT та бази протоколів у NotebookLM. Відкривайте, коли потрібно.
           </p>
 
-          {/* Tool cards — logo + name only */}
-          <p className={styles.toolsLabel}>Ви працюєте з двома інструментами:</p>
+          {/* Tool cards with role descriptions */}
           <div className={styles.toolCards}>
             <div className={styles.toolCard}>
-              <div className={styles.toolLogo}>
-                <img src="/images/toolkit/chatgpt.svg" alt="" aria-hidden="true" width="28" height="28" />
+              <div className={styles.toolCardHeader}>
+                <div className={styles.toolLogo}>
+                  <img src="/images/toolkit/chatgpt.svg" alt="" aria-hidden="true" width="28" height="28" />
+                </div>
+                <span className={styles.toolName}>ChatGPT</span>
               </div>
-              <span className={styles.toolName}>ChatGPT</span>
+              <p className={styles.toolDesc}>
+                Пишете виписки, аналізуєте результати, генеруєте диференціальний діагноз — щодня
+              </p>
             </div>
             <div className={styles.toolCard}>
-              <div className={styles.toolLogo}>
-                <img src="/images/toolkit/notebooklm.svg" alt="" aria-hidden="true" width="28" height="28" />
+              <div className={styles.toolCardHeader}>
+                <div className={styles.toolLogo}>
+                  <img src="/images/toolkit/notebooklm.svg" alt="" aria-hidden="true" width="28" height="28" />
+                </div>
+                <span className={styles.toolName}>NotebookLM</span>
               </div>
-              <span className={styles.toolName}>NotebookLM</span>
+              <p className={styles.toolDesc}>
+                Протоколи, підручники, настанови. Відповідає тільки за джерелами і показує звідки. Сам створює подкаст, флешкартки та тест з цих матеріалів
+              </p>
             </div>
-          </div>
-
-          {/* Why only two */}
-          <div className={styles.whyTwo}>
-            <strong>Чому лише два?</strong>{' '}
-            Існують десятки ШІ-інструментів. Ми протестували їх і залишили два, які покривають усі задачі лікаря — від документації до перевірки за протоколами. Без зайвого, без плутанини. Інші курси дають 10+ інструментів, які лякають і ніколи не використовуються. Тут — тільки те, що реально працює.
           </div>
 
           {/* Steps — vertical timeline */}
@@ -101,17 +104,25 @@ export default function ToolkitWelcome({ onScrollToSolution }: ToolkitWelcomePro
                   <span className={styles.stepLine} aria-hidden="true" />
                 </div>
                 <div className={styles.stepBody}>
-                  <button
-                    type="button"
-                    className={styles.stepLink}
+                  <strong
+                    className={styles.stepAction}
+                    role="button"
+                    tabIndex={0}
                     onClick={() => {
                       document.getElementById('setup')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
                       collapse();
                     }}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        document.getElementById('setup')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        collapse();
+                      }
+                    }}
                   >
                     Налаштуйте ChatGPT
-                  </button>
-                  <span className={styles.stepMeta}> — один раз, 2 хвилини. ChatGPT запам'ятає вашу спеціальність, мову та стиль відповідей. Обов'язковий крок.</span>
+                  </strong>
+                  <span className={styles.stepMeta}> — один раз, 2 хвилини</span>
                 </div>
               </li>
               <li className={styles.step}>
@@ -119,21 +130,29 @@ export default function ToolkitWelcome({ onScrollToSolution }: ToolkitWelcomePro
                   <span className={styles.stepNum}>2</span>
                 </div>
                 <div className={styles.stepBody}>
-                  <button
-                    type="button"
-                    className={styles.stepLink}
+                  <strong
+                    className={styles.stepAction}
+                    role="button"
+                    tabIndex={0}
                     onClick={() => { onScrollToSolution('A1'); collapse(); }}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        onScrollToSolution('A1');
+                        collapse();
+                      }
+                    }}
                   >
-                    Використовуйте рішення
-                  </button>
-                  <span className={styles.stepMeta}> — оберіть задачу, скопіюйте запит, замініть дані пацієнта, вставте в ChatGPT або NotebookLM — готово.</span>
+                    Відкрийте потрібне рішення
+                  </strong>
+                  <span className={styles.stepMeta}> — скопіюйте запит, вставте в ChatGPT або NotebookLM, замініть дані пацієнта</span>
                 </div>
               </li>
             </ol>
           </div>
 
           <button type="button" className={styles.dismissBtn} onClick={collapse}>
-            Зрозуміло, почати
+            Почати
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
               <polyline points="9 18 15 12 9 6" />
             </svg>

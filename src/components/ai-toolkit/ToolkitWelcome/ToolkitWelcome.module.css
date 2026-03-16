@@ -137,21 +137,6 @@
   max-width: 600px;
 }
 
-.intro strong {
-  color: var(--tk-text, #18181B);
-  font-weight: 600;
-}
-
-/* ── Tools Label ── */
-
-.toolsLabel {
-  font-family: var(--tk-font-ui, 'DM Sans', system-ui, sans-serif);
-  font-size: var(--tk-text-sm, 0.875rem);
-  color: var(--tk-text-muted, #71717A);
-  line-height: 1.5;
-  margin: 0 0 -12px;
-}
-
 /* ── Tool Cards ── */
 
 .toolCards {
@@ -162,25 +147,25 @@
 .toolCard {
   flex: 1;
   display: flex;
-  align-items: center;
-  gap: 14px;
+  flex-direction: column;
+  gap: 10px;
   padding: 16px 20px;
   border-radius: 12px;
   background: var(--tk-surface-alt, #F4F4F5);
   border: 1px solid var(--tk-border-subtle, #F4F4F5);
-  transition: border-color 150ms ease, box-shadow 150ms ease, transform 150ms ease;
 }
 
-.toolCard:hover {
-  border-color: var(--tk-border, #E4E4E7);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-  transform: translateY(-1px);
+
+.toolCardHeader {
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
 
 .toolLogo {
-  width: 40px;
-  height: 40px;
-  border-radius: 10px;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
   overflow: hidden;
   flex-shrink: 0;
   background: var(--tk-surface, #FFFFFF);
@@ -202,23 +187,12 @@
   color: var(--tk-text, #18181B);
 }
 
-/* ── Why Two ── */
-
-.whyTwo {
+.toolDesc {
   font-family: var(--tk-font-ui, 'DM Sans', system-ui, sans-serif);
   font-size: var(--tk-text-sm, 0.875rem);
   color: var(--tk-text-muted, #71717A);
-  line-height: 1.65;
-  padding: 14px 18px;
-  border-radius: 10px;
-  background: color-mix(in srgb, var(--w-accent) 2%, var(--tk-surface-alt, #F4F4F5));
-  border: 1px solid color-mix(in srgb, var(--w-accent) 6%, var(--tk-border-subtle, #F4F4F5));
-  border-left: 3px solid color-mix(in srgb, var(--w-accent) 25%, var(--tk-border, #E4E4E7));
-}
-
-.whyTwo strong {
-  color: var(--tk-text, #18181B);
-  font-weight: 650;
+  line-height: 1.55;
+  margin: 0;
 }
 
 /* ── Steps ── */
@@ -299,22 +273,17 @@
   padding-top: 4px;
 }
 
-.stepLink {
-  all: unset;
-  font-weight: 600;
-  color: color-mix(in srgb, var(--w-accent) 80%, var(--tk-text, #18181B));
+.stepAction {
+  font-weight: 700;
+  color: var(--tk-text, #18181B);
   cursor: pointer;
-  text-decoration: underline;
-  text-decoration-color: transparent;
-  text-underline-offset: 2px;
-  transition: text-decoration-color 150ms ease;
 }
 
-.stepLink:hover {
-  text-decoration-color: color-mix(in srgb, var(--w-accent) 40%, transparent);
+.stepAction:hover {
+  color: var(--w-accent);
 }
 
-.stepLink:focus-visible {
+.stepAction:focus-visible {
   outline: 2px solid var(--w-accent);
   outline-offset: 2px;
   border-radius: 2px;
@@ -411,9 +380,6 @@
     transition: none;
   }
 
-  .toolCard {
-    transition: none;
-  }
 
   .dismissBtn {
     transition: none;
