@@ -185,6 +185,21 @@ export default function AiToolkitPage() {
   }, []);
 
   useEffect(() => {
+    // noindex — password-protected product page, not for search
+    let robotsMeta = document.querySelector('meta[name="robots"]') as HTMLMetaElement | null;
+    const createdRobots = !robotsMeta;
+    if (!robotsMeta) {
+      robotsMeta = document.createElement('meta');
+      robotsMeta.name = 'robots';
+      document.head.appendChild(robotsMeta);
+    }
+    robotsMeta.content = 'noindex, nofollow';
+    return () => {
+      if (createdRobots && robotsMeta) robotsMeta.remove();
+    };
+  }, []);
+
+  useEffect(() => {
     document.title =
       'ШІ-помічник лікаря — 16 готових рішень для щоденної практики';
 

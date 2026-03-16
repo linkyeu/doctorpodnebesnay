@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /toolkit
 
 Sitemap: https://doctorpidnebesna.com/sitemap.xml
