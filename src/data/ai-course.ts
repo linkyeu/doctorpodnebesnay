@@ -1,6 +1,5 @@
-// Fake door test: CTA → thank you page (was Telegram link)
-// Original: 'https://t.me/doctorpidnebesna?text=Хочу%20купити%20%D0%A8%D0%86-помічник%20лікаря'
-export const TELEGRAM_PURCHASE_LINK = '/ai-course/thank-you';
+// WayForPay payment link (product: "AI-інструменти для лікарів", 799₴)
+export const TELEGRAM_PURCHASE_LINK = 'https://secure.wayforpay.com/payment/sed1c44a9652f';
 
 // ── Shared interfaces ──
 

@@ -254,6 +254,66 @@ export const readyNotebooksData: ReadyNotebook[] = [
     ],
     specialties: ['Педіатрія', 'Сімейна медицина', 'Невідкладна допомога'],
   },
+  {
+    id: 'nb-copd-asthma',
+    emoji: '🫁',
+    title: 'ХОЗЛ + Бронхіальна астма',
+    description: 'Ступінчаста терапія, загострення, інгалятори — МОЗ 2024, GINA 2025, GOLD 2025',
+    url: 'https://notebooklm.google.com/notebook/fc6d8114-0581-43bc-ab7b-7a51d4a53cc5',
+    category: 'moz',
+    sources: 'МОЗ (ХОЗЛ 2024, БА), GINA 2025, GOLD 2025',
+    exampleQueries: [
+      'Астма, крок 3 за GINA — які варіанти базисної терапії?',
+      'ХОЗЛ група E — перша лінія за GOLD 2025?',
+      'Пацієнт з астмою і ХОЗЛ одночасно — overlap, яка тактика?',
+    ],
+    specialties: ['Пульмонологія', 'Сімейна медицина', 'Терапія', 'Педіатрія', 'Невідкладна допомога'],
+  },
+  {
+    id: 'nb-ihd-arrhythmia',
+    emoji: '🫀',
+    title: 'ІХС + Аритмії (стабільна ІХС, фібриляція передсердь)',
+    description: 'Антикоагулянти, статини, CHA₂DS₂-VASc — МОЗ, ESC 2024',
+    url: 'https://notebooklm.google.com/notebook/020246e4-93c9-452c-8844-ab8362b68346',
+    category: 'moz',
+    sources: 'МОЗ (ІХС, ФП), ESC CCS 2024, ESC AF 2024',
+    exampleQueries: [
+      'CHA₂DS₂-VASc 3 бали — який антикоагулянт за ESC 2024?',
+      'Стабільна ІХС — коли показана коронарографія за протоколом?',
+      'Подвійна антитромбоцитарна терапія після стентування — тривалість?',
+    ],
+    specialties: ['Кардіологія', 'Терапія', 'Сімейна медицина', 'Невідкладна допомога', 'Хірургія'],
+  },
+  {
+    id: 'nb-thyroid',
+    emoji: '🦋',
+    title: 'Щитовидна залоза (гіпотиреоз, гіпертиреоз)',
+    description: 'TSH-тактика, дозування левотироксину, вузли, вагітність — МОЗ, Empendium',
+    url: 'https://notebooklm.google.com/notebook/60425394-10f9-4d4f-b973-7a537e55989b',
+    category: 'moz',
+    sources: 'МОЗ, Empendium (Гіпо/Гіпертиреоз), Guidelines МОЗ',
+    exampleQueries: [
+      'TSH 8.5, вільний Т4 в нормі — субклінічний гіпотиреоз, коли лікувати?',
+      'Вагітна, TSH 4.2 в першому триместрі — тактика?',
+      'Тиреотоксикоз — тіамазол чи пропілтіоурацил? Коли що?',
+    ],
+    specialties: ['Ендокринологія', 'Сімейна медицина', 'Терапія', 'Акушерство', 'Хірургія'],
+  },
+  {
+    id: 'nb-gastro',
+    emoji: '🔥',
+    title: 'ГЕРХ, виразкова хвороба, H. pylori',
+    description: 'Ерадикація H. pylori (Маастрихт VI), ІПП-режими, тривожні симптоми — МОЗ 2023',
+    url: 'https://notebooklm.google.com/notebook/63e73e66-1c18-48fe-89a3-5663ea849984',
+    category: 'moz',
+    sources: 'МОЗ (ГЕРХ, Пептична виразка 2023), Маастрихт VI',
+    exampleQueries: [
+      'H. pylori підтверджено — перша лінія ерадикації за Маастрихт VI?',
+      'ГЕРХ — коли потрібна ФЕГДС? Тривожні симптоми?',
+      'ІПП більше 8 тижнів — ризики тривалого прийому?',
+    ],
+    specialties: ['Гастроентерологія', 'Терапія', 'Сімейна медицина', 'Хірургія', 'Педіатрія'],
+  },
 ];
 
 function findNotebook(id: string): ReadyNotebook {
@@ -548,7 +608,7 @@ const blockCSolutions: Solution[] = [
       'У пацієнта з\'явились нові дані: [НОВІ СИМПТОМИ/РЕЗУЛЬТАТИ]. Як це змінює диференціал?',
       'Порівняй діагнози #1 і #2 — що їх розрізняє найкраще? Який один тест вирішить?',
     ],
-    readyNotebooks: [findNotebook('nb-hypertension'), findNotebook('nb-mental')],
+    readyNotebooks: [findNotebook('nb-hypertension'), findNotebook('nb-mental'), findNotebook('nb-copd-asthma'), findNotebook('nb-ihd-arrhythmia')],
   },
   {
     id: 'B1b',
@@ -679,7 +739,7 @@ const blockCSolutions: Solution[] = [
       'Пацієнт вже приймає [ПРЕПАРАТИ]. Чи є взаємодії з рекомендованим лікуванням?',
       'Яка альтернатива, якщо пацієнт не переносить [ПРЕПАРАТ]?',
     ],
-    readyNotebooks: [findNotebook('nb-diabetes'), findNotebook('nb-comorbid')],
+    readyNotebooks: [findNotebook('nb-diabetes'), findNotebook('nb-comorbid'), findNotebook('nb-copd-asthma'), findNotebook('nb-ihd-arrhythmia'), findNotebook('nb-thyroid'), findNotebook('nb-gastro')],
   },
   {
     id: 'B4',
@@ -715,7 +775,7 @@ const blockCSolutions: Solution[] = [
     example: {
       input: 'Додано інструкції 6 препаратів: амлодипін, лерканідипін, метформін, аторвастатин, аспірин, омепразол. Пацієнт 68 років, ЦД 2 типу, ХХН 3 ст., ШКФ 42 мл/хв. Питання: "Які взаємодії між усіма 6 препаратами? Які потребують корекції дози при ШКФ 42? Який з двох антигіпертензивних краще при ХХН?"',
     },
-    readyNotebooks: [findNotebook('nb-antibiotics')],
+    readyNotebooks: [findNotebook('nb-antibiotics'), findNotebook('nb-ihd-arrhythmia'), findNotebook('nb-gastro')],
   },
   {
     id: 'B5',
@@ -792,7 +852,7 @@ const blockCSolutions: Solution[] = [
         'ВІК, СТАТЬ, СИМПТОМИ, ОБСТЕЖЕННЯ': 'дівчинка 4 роки, біль у животі, нормальний ріст і вага, немає діареї',
       },
     },
-    readyNotebooks: [findNotebook('nb-pediatrics')],
+    readyNotebooks: [findNotebook('nb-pediatrics'), findNotebook('nb-thyroid'), findNotebook('nb-gastro')],
   },
 ];
 
