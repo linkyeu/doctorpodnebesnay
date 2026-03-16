@@ -4,18 +4,13 @@ export default function Urgency() {
   return (
     <section className={styles.section}>
       <div className={styles.container}>
-        <p className={styles.line}>Пацієнти стають вимогливішими.</p>
-        <p className={styles.line}>Темп медицини зростає.</p>
-        <p className={styles.line}>Конкуренція — теж.</p>
-        <p className={styles.line}>
-          ШІ не замінює лікаря.
-          <br />
-          Але лікар, який працює з ШІ грамотно, працює швидше.
-        </p>
+        <p className={styles.line}>Колега робить виписку за 5 хвилин. Ви — за 40.</p>
+        <p className={styles.line}>Пацієнт приходить з роздруківкою від ChatGPT — і чекає пояснень.</p>
+        <p className={styles.line}>Нові протоколи виходять швидше, ніж ви встигаєте читати.</p>
         <p className={styles.punchline}>
           Питання не в тому, чи використовувати ШІ.
           <br />
-          Питання — чи будете ви використовувати його <em>краще за інших</em>.
+          Питання — чи будете ви використовувати його <em>краще за інших</em>
         </p>
       </div>
     </section>

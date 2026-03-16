@@ -8,9 +8,9 @@
     <!-- Set correct title/description + preload hero image before React hydration for /ai-course -->
     <script>
       if (location.pathname.startsWith('/ai-course')) {
-        document.title = 'ШІ-помічник лікаря — поверніть собі 2 години на день | Др. Піднебесна';
+        document.title = 'ШІ-помічник лікаря — готові рішення з джерелами МОЗ | Др. Піднебесна';
         var m = document.querySelector('meta[name="description"]');
-        if (m) m.content = 'Готові ШІ-рішення для лікарів — документація за 5 хвилин, друга думка з джерелами, відповіді на ChatGPT-питання пацієнтів. 999 ₴, одноразова покупка.';
+        if (m) m.content = 'Онлайн-довідник з готовими ШІ-рішеннями для лікарів — діагностика, протоколи, документація. Відкрий і працюй. 999 ₴, одноразова покупка.';
         // Preload hero image — LCP element, start downloading immediately
         var isMobile = window.innerWidth < 768;
         var link = document.createElement('link');
@@ -212,7 +212,7 @@
             '<div class="sh-bg"><img src="' + src + '" alt="" fetchpriority="high"></div>' +
             '<div class="sh-ov"></div>' +
             '<div class="sh-ct">' +
-              '<h1 class="sh-t">Нечіткі симптоми?<br>Друга думка з джерелами — за хвилину.</h1>' +
+              '<h1 class="sh-t">Впевненіше на кожному прийомі —<br>навіть коли відповідь не очевидна</h1>' +
             '</div>' +
           '</section>';
       }

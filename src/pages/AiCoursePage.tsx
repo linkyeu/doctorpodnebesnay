@@ -5,6 +5,7 @@ import PainPoints from '../components/ai-course/PainPoints/PainPoints';
 // WhyNotChatGpt merged into PainPoints (4 points + early CTA)
 // Personas removed — duplicated PainPoints content, audience line merged into PainPoints accent block (Ilyakhov audit)
 import BeforeAfter from '../components/ai-course/BeforeAfter/BeforeAfter';
+// HowItWorks removed — Denys prefers without the 3-step plan section
 import WhatsInside from '../components/ai-course/WhatsInside/WhatsInside';
 import AuthorTrust from '../components/ai-course/AuthorTrust/AuthorTrust';
 import SocialProof from '../components/ai-course/SocialProof/SocialProof';
@@ -18,11 +19,11 @@ import StickyMobileCta from '../components/ai-course/StickyMobileCta/StickyMobil
 
 export default function AiCoursePage() {
   useEffect(() => {
-    document.title = 'ШІ-помічник лікаря — поверніть собі 2 години на день | Др. Піднебесна';
+    document.title = 'ШІ-помічник лікаря — готові рішення з джерелами МОЗ | Др. Піднебесна';
 
     const metaDesc = document.querySelector('meta[name="description"]');
     const descContent =
-      'Готові ШІ-рішення для лікарів — документація за 5 хвилин, друга думка з джерелами, відповіді на ChatGPT-питання пацієнтів. 999 ₴, одноразова покупка.';
+      'Онлайн-довідник з готовими ШІ-рішеннями для лікарів — діагностика, протоколи, документація. Відкрий і працюй. 999 ₴, одноразова покупка.';
     if (metaDesc) {
       metaDesc.setAttribute('content', descContent);
     } else {
@@ -34,7 +35,7 @@ export default function AiCoursePage() {
 
     // OG meta tags
     const ogTags: Record<string, string> = {
-      'og:title': 'ШІ-помічник лікаря — поверніть собі 2 години на день',
+      'og:title': 'ШІ-помічник лікаря — готові рішення з джерелами МОЗ',
       'og:description': descContent,
       'og:url': 'https://doctorpidnebesna.com/ai-course',
       'og:type': 'website',

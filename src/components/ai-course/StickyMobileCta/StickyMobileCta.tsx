@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import styles from './StickyMobileCta.module.css';
-import { TELEGRAM_PURCHASE_LINK } from '../../../data/ai-course';
+import { heroContent, TELEGRAM_PURCHASE_LINK } from '../../../data/ai-course';
 
 export default function StickyMobileCta() {
   const [visible, setVisible] = useState(false);
@@ -23,7 +23,7 @@ export default function StickyMobileCta() {
         href={TELEGRAM_PURCHASE_LINK}
         className={styles.button}
       >
-        Отримати довідник — 799 ₴
+        {heroContent.cta}
       </a>
     </div>
   );

@@ -1,7 +1,12 @@
 import styles from './CourseHero.module.css';
-import { heroContent, TELEGRAM_PURCHASE_LINK } from '../../../data/ai-course';
+import { heroContent } from '../../../data/ai-course';
 
 export default function CourseHero() {
+  const handleScrollToContent = (e: React.MouseEvent) => {
+    e.preventDefault();
+    document.getElementById('whats-inside')?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
     <section className={styles.hero}>
       <div className={styles.heroBackground}>
@@ -34,10 +39,11 @@ export default function CourseHero() {
         )}
         <div className={styles.ctaWrapper}>
           <a
-            href={TELEGRAM_PURCHASE_LINK}
+            href="#whats-inside"
+            onClick={handleScrollToContent}
             className={styles.cta}
           >
-            {heroContent.cta}
+            {heroContent.heroCta}
           </a>
         </div>
         <p className={styles.trustLine}>Без підписок · Гарантія повернення</p>
