@@ -195,6 +195,14 @@
   margin: 0;
 }
 
+.toolHint {
+  display: block;
+  margin-top: 6px;
+  font-size: var(--tk-text-xs, 0.75rem);
+  color: var(--tk-text-subtle, #A1A1AA);
+  line-height: 1.4;
+}
+
 /* ── Steps ── */
 
 .steps {

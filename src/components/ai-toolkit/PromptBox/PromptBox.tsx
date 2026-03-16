@@ -4,6 +4,7 @@ import styles from './PromptBox.module.css';
 interface PromptBoxProps {
   prompt: string;
   note?: string;
+  tool?: string;
 }
 
 /**
@@ -35,7 +36,9 @@ function highlightPlaceholders(text: string): ReactNode[] {
   return parts;
 }
 
-export default function PromptBox({ prompt, note }: PromptBoxProps) {
+export default function PromptBox({ prompt, note, tool }: PromptBoxProps) {
+  const isNotebook = tool?.toLowerCase().includes('notebooklm');
+  const label = isNotebook ? '📋 Запит для NotebookLM' : '📋 Запит для ChatGPT';
   const [copied, setCopied] = useState(false);
 
   const handleCopy = useCallback(() => {
@@ -48,7 +51,7 @@ export default function PromptBox({ prompt, note }: PromptBoxProps) {
   return (
     <div className={styles.wrapper}>
       <div className={styles.header}>
-        <span className={styles.headerLabel}>📋 Запит для ChatGPT</span>
+        <span className={styles.headerLabel}>{label}</span>
         {copied ? (
           <span className={styles.toast}>✓ Скопійовано</span>
         ) : (

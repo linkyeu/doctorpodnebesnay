@@ -90,6 +90,7 @@ export default function ToolkitWelcome({ onScrollToSolution }: ToolkitWelcomePro
               </div>
               <p className={styles.toolDesc}>
                 Протоколи, підручники, настанови. Відповідає тільки за джерелами і показує звідки. Сам створює подкаст, флешкартки та тест з цих матеріалів
+                <span className={styles.toolHint}>Безкоштовний інструмент Google. Працює в браузері, потрібен Google-акаунт</span>
               </p>
             </div>
           </div>

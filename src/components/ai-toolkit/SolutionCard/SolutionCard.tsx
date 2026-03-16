@@ -234,13 +234,13 @@ export default function SolutionCard({ solution, blockColor }: SolutionCardProps
 
             {/* Content depends on card type */}
             {cardType === 'prompt' ? (
-              <PromptBox prompt={solution.prompt} note={solution.promptNote} />
+              <PromptBox prompt={solution.prompt} note={solution.promptNote} tool={solution.tool} />
             ) : cardType === 'hybrid' && solution.prompt ? (
               <>
                 {solution.steps && (
                   <WorkflowSteps steps={solution.steps} hideMedia />
                 )}
-                <PromptBox prompt={solution.prompt} note={solution.promptNote} />
+                <PromptBox prompt={solution.prompt} note={solution.promptNote} tool={solution.tool} />
                 {solution.steps && (
                   <WorkflowMedia steps={solution.steps} />
                 )}

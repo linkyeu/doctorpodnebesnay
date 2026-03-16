@@ -1015,7 +1015,7 @@ export const blocks: Block[] = [
   {
     id: 'C',
     title: 'Розмова з пацієнтом',
-    subtitle: 'Коли не знаєш що сказати — а сказати треба',
+    subtitle: 'Пояснити, заспокоїти, переконати — за хвилину',
     color: BLOCK_COLORS.C,
     icon: '/images/toolkit/illustrations/solutions/C-block-header.png',
     solutions: blockBSolutions,
