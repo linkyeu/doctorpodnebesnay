@@ -11,6 +11,7 @@
   padding: var(--space-8) var(--space-6);
   position: relative;
   overflow: hidden;
+  font-family: 'DM Sans', system-ui, sans-serif;
 }
 
 /* ─── Animated mesh background ─── */

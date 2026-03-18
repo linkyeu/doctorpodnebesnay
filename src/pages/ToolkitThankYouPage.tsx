@@ -12,7 +12,7 @@ export default function ToolkitThankYouPage() {
     window.gtag?.('event', 'purchase', {
       event_category: 'conversion',
       event_label: 'ai_toolkit_payment_success',
-      value: 799,
+      value: 999,
       currency: 'UAH',
     });
   }, []);
@@ -72,7 +72,7 @@ export default function ToolkitThankYouPage() {
 
         <div className={styles.accessBlock}>
           <p className={styles.accessLabel}>Ваш пароль для доступу:</p>
-          <p className={styles.password}>toolkit2026</p>
+          <p className={styles.password}>2xzi8grGtjQS</p>
           <a href="/toolkit" className={styles.accessBtn}>
             Відкрити довідник →
           </a>

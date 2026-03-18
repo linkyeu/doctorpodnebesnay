@@ -1,7 +1,7 @@
 import { useState, useCallback } from 'react';
 import styles from './PasswordGate.module.css';
 
-const PASSWORD_HASH = '80ea4c9ce8a27985ea6d551619c041f247aa4c756b121d2e0a1e02656bdb224b';
+const PASSWORD_HASH = '253efbf52a2797a2546e87b6a6fd1e4e86926f7a2094a0d10ac8caca24bd3dac';
 
 async function sha256(text: string): Promise<string> {
   const encoder = new TextEncoder();
