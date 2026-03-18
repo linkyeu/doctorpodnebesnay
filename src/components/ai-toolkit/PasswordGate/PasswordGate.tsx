@@ -52,7 +52,7 @@ export default function PasswordGate({ onSuccess }: PasswordGateProps) {
         />
         <h1 className={styles.title}>ШІ-помічник лікаря</h1>
         <p className={styles.subtitle}>
-          16 готових рішень для щоденної практики
+          Готові рішення для щоденної практики
         </p>
 
         <form onSubmit={handleSubmit} className={styles.form}>
@@ -77,9 +77,7 @@ export default function PasswordGate({ onSuccess }: PasswordGateProps) {
         </form>
 
         <p className={styles.hint}>
-          Пароль у листі після оплати · <a href="https://t.me/medicalforua" target="_blank" rel="noopener noreferrer">
-            Написати в Telegram
-          </a>
+          Пароль у листі після оплати
         </p>
       </div>
     </div>
