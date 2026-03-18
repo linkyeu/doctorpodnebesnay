@@ -42,6 +42,14 @@ export default function PasswordGate({ onSuccess }: PasswordGateProps) {
   return (
     <div className={`${styles.gate} toolkit-scope`}>
       <div className={styles.inner}>
+        <img
+          className={styles.hero}
+          src="/images/toolkit/illustrations/gate-hero.png"
+          alt=""
+          aria-hidden="true"
+          width="688"
+          height="384"
+        />
         <h1 className={styles.title}>ШІ-помічник лікаря</h1>
 
         <form onSubmit={handleSubmit} className={styles.form}>
