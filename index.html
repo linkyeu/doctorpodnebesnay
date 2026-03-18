@@ -5,12 +5,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Др. Піднебесна — Доказове батьківство без паніки | Сімейний лікар</title>
     <meta name="description" content="Лікар Любов Піднебесна: консультації для українських батьків по всьому світу. Розвінчуємо міфи, спираємось на науку. Сімейний лікар з 13-річним досвідом." />
-    <!-- Set correct title/description + preload hero image before React hydration for /ai-course -->
+    <!-- Open Graph (Telegram, Facebook, LinkedIn link previews) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://doctorpidnebesna.com/" />
+    <meta property="og:title" content="Др. Піднебесна — Доказове батьківство без паніки | Сімейний лікар" />
+    <meta property="og:description" content="Лікар Любов Піднебесна: консультації для українських батьків по всьому світу. Розвінчуємо міфи, спираємось на науку. Сімейний лікар з 13-річним досвідом." />
+    <meta property="og:image" content="https://doctorpidnebesna.com/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Др. Любов Піднебесна — сімейний лікар, науковий навігатор батьківства" />
+    <meta property="og:locale" content="uk_UA" />
+    <!-- Set correct title/description/OG + preload hero image before React hydration for /ai-course -->
     <script>
       if (location.pathname.startsWith('/ai-course')) {
         document.title = 'ШІ-помічник лікаря — готові рішення з джерелами МОЗ | Др. Піднебесна';
         var m = document.querySelector('meta[name="description"]');
         if (m) m.content = 'Впевнений діагноз — навіть у складному випадку. 17 готових рішень для лікарів на основі протоколів МОЗ. 999 ₴, одноразова покупка.';
+        // Update OG tags for social link previews (Telegram, Facebook, etc.)
+        var ogUpdates = {
+          'og:title': 'AI-інструменти для лікарів — готові рішення для практики | Др. Піднебесна',
+          'og:description': 'Впевнений діагноз — навіть у складному випадку. Готові рішення на основі протоколів МОЗ.',
+          'og:url': 'https://doctorpidnebesna.com/ai-course',
+          'og:image': 'https://doctorpidnebesna.com/images/ai-course/og-ai-toolkit.png',
+          'og:image:alt': 'AI-інструменти для лікарів — онлайн-довідник від Др. Піднебесна'
+        };
+        Object.keys(ogUpdates).forEach(function(prop) {
+          var el = document.querySelector('meta[property="' + prop + '"]');
+          if (el) el.content = ogUpdates[prop];
+        });
         // Preload hero image — LCP element, start downloading immediately
         var isMobile = window.innerWidth < 768;
         var link = document.createElement('link');
@@ -34,16 +56,6 @@
       @media(min-width:768px){#ai-shell .sh-ct{padding-bottom:64px}}
     </style>
 
-    <!-- Open Graph (Telegram, Facebook, LinkedIn link previews) -->
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://doctorpidnebesna.com/" />
-    <meta property="og:title" content="Др. Піднебесна — Доказове батьківство без паніки | Сімейний лікар" />
-    <meta property="og:description" content="Лікар Любов Піднебесна: консультації для українських батьків по всьому світу. Розвінчуємо міфи, спираємось на науку. Сімейний лікар з 13-річним досвідом." />
-    <meta property="og:image" content="https://doctorpidnebesna.com/og-image.png" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="Др. Любов Піднебесна — сімейний лікар, науковий навігатор батьківства" />
-    <meta property="og:locale" content="uk_UA" />
     <!-- Favicon -->
     <link rel="icon" href="/favicon.ico" sizes="32x32" />
     <link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="32x32" />
