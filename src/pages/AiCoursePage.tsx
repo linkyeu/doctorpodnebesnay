@@ -23,7 +23,7 @@ export default function AiCoursePage() {
 
     const metaDesc = document.querySelector('meta[name="description"]');
     const descContent =
-      'Онлайн-довідник з готовими ШІ-рішеннями для лікарів — діагностика, протоколи, документація. Відкрий і працюй. 999 ₴, одноразова покупка.';
+      'Впевнений діагноз — навіть у складному випадку. 17 готових рішень для лікарів на основі протоколів МОЗ. 999 ₴, одноразова покупка.';
     if (metaDesc) {
       metaDesc.setAttribute('content', descContent);
     } else {
