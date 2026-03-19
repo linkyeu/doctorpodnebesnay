@@ -39,6 +39,27 @@ export default function BeforeAfter() {
           </div>
         </div>
 
+        {/* Product screenshot */}
+        <div className={styles.screenshotWrapper}>
+          <div className={styles.browserFrame}>
+            <div className={styles.browserBar}>
+              <div className={styles.browserDots}>
+                <span className={styles.dot} />
+                <span className={styles.dot} />
+                <span className={styles.dot} />
+              </div>
+              <span className={styles.browserUrl}>doctorpidnebesna.com/toolkit</span>
+            </div>
+            <img
+              src="/images/ai-course/product-toolkit-cards.png"
+              alt="Так виглядає довідник всередині"
+              className={styles.screenshotImg}
+              loading="lazy"
+            />
+          </div>
+          <p className={styles.screenshotCaption}>Так виглядає довідник всередині</p>
+        </div>
+
         {beforeAfterExample.footer && (
           <p className={styles.footer}>{beforeAfterExample.footer}</p>
         )}

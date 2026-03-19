@@ -151,24 +151,19 @@ export const whatsInsideFeatures = [
 
 export const authorTrustHeading = 'Хто це створив';
 
-export const authorTrustAuthors = [
-  {
-    id: 'luba',
-    name: 'Любов Піднебесна',
-    role: 'Сімейний лікар',
-    bio: '13+ років практики. Працює в Добробут, Київ. Щодня приймає пацієнтів — і щодня користується цими рішеннями сама.',
-    photo: '/images/ai-course/instructor-luba.webp',
-    initials: 'ЛП',
-  },
-  {
-    id: 'denys',
-    name: 'Денис Філіппов',
-    role: 'Інженер у сфері ШІ',
-    bio: '12+ років досвіду, IBM. Побудував технічну частину так, щоб будь-який лікар розібрався з першого разу.',
-    photo: '',
-    initials: 'ДФ',
-  },
-];
+export const authorTrustAuthor = {
+  id: 'luba',
+  name: 'Любов Піднебесна',
+  role: 'Сімейний лікар',
+  bio: '13+ років практики. Працює в Добробут, Київ. Щодня приймає пацієнтів — і щодня користується цими рішеннями сама.',
+  photo: '/images/ai-course/instructor-luba.webp',
+  initials: 'ЛП',
+};
+
+export const authorTrustTechBadge = '⚙️ Перевірено ШІ-інженером IBM (12+ років)';
+
+// Keep backward compat for authorTrustAuthors
+export const authorTrustAuthors = [authorTrustAuthor];
 
 export const authorTrustClosing = 'Це не маркетинговий продукт від людей, далеких від медицини. Це робочий інструмент від лікаря, яка сама ним користується на прийомах.';
 
