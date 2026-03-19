@@ -102,7 +102,7 @@ export default function ToolkitNav({ blocks }: ToolkitNavProps) {
               onClick={() => handleClick(`block-${block.id}`)}
             >
               <span className={styles.blockDot} style={{ backgroundColor: block.color }} />
-              {block.title}
+              {block.navTitle ?? block.title}
             </button>
             <ul className={styles.solutionList} role="list">
               {block.solutions.map((solution) => (
@@ -112,7 +112,7 @@ export default function ToolkitNav({ blocks }: ToolkitNavProps) {
                     className={`${styles.solutionItem} ${activeId === `solution-${solution.id}` ? styles.active : ''}`}
                     onClick={() => handleClick(`solution-${solution.id}`)}
                   >
-                    {solution.title}
+                    {solution.navTitle ?? solution.title}
                   </button>
                 </li>
               ))}

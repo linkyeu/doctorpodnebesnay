@@ -23,6 +23,7 @@ export interface Solution {
   id: string;
   block: 'A' | 'B' | 'C' | 'D';
   title: string;
+  navTitle?: string;
   subtitle?: string;
   tool: string;
   prompt: string;
@@ -42,6 +43,7 @@ export interface Solution {
 export interface Block {
   id: 'A' | 'B' | 'C' | 'D';
   title: string;
+  navTitle?: string;
   subtitle: string;
   color: string;
   icon: string;
@@ -327,6 +329,7 @@ const blockASolutions: Solution[] = [
     id: 'D1',
     block: 'A',
     title: 'Виписка / медичний висновок за 2 хвилини',
+    navTitle: 'Виписка',
     subtitle: 'Структурований висновок з усіма розділами — залишається перевірити і підписати',
     tool: 'ChatGPT',
     prompt: `Ти — досвідчений лікар [СПЕЦІАЛЬНІСТЬ]. Склади медичний висновок для пацієнта.
@@ -371,6 +374,7 @@ const blockASolutions: Solution[] = [
     id: 'D2',
     block: 'A',
     title: 'Форми МОЗ (027/о, 028/о, 003-4/о) — заповнені за хвилину',
+    navTitle: 'Форми МОЗ',
     subtitle: 'Вставте дані пацієнта — отримайте готову форму за структурою Наказу №110',
     tool: 'ChatGPT',
     prompt: `Ти — досвідчений лікар, який добре знає облікові форми медичної документації (Наказ МОЗ України №110 від 14.02.2012, №435 від 29.05.2013).
@@ -420,6 +424,7 @@ const blockBSolutions: Solution[] = [
     id: 'C1',
     block: 'B',
     title: 'Пояснити діагноз пацієнту простою мовою',
+    navTitle: 'Пояснення діагнозу',
     subtitle: 'Готовий текст: що це, чому, що робити, коли терміново до лікаря',
     tool: 'ChatGPT',
     prompt: `Ти — досвідчений [СПЕЦІАЛЬНІСТЬ], який пояснює діагнози пацієнтам/батькам.
@@ -459,6 +464,7 @@ const blockBSolutions: Solution[] = [
     id: 'C2',
     block: 'B',
     title: 'Відповідь на повідомлення пацієнта за 1 хвилину',
+    navTitle: 'Відповідь пацієнту',
     subtitle: 'Чернетка відповіді у месенджері — залишається перевірити і надіслати',
     tool: 'ChatGPT',
     prompt: `Ти — [СПЕЦІАЛЬНІСТЬ].
@@ -495,6 +501,7 @@ const blockBSolutions: Solution[] = [
     id: 'C3',
     block: 'B',
     title: 'Складна розмова: відмова, недовіра, антивакс',
+    navTitle: 'Складна розмова',
     subtitle: 'Готовий сценарій: вступна фраза, ключові тези, відповіді на заперечення',
     tool: 'ChatGPT',
     prompt: `Ти — досвідчений лікар з навичками комунікації та емпатії.
@@ -542,6 +549,7 @@ const blockCSolutions: Solution[] = [
     id: 'B1',
     block: 'C',
     title: 'Диференційний діагноз за даними огляду',
+    navTitle: 'Диф. діагноз',
     subtitle: 'Список діагнозів з аргументами за/проти, ранжований за ймовірністю',
     tool: 'ChatGPT',
     prompt: `Ти — консультант-діагност.
@@ -600,6 +608,7 @@ const blockCSolutions: Solution[] = [
     id: 'B1b',
     block: 'C',
     title: 'Діагностичний чеклист — пацієнт щойно прийшов',
+    navTitle: 'Чеклист прийому',
     subtitle: 'Що запитати, що оглянути, які обстеження призначити, червоні прапорці',
     tool: 'ChatGPT',
     prompt: `Ти — досвідчений клініцист.
@@ -640,6 +649,7 @@ const blockCSolutions: Solution[] = [
     id: 'B2',
     block: 'C',
     title: 'Аналізи — відхилення з урахуванням віку за секунди',
+    navTitle: 'Розбір аналізів',
     subtitle: 'ШІ знаходить відхилення, пояснює зв\'язки між показниками і каже що перевірити далі',
     tool: 'ChatGPT',
     prompt: `Ти — клінічний лаборант-консультант.
@@ -686,6 +696,7 @@ const blockCSolutions: Solution[] = [
     block: 'C',
     cardType: 'hybrid',
     title: 'План лікування по протоколу',
+    navTitle: 'План лікування',
     subtitle: 'Медикаменти, дози, моніторинг, червоні прапорці — з цитатами з протоколу',
     tool: 'NotebookLM',
     steps: [
@@ -730,6 +741,7 @@ const blockCSolutions: Solution[] = [
     block: 'C',
     cardType: 'hybrid',
     title: 'Пацієнт приймає 5-8 ліків — перевірити взаємодії за хвилину',
+    navTitle: 'Взаємодія ліків',
     subtitle: 'Завантажте інструкції → NotebookLM знайде взаємодії, протипоказання, корекцію дозування',
     tool: 'NotebookLM',
     toolIntro: {
@@ -770,6 +782,7 @@ const blockCSolutions: Solution[] = [
     id: 'B5',
     block: 'C',
     title: 'Атиповий випадок — що я можу не бачити?',
+    navTitle: 'Атиповий випадок',
     subtitle: 'Друга думка: рідкісні діагнози, когнітивні пастки, червоні прапорці',
     tool: 'ChatGPT',
     prompt: `Ти — досвідчений діагност-консультант. Мені потрібна "друга думка" по атиповому / незрозумілому випадку.
@@ -818,6 +831,7 @@ const blockCSolutions: Solution[] = [
     id: 'B6',
     block: 'C',
     title: 'Відповідь на "ChatGPT мені сказав..."',
+    navTitle: '«ChatGPT сказав…»',
     subtitle: 'Перевірка AI-діагнозу по протоколу з цитатами та критеріями',
     tool: 'NotebookLM',
     prompt: `Пацієнт (батьки) стверджує, що за ChatGPT у дитини [ДІАГНОЗ ВІД CHATGPT].
@@ -850,6 +864,7 @@ const blockDSolutions: Solution[] = [
     block: 'D',
     cardType: 'hybrid',
     title: 'Знайти відповідь у протоколі за 10 секунд',
+    navTitle: 'Пошук у протоколі',
     subtitle: 'Відповідь з цитатою і номером сторінки — без перечитування всього документу',
     tool: 'NotebookLM',
     steps: [
@@ -869,6 +884,7 @@ const blockDSolutions: Solution[] = [
     block: 'D',
     cardType: 'hybrid',
     title: 'Книга або стаття → резюме з цитатами',
+    navTitle: 'Резюме статті',
     subtitle: 'Ключові тези та висновки з точними посиланнями на джерело',
     tool: 'NotebookLM',
     steps: [
@@ -898,6 +914,7 @@ const blockDSolutions: Solution[] = [
     block: 'D',
     cardType: 'workflow',
     title: 'Підкаст-резюме: 200 сторінок → 15 хвилин',
+    navTitle: 'Підкаст-резюме',
     subtitle: 'AI-подкаст двох ведучих з вашого документу — слухайте по дорозі на роботу',
     tool: 'NotebookLM',
     toolIntro: {
@@ -924,6 +941,7 @@ const blockDSolutions: Solution[] = [
     block: 'D',
     cardType: 'hybrid',
     title: 'Пропустили багатогодинний вебінар? Конспект за 5 хвилин',
+    navTitle: 'Конспект вебінару',
     subtitle: 'Конспект YouTube-лекції з цитатами — працює з будь-яким відео із субтитрами',
     tool: 'NotebookLM',
     toolIntro: {
@@ -960,6 +978,7 @@ const blockDSolutions: Solution[] = [
     block: 'D',
     cardType: 'workflow',
     title: 'Будь-який текст → довідник за 30 секунд (автоматично)',
+    navTitle: 'Текст → довідник',
     subtitle: 'Протокол, наказ, підручник, стаття — один клік і готовий конспект, посібник або пост',
     tool: 'NotebookLM',
     toolIntro: {
@@ -993,6 +1012,7 @@ export const blocks: Block[] = [
   {
     id: 'B',
     title: 'Діагноз, аналізи, лікування',
+    navTitle: 'Діагноз і лікування',
     subtitle: 'Не пропустити діагноз · не помилитись з дозою',
     color: BLOCK_COLORS.B,
     icon: '/images/toolkit/illustrations/solutions/B-block-header.png',
@@ -1001,6 +1021,7 @@ export const blocks: Block[] = [
   {
     id: 'C',
     title: 'Розмова з пацієнтом',
+    navTitle: 'Розмова',
     subtitle: 'Пояснити, заспокоїти, переконати — за хвилину',
     color: BLOCK_COLORS.C,
     icon: '/images/toolkit/illustrations/solutions/C-block-header.png',
@@ -1009,6 +1030,7 @@ export const blocks: Block[] = [
   {
     id: 'D',
     title: 'Виписки та форми',
+    navTitle: 'Виписки і форми',
     subtitle: '40 хвилин документації → 2 хвилини',
     color: BLOCK_COLORS.D,
     icon: '/images/toolkit/illustrations/solutions/D-block-header.png',
@@ -1017,6 +1039,7 @@ export const blocks: Block[] = [
   {
     id: 'A',
     title: 'Протоколи, статті, лекції',
+    navTitle: 'Протоколи і статті',
     subtitle: 'Відповідь з протоколу, книги чи лекції — за секунди, не за години',
     color: BLOCK_COLORS.A,
     icon: '/images/toolkit/illustrations/solutions/A1-protocol.png',
