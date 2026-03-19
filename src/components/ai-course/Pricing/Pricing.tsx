@@ -12,6 +12,24 @@ export default function Pricing() {
   return (
     <section id="pricing" ref={sectionRef} className={`${styles.section} reveal`}>
       <div className={styles.container}>
+        {/* Competitor comparison — ABOVE the card, screaming */}
+        <div className={styles.comparison}>
+          <p className={styles.comparisonLabel}>Курси з ШІ для лікарів:</p>
+          <div className={styles.competitorList}>
+            {competitorPrices.map((c, i) => (
+              <div key={i} className={styles.competitorRow}>
+                <span className={styles.competitorName}>{c.name}</span>
+                <span className={styles.competitorPrice}>{c.price}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Our price — dramatically cheaper */}
+        <div className={styles.ourPriceIntro}>
+          <span className={styles.multiplier}>у 10-25 разів дешевше</span>
+        </div>
+
         <h2 className={styles.sectionTitle}>{pricingContent.sectionTitle}</h2>
 
         {/* Pricing card */}
@@ -56,18 +74,10 @@ export default function Pricing() {
           </div>
         </div>
 
-        {/* Competitor comparison — below the card */}
-        <div className={styles.comparison}>
-          <div className={styles.competitorList}>
-            {competitorPrices.map((c, i) => (
-              <div key={i} className={styles.competitorRow}>
-                <span className={styles.competitorName}>{c.name}</span>
-                <span className={styles.competitorPrice}>{c.price}</span>
-              </div>
-            ))}
-          </div>
-          <p className={styles.comparisonText}>{pricingContent.competitorText}</p>
-        </div>
+        {/* Bottom note */}
+        <p className={styles.bottomNote}>
+          Це не курс — тут нема модулів, домашок і дедлайнів. Відкрив і працюєш.
+        </p>
       </div>
     </section>
   );
