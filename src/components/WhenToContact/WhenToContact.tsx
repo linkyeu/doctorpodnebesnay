@@ -7,56 +7,56 @@ const cards = [
     title: 'В очікуванні малюка',
     description:
       'Тисяча питань і тривог — разом розберемо: харчування, аналізи, підготовку до пологів.',
-    illustration: '/images/when-to-contact/pregnancy.png',
+    illustration: '/images/when-to-contact/pregnancy-new.webp',
     emoji: '🤰',
   },
   {
     title: 'Температура у дитини',
     description:
       'Не знаєте, коли збивати і чи потрібно взагалі? Розберемо за протоколами.',
-    illustration: '/images/when-to-contact/temperature.png',
+    illustration: '/images/when-to-contact/temperature-new.webp',
     emoji: '🌡️',
   },
   {
     title: 'Введення прикорму',
     description:
       'З чого починати, коли і скільки давати — індивідуальний план для вашого малюка.',
-    illustration: '/images/when-to-contact/feeding.png',
+    illustration: '/images/when-to-contact/feeding-new.webp',
     emoji: '🍎',
   },
   {
     title: 'Вакцинація',
     description:
       'Сумніви, страхи, індивідуальний графік — все обговоримо з посиланням на дослідження.',
-    illustration: '/images/when-to-contact/vaccination.png',
+    illustration: '/images/when-to-contact/vaccination-new.webp',
     emoji: '🛡️',
   },
   {
     title: 'Проблеми зі сном',
     description:
       'Дитина не спить, ви не спите. Розберемо причини та знайдемо рішення без «залишити плакати».',
-    illustration: '/images/when-to-contact/sleep.png',
+    illustration: '/images/when-to-contact/sleep-new.webp',
     emoji: '🌙',
   },
   {
     title: 'Виховання та розвиток',
     description:
       'Істерики, кризи, межі — як реагувати, спираючись на науку, а не на «мене так виховували».',
-    illustration: '/images/when-to-contact/development.png',
+    illustration: '/images/when-to-contact/development-new.webp',
     emoji: '🧩',
   },
   {
     title: 'Здоров\'я дорослих',
     description:
       'Аналізи чужою мовою? Незрозумілі результати обстежень? Допоможу розібратися, поясню простою мовою та дам рекомендації.',
-    illustration: '/images/when-to-contact/adult-health.png',
+    illustration: '/images/when-to-contact/adult-health-new.webp',
     emoji: '❤️',
   },
   {
     title: 'Ви за кордоном',
     description:
       'Переїхали й не знаєте, кому довіряти? Консультую українських батьків у будь-якій країні — зрозумілою мовою, за міжнародними протоколами.',
-    illustration: '/images/when-to-contact/abroad.png',
+    illustration: '/images/when-to-contact/abroad-new.webp',
     emoji: '🌍',
   },
 ];
@@ -70,7 +70,7 @@ export default function WhenToContact() {
   };
 
   return (
-    <section className={styles.whenToContact}>
+    <section className={styles.whenToContact} id="when-to-contact">
       <div className={`${styles.container} reveal`} ref={ref}>
         <h2 className={styles.heading}>Коли варто написати</h2>
         <p className={styles.subtitle}>
@@ -157,14 +157,6 @@ export default function WhenToContact() {
         </div>
       </div>
 
-      <div className={styles.waveDivider} aria-hidden="true">
-        <svg viewBox="0 0 1440 80" preserveAspectRatio="none">
-          <path
-            d="M0,32 C240,64 480,8 720,40 C960,72 1200,16 1440,48 L1440,80 L0,80 Z"
-            fill="#111827"
-          />
-        </svg>
-      </div>
     </section>
   );
 }

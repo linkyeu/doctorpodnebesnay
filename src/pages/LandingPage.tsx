@@ -5,7 +5,7 @@ import Hero from '../components/Hero/Hero';
 import TrustBadges from '../components/TrustBadges/TrustBadges';
 import Bio from '../components/Bio/Bio';
 import WhenToContact from '../components/WhenToContact/WhenToContact';
-import Navigator from '../components/Navigator/Navigator';
+// import Navigator from '../components/Navigator/Navigator'; // Removed — section obsolete
 import Testimonials from '../components/Testimonials/Testimonials';
 import Services from '../components/Services/Services';
 // import BlogTeaser from '../components/BlogTeaser/BlogTeaser'; // Hidden until articles are polished
@@ -41,7 +41,7 @@ export default function LandingPage() {
       <TrustBadges />
       <Bio />
       <WhenToContact />
-      <Navigator />
+      {/* <Navigator /> */}{/* Removed — section obsolete */}
       <Testimonials />
       <Services />
       {/* <BlogTeaser /> */}{/* Hidden until articles are polished */}

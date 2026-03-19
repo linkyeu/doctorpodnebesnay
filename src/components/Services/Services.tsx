@@ -5,21 +5,21 @@ import styles from './Services.module.css';
 const steps = [
   {
     number: 1,
-    icon: '/images/services/step-1-describe.png',
+    icon: '/images/services/step-1-describe-new.webp',
     title: 'Опишіть ситуацію',
     description:
       'Напишіть у Telegram: симптоми, вік дитини, фото за потреби. Чим детальніше — тим точніша відповідь.',
   },
   {
     number: 2,
-    icon: '/images/services/step-2-answer.png',
+    icon: '/images/services/step-2-answer-new.webp',
     title: 'Отримайте відповідь',
     description:
       'Лікар Піднебесна відповість розгорнутими рекомендаціями з поясненнями та посиланнями на протоколи.',
   },
   {
     number: 3,
-    icon: '/images/services/step-3-followup.png',
+    icon: '/images/services/step-3-followup-new.webp',
     title: 'Уточнюйте далі',
     description:
       'Додаткові запитання в межах однієї теми — без обмежень. Поки не розберемося до кінця.',
@@ -62,7 +62,13 @@ export default function Services() {
             Для батьків за кордоном є зручні варіанти оплати
           </p>
           <p className={styles.responseTime}>
-            <img src="/images/icons/timer-inline.png" alt="" aria-hidden="true" className={styles.inlineIcon} />
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className={styles.inlineIcon}>
+              <circle cx="12" cy="13" r="8" />
+              <path d="M12 9v4l2 2" />
+              <path d="M5 3l2 2" />
+              <path d="M19 3l-2 2" />
+              <path d="M12 3v2" />
+            </svg>
             Відповідаю протягом 2–6 годин
           </p>
           <a

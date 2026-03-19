@@ -7,7 +7,7 @@ interface StickyHeaderProps {
 
 const navLinks = [
   { href: '#about', label: 'Про лікаря' },
-  { href: '#navigator', label: 'Навігатор' },
+  { href: '#when-to-contact', label: 'Коли писати' },
   { href: '#services', label: 'Консультації' },
   { href: '#faq', label: 'FAQ' },
 ];
