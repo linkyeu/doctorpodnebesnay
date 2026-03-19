@@ -39,25 +39,68 @@ export default function WhatsInside() {
           ))}
         </div>
 
-        {/* Product screenshot */}
-        <div className={styles.screenshotWrapper}>
-          <div className={styles.browserFrame}>
-            <div className={styles.browserBar}>
-              <div className={styles.browserDots}>
-                <span className={styles.dot} />
-                <span className={styles.dot} />
-                <span className={styles.dot} />
+        {/* Product screenshots */}
+        <div className={styles.screenshotsGallery}>
+          {/* ChatGPT output — full-width on desktop */}
+          <div className={`${styles.screenshotWrapper} ${styles.screenshotFeatured}`}>
+            <div className={styles.browserFrame}>
+              <div className={styles.browserBar}>
+                <div className={styles.browserDots}>
+                  <span className={styles.dot} />
+                  <span className={styles.dot} />
+                  <span className={styles.dot} />
+                </div>
+                <span className={styles.browserUrl}>chatgpt.com</span>
               </div>
-              <span className={styles.browserUrl}>doctorpidnebesna.com/toolkit</span>
+              <img
+                src="/images/ai-course/product-chatgpt-output.png"
+                alt="Результат: ChatGPT пояснює діагноз простою мовою"
+                className={styles.screenshotImg}
+                loading="lazy"
+              />
             </div>
-            <img
-              src="/images/ai-course/product-toolkit-cards.png"
-              alt="Реальний вигляд довідника"
-              className={styles.screenshotImg}
-              loading="lazy"
-            />
+            <p className={styles.screenshotCaption}>Результат: пояснення діагнозу простою мовою</p>
           </div>
-          <p className={styles.screenshotCaption}>Реальний вигляд довідника</p>
+
+          <div className={styles.screenshotWrapper}>
+            <div className={styles.browserFrame}>
+              <div className={styles.browserBar}>
+                <div className={styles.browserDots}>
+                  <span className={styles.dot} />
+                  <span className={styles.dot} />
+                  <span className={styles.dot} />
+                </div>
+                <span className={styles.browserUrl}>doctorpidnebesna.com/toolkit</span>
+              </div>
+              <img
+                src="/images/ai-course/product-toolkit-cards.png"
+                alt="16 рішень у 4 блоках — реальний вигляд довідника"
+                className={styles.screenshotImg}
+                loading="lazy"
+              />
+            </div>
+            <p className={styles.screenshotCaption}>16 рішень у 4 блоках</p>
+          </div>
+
+          <div className={styles.screenshotWrapper}>
+            <div className={styles.browserFrame}>
+              <div className={styles.browserBar}>
+                <div className={styles.browserDots}>
+                  <span className={styles.dot} />
+                  <span className={styles.dot} />
+                  <span className={styles.dot} />
+                </div>
+                <span className={styles.browserUrl}>doctorpidnebesna.com/toolkit</span>
+              </div>
+              <img
+                src="/images/ai-course/product-prompt-view.png"
+                alt="Готовий запит із підсвіченими полями для заповнення"
+                className={styles.screenshotImg}
+                loading="lazy"
+              />
+            </div>
+            <p className={styles.screenshotCaption}>Скопіюй → Встав → Заміни дані пацієнта</p>
+          </div>
         </div>
 
         {/* Feature callouts */}

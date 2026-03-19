@@ -177,9 +177,7 @@ export const whatsInsideBlocks: WhatsInsideBlock[] = [
 ];
 
 export const whatsInsideFeatures = [
-  '+ Покрокова інструкція зі скріншотами кожного кроку — навіть якщо ти ніколи не відкривав ChatGPT.',
   'Працює з безкоштовним ChatGPT — без платних підписок.',
-  'Можна диктувати голосом замість друку — натисніть 🎙️ у ChatGPT і продиктуйте дані пацієнта',
 ];
 
 // ── Author Trust (full section) ──

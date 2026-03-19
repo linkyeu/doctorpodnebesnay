@@ -11,12 +11,13 @@
 }
 
 .heading {
-  font-size: clamp(1.5rem, 3vw, 2rem);
-  font-weight: 700;
-  color: var(--color-text);
+  font-size: clamp(1.75rem, 3vw, 2.125rem);
+  font-weight: 800;
+  color: #1B3A4B;
   text-align: center;
   margin-bottom: var(--space-3);
   letter-spacing: -0.02em;
+  line-height: 1.2;
 }
 
 .subheading {
@@ -57,11 +58,6 @@
   box-shadow: var(--shadow-sm);
 }
 
-/* Color-coded left border per block */
-.block:nth-child(1) { border-left: 4px solid #1B3A4B; }
-.block:nth-child(2) { border-left: 4px solid #C8956C; }
-.block:nth-child(3) { border-left: 4px solid #16A34A; }
-.block:nth-child(4) { border-left: 4px solid #6366F1; }
 
 .blockHeader {
   display: flex;

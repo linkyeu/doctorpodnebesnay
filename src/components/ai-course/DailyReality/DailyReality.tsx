@@ -7,19 +7,12 @@ export default function DailyReality() {
   const { before, after } = dailyRealityContent;
 
   return (
-    <section ref={sectionRef} className={`${styles.section} reveal`}>
+    <section id="daily-reality" ref={sectionRef} className={`${styles.section} reveal`}>
       <div className={styles.split}>
           {/* Before — the grind */}
           <div className={`${styles.half} ${styles.before}`}>
-            <img
-              className={styles.bgImage}
-              src="/images/ai-course/daily-reality-before.png"
-              alt=""
-              aria-hidden="true"
-              loading="lazy"
-            />
             <div className={styles.content}>
-              <span className={styles.tag}>{before.heading === 'Твій день' ? 'Зараз' : before.heading}</span>
+              <span className={styles.tag}>Зараз</span>
               <h3 className={styles.heading}>{before.heading}</h3>
               <p className={styles.intro}>{before.intro}</p>
               <ul className={styles.list}>
@@ -27,21 +20,14 @@ export default function DailyReality() {
                   <li key={i}>{task}</li>
                 ))}
               </ul>
-              <p className={styles.bottom}>{before.repeat} {before.afterWork?.replace(/\n/g, ' ')}</p>
+              <p className={styles.bottom}>{before.repeat} {before.afterWork}</p>
             </div>
           </div>
 
           {/* After — the solution */}
           <div className={`${styles.half} ${styles.after}`}>
-            <img
-              className={styles.bgImage}
-              src="/images/ai-course/daily-reality-after.png"
-              alt=""
-              aria-hidden="true"
-              loading="lazy"
-            />
             <div className={styles.content}>
-              <span className={styles.tag}>З AI-інструментарієм</span>
+              <span className={styles.tag}>З ШІ-рішеннями</span>
               <h3 className={styles.heading}>{after.heading}</h3>
               <p className={styles.intro}>{after.intro}</p>
               <ul className={`${styles.list} ${styles.afterList}`}>

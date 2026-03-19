@@ -2,7 +2,6 @@ import { useScrollReveal } from '../../../hooks/useScrollReveal';
 import styles from './Pricing.module.css';
 import {
   pricingContent,
-  competitorPrices,
   TELEGRAM_PURCHASE_LINK,
 } from '../../../data/ai-course';
 
@@ -12,19 +11,6 @@ export default function Pricing() {
   return (
     <section id="pricing" ref={sectionRef} className={`${styles.section} reveal`}>
       <div className={styles.container}>
-        {/* Competitor comparison — ABOVE the card, screaming */}
-        <div className={styles.comparison}>
-          <p className={styles.comparisonLabel}>Скільки це коштує:</p>
-          <div className={styles.competitorList}>
-            {competitorPrices.map((c, i) => (
-              <div key={i} className={styles.competitorRow}>
-                <span className={styles.competitorName}>{c.name}</span>
-                <span className={styles.competitorPrice}>{c.price}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-
         <h2 className={styles.sectionTitle}>{pricingContent.sectionTitle}</h2>
 
         {/* Pricing card */}
