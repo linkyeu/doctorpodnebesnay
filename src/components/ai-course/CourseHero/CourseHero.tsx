@@ -1,4 +1,5 @@
 import styles from './CourseHero.module.css';
+import ParticleNetwork from './ParticleNetwork';
 import { heroContent } from '../../../data/ai-course';
 
 export default function CourseHero() {
@@ -9,23 +10,23 @@ export default function CourseHero() {
 
   return (
     <section className={styles.hero}>
+      {/* Dark medical still-life background */}
       <div className={styles.heroBackground}>
-        <picture>
-          <source
-            media="(max-width: 767px)"
-            srcSet="/images/ai-course/hero-mobile.webp"
-          />
-          <img
-            src="/images/ai-course/hero-desktop.webp"
-            alt=""
-            className={styles.heroImage}
-            draggable={false}
-            fetchPriority="high"
-            loading="eager"
-            decoding="async"
-          />
-        </picture>
+        <img
+          src="/images/ai-course/hero-medical-bg.webp"
+          alt=""
+          className={`${styles.heroImage} ${styles.medicalBg}`}
+          draggable={false}
+          fetchPriority="high"
+          loading="eager"
+          decoding="async"
+        />
       </div>
+
+      {/* AI particle network overlay */}
+      <ParticleNetwork />
+
+      {/* Gradient overlay for text readability */}
       <div className={styles.heroOverlay} />
 
       <div className={styles.content}>

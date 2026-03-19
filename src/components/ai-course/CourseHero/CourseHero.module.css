@@ -35,6 +35,19 @@
   pointer-events: none;
 }
 
+/* ─── Particle network canvas ─── */
+
+.particleContainer {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: auto;
+}
+
+.particleCanvas {
+  display: block;
+}
+
 /* ─── Background image ─── */
 
 .heroBackground {
@@ -56,6 +69,12 @@
 @keyframes subtleZoom {
   0% { transform: scale(1); }
   100% { transform: scale(1.05); }
+}
+
+/* ─── Medical background — darker for particle overlay ─── */
+
+.medicalBg {
+  filter: saturate(0.6) brightness(0.35);
 }
 
 /* ─── Gradient overlay for text readability ─── */
