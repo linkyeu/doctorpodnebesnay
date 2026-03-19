@@ -136,27 +136,8 @@
   font-size: clamp(1rem, 2vw, 1.125rem);
   color: rgba(255, 255, 255, 0.7);
   line-height: 1.6;
-  max-width: 520px;
+  max-width: 600px;
   text-shadow: 0 1px 16px rgba(0, 0, 0, 0.4);
-}
-
-/* ─── Product line pill ─── */
-
-.productLine {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 0.8rem;
-  font-weight: 500;
-  color: rgba(255, 255, 255, 0.6);
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 100px;
-  padding: 10px 20px;
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
 }
 
 /* ─── Micro-testimonial ─── */
@@ -188,10 +169,11 @@
 }
 
 .trustIcon {
-  width: 36px;
-  height: 36px;
-  object-fit: contain;
-  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  opacity: 0.85;
 }
 
 .trustLabel {
