@@ -5,9 +5,10 @@ const STORAGE_KEY = 'toolkit_orientation_seen';
 
 interface ToolkitWelcomeProps {
   onScrollToSolution: (id: string) => void;
+  onCollapse?: () => void;
 }
 
-export default function ToolkitWelcome({ onScrollToSolution }: ToolkitWelcomeProps) {
+export default function ToolkitWelcome({ onScrollToSolution, onCollapse }: ToolkitWelcomeProps) {
   const [expanded, setExpanded] = useState(() => {
     return !localStorage.getItem(STORAGE_KEY);
   });
@@ -17,6 +18,7 @@ export default function ToolkitWelcome({ onScrollToSolution }: ToolkitWelcomePro
   const collapse = () => {
     localStorage.setItem(STORAGE_KEY, '1');
     setExpanded(false);
+    onCollapse?.();
   };
 
   const toggle = () => {

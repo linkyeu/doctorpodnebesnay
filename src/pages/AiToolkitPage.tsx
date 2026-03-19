@@ -13,7 +13,7 @@ import styles from './AiToolkitPage.module.css';
 
 const SETUP_DONE_KEY = 'toolkit_setup_done';
 
-function SetupSection() {
+function SetupSection({ onCollapse }: { onCollapse?: () => void }) {
   const [expanded, setExpanded] = useState(() => {
     return !localStorage.getItem(SETUP_DONE_KEY);
   });
@@ -21,12 +21,18 @@ function SetupSection() {
   const isDone = !!localStorage.getItem(SETUP_DONE_KEY);
 
   const toggle = () => {
-    setExpanded(prev => !prev);
+    if (expanded) {
+      setExpanded(false);
+      onCollapse?.();
+    } else {
+      setExpanded(true);
+    }
   };
 
   const markDone = () => {
     localStorage.setItem(SETUP_DONE_KEY, '1');
     setExpanded(false);
+    onCollapse?.();
   };
 
   return (
@@ -118,12 +124,31 @@ export default function AiToolkitPage() {
         return initial;
       }
     }
-    // Auto-expand Block A by default so users see solutions on load
-    if (blocks.length > 0) {
+    // Only auto-expand Block A if onboarding is complete (returning user)
+    const welcomeDone = !!localStorage.getItem('toolkit_orientation_seen');
+    const setupDone = !!localStorage.getItem(SETUP_DONE_KEY);
+    if (welcomeDone && setupDone && blocks.length > 0) {
       initial[blocks[0].id] = true;
     }
     return initial;
   });
+
+  // Auto-expand first category when all onboarding sections are done
+  const expandFirstBlockIfReady = useCallback(() => {
+    const welcomeDone = !!localStorage.getItem('toolkit_orientation_seen');
+    const setupDone = !!localStorage.getItem(SETUP_DONE_KEY);
+    if (welcomeDone && setupDone && blocks.length > 0) {
+      setExpandedBlocks(prev => {
+        // Only expand if no block is currently open
+        const anyOpen = Object.values(prev).some(Boolean);
+        if (anyOpen) return prev;
+        return { ...prev, [blocks[0].id]: true };
+      });
+      setTimeout(() => {
+        document.getElementById(`block-${blocks[0].id}`)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 350);
+    }
+  }, []);
 
   // Counter to force-remount SolutionCards when blocks toggle (resets expanded state)
   const [blockResetKey, setBlockResetKey] = useState(0);
@@ -274,10 +299,10 @@ export default function AiToolkitPage() {
       <ToolkitNav blocks={blocks} />
       <main className={styles.content}>
         <h1 className="sr-only">ШІ-помічник лікаря — 16 готових рішень для щоденної практики</h1>
-        <ToolkitWelcome onScrollToSolution={handleScrollToSolution} />
+        <ToolkitWelcome onScrollToSolution={handleScrollToSolution} onCollapse={expandFirstBlockIfReady} />
 
         {/* Setup — mandatory first step, collapsible */}
-        <SetupSection />
+        <SetupSection onCollapse={expandFirstBlockIfReady} />
 
         {/* Search */}
         <ToolkitSearch
