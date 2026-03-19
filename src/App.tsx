@@ -6,7 +6,6 @@ import AiCoursePage from './pages/AiCoursePage';
 // import BlogArticlePage from './pages/BlogArticlePage'; // Hidden until articles are polished
 import styles from './App.module.css';
 
-const ThankYouPage = lazy(() => import('./pages/ThankYouPage'));
 const AiToolkitPage = lazy(() => import('./pages/AiToolkitPage'));
 const ToolkitThankYouPage = lazy(() => import('./pages/ToolkitThankYouPage'));
 const ToolkitPaymentFailedPage = lazy(() => import('./pages/ToolkitPaymentFailedPage'));
@@ -18,7 +17,6 @@ export default function App() {
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/ai-course" element={<AiCoursePage />} />
-          <Route path="/ai-course/thank-you" element={<ThankYouPage />} />
           <Route path="/toolkit" element={<AiToolkitPage />} />
           <Route path="/toolkit/thank-you" element={<ToolkitThankYouPage />} />
           <Route path="/toolkit/payment-failed" element={<ToolkitPaymentFailedPage />} />
