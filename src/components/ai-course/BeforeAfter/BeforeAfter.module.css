@@ -114,3 +114,33 @@
 .afterCol .time {
   color: #16a34a;
 }
+
+/* ─── Prompt block (product demo) ─── */
+
+.promptBlock {
+  background: rgba(22, 163, 74, 0.06);
+  border: 1px solid #BBF7D0;
+  border-radius: 12px;
+  padding: var(--space-4);
+  margin-bottom: var(--space-4);
+}
+
+.promptLabel {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #16a34a;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: var(--space-2);
+}
+
+.prompt {
+  font-family: 'DM Sans', system-ui, sans-serif !important;
+  font-size: 0.82rem;
+  line-height: 1.55;
+  color: var(--color-text);
+  white-space: pre-wrap;
+  word-break: break-word;
+  margin: 0;
+}

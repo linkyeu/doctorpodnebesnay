@@ -5,10 +5,11 @@ import PainPoints from '../components/ai-course/PainPoints/PainPoints';
 // WhyNotChatGpt merged into PainPoints (4 points + early CTA)
 // Personas removed — duplicated PainPoints content, audience line merged into PainPoints accent block (Ilyakhov audit)
 import BeforeAfter from '../components/ai-course/BeforeAfter/BeforeAfter';
+import TimeSavings from '../components/ai-course/TimeSavings/TimeSavings';
 // HowItWorks removed — Denys prefers without the 3-step plan section
 import WhatsInside from '../components/ai-course/WhatsInside/WhatsInside';
 import AuthorTrust from '../components/ai-course/AuthorTrust/AuthorTrust';
-import SocialProof from '../components/ai-course/SocialProof/SocialProof';
+// SocialProof removed — anonymous testimonials failed all 3 reviewer personas, actively damaged trust. Re-add post-launch with real names + specialty
 // ProductOverview removed — duplicated WhatsInside content, broke narrative flow (Ilyakhov audit)
 import Urgency from '../components/ai-course/Urgency/Urgency';
 import Pricing from '../components/ai-course/Pricing/Pricing';
@@ -78,9 +79,9 @@ export default function AiCoursePage() {
       <CourseHero />
       <PainPoints />
       <BeforeAfter />
+      <TimeSavings />
       <WhatsInside />
       <AuthorTrust />
-      <SocialProof />
       <Urgency />
       <Pricing />
       <CourseFooter />

@@ -1,3 +1,4 @@
+import { useScrollReveal } from '../../../hooks/useScrollReveal';
 import styles from './PainPoints.module.css';
 import { painPoints, painAccent } from '../../../data/ai-course';
 import type { PainPoint } from '../../../data/ai-course';
@@ -12,8 +13,10 @@ const painIconMap: Record<PainPoint['icon'], string> = {
 };
 
 export default function PainPoints() {
+  const sectionRef = useScrollReveal<HTMLElement>(0.1);
+
   return (
-    <section className={styles.section}>
+    <section ref={sectionRef} className={`${styles.section} reveal`}>
       <div className={styles.container}>
         <div className={styles.grid}>
           {painPoints.map((point) => (

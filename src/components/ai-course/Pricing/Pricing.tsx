@@ -1,3 +1,4 @@
+import { useScrollReveal } from '../../../hooks/useScrollReveal';
 import styles from './Pricing.module.css';
 import {
   pricingContent,
@@ -6,8 +7,10 @@ import {
 } from '../../../data/ai-course';
 
 export default function Pricing() {
+  const sectionRef = useScrollReveal<HTMLElement>(0.1);
+
   return (
-    <section id="pricing" className={styles.section}>
+    <section id="pricing" ref={sectionRef} className={`${styles.section} reveal`}>
       <div className={styles.dotGrid} aria-hidden="true" />
       <div className={styles.container}>
         {/* Competitor price comparison */}

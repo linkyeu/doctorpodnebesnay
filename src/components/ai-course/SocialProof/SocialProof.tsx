@@ -1,8 +1,10 @@
 import { useState, useCallback } from 'react';
+import { useScrollReveal } from '../../../hooks/useScrollReveal';
 import styles from './SocialProof.module.css';
 import { socialProofHeading, socialProofQuotes } from '../../../data/ai-course';
 
 export default function SocialProof() {
+  const sectionRef = useScrollReveal<HTMLElement>(0.1);
   const [current, setCurrent] = useState(0);
   const total = socialProofQuotes.length;
 
@@ -25,13 +27,13 @@ export default function SocialProof() {
     if (touchStart === null) return;
     const diff = touchStart - e.changedTouches[0].clientX;
     if (Math.abs(diff) > 50) {
-      diff > 0 ? next() : prev();
+      if (diff > 0) { next(); } else { prev(); }
     }
     setTouchStart(null);
   };
 
   return (
-    <section className={styles.section}>
+    <section ref={sectionRef} className={`${styles.section} reveal`}>
       <div className={styles.container}>
         <h2 className={styles.heading}>{socialProofHeading}</h2>
 

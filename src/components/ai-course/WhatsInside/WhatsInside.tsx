@@ -1,3 +1,4 @@
+import { useScrollReveal } from '../../../hooks/useScrollReveal';
 import styles from './WhatsInside.module.css';
 import {
   whatsInsideHeading,
@@ -7,8 +8,10 @@ import {
 } from '../../../data/ai-course';
 
 export default function WhatsInside() {
+  const sectionRef = useScrollReveal<HTMLElement>(0.1);
+
   return (
-    <section id="whats-inside" className={styles.section}>
+    <section id="whats-inside" ref={sectionRef} className={`${styles.section} reveal`}>
       <div className={styles.container}>
         <h2 className={styles.heading}>{whatsInsideHeading}</h2>
 
