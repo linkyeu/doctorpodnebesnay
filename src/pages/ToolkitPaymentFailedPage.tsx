@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { TELEGRAM_SUPPORT } from '../data/links';
 import styles from './ToolkitPaymentFailedPage.module.css';
 
 export default function ToolkitPaymentFailedPage() {
@@ -56,7 +57,10 @@ export default function ToolkitPaymentFailedPage() {
         </a>
 
         <p className={styles.textMuted}>
-          Якщо проблема повторюється — спробуйте іншу картку або напишіть нам у Telegram.
+          Якщо проблема повторюється — спробуйте іншу картку або{' '}
+          <a href={TELEGRAM_SUPPORT} target="_blank" rel="noopener noreferrer">
+            напишіть нам у Telegram
+          </a>.
         </p>
       </div>
 
