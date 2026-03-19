@@ -18,11 +18,11 @@ export default function ToolkitThankYouPage() {
   }, []);
 
   useEffect(() => {
-    document.title = 'Оплата успішна! | AI-інструменти для лікарів';
+    document.title = 'Оплата успішна! | Онлайн-довідник ШІ-інструментів для лікарів';
 
     const metaDesc = document.querySelector('meta[name="description"]');
     if (metaDesc) {
-      metaDesc.setAttribute('content', 'Дякуємо за покупку AI-інструментів для лікарів.');
+      metaDesc.setAttribute('content', 'Дякуємо за покупку онлайн-довідника ШІ-інструментів для лікарів.');
     }
 
     let robotsMeta = document.querySelector('meta[name="robots"]') as HTMLMetaElement | null;
@@ -67,7 +67,7 @@ export default function ToolkitThankYouPage() {
         <h1 className={styles.heading}>Оплата успішна!</h1>
 
         <p className={styles.text}>
-          Дякуємо за покупку <strong>AI-інструментів для лікарів</strong>.
+          Дякуємо за покупку <strong>онлайн-довідника ШІ-інструментів для лікарів</strong>.
         </p>
 
         <div className={styles.accessBlock}>

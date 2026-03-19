@@ -3,7 +3,7 @@ import styles from './ToolkitPaymentFailedPage.module.css';
 
 export default function ToolkitPaymentFailedPage() {
   useEffect(() => {
-    document.title = 'Помилка оплати | AI-інструменти для лікарів';
+    document.title = 'Помилка оплати | Онлайн-довідник ШІ-інструментів для лікарів';
 
     let robotsMeta = document.querySelector('meta[name="robots"]') as HTMLMetaElement | null;
     const created = !robotsMeta;
