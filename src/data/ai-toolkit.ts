@@ -288,10 +288,10 @@ export const readyNotebooksData: ReadyNotebook[] = [
     id: 'nb-thyroid',
     emoji: '🦋',
     title: 'Щитовидна залоза (гіпотиреоз, гіпертиреоз)',
-    description: 'TSH-тактика, дозування левотироксину, вузли, вагітність — МОЗ, Empendium',
+    description: 'TSH-тактика, дозування левотироксину, вузли, вагітність — AAFP',
     url: 'https://notebooklm.google.com/notebook/60425394-10f9-4d4f-b973-7a537e55989b',
     category: 'moz',
-    sources: 'МОЗ, Empendium (Гіпо/Гіпертиреоз), Guidelines МОЗ',
+    sources: 'AAFP (Hypothyroidism 2021, Hyperthyroidism 2016)',
     exampleQueries: [
       'TSH 8.5, вільний Т4 в нормі — субклінічний гіпотиреоз, коли лікувати?',
       'Вагітна, TSH 4.2 в першому триместрі — тактика?',
