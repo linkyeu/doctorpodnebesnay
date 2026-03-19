@@ -71,15 +71,25 @@ export default function ToolkitThankYouPage() {
         </p>
 
         <div className={styles.accessBlock}>
-          <p className={styles.accessLabel}>Ваш пароль для доступу:</p>
-          <p className={styles.password}>2xzi8grGtjQS</p>
+          <div className={styles.emailIconWrap} aria-hidden="true">
+            <svg className={styles.emailIcon} width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+              <rect x="2" y="4" width="20" height="16" rx="2" />
+              <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+            </svg>
+          </div>
+          <p className={styles.emailNote}>
+            Пароль для доступу надіслано на вашу <strong>електронну пошту</strong>.
+          </p>
+          <p className={styles.emailHint}>
+            Перевірте вхідні — лист прийде протягом кількох хвилин. Якщо не бачите — загляньте у «Спам».
+          </p>
           <a href="/toolkit" className={styles.accessBtn}>
             Відкрити довідник →
           </a>
         </div>
 
         <p className={styles.textMuted}>
-          Пароль також надіслано на вашу пошту. Збережіть його — він знадобиться для повторного входу.
+          Не отримали лист? Напишіть нам — допоможемо.
         </p>
       </div>
     </div>
