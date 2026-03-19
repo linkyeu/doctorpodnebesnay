@@ -299,6 +299,49 @@
   border: 1px dashed rgba(22, 163, 74, 0.3);
 }
 
+/* ── Voice dictation tip ── */
+.voiceTip {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  background: linear-gradient(135deg, #eff6ff, #f0fdf4);
+  border: 1px dashed #93c5fd;
+  border-radius: 6px;
+  font-family: var(--tk-font-ui);
+  font-size: 13px;
+  color: var(--tk-text);
+  line-height: 1.4;
+}
+
+.voiceTipIcon {
+  flex-shrink: 0;
+  font-size: 16px;
+}
+
+.voiceTipDismiss {
+  all: unset;
+  flex-shrink: 0;
+  margin-left: auto;
+  cursor: pointer;
+  font-size: 18px;
+  line-height: 1;
+  color: var(--tk-text-subtle);
+  padding: 2px 6px;
+  border-radius: 4px;
+  transition: color 150ms ease, background-color 150ms ease;
+}
+
+.voiceTipDismiss:hover {
+  color: var(--tk-text);
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.voiceTipDismiss:focus-visible {
+  outline: 2px solid var(--tk-text-muted);
+  outline-offset: 2px;
+}
+
 /* ── Ready notebook callout (Surface alt + badge) ── */
 .readyNotebook {
   position: relative;

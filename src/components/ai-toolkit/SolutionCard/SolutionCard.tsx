@@ -104,6 +104,10 @@ export default function SolutionCard({ solution, blockColor }: SolutionCardProps
   const [exampleOpen, setExampleOpen] = useState(false);
   const cardType = solution.cardType ?? 'prompt';
   const hasPrompt = solution.prompt.length > 0;
+  const isChatGPT = solution.tool.includes('ChatGPT');
+  const [showVoiceTip, setShowVoiceTip] = useState(() =>
+    isChatGPT && !localStorage.getItem('toolkit_voice_tip_dismissed'),
+  );
 
   const toggle = useCallback(() => {
     setExpanded(prev => !prev);
@@ -230,6 +234,25 @@ export default function SolutionCard({ solution, blockColor }: SolutionCardProps
                 toolUrl={getToolUrl(solution.tool)}
                 toolName={getToolDisplayName(solution.tool)}
               />
+            )}
+
+            {/* Voice dictation tip — ChatGPT cards only */}
+            {isChatGPT && showVoiceTip && (
+              <div className={styles.voiceTip}>
+                <span className={styles.voiceTipIcon}>🎙️</span>
+                <span>Крок 3 можна продиктувати — натисніть мікрофон у ChatGPT замість друку</span>
+                <button
+                  type="button"
+                  className={styles.voiceTipDismiss}
+                  onClick={() => {
+                    localStorage.setItem('toolkit_voice_tip_dismissed', '1');
+                    setShowVoiceTip(false);
+                  }}
+                  aria-label="Закрити підказку"
+                >
+                  ×
+                </button>
+              </div>
             )}
 
             {/* Content depends on card type */}
