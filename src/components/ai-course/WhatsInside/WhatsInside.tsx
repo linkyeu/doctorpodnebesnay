@@ -2,9 +2,11 @@ import { useScrollReveal } from '../../../hooks/useScrollReveal';
 import styles from './WhatsInside.module.css';
 import {
   whatsInsideHeading,
-  whatsInsideTasks,
-  heroContent,
+  whatsInsideSubheading,
+  whatsInsideBlocks,
+  whatsInsideFeatures,
   TELEGRAM_PURCHASE_LINK,
+  pricingContent,
 } from '../../../data/ai-course';
 
 export default function WhatsInside() {
@@ -14,34 +16,42 @@ export default function WhatsInside() {
     <section id="whats-inside" ref={sectionRef} className={`${styles.section} reveal`}>
       <div className={styles.container}>
         <h2 className={styles.heading}>{whatsInsideHeading}</h2>
+        <p className={styles.subheading}>{whatsInsideSubheading}</p>
 
-        {/* Task cards */}
-        <div className={styles.taskGrid}>
-          {whatsInsideTasks.map((t) => (
-            <div key={t.id} className={styles.taskCard}>
-              <div className={styles.taskIcon}>
-                <img
-                  src={t.image}
-                  alt=""
-                  aria-hidden="true"
-                  className={styles.taskImage}
-                  loading="lazy"
-                />
+        {/* 4 content blocks */}
+        <div className={styles.blocksGrid}>
+          {whatsInsideBlocks.map((block) => (
+            <div key={block.id} className={styles.block}>
+              <div className={styles.blockHeader}>
+                <span className={styles.blockLetter}>{block.letter}</span>
+                <div className={styles.blockMeta}>
+                  <h3 className={styles.blockTitle}>{block.title}</h3>
+                  <span className={styles.blockCount}>{block.count} {block.count === 1 ? 'рішення' : block.count < 5 ? 'рішення' : 'рішень'}</span>
+                </div>
               </div>
-              <div className={styles.taskBody}>
-                <span className={styles.taskName}>{t.task}</span>
-                <span className={styles.taskResult}>{t.result}</span>
-              </div>
+              <p className={styles.blockText}>{block.text}</p>
             </div>
           ))}
         </div>
 
-        {/* CTA after value demonstration */}
+        {/* Feature callouts */}
+        <div className={styles.features}>
+          {whatsInsideFeatures.map((feature, i) => (
+            <div key={i} className={styles.featureCard}>
+              <svg className={styles.featureIcon} width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                <circle cx="10" cy="10" r="10" fill="var(--color-cta)" opacity="0.12" />
+                <path d="M6 10l3 3 5-5" stroke="var(--color-cta)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+              <p className={styles.featureText}>{feature}</p>
+            </div>
+          ))}
+        </div>
+
+        {/* CTA */}
         <div className={styles.ctaBlock}>
           <a href={TELEGRAM_PURCHASE_LINK} className={styles.cta}>
-            {heroContent.cta}
+            {pricingContent.cta}
           </a>
-          <p className={styles.trustLine}>Без підписок · Гарантія повернення</p>
         </div>
       </div>
     </section>

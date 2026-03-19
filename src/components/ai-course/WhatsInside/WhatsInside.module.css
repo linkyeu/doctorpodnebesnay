@@ -1,8 +1,8 @@
-/* ─── "What you get" — product contents section ─── */
+/* ─── What's Inside — 4 content blocks with visual hierarchy ─── */
 
 .section {
   background: var(--color-bg);
-  padding: var(--space-16) var(--space-6);
+  padding: var(--space-20) var(--space-6);
 }
 
 .container {
@@ -15,99 +15,145 @@
   font-weight: 700;
   color: var(--color-text);
   text-align: center;
-  margin-bottom: var(--space-10);
+  margin-bottom: var(--space-3);
   letter-spacing: -0.02em;
 }
 
-/* ─── Task cards grid ─── */
-
-.taskGrid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--space-4);
-  margin-bottom: var(--space-10);
-  max-width: 900px;
+.subheading {
+  text-align: center;
+  font-size: 1rem;
+  color: #4B5563;
+  margin-bottom: var(--space-12);
+  max-width: 600px;
   margin-left: auto;
   margin-right: auto;
+  line-height: 1.6;
+}
+
+/* ─── Blocks grid ─── */
+
+.blocksGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-5);
+  max-width: 900px;
+  margin: 0 auto var(--space-10);
 }
 
 @media (min-width: 640px) {
-  .taskGrid {
+  .blocksGrid {
     grid-template-columns: repeat(2, 1fr);
-    gap: var(--space-5);
+    gap: var(--space-6);
   }
 }
 
-/* Center last item when odd count on desktop */
-@media (min-width: 640px) {
-  .taskCard:last-child:nth-child(odd) {
-    grid-column: 1 / -1;
-    max-width: 50%;
-    margin: 0 auto;
-  }
-}
-
-/* ─── Individual task card ─── */
-
-.taskCard {
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  text-align: left;
-  gap: var(--space-4);
-  padding: var(--space-6);
+.block {
   background: var(--color-surface);
-  border-radius: 14px;
   border: 1px solid var(--color-border);
-}
-
-/* ─── Icon ─── */
-
-.taskIcon {
-  width: 56px;
-  height: 56px;
-  flex-shrink: 0;
-  border-radius: 12px;
+  border-radius: 20px;
+  padding: var(--space-7, 1.75rem) var(--space-6);
+  position: relative;
   overflow: hidden;
-  background: transparent;
+  box-shadow: var(--shadow-sm);
 }
 
-.taskImage {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.06));
-}
+/* Color-coded left border per block */
+.block:nth-child(1) { border-left: 4px solid #1B3A4B; }
+.block:nth-child(2) { border-left: 4px solid #C8956C; }
+.block:nth-child(3) { border-left: 4px solid #16A34A; }
+.block:nth-child(4) { border-left: 4px solid #6366F1; }
 
-/* ─── Task text ─── */
-
-.taskBody {
+.blockHeader {
   display: flex;
-  flex-direction: column;
-  gap: var(--space-1);
+  align-items: flex-start;
+  gap: var(--space-4);
+  margin-bottom: var(--space-4);
+}
+
+.blockLetter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  font-size: 1.1rem;
+  font-weight: 800;
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+/* Color-matched letter badges */
+.block:nth-child(1) .blockLetter { background: #EFF6F8; color: #1B3A4B; }
+.block:nth-child(2) .blockLetter { background: #F5EDE4; color: #9A6D44; }
+.block:nth-child(3) .blockLetter { background: #F0FDF4; color: #16A34A; }
+.block:nth-child(4) .blockLetter { background: #EEF2FF; color: #6366F1; }
+
+.blockMeta {
+  flex: 1;
   min-width: 0;
 }
 
-.taskName {
-  font-size: var(--text-base);
-  font-weight: var(--weight-bold);
+.blockTitle {
+  font-size: 1.05rem;
+  font-weight: 700;
   color: var(--color-text);
-  line-height: var(--leading-snug);
+  line-height: 1.3;
+  margin-bottom: var(--space-1);
 }
 
-.taskResult {
-  font-size: var(--text-sm);
-  color: var(--color-text-muted);
-  line-height: var(--leading-normal);
+.blockCount {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #4B5563;
+  opacity: 0.7;
 }
 
-/* ─── CTA block ─── */
+.blockText {
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: #4B5563;
+  margin: 0;
+}
+
+/* ─── Feature callouts ─── */
+
+.features {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  max-width: 700px;
+  margin: 0 auto var(--space-10);
+}
+
+.featureCard {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  padding: var(--space-5) var(--space-6);
+  background: #F0FDF4;
+  border: 1px solid #D1FAE5;
+  border-radius: 14px;
+}
+
+.featureIcon {
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.featureText {
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: var(--color-text);
+  font-weight: 500;
+  margin: 0;
+}
+
+/* ─── CTA ─── */
 
 .ctaBlock {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--space-3);
+  justify-content: center;
 }
 
 .cta {
@@ -122,10 +168,16 @@
   font-size: 1.05rem;
   text-decoration: none;
   box-shadow: 0 4px 14px rgba(22, 163, 74, 0.3);
-  transition:
-    background 0.2s ease,
-    transform 0.2s ease,
-    box-shadow 0.2s ease;
+  transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .cta {
+    width: auto;
+  }
 }
 
 .cta:hover {
@@ -133,10 +185,4 @@
   color: #fff;
   transform: translateY(-1px);
   box-shadow: 0 6px 20px rgba(22, 163, 74, 0.35);
-}
-
-.trustLine {
-  font-size: 0.82rem;
-  color: var(--color-text-muted);
-  letter-spacing: 0.02em;
 }

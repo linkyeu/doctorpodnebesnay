@@ -1,6 +1,6 @@
 .footer {
   background: var(--color-bg-dark-alt);
-  padding: var(--space-8) var(--space-6);
+  padding: var(--space-10) var(--space-6);
   text-align: center;
 }
 
@@ -33,30 +33,7 @@
   flex-shrink: 0;
 }
 
-.bottom {
-  display: flex;
-  align-items: center;
-  gap: var(--space-3);
-}
-
 .copyright {
   font-size: var(--text-xs);
   color: rgba(255, 255, 255, 0.35);
-}
-
-.siteLink {
-  font-size: var(--text-xs);
-  color: rgba(255, 255, 255, 0.35);
-  text-decoration: none;
-  transition: color var(--transition-fast);
-}
-
-.siteLink::before {
-  content: '·';
-  margin-right: var(--space-3);
-  color: rgba(255, 255, 255, 0.2);
-}
-
-.siteLink:hover {
-  color: rgba(255, 255, 255, 0.6);
 }

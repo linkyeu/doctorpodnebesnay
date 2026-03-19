@@ -27,190 +27,6 @@ export interface FaqItem {
   answer: string;
 }
 
-// ── How It Works (3-step process) ──
-
-export interface HowItWorksStep {
-  id: string;
-  image: string;
-  emoji: string;
-  num: string;
-  title: string;
-  description: string;
-}
-
-export const howItWorksSteps: HowItWorksStep[] = [
-  {
-    id: 'step-choose',
-    image: '/images/ai-course/steps/step-1-choose.webp',
-    emoji: '📋',
-    num: '01',
-    title: 'Обираєте задачу',
-    description:
-      'Документація, діагностика, протоколи, пояснення пацієнтам, лікування тощо — відкриваєте розділ, який потрібен саме зараз.',
-  },
-  {
-    id: 'step-use',
-    image: '/images/ai-course/steps/step-2-use.webp',
-    emoji: '⚡',
-    num: '02',
-    title: 'Використовуєте готове рішення',
-    description:
-      'Покрокова інструкція для кожної задачі: який інструмент відкрити, що написати, куди підставити дані пацієнта. Не треба нічого вигадувати.',
-  },
-  {
-    id: 'step-result',
-    image: '/images/ai-course/steps/step-3-result.webp',
-    emoji: '✅',
-    num: '03',
-    title: 'Отримуєте результат за хвилини',
-    description:
-      'Виписка, диференційний діагноз з джерелами, відповідь батькам пацієнта та інше — те, що раніше забирало годину. Ви перевіряєте і приймаєте рішення.',
-  },
-];
-
-export const howItWorksFooter =
-  'Онлайн-довідник + відео-інструкції + 10 готових ноутбуків з протоколами + Telegram підтримка';
-
-// ── What's Inside ──
-
-export interface WhatsInsideTask {
-  id: string;
-  image: string;
-  task: string;
-  result: string;
-}
-
-export const whatsInsideHeading = 'Що ви зможете одразу';
-
-export const whatsInsideSubtitle = '';
-
-export const whatsInsideTasks: WhatsInsideTask[] = [
-  {
-    id: 'task-diag',
-    image: '/images/ai-course/whats-inside/diagnosis.webp',
-    task: 'Правильні промпти для діагностики',
-    result: 'Як отримати диференційний діагноз з посиланнями на джерела — а не загальні фрази',
-  },
-  {
-    id: 'task-protocols',
-    image: '/images/ai-course/whats-inside/protocols.webp',
-    task: 'Робота з клінічними рекомендаціями',
-    result: 'Як знайти актуальну рекомендацію МОЗ, CDC та інших доказових джерел через ШІ — за секунди',
-  },
-  {
-    id: 'task-patients',
-    image: '/images/ai-course/whats-inside/patients.webp',
-    task: 'Відповіді на «ChatGPT сказав інше»',
-    result: 'Як за 30 секунд дати пацієнту відповідь з посиланням на протокол',
-  },
-  {
-    id: 'task-safety',
-    image: '/images/ai-course/whats-inside/safety.webp',
-    task: 'Перевірка джерел і уникнення галюцинацій',
-    result: 'Як відрізнити реальне джерело від вигаданого — чеклісти для кожної відповіді ШІ',
-  },
-  {
-    id: 'task-docs',
-    image: '/images/ai-course/whats-inside/docs.webp',
-    task: 'Підготовка медичної документації',
-    result: 'Як отримати виписку за структурою вашої клініки — фінальне рішення завжди за вами',
-  },
-];
-
-export const whatsInsideFormat = {
-  line1: 'Онлайн-довідник + відео-інструкції + 10 готових ноутбуків з протоколами МОЗ + Telegram підтримка',
-  line2: '',
-};
-
-// ── Before/After Example ──
-
-export const beforeAfterExample = {
-  heading: 'Один випадок. Два підходи.',
-  scenario: 'Пацієнт 52 роки, біль у грудях, задишка, три хронічні діагнози. Потрібен диференційний діагноз.',
-  before: {
-    label: 'Без довідника',
-    text: 'Відкриваєте протокол — 80 сторінок. Шукаєте потрібний розділ. Згадуєте, чи оновлювали його цього року. Перевіряєте взаємодії ліків окремо. Це — години.',
-  },
-  after: {
-    label: 'З довідником',
-    prompt: 'Відкриваєте рішення «Диференційний діагноз».\nВводите дані пацієнта в ChatGPT.\nЧерез 2 хвилини — структурований список із посиланнями на джерела.',
-    result: 'Жодних налаштувань. Копіюєте дані пацієнта — отримуєте відповідь із джерелом. Навіть якщо ви ніколи не відкривали ChatGPT.',
-  },
-  footer: '',
-};
-
-// ── Workflow Examples (merged into Solution section) ──
-
-export interface WorkflowExample {
-  id: string;
-  emoji: string;
-  title: string;
-  before: { label: string; barPercent: number };
-  after: { label: string; barPercent: number };
-  multiplier: string;
-  detail: string;
-}
-
-export const workflowExamples: WorkflowExample[] = [
-  {
-    id: 'wf-1',
-    emoji: '📋',
-    title: 'Виписка пацієнта',
-    before: { label: '40 хвилин ручного друку', barPercent: 85 },
-    after: { label: '5 хвилин з ШІ', barPercent: 12 },
-    multiplier: 'у 8× швидше',
-    detail: 'Шаблон генерує виписку за структурою вашої клініки — вам лишається перевірити і підписати.',
-  },
-  {
-    id: 'wf-2',
-    emoji: '🔍',
-    title: 'Друга думка при складному випадку',
-    before: { label: 'Пошук у підручниках та дзвінки колегам — 30 хв', barPercent: 75 },
-    after: { label: 'Диф. діагноз з джерелами за 2 хвилини', barPercent: 8 },
-    multiplier: 'у 15× швидше',
-    detail: 'Описуєте симптоми — отримуєте варіанти диф. діагнозу з посиланнями на протоколи. Ви перевіряєте і приймаєте рішення.',
-  },
-  {
-    id: 'wf-3',
-    emoji: '🛡️',
-    title: 'Пацієнт із «діагнозом від ChatGPT»',
-    before: { label: 'Спір на прийомі, пошук спростування — 15 хв', barPercent: 65 },
-    after: { label: 'Відповідь з посиланням на протокол — 30 сек', barPercent: 5 },
-    multiplier: 'миттєво',
-    detail: 'Пацієнт каже "ChatGPT сказав інше" — ви за секунди знаходите підтвердження чи спростування з посиланням на клінічну настанову.',
-  },
-  {
-    id: 'wf-4',
-    emoji: '💊',
-    title: 'Рідкісне призначення по протоколу',
-    before: { label: 'Пошук дозування та схеми — 20-40 хв', barPercent: 70 },
-    after: { label: 'Схема з дозуванням і джерелом — 1 хв', barPercent: 6 },
-    multiplier: 'у 20× швидше',
-    detail: 'Діагноз є, але схема лікування рідкісна. ШІ знаходить актуальний протокол з дозуванням і посиланням — ви перевіряєте.',
-  },
-  {
-    id: 'wf-5',
-    emoji: '📰',
-    title: 'Моніторинг оновлень і новин',
-    before: { label: 'Самостійно перевіряти джерела — годинами щотижня', barPercent: 80 },
-    after: { label: 'ШІ збирає дайджест за вас — раз на тиждень', barPercent: 5 },
-    multiplier: 'автоматично',
-    detail: 'Нові протоколи, зміни в настановах, важливі публікації — ШІ моніторить джерела і готує стислий дайджест. Ви просто читаєте.',
-  },
-  {
-    id: 'wf-6',
-    emoji: '📅',
-    title: 'Підготовка до планового прийому',
-    before: { label: 'Перечитувати картку, згадувати історію — 10-15 хв', barPercent: 60 },
-    after: { label: 'Стислий брифінг від ШІ — за 1 хвилину', barPercent: 5 },
-    multiplier: 'у 10× швидше',
-    detail: 'Завтра плановий прийом — ШІ готує коротке резюме: діагнози, призначення, на що звернути увагу. Ви приходите підготовленим.',
-  },
-];
-
-export const workflowExamplesFooter =
-  '...і ще рішення для комунікації з пацієнтами, пошуку evidence, наукових статей та безпеки даних.';
-
 // ── Hero ──
 
 export interface HeroBadge {
@@ -231,108 +47,131 @@ export const heroContent = {
 
 // ── Pain Points ──
 
+export const painPointsHeading = 'Знайомо?';
+
 export const painPoints: PainPoint[] = [
   {
     id: 'pain-1',
     icon: 'alert',
-    headline: 'П\'ять скарг одночасно — і думка: «Може, я щось пропустив?»',
-    text: 'Дивитесь на аналізи — і не впевнені, що нічого не пропустили. Вечір, а в голові все ще той складний випадок.',
+    headline: 'Ступор перед пацієнтом',
+    text: 'Симптоми не вкладаються в жоден діагноз. Теорію знаєш — а що робити прямо зараз, незрозуміло. Пацієнт дивиться на тебе і чекає відповідь.',
   },
   {
     id: 'pain-2',
-    icon: 'brain',
-    headline: 'Протокол оновили — а ви ще не бачили.',
-    text: 'Виписка, яку треба було здати ще вчора. Настанови змінились — а ви дізнались постфактум.',
+    icon: 'search',
+    headline: 'Гугл замість протоколів',
+    text: 'Шукаєш відповідь англійською, бо українською — нічого. Знаходиш статтю 2019 року. Не впевнений, чи це ще актуально. Витрачаєш 30 хвилин — і все одно сумніваєшся.',
   },
   {
     id: 'pain-3',
-    icon: 'users',
-    headline: 'Колега каже: «Я запитав ChatGPT» — а ви ще не пробували.',
-    text: 'Не знаєте, що відповісти. Не тому, що не знаєте медицину — а тому, що не було часу розібратись.',
+    icon: 'clock',
+    headline: 'Виписка на 40 хвилин',
+    text: 'Колега робить виписку за 5 хвилин. Ти — за 40. Не тому що гірший лікар. Просто ніхто не показав коротший шлях.',
   },
 ];
 
 export const painAccent = {
-  text: 'Це не про брак знань. Це про брак часу та інструментів, які дають відповідь одразу.',
-  stat: 'Навіть якщо ви ніколи не відкривали ChatGPT — довідник проведе вас по кроках',
+  text: 'Ти не поганий лікар. Тобі просто потрібен інструмент, який працює з українськими протоколами МОЗ — і дає відповідь за хвилину, а не за годину.',
+  stat: '',
   cta: 'Отримати довідник — 999 ₴',
 };
 
-// ── Why Not Just ChatGPT ──
+// ── Before/After Example ──
 
-export interface WhyNotPoint {
+export const beforeAfterExample = {
+  heading: 'Один випадок. Два підходи.',
+  scenario: 'Пацієнтка, 34 роки. Скарги: втома, набір ваги, випадіння волосся.',
+  before: {
+    label: 'БЕЗ довідника',
+    text: 'Гуглиш диференціальну діагностику. Відкриваєш три статті англійською. Перечитуєш протокол МОЗ — десятки сторінок. Призначаєш аналізи — але не впевнений, чи нічого не пропустив.',
+    time: '30-40 хвилин',
+    confidence: 'Впевненості: мало.',
+  },
+  after: {
+    label: 'З довідником',
+    text: 'Відкриваєш готове рішення. Вводиш дані пацієнтки в ChatGPT. Отримуєш диференціальний діагноз із посиланням на протокол МОЗ. Бачиш, які аналізи призначити і чому.',
+    time: '2 хвилини',
+    confidence: 'Впевненості: максимум.',
+  },
+  footer: 'Не потрібно нічого вчити. Не потрібно проходити курс. Відкрив — скопіював — отримав результат.',
+  cta: 'Отримати довідник — 999 ₴',
+};
+
+// ── What's Inside ──
+
+export interface WhatsInsideBlock {
   id: string;
-  icon: 'zap' | 'shield' | 'target';
+  letter: string;
   title: string;
+  count: number;
   text: string;
 }
 
-export const whyNotChatGptHeading = 'Чому не просто ChatGPT?';
+export const whatsInsideHeading = 'Що всередині';
+export const whatsInsideSubheading = '17 готових рішень у 4 блоках. Кожне — це конкретна задача лікаря, яку ШІ вирішує за хвилини.';
 
-export const whyNotChatGptPoints: WhyNotPoint[] = [
+export const whatsInsideBlocks: WhatsInsideBlock[] = [
   {
-    id: 'why-1',
-    icon: 'target',
-    title: 'ChatGPT не знає ваших протоколів',
-    text: 'Ви питаєте про дозування — ChatGPT відповідає без настанов МОЗ, без PubMed, без віку пацієнта. Просто «в середньому». Щоб відповідь була точною — потрібен запит зі структурою і джерелами.',
+    id: 'block-a',
+    letter: 'А',
+    title: 'Протоколи, статті, лекції',
+    count: 5,
+    text: 'Завантажуєш протокол чи статтю → отримуєш відповідь на своє питання з цитатою з джерела. Конспект лекції, переказ статті, пошук по протоколу — без читання на 2 години.',
   },
   {
-    id: 'why-2',
-    icon: 'shield',
-    title: 'Він помиляється — і ви цього не бачите',
-    text: 'ChatGPT впевнено називає дозування, вигадує джерела, посилається на скасовані протоколи. Виглядає переконливо — поки не перевірите. А перевірка займає стільки ж часу, скільки пошук без ШІ.',
+    id: 'block-b',
+    letter: 'Б',
+    title: 'Діагноз, аналізи, лікування',
+    count: 6,
+    text: 'Вводиш симптоми та аналізи пацієнта → отримуєш диференціальний діагноз, план обстеження, перевірку взаємодій ліків. Із посиланнями на протоколи.',
   },
   {
-    id: 'why-3',
-    icon: 'zap',
-    title: 'Правильно використовувати ШІ — це методологія',
-    text: 'Який інструмент обрати? Як налаштувати пам\'ять? Як перевірити відповідь? Правильний промпт — лише частина. У довіднику — повна методологія: інструменти, налаштування, промпти, перевірка.',
+    id: 'block-c',
+    letter: 'В',
+    title: 'Розмова з пацієнтом',
+    count: 3,
+    text: 'Потрібно пояснити діагноз простою мовою? Відповісти на повідомлення пацієнта? Провести складну розмову? Готова відповідь — за 30 секунд.',
+  },
+  {
+    id: 'block-d',
+    letter: 'Г',
+    title: 'Виписки та форми',
+    count: 2,
+    text: 'Виписка чи форма МОЗ — за кілька хвилин замість 40.',
   },
 ];
 
-// ── Audience Personas ──
-
-export interface Persona {
-  id: string;
-  emoji: string;
-  image: string;
-  heading: string;
-  text: string;
-}
-
-export const personas: Persona[] = [
-  {
-    id: 'persona-young',
-    emoji: '🩺',
-    image: '/images/ai-course/personas/young-doctor.webp',
-    heading: 'Молодий лікар — хочете впевненіше приймати рішення',
-    text: 'Перший самостійний прийом, нечіткі симптоми — а спитати нікого. Довідник дає другу думку з джерелами.',
-  },
-  {
-    id: 'persona-experienced',
-    emoji: '📚',
-    image: '/images/ai-course/personas/experienced-doctor.webp',
-    heading: 'Досвідчений лікар — хочете працювати швидше',
-    text: 'Не хочете витрачати години на пошук інформації в десятках PDF. ШІ знаходить потрібне за секунди.',
-  },
-  {
-    id: 'persona-afterleave',
-    emoji: '🔄',
-    image: '/images/ai-course/personas/after-leave-doctor.webp',
-    heading: 'Повернулись після декрету — треба наздогнати',
-    text: 'Рекомендації змінились, з\'явились нові стандарти. Довідник допоможе закрити прогалини швидко.',
-  },
-  {
-    id: 'persona-curious',
-    emoji: '💡',
-    image: '/images/ai-course/personas/curious-doctor.webp',
-    heading: 'Хочете бути конкурентними в епоху ШІ',
-    text: 'Питання не в тому, чи використовувати ШІ. Питання — чи будете ви використовувати його краще за інших.',
-  },
+export const whatsInsideFeatures = [
+  '+ Покрокові інструкції до кожного рішення. Навіть якщо ти ніколи не користувався ChatGPT — відкриєш і зрозумієш. Жодних технічних навичок.',
+  'Працює з безкоштовними версіями. Не потрібна платна підписка на ChatGPT чи будь-що інше.',
 ];
 
 // ── Author Trust (full section) ──
 
+export const authorTrustHeading = 'Хто це створив';
+
+export const authorTrustAuthors = [
+  {
+    id: 'luba',
+    name: 'Любов Піднебесна',
+    role: 'Сімейний лікар',
+    bio: '13+ років практики. Працює в Добробут, Київ. Щодня приймає пацієнтів — і щодня користується цими рішеннями сама.',
+    photo: '/images/ai-course/instructor-luba.webp',
+    initials: 'ЛП',
+  },
+  {
+    id: 'denys',
+    name: 'Денис Філіппов',
+    role: 'Інженер у сфері ШІ',
+    bio: '12+ років досвіду, IBM. Побудував технічну частину так, щоб будь-який лікар розібрався з першого разу.',
+    photo: '',
+    initials: 'ДФ',
+  },
+];
+
+export const authorTrustClosing = 'Це не маркетинговий продукт від людей, далеких від медицини. Це робочий інструмент від лікаря, яка сама ним користується на прийомах.';
+
+// Keep backward compat
 export const mainInstructor: Instructor = {
   id: 'luba',
   name: 'Др. Любов Піднебесна',
@@ -344,48 +183,12 @@ export const mainInstructor: Instructor = {
 };
 
 export const techAuthorLine = 'Технічна частина: ШІ-інженер (IBM)';
-
-// Keep backward compat
 export const instructors: Instructor[] = [mainInstructor];
-
 export const authorTrustSubtitle = '';
-
 export const authorTrustBadges = [
   'Створено лікарем-практиком',
   'Перевірено ШІ-інженером IBM',
   'Українською мовою',
-];
-
-// ── Social Proof (trust quotes from @medicalforua community) ──
-
-export interface SocialProofQuote {
-  id: string;
-  text: string;
-  author: string;
-  role: string;
-}
-
-export const socialProofHeading = 'Перші відгуки колег';
-
-export const socialProofQuotes: SocialProofQuote[] = [
-  {
-    id: 'sp-1',
-    text: 'Раніше писала в ChatGPT «підбери антибіотик при отиті» — загальні фрази без джерел. Тут вставляю дані пацієнта — отримую варіанти з посиланнями на протоколи.',
-    author: 'Олена К.',
-    role: 'лікар-інтерн, сімейна медицина',
-  },
-  {
-    id: 'sp-2',
-    text: 'Перший самостійний прийом, нечіткі симптоми — ступор. Добре що це довідник, а не курс на 20 годин: відкрив, ввів симптоми, отримав три варіанти з поясненням. Як досвідчений колега поруч.',
-    author: 'Андрій М.',
-    role: 'лікар-інтерн, терапія',
-  },
-  {
-    id: 'sp-3',
-    text: 'Ледь не призначила те, що ChatGPT видав з неіснуючого джерела. Тепер є чеклісти «коли НЕ довіряти ШІ» — знаю, що перевіряти.',
-    author: 'Марія Т.',
-    role: 'лікар-інтерн, педіатрія',
-  },
 ];
 
 // ── Pricing ──
@@ -401,7 +204,103 @@ export const competitorPrices: CompetitorPrice[] = [
   { name: 'Закордонні курси', price: '$500–2 500' },
 ];
 
-// ── What's Inside Overview (product explanation — after pain points) ──
+export const pricingContent = {
+  sectionTitle: 'Одна ціна. Без підписок.',
+  price: '999 ₴',
+  priceNote: 'Це ~24€. Одноразово. Назавжди.',
+  features: [
+    '17 готових рішень для щоденних задач лікаря',
+    'Покрокові інструкції до кожного',
+    'Доступ до онлайн-довідника — назавжди',
+    'Оновлення: нові рішення, нові інструменти, нові протоколи — автоматично',
+    'Telegram-підтримка: застрягли? Напишіть — допоможемо',
+  ],
+  highlightFeatures: [3, 4], // indices of features that need visual emphasis (updates + TG support)
+  competitorText: 'Курси з ШІ для лікарів в Україні — від 11 000 до 65 000 ₴. Це в 10-25 разів дорожче. І це курси — з модулями, домашками, дедлайнами. Тут — відкрив і працюєш.',
+  guarantee: 'Гарантія повернення грошей. Не підійшло? Повне повернення. Без питань.',
+  cta: 'Отримати довідник — 999 ₴',
+  trustBadge: 'Створено лікарем з 13+ років практики',
+  subtitle: '',
+  timeSaving: '',
+  urgency: '',
+  priceEuro: '~€24',
+};
+
+// ── Footer ──
+
+export const courseFooterContent = {
+  telegram: '@doctorpidnebesna',
+  telegramUrl: 'https://t.me/doctorpidnebesna',
+  siteUrl: 'https://doctorpidnebesna.com',
+  copyright: '© Лікар Піднебесна, 2026',
+};
+
+// ── Legacy exports (kept for backward compat, not used on landing) ──
+
+export interface HowItWorksStep {
+  id: string;
+  image: string;
+  emoji: string;
+  num: string;
+  title: string;
+  description: string;
+}
+
+export const howItWorksSteps: HowItWorksStep[] = [];
+export const howItWorksFooter = '';
+
+export interface WhatsInsideTask {
+  id: string;
+  image: string;
+  task: string;
+  result: string;
+}
+
+export const whatsInsideTasks: WhatsInsideTask[] = [];
+export const whatsInsideFormat = { line1: '', line2: '' };
+
+export interface WorkflowExample {
+  id: string;
+  emoji: string;
+  title: string;
+  before: { label: string; barPercent: number };
+  after: { label: string; barPercent: number };
+  multiplier: string;
+  detail: string;
+}
+
+export const workflowExamples: WorkflowExample[] = [];
+export const workflowExamplesFooter = '';
+
+export interface WhyNotPoint {
+  id: string;
+  icon: 'zap' | 'shield' | 'target';
+  title: string;
+  text: string;
+}
+
+export const whyNotChatGptHeading = '';
+export const whyNotChatGptPoints: WhyNotPoint[] = [];
+
+export interface Persona {
+  id: string;
+  emoji: string;
+  image: string;
+  heading: string;
+  text: string;
+}
+
+export const personas: Persona[] = [];
+
+export interface SocialProofQuote {
+  id: string;
+  text: string;
+  author: string;
+  role: string;
+}
+
+export const socialProofHeading = '';
+export const socialProofQuotes: SocialProofQuote[] = [];
 
 export interface ProductFeature {
   id: string;
@@ -411,94 +310,16 @@ export interface ProductFeature {
 }
 
 export const productOverviewContent = {
-  heading: 'Це не промпти — це методологія',
-  subtitle: 'Промпт без правильного інструменту і налаштування — як рецепт без кухні.',
-  features: [
-    {
-      id: 'pf-tools',
-      emoji: '🔧',
-      title: 'Який інструмент для якої задачі',
-      text: 'ChatGPT, Claude, Perplexity — що краще для діагностики, що для документації, що для пошуку протоколів.',
-    },
-    {
-      id: 'pf-memory',
-      emoji: '🧠',
-      title: 'Налаштування пам\'яті та інструкцій',
-      text: 'Як зробити, щоб ШІ знав вашу спеціальність, клініку та стандарти — і не вигадував.',
-    },
-    {
-      id: 'pf-prompts',
-      emoji: '💬',
-      title: 'Готові промпти під клінічні задачі',
-      text: 'Не загальні шаблони, а конкретні запити: дозування, диф. діагноз, виписка, відповідь пацієнту.',
-    },
-    {
-      id: 'pf-check',
-      emoji: '🛡️',
-      title: 'Чеклісти перевірки',
-      text: 'Коли довіряти відповіді ШІ, коли ні. Як розпізнати галюцинацію. Що перевірити перед призначенням.',
-    },
-    {
-      id: 'pf-steps',
-      emoji: '📋',
-      title: 'Покрокові інструкції',
-      text: 'Що відкрити, куди натиснути, що вставити — для кожної задачі. Жодних IT-навичок.',
-    },
-  ] as ProductFeature[],
-  footer: 'Кожне рішення протестоване на реальних клінічних випадках сімейним лікарем із 13 роками практики.',
+  heading: '',
+  subtitle: '',
+  features: [] as ProductFeature[],
+  footer: '',
 };
 
-export const pricingContent = {
-  sectionTitle: '999 ₴',
-  timeSaving: '',
-  urgency: '',
-  price: '999 ₴',
-  priceEuro: '~€24',
-  subtitle: 'Одноразова покупка. Без підписок.',
-  features: [
-    'Готові рішення для щоденних задач — інструменти, промпти, налаштування',
-    '10 готових ноутбуків з протоколами МОЗ та міжнародними гайдлайнами — просто відкрийте і працюйте',
-    'Telegram бот-підтримка — не зрозуміли? напишіть, допоможемо',
-    'Працює з безкоштовними ШІ-сервісами — без платних підписок',
-    'Жодних IT-навичок — покрокові інструкції для кожної задачі',
-    'Оновлення назавжди — нові рішення, інструменти та протоколи додаються автоматично',
-  ],
-  cta: 'Отримати довідник — 999 ₴',
-  trustBadge: 'Створено лікарем з 13+ років практики',
-  guarantee: 'Якщо довідник вам не підійде — повернемо гроші.',
-};
-
-// ── FAQ (merged with common doubts — shown under pricing) ──
-
-export const courseFaqItems: FaqItem[] = [
-  {
-    id: 'cfaq-1',
-    question: 'Це занадто технічне для мене — я не розбираюсь в IT',
-    answer:
-      'Ніяких IT-навичок. Кожне рішення — покрокова інструкція: який інструмент відкрити, що натиснути, що вставити. Як переслати повідомлення. Усе написано простою мовою, українською.',
-  },
-  {
-    id: 'cfaq-2',
-    question: 'А якщо ШІ помилиться — відповідаю ж я?',
-    answer:
-      'Саме тому кожне рішення має чеклист перевірки — що перевірити, на що звернути увагу, коли НЕ довіряти ШІ. Ви завжди контролюєте результат. ШІ — помічник, не заміна.',
-  },
-];
-
-// ── Final CTA ──
+export const courseFaqItems: FaqItem[] = [];
 
 export const finalCtaContent = {
-  heading: 'Наступний складний пацієнт — вже з підтримкою.',
-  subtext: 'Менше сумнівів. Більше впевненості. З першого дня.',
+  heading: '',
+  subtext: '',
   cta: 'Отримати довідник — 999 ₴',
 };
-
-// ── Footer ──
-
-export const courseFooterContent = {
-  telegram: '@doctorpidnebesna',
-  telegramUrl: 'https://t.me/doctorpidnebesna',
-  siteUrl: 'https://doctorpidnebesna.com',
-  copyright: `© ${new Date().getFullYear()} Др. Піднебесна`,
-};
-

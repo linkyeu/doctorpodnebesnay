@@ -1,6 +1,6 @@
 import { useScrollReveal } from '../../../hooks/useScrollReveal';
 import styles from './BeforeAfter.module.css';
-import { beforeAfterExample } from '../../../data/ai-course';
+import { beforeAfterExample, TELEGRAM_PURCHASE_LINK } from '../../../data/ai-course';
 
 export default function BeforeAfter() {
   const sectionRef = useScrollReveal<HTMLElement>(0.1);
@@ -19,7 +19,10 @@ export default function BeforeAfter() {
               {beforeAfterExample.before.label}
             </div>
             <p className={styles.colText}>{beforeAfterExample.before.text}</p>
-            <p className={styles.time}>20 хвилин</p>
+            <div className={styles.timeBlock}>
+              <span className={styles.time}>{beforeAfterExample.before.time}</span>
+              <span className={styles.confidence}>{beforeAfterExample.before.confidence}</span>
+            </div>
           </div>
 
           {/* After */}
@@ -28,18 +31,22 @@ export default function BeforeAfter() {
               <span className={styles.labelIcon} aria-hidden="true">&#10003;</span>
               {beforeAfterExample.after.label}
             </div>
-
-            {/* Show the actual prompt from the toolkit */}
-            {beforeAfterExample.after.prompt && (
-              <div className={styles.promptBlock}>
-                <span className={styles.promptLabel}>Готовий запит з довідника:</span>
-                <pre className={styles.prompt}>{beforeAfterExample.after.prompt}</pre>
-              </div>
-            )}
-
-            <p className={styles.colText}>{beforeAfterExample.after.result}</p>
-            <p className={styles.time}>3 хвилини</p>
+            <p className={styles.colText}>{beforeAfterExample.after.text}</p>
+            <div className={styles.timeBlock}>
+              <span className={styles.time}>{beforeAfterExample.after.time}</span>
+              <span className={styles.confidence}>{beforeAfterExample.after.confidence}</span>
+            </div>
           </div>
+        </div>
+
+        {beforeAfterExample.footer && (
+          <p className={styles.footer}>{beforeAfterExample.footer}</p>
+        )}
+
+        <div className={styles.ctaBlock}>
+          <a href={TELEGRAM_PURCHASE_LINK} className={styles.cta}>
+            {beforeAfterExample.cta}
+          </a>
         </div>
       </div>
     </section>
