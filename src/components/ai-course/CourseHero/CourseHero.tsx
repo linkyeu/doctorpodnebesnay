@@ -2,6 +2,12 @@ import styles from './CourseHero.module.css';
 import ParticleNetwork from './ParticleNetwork';
 import { heroContent } from '../../../data/ai-course';
 
+const trustItems = [
+  { icon: '/images/ai-course/hero-badges/instant-access.png', label: 'Не курс — працює одразу' },
+  { icon: '/images/ai-course/hero-badges/updates-forever.png', label: 'Оновлення назавжди' },
+  { icon: '/images/ai-course/hero-badges/free-tools.png', label: 'Безкоштовні інструменти' },
+];
+
 export default function CourseHero() {
   const handleScrollToContent = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -47,7 +53,14 @@ export default function CourseHero() {
             {heroContent.heroCta}
           </a>
         </div>
-        <p className={styles.trustLine}>Без підписок · Гарантія повернення</p>
+        <div className={styles.trustRow}>
+          {trustItems.map((item) => (
+            <div key={item.label} className={styles.trustItem}>
+              <img src={item.icon} alt="" className={styles.trustIcon} aria-hidden="true" />
+              <span className={styles.trustLabel}>{item.label}</span>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );

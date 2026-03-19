@@ -31,9 +31,11 @@ export default function AuthorTrust() {
           </div>
         </div>
 
-        <blockquote className={styles.closingBlock}>
-          <p className={styles.closingText}>{authorTrustClosing}</p>
-        </blockquote>
+        {authorTrustClosing && (
+          <blockquote className={styles.closingBlock}>
+            <p className={styles.closingText}>{authorTrustClosing}</p>
+          </blockquote>
+        )}
       </div>
     </section>
   );

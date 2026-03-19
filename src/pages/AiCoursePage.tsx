@@ -2,9 +2,9 @@ import { useEffect } from 'react';
 import styles from './AiCoursePage.module.css';
 import CourseHero from '../components/ai-course/CourseHero/CourseHero';
 import DailyReality from '../components/ai-course/DailyReality/DailyReality';
-import NotACourse from '../components/ai-course/NotACourse/NotACourse';
 import WhatsInside from '../components/ai-course/WhatsInside/WhatsInside';
 import AuthorTrust from '../components/ai-course/AuthorTrust/AuthorTrust';
+import SocialProof from '../components/ai-course/SocialProof/SocialProof';
 import Pricing from '../components/ai-course/Pricing/Pricing';
 import CourseFooter from '../components/ai-course/CourseFooter/CourseFooter';
 import StickyMobileCta from '../components/ai-course/StickyMobileCta/StickyMobileCta';
@@ -15,7 +15,7 @@ export default function AiCoursePage() {
 
     const metaDesc = document.querySelector('meta[name="description"]');
     const descContent =
-      'Впевнений діагноз — навіть у складному випадку. 17 готових рішень для лікарів на основі протоколів МОЗ. 999 ₴, одноразова покупка.';
+      'Впевнений діагноз — навіть у складному випадку. 16 готових рішень для лікарів на основі протоколів МОЗ. 999 ₴, одноразова покупка.';
     if (metaDesc) {
       metaDesc.setAttribute('content', descContent);
     } else {
@@ -69,9 +69,9 @@ export default function AiCoursePage() {
     <div className={styles.coursePage}>
       <CourseHero />
       <DailyReality />
-      <NotACourse />
       <WhatsInside />
       <AuthorTrust />
+      <SocialProof />
       <Pricing />
       <CourseFooter />
       <StickyMobileCta />
