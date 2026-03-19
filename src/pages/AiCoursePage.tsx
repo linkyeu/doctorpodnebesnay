@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 import styles from './AiCoursePage.module.css';
 import CourseHero from '../components/ai-course/CourseHero/CourseHero';
-import PainPoints from '../components/ai-course/PainPoints/PainPoints';
-import BeforeAfter from '../components/ai-course/BeforeAfter/BeforeAfter';
+import DailyReality from '../components/ai-course/DailyReality/DailyReality';
+import NotACourse from '../components/ai-course/NotACourse/NotACourse';
 import WhatsInside from '../components/ai-course/WhatsInside/WhatsInside';
 import AuthorTrust from '../components/ai-course/AuthorTrust/AuthorTrust';
 import Pricing from '../components/ai-course/Pricing/Pricing';
@@ -68,8 +68,8 @@ export default function AiCoursePage() {
   return (
     <div className={styles.coursePage}>
       <CourseHero />
-      <PainPoints />
-      <BeforeAfter />
+      <DailyReality />
+      <NotACourse />
       <WhatsInside />
       <AuthorTrust />
       <Pricing />
