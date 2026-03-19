@@ -149,6 +149,17 @@
   line-height: var(--leading-normal);
 }
 
+.supportLink {
+  color: var(--color-cta);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  transition: opacity var(--transition-fast);
+}
+
+.supportLink:hover {
+  opacity: 0.8;
+}
+
 /* ─── Access block ─── */
 
 .accessBlock {

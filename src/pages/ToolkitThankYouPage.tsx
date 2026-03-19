@@ -89,7 +89,11 @@ export default function ToolkitThankYouPage() {
         </div>
 
         <p className={styles.textMuted}>
-          Не отримали лист? Напишіть нам — допоможемо.
+          Не отримали лист?{' '}
+          <a href="https://t.me/ai_toolkit_support_bot" className={styles.supportLink} target="_blank" rel="noopener noreferrer">
+            Напишіть нам у Telegram
+          </a>{' '}
+          — допоможемо.
         </p>
       </div>
     </div>
