@@ -6,12 +6,13 @@ const trustItems = [
   { icon: '/images/ai-course/hero-badges/instant-access.png', label: 'Не курс — працює одразу' },
   { icon: '/images/ai-course/hero-badges/updates-forever.png', label: 'Оновлення назавжди' },
   { icon: '/images/ai-course/hero-badges/free-tools.png', label: 'Безкоштовні інструменти' },
+  { icon: '/images/ai-course/hero-badges/telegram-support.png', label: 'Підтримка в Telegram' },
 ];
 
 export default function CourseHero() {
   const handleScrollToContent = (e: React.MouseEvent) => {
     e.preventDefault();
-    document.getElementById('whats-inside')?.scrollIntoView({ behavior: 'smooth' });
+    document.getElementById('daily-reality')?.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
@@ -46,7 +47,7 @@ export default function CourseHero() {
         )}
         <div className={styles.ctaWrapper}>
           <a
-            href="#whats-inside"
+            href="#daily-reality"
             onClick={handleScrollToContent}
             className={styles.cta}
           >

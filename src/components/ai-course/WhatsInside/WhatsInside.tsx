@@ -23,11 +23,16 @@ export default function WhatsInside() {
           {whatsInsideBlocks.map((block) => (
             <div key={block.id} className={styles.block}>
               <div className={styles.blockHeader}>
-                <span className={styles.blockLetter}>{block.letter}</span>
-                <div className={styles.blockMeta}>
-                  <h3 className={styles.blockTitle}>{block.title}</h3>
-                  <span className={styles.blockCount}>{block.count} {block.count === 1 ? 'рішення' : block.count < 5 ? 'рішення' : 'рішень'}</span>
-                </div>
+                {block.icon && (
+                  <img
+                    src={block.icon}
+                    alt=""
+                    aria-hidden="true"
+                    className={styles.blockIcon}
+                    loading="lazy"
+                  />
+                )}
+                <h3 className={styles.blockTitle}>{block.title}</h3>
               </div>
               <p className={styles.blockText}>{block.text}</p>
             </div>

@@ -65,33 +65,20 @@
 
 .blockHeader {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   gap: var(--space-4);
   margin-bottom: var(--space-4);
 }
 
-.blockLetter {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  border-radius: 10px;
-  font-size: 1.1rem;
-  font-weight: 800;
+/* 3D clay-render icon — matches toolkit product page */
+.blockIcon {
+  width: 56px;
+  height: 56px;
+  object-fit: contain;
   flex-shrink: 0;
-  line-height: 1;
-}
-
-/* Color-matched letter badges */
-.block:nth-child(1) .blockLetter { background: #EFF6F8; color: #1B3A4B; }
-.block:nth-child(2) .blockLetter { background: #F5EDE4; color: #9A6D44; }
-.block:nth-child(3) .blockLetter { background: #F0FDF4; color: #16A34A; }
-.block:nth-child(4) .blockLetter { background: #EEF2FF; color: #6366F1; }
-
-.blockMeta {
-  flex: 1;
-  min-width: 0;
+  filter:
+    drop-shadow(0 3px 6px rgba(0, 0, 0, 0.12))
+    drop-shadow(0 1px 2px rgba(0, 0, 0, 0.08));
 }
 
 .blockTitle {

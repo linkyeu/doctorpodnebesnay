@@ -20,21 +20,60 @@
   line-height: 1.3;
 }
 
-/* ─── Desktop: 3-col grid ─── */
+/* ─── Desktop: 3-visible sliding carousel ─── */
 
-.grid {
+.desktopCarousel {
   display: none;
 }
 
 @media (min-width: 768px) {
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: var(--space-6);
+  .desktopCarousel {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
   }
 }
 
-/* ─── Mobile: carousel with side arrows ─── */
+.desktopTrackClip {
+  flex: 1;
+  overflow: hidden;
+  min-width: 0;
+}
+
+.desktopTrack {
+  display: flex;
+}
+
+.desktopSlideWrapper {
+  flex: 0 0 calc(100% / var(--total-cards));
+  max-width: calc(100% / var(--total-cards));
+  box-sizing: border-box;
+  padding: 0 var(--space-2);
+}
+
+.desktopSlide {
+  background: var(--color-surface);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-sm);
+  padding: var(--space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.desktopSlide::before {
+  content: '\ab';
+  font-size: 2.5rem;
+  line-height: 1;
+  color: var(--color-accent);
+  font-family: var(--font-display);
+  font-weight: var(--weight-bold);
+}
+
+/* ─── Mobile: single-card carousel with side arrows ─── */
 
 .carouselWrapper {
   display: flex;
@@ -101,11 +140,6 @@
   flex-shrink: 0;
 }
 
-.navBtnLeft,
-.navBtnRight {
-  /* side arrows visible only on mobile via parent .carouselWrapper */
-}
-
 .navBtn:hover {
   background: var(--color-primary-lighter);
   color: var(--color-primary);
@@ -147,34 +181,6 @@
   background: var(--color-primary);
   width: 24px;
   border-radius: 4px;
-}
-
-/* ─── Desktop card styles ─── */
-
-.card {
-  background: var(--color-surface);
-  border-radius: var(--radius-md);
-  padding: var(--space-6) var(--space-6) var(--space-5);
-  margin: 0;
-  box-shadow: var(--shadow-sm);
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-4);
-  border: 1px solid var(--color-border);
-  transition: box-shadow var(--transition-base);
-}
-
-.card:hover {
-  box-shadow: var(--shadow-md);
-}
-
-.card::before {
-  content: '\ab';
-  font-size: 2.5rem;
-  line-height: 1;
-  color: var(--color-accent);
-  font-family: var(--font-display);
-  font-weight: var(--weight-bold);
 }
 
 /* ─── Quote content ─── */
