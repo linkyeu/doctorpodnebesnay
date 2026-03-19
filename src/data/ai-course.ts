@@ -37,7 +37,7 @@ export interface HeroBadge {
 export const heroContent = {
   title: 'Впевнений діагноз —<br>навіть у складному випадку',
   subtitle:
-    'Готові рішення на основі протоколів МОЗ: відкрий потрібне, введи дані пацієнта в ChatGPT — отримай відповідь із джерелом',
+    'Довідник із готовими рішеннями на основі протоколів МОЗ: відкрий потрібне, введи дані пацієнта — отримай відповідь із джерелом',
   sourceNote: '',
   productLine: 'ОНЛАЙН-ДОВІДНИК ВІД ЛІКАРЯ-ПРАКТИКА З 13+ РОКАМИ ДОСВІДУ',
   heroCta: 'Що всередині ↓',
@@ -72,7 +72,7 @@ export const painPoints: PainPoint[] = [
 
 export const painAccent = {
   text: 'Ти не поганий лікар. Тобі просто потрібен інструмент, який працює з українськими протоколами МОЗ — і дає відповідь за хвилину, а не за годину.',
-  stat: '',
+  stat: 'Це не запити для ChatGPT, які можна написати самому — це клінічна система під конкретні задачі лікаря, перевірена на реальних прийомах.',
   cta: 'Отримати довідник — 999 ₴',
 };
 
@@ -107,7 +107,7 @@ export interface WhatsInsideBlock {
   text: string;
 }
 
-export const whatsInsideHeading = 'Що всередині';
+export const whatsInsideHeading = 'Відкриваєш — і працюєш';
 export const whatsInsideSubheading = 'Готові рішення у 4 блоках. Кожне — це конкретна задача лікаря, яку ШІ вирішує за хвилини.';
 
 export const whatsInsideBlocks: WhatsInsideBlock[] = [
@@ -149,7 +149,7 @@ export const whatsInsideFeatures = [
 
 // ── Author Trust (full section) ──
 
-export const authorTrustHeading = 'Хто це створив';
+export const authorTrustHeading = 'Зроблено лікарем, яка сама це використовує';
 
 export const authorTrustAuthor = {
   id: 'luba',
