@@ -11,11 +11,6 @@ export default defineConfig({
         main: resolve(__dirname, 'index.html'),
         'ai-course': resolve(__dirname, 'ai-course.html'),
       },
-      output: {
-        manualChunks: {
-          vendor: ['react', 'react-dom', 'react-router-dom'],
-        },
-      },
     },
   },
 })
