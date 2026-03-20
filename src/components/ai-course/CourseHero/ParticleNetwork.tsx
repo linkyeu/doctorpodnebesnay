@@ -118,7 +118,7 @@ export default function ParticleNetwork() {
       canvas!.style.height = `${height}px`;
       ctx!.setTransform(dpr, 0, 0, dpr, 0, 0);
       buildHexPattern();
-      if (particles.length > 0 && (motionQuery.matches || isMobile)) {
+      if (particles.length > 0 && motionQuery.matches) {
         drawStaticFrame();
       }
     }
@@ -400,10 +400,11 @@ export default function ParticleNetwork() {
     const FRAME_INTERVAL = 1000 / 30;
 
     function animate(now: number) {
-      animId = requestAnimationFrame(animate);
-
-      if (!isVisible) return;
-      if (now - lastFrameTime < FRAME_INTERVAL) return;
+      if (!isVisible) return; // Stop loop when off-screen; IntersectionObserver restarts it
+      if (now - lastFrameTime < FRAME_INTERVAL) {
+        animId = requestAnimationFrame(animate);
+        return;
+      }
       lastFrameTime = now;
 
       const dt = lastTime ? Math.min(now - lastTime, 32) : 16;
@@ -502,12 +503,23 @@ export default function ParticleNetwork() {
       }
 
       updateAndDrawWaves(now);
+
+      // Schedule next frame at END (not top) — allows loop to stop when not visible
+      animId = requestAnimationFrame(animate);
     }
 
-    // IntersectionObserver
+    // IntersectionObserver — stops/restarts RAF loop
+    let wasVisible = false;
     const observer = new IntersectionObserver(
       ([entry]) => {
         isVisible = entry.isIntersecting;
+        if (isVisible && !wasVisible && !motionQuery.matches) {
+          // Restart animation loop when scrolling back into view
+          lastTime = 0;
+          lastFrameTime = 0;
+          animId = requestAnimationFrame(animate);
+        }
+        wasVisible = isVisible;
       },
       { threshold: 0 }
     );
@@ -537,7 +549,7 @@ export default function ParticleNetwork() {
     resize();
     initParticles();
 
-    if (motionQuery.matches || isMobile) {
+    if (motionQuery.matches) {
       drawStaticFrame();
     } else {
       animId = requestAnimationFrame(animate);

@@ -65,28 +65,28 @@ export const whatsInsideBlocks: WhatsInsideBlock[] = [
     letter: 'А',
     title: 'Протоколи, статті, лекції',
     text: 'Протокол, стаття, лекція → відповідь на твоє питання з цитатою з джерела. Без читання на 2 години.',
-    icon: '/images/toolkit/illustrations/solutions/A-block-header.png',
+    icon: '/images/ai-course/block-a.webp',
   },
   {
     id: 'block-b',
     letter: 'Б',
     title: 'Діагноз, аналізи, лікування',
     text: 'Вводиш симптоми та аналізи пацієнта → отримуєш диференціальний діагноз, план обстеження, перевірку взаємодій ліків. Із посиланнями на протоколи.',
-    icon: '/images/toolkit/illustrations/solutions/B-block-header.png',
+    icon: '/images/ai-course/block-b.webp',
   },
   {
     id: 'block-c',
     letter: 'В',
     title: 'Коли пацієнт проти',
     text: 'Антивакс-батьки, відмова від лікування, «в інтернеті написано інакше» — готовий сценарій розмови. Від першої фрази до плану дій.',
-    icon: '/images/toolkit/illustrations/solutions/C-block-header.png',
+    icon: '/images/ai-course/block-c.webp',
   },
   {
     id: 'block-d',
     letter: 'Г',
     title: 'Виписки та форми',
     text: '027/о, 028/о, 003-4/о — вставляєш дані пацієнта, отримуєш готовий текст виписки. Залишається тільки перевірити і підписати.',
-    icon: '/images/toolkit/illustrations/solutions/D-block-header.png',
+    icon: '/images/ai-course/block-d.webp',
   },
 ];
 

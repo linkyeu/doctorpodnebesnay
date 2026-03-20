@@ -1,6 +1,8 @@
+import { lazy, Suspense } from 'react';
 import styles from './CourseHero.module.css';
-import ParticleNetwork from './ParticleNetwork';
 import { heroContent } from '../../../data/ai-course';
+
+const ParticleNetwork = lazy(() => import('./ParticleNetwork'));
 
 const trustIcons: Record<string, React.ReactNode> = {
   zap: (
@@ -43,7 +45,9 @@ export default function CourseHero() {
       </div>
 
       {/* AI particle network overlay */}
-      <ParticleNetwork />
+      <Suspense fallback={null}>
+        <ParticleNetwork />
+      </Suspense>
 
       {/* Gradient overlay for text readability */}
       <div className={styles.heroOverlay} />
