@@ -3,7 +3,6 @@
 .hero {
   position: relative;
   min-height: 100svh;
-  min-height: 100dvh;
   background: linear-gradient(135deg, #0a1628 0%, #132743 50%, #0d1f38 100%);
   overflow: hidden;
   display: flex;
@@ -269,7 +268,6 @@
 @media (max-width: 767px) {
   .hero {
     min-height: 100svh;
-    min-height: 100dvh;
   }
 
   .heroImage {
