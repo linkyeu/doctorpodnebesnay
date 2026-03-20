@@ -140,6 +140,7 @@
   font-weight: 500;
   margin: 0;
   text-align: left;
+  white-space: pre-line;
 }
 
 /* ─── Closing trust block ─── */

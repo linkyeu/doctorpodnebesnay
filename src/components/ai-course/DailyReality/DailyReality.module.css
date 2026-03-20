@@ -96,7 +96,7 @@
 .intro {
   font-size: 1.05rem;
   line-height: 1.6;
-  color: #4B5563;
+  color: #1B3A4B;
   margin: 0 0 16px;
   white-space: pre-line;
 }
@@ -112,7 +112,7 @@
 .list li {
   font-size: 1.05rem;
   line-height: 2;
-  color: #374151;
+  color: #1B3A4B;
   padding-left: 24px;
   position: relative;
 }
@@ -127,7 +127,7 @@
 /* After list — green arrows */
 
 .afterList li {
-  color: #1F2937;
+  color: #1B3A4B;
 }
 
 .afterList li::before {
@@ -141,7 +141,7 @@
 .bottom {
   font-size: 1rem;
   line-height: 1.7;
-  color: #6B7280;
+  color: #1B3A4B;
   margin: 0;
 }
 
