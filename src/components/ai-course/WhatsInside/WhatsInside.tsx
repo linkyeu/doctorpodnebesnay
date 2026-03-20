@@ -5,9 +5,9 @@ import {
   whatsInsideSubheading,
   whatsInsideBlocks,
   whatsInsideFeatures,
-  TELEGRAM_PURCHASE_LINK,
   pricingContent,
 } from '../../../data/ai-course';
+import { getPaymentUrl, trackPurchaseIntent } from '../../../utils/analytics';
 
 export default function WhatsInside() {
   const sectionRef = useScrollReveal<HTMLElement>(0.1);
@@ -17,27 +17,6 @@ export default function WhatsInside() {
       <div className={styles.container}>
         <h2 className={styles.heading}>{whatsInsideHeading}</h2>
         <p className={styles.subheading}>{whatsInsideSubheading}</p>
-
-        {/* 4 content blocks */}
-        <div className={styles.blocksGrid}>
-          {whatsInsideBlocks.map((block) => (
-            <div key={block.id} className={styles.block}>
-              <div className={styles.blockHeader}>
-                {block.icon && (
-                  <img
-                    src={block.icon}
-                    alt=""
-                    aria-hidden="true"
-                    className={styles.blockIcon}
-                    loading="lazy"
-                  />
-                )}
-                <h3 className={styles.blockTitle}>{block.title}</h3>
-              </div>
-              <p className={styles.blockText}>{block.text}</p>
-            </div>
-          ))}
-        </div>
 
         {/* Product video tour */}
         <div className={styles.videoWrapper}>
@@ -61,6 +40,27 @@ export default function WhatsInside() {
           </div>
         </div>
 
+        {/* 4 content blocks */}
+        <div className={styles.blocksGrid}>
+          {whatsInsideBlocks.map((block) => (
+            <div key={block.id} className={styles.block}>
+              <div className={styles.blockHeader}>
+                {block.icon && (
+                  <img
+                    src={block.icon}
+                    alt=""
+                    aria-hidden="true"
+                    className={styles.blockIcon}
+                    loading="lazy"
+                  />
+                )}
+                <h3 className={styles.blockTitle}>{block.title}</h3>
+              </div>
+              <p className={styles.blockText}>{block.text}</p>
+            </div>
+          ))}
+        </div>
+
         {/* Feature callouts */}
         <div className={styles.features}>
           {whatsInsideFeatures.map((feature, i) => (
@@ -76,7 +76,11 @@ export default function WhatsInside() {
 
         {/* CTA */}
         <div className={styles.ctaBlock}>
-          <a href={TELEGRAM_PURCHASE_LINK} className={styles.cta}>
+          <a
+            href={getPaymentUrl('whats-inside')}
+            className={styles.cta}
+            onClick={() => trackPurchaseIntent('whats-inside')}
+          >
             {pricingContent.cta}
           </a>
         </div>

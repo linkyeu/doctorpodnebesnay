@@ -1,12 +1,9 @@
-// WayForPay payment link (product: "Онлайн-довідник ШІ-інструментів для лікарів", 999₴)
-export const TELEGRAM_PURCHASE_LINK = 'https://secure.wayforpay.com/payment/sed1c44a9652f';
-
 // ── Hero ──
 
 export const heroContent = {
   title: 'Впевнений прийом —<br>від першого огляду до виписки',
   subtitle:
-    '16 готових ШІ-рішень для щоденної практики лікаря. <br>Діагностика, виписки, протоколи — за хвилини замість годин',
+    '16 готових ШІ-рішень для щоденної практики лікаря. <br>Діагностика, виписки, протоколи — з джерелами, без сумнівів, за хвилини',
   sourceNote: '',
   productLine: '',
   heroCta: 'Що всередині ↓',
@@ -39,9 +36,9 @@ export const dailyRealityContent = {
     heading: 'Той самий прийом із ШІ-рішеннями',
     intro: 'Ти приходиш на роботу — і:',
     benefits: [
-      'виписка, яка забирала 40 хвилин — готова за 10',
       'нетипові симптоми → диференціальний діагноз із посиланням на протокол',
       'пацієнт прийшов з діагнозом від ChatGPT — ти перевіряєш за хвилину',
+      'виписка, яка забирала 40 хвилин — готова за 10',
     ],
     assistantIntro: '',
     assistantTraits: [],
@@ -60,14 +57,14 @@ export interface WhatsInsideBlock {
 }
 
 export const whatsInsideHeading = '16 готових рішень у 4 блоках';
-export const whatsInsideSubheading = 'Не курс із модулями. Відкрив, вставив дані пацієнта, отримав відповідь.';
+export const whatsInsideSubheading = 'Не курс із модулями. Онлайн-довідник: відкрив у браузері, вставив дані пацієнта, отримав відповідь.';
 
 export const whatsInsideBlocks: WhatsInsideBlock[] = [
   {
     id: 'block-a',
     letter: 'А',
     title: 'Протоколи, статті, лекції',
-    text: 'Завантажуєш протокол чи статтю → отримуєш відповідь на своє питання з цитатою з джерела. Конспект лекції, переказ статті, пошук по протоколу — без читання на 2 години.',
+    text: 'Протокол, стаття, лекція → відповідь на твоє питання з цитатою з джерела. Без читання на 2 години.',
     icon: '/images/toolkit/illustrations/solutions/A-block-header.png',
   },
   {
@@ -95,6 +92,7 @@ export const whatsInsideBlocks: WhatsInsideBlock[] = [
 
 export const whatsInsideFeatures = [
   'Працює з безкоштовним ChatGPT — без платних підписок.',
+  'Не просто промпти — рішення, якими лікар користується щодня на консультаціях.',
 ];
 
 // ── Author Trust ──
@@ -112,9 +110,9 @@ export const authorTrustAuthor = {
   socialLink: 'https://t.me/medicalforua',
 };
 
-export const authorTrustQuote = '';
+export const authorTrustQuote = 'Я витрачала десятки хвилин на кожну виписку. Одного дня нарахувала — три години документації замість прийому. Тоді почала тестувати ChatGPT і за рік зробила довідник, яким тепер користуюсь щодня.';
 
-export const authorTrustTechBadge = '⚙️ Технічну частину розробив Lead AI інженер з IBM';
+export const authorTrustTechBadge = '⚙️ Кожне рішення тестувалось 1+ рік на щоденних консультаціях';
 
 export const authorTrustClosing = '';
 
@@ -127,7 +125,7 @@ export interface SocialProofQuote {
   role: string;
 }
 
-export const socialProofHeading = 'Перші відгуки колег';
+export const socialProofHeading = 'Відгуки колег';
 export const socialProofQuotes: SocialProofQuote[] = [
   { id: 'sp-1', text: 'Перший самостійний прийом, нечіткі симптоми — ступор. Відкрив довідник, ввів скарги — три диференціальні діагнози з поясненням. Як досвідчений колега поруч, тільки о третій ночі.', author: 'Андрій М.', role: 'лікар-інтерн, терапія' },
   { id: 'sp-2', text: 'Колега робить епікризи за 5 хвилин — я витрачала 40. Соромно було спитати «як?». Після довідника — 7 хвилин. Без програмування, просто copy-paste.', author: 'Ірина В.', role: 'кардіолог, 12 років стажу' },

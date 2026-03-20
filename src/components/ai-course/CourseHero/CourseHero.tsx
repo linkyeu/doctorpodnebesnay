@@ -15,7 +15,7 @@ const trustIcons: Record<string, React.ReactNode> = {
 };
 
 const trustItems = [
-  { icon: 'zap', label: 'Не курс — працює одразу' },
+  { icon: 'zap', label: 'Онлайн-довідник — працює одразу' },
   { icon: 'stethoscope', label: 'Від лікаря для лікарів' },
   { icon: 'send', label: 'Підтримка в Telegram' },
 ];

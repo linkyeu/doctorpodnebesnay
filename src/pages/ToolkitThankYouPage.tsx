@@ -1,11 +1,6 @@
 import { useEffect } from 'react';
 import styles from './ToolkitThankYouPage.module.css';
-
-declare global {
-  interface Window {
-    gtag?: (...args: unknown[]) => void;
-  }
-}
+import '../utils/analytics'; // Window.gtag type declaration
 
 export default function ToolkitThankYouPage() {
   useEffect(() => {

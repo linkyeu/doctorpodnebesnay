@@ -1,13 +1,14 @@
 import { useState, useEffect } from 'react';
 import styles from './StickyMobileCta.module.css';
-import { heroContent, TELEGRAM_PURCHASE_LINK } from '../../../data/ai-course';
+import { heroContent } from '../../../data/ai-course';
+import { getPaymentUrl, trackPurchaseIntent } from '../../../utils/analytics';
 
 export default function StickyMobileCta() {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      setVisible(window.scrollY > 600);
+      setVisible(window.scrollY > 1500);
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
@@ -20,8 +21,9 @@ export default function StickyMobileCta() {
       aria-hidden={!visible}
     >
       <a
-        href={TELEGRAM_PURCHASE_LINK}
+        href={getPaymentUrl('sticky')}
         className={styles.button}
+        onClick={() => trackPurchaseIntent('sticky')}
       >
         {heroContent.cta}
       </a>

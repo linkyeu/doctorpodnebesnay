@@ -48,9 +48,8 @@ export default function AuthorTrust() {
 
         {authorTrustTechBadge && (
           <div className={styles.techBadgeOutside}>
-            <span className={styles.techBadgeIcon}>⚙️</span>
             <span className={styles.techBadgeText}>
-              Технічну частину розробив{' '}<strong>Lead AI інженер з IBM</strong>
+              {authorTrustTechBadge}
             </span>
           </div>
         )}
