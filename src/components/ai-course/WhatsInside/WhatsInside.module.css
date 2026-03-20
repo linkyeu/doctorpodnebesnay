@@ -99,83 +99,63 @@
   margin: 0;
 }
 
-/* ─── Product screenshots gallery ─── */
+/* ─── Product video tour ─── */
 
-.screenshotsGallery {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--space-8, 32px);
+.videoWrapper {
   max-width: 900px;
   margin: 0 auto var(--space-10);
-}
-
-@media (min-width: 768px) {
-  .screenshotsGallery {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-
-.screenshotWrapper {
-  max-width: 700px;
-  margin: 0 auto;
-}
-
-/* Featured screenshot spans full width on desktop */
-.screenshotFeatured {
-  grid-column: 1 / -1;
-  max-width: 700px;
-  margin: 0 auto;
+  text-align: center;
 }
 
 .browserFrame {
-  border-radius: 12px;
+  background: linear-gradient(145deg, #f8f9fc, #eef1f5);
+  border-radius: 16px;
+  padding: 4px;
+  box-shadow:
+    0 30px 80px rgba(27, 58, 75, 0.18),
+    0 12px 32px rgba(0, 0, 0, 0.1),
+    0 0 0 1px rgba(27, 58, 75, 0.06);
   overflow: hidden;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-  border: 1px solid #E5E7EB;
-  background: #fff;
 }
 
 .browserBar {
   display: flex;
   align-items: center;
-  gap: var(--space-3);
-  padding: 8px 12px;
-  background: #F9FAFB;
-  border-bottom: 1px solid #E5E7EB;
+  gap: var(--space-2);
+  padding: 10px 16px;
+  background: #1B3A4B;
+  border-radius: 12px 12px 0 0;
 }
 
 .browserDots {
   display: flex;
-  gap: 5px;
+  gap: 6px;
 }
 
+.dot:nth-child(1) { background: #ef4444; }
+.dot:nth-child(2) { background: #eab308; }
+.dot:nth-child(3) { background: #22c55e; }
+
 .dot {
-  width: 8px;
-  height: 8px;
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
-  background: #D1D5DB;
 }
 
 .browserUrl {
-  font-size: 0.7rem;
-  color: #9CA3AF;
-  font-family: monospace;
+  font-size: 0.75rem;
+  color: #94a3b8;
+  margin-left: var(--space-2);
+  font-weight: 500;
 }
 
-.screenshotImg {
+.productVideo {
   display: block;
   width: 100%;
   height: auto;
+  border-radius: 0 0 12px 12px;
 }
 
-.screenshotCaption {
-  text-align: center;
-  font-size: 0.75rem;
-  font-style: italic;
-  color: #9CA3AF;
-  margin-top: var(--space-3);
-  margin-bottom: 0;
-}
 
 /* ─── Feature callouts ─── */
 
