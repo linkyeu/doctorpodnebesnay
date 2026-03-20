@@ -40,7 +40,7 @@
         link.as = 'image';
         link.type = 'image/webp';
         link.fetchPriority = 'high';
-        link.href = isMobile ? '/images/ai-course/hero-mobile.webp' : '/images/ai-course/hero-desktop.webp';
+        link.href = '/images/ai-course/hero-medical-bg.webp';
         document.head.appendChild(link);
       }
     </script>
@@ -217,8 +217,7 @@
     <div id="root"></div>
     <script>
       if (location.pathname.startsWith('/ai-course')) {
-        var isMob = window.innerWidth < 768;
-        var src = isMob ? '/images/ai-course/hero-mobile.webp' : '/images/ai-course/hero-desktop.webp';
+        var src = '/images/ai-course/hero-medical-bg.webp';
         document.getElementById('root').innerHTML =
           '<section id="ai-shell">' +
             '<div class="sh-bg"><img src="' + src + '" alt="" fetchpriority="high"></div>' +

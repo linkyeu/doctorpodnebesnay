@@ -107,7 +107,7 @@ export const dailyRealityContent = {
     ],
     assistantIntro: '',
     assistantTraits: [],
-    closing: 'Це не про "AI замінить лікаря".\nЦе про лікаря, який працює впевненіше.',
+    closing: 'Це не про "ШІ замінить лікаря".\nЦе про лікаря, який працює впевненіше.',
   },
 };
 
