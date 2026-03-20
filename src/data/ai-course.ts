@@ -103,16 +103,16 @@ export const authorTrustAuthor = {
   id: 'luba',
   name: 'Любов Піднебесна',
   role: 'Сімейний лікар',
-  bio: 'Клініка «Добробут», Київ. 13+ років практики. Використовую довідник щодня на онлайн-консультаціях.',
+  bio: 'Клініка «Добробут», Київ. 13+ років практики. Використовую довідник на онлайн-консультаціях.',
   photo: '/images/ai-course/instructor-luba.webp',
   initials: 'ЛП',
   socialProof: 'Медичний Telegram-канал — 24 000 підписників',
   socialLink: 'https://t.me/medicalforua',
 };
 
-export const authorTrustQuote = 'Я витрачала десятки хвилин на кожну виписку. Одного дня нарахувала — три години документації замість прийому. Тоді почала тестувати ChatGPT і за рік зробила довідник, яким тепер користуюсь щодня.';
+export const authorTrustQuote = 'Я витрачала десятки хвилин на кожну виписку. Почала тестувати ШІ-інструменти — і за рік зібрала те, що реально працює на прийомі. Без зайвого, тільки перевірені рішення.';
 
-export const authorTrustTechBadge = '⚙️ Кожне рішення тестувалось 1+ рік на щоденних консультаціях';
+export const authorTrustTechBadge = '';
 
 export const authorTrustClosing = '';
 

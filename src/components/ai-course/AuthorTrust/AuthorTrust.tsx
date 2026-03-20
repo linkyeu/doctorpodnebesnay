@@ -1,5 +1,5 @@
 import { useScrollReveal } from '../../../hooks/useScrollReveal';
-import { authorTrustHeading, authorTrustAuthor, authorTrustQuote, authorTrustTechBadge, authorTrustClosing } from '../../../data/ai-course';
+import { authorTrustHeading, authorTrustAuthor, authorTrustQuote, authorTrustClosing } from '../../../data/ai-course';
 import styles from './AuthorTrust.module.css';
 
 export default function AuthorTrust() {
@@ -45,14 +45,6 @@ export default function AuthorTrust() {
             </blockquote>
           )}
         </div>
-
-        {authorTrustTechBadge && (
-          <div className={styles.techBadgeOutside}>
-            <span className={styles.techBadgeText}>
-              {authorTrustTechBadge}
-            </span>
-          </div>
-        )}
 
         {authorTrustClosing && (
           <blockquote className={styles.closingBlock}>
