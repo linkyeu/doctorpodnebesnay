@@ -18,7 +18,7 @@ export default function Pricing() {
           {/* Big price */}
           <div className={styles.priceBlock}>
             <span className={styles.price}>{pricingContent.price}</span>
-            {pricingContent.priceNote && <span className={styles.priceNote}>{pricingContent.priceNote}</span>}
+            <span className={styles.priceAnchor}>{pricingContent.priceAnchor}</span>
           </div>
 
           {/* Features — visually prominent */}

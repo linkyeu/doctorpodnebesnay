@@ -1,5 +1,5 @@
 import { useScrollReveal } from '../../../hooks/useScrollReveal';
-import { authorTrustHeading, authorTrustAuthor, authorTrustTechBadge, authorTrustClosing } from '../../../data/ai-course';
+import { authorTrustHeading, authorTrustAuthor, authorTrustQuote, authorTrustTechBadge, authorTrustClosing } from '../../../data/ai-course';
 import styles from './AuthorTrust.module.css';
 
 export default function AuthorTrust() {
@@ -26,10 +26,34 @@ export default function AuthorTrust() {
           <div className={styles.authorInfo}>
             <h3 className={styles.authorName}>{authorTrustAuthor.name}</h3>
             <span className={styles.authorRole}>{authorTrustAuthor.role}</span>
+            {authorTrustAuthor.socialProof && (
+              <a
+                href={authorTrustAuthor.socialLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.socialProof}
+              >
+                {authorTrustAuthor.socialProof}
+              </a>
+            )}
             <p className={styles.authorBio}>{authorTrustAuthor.bio}</p>
-            <span className={styles.techBadge}>{authorTrustTechBadge}</span>
           </div>
+
+          {authorTrustQuote && (
+            <blockquote className={styles.quote}>
+              <p className={styles.quoteText}>&laquo;{authorTrustQuote}&raquo;</p>
+            </blockquote>
+          )}
         </div>
+
+        {authorTrustTechBadge && (
+          <div className={styles.techBadgeOutside}>
+            <span className={styles.techBadgeIcon}>⚙️</span>
+            <span className={styles.techBadgeText}>
+              Технічну частину розробив{' '}<strong>Lead AI інженер з IBM</strong>
+            </span>
+          </div>
+        )}
 
         {authorTrustClosing && (
           <blockquote className={styles.closingBlock}>

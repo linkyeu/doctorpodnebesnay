@@ -105,12 +105,16 @@ export const authorTrustAuthor = {
   id: 'luba',
   name: 'Любов Піднебесна',
   role: 'Сімейний лікар',
-  bio: '13+ років практики, клініка «Добробут», Київ. Кожне рішення перевірено на реальних прийомах — від диференціальної діагностики до складних розмов із пацієнтами.',
+  bio: 'Клініка «Добробут», Київ. 13+ років практики. Використовую довідник щодня на онлайн-консультаціях.',
   photo: '/images/ai-course/instructor-luba.webp',
   initials: 'ЛП',
+  socialProof: 'Медичний Telegram-канал — 24 000 підписників',
+  socialLink: 'https://t.me/medicalforua',
 };
 
-export const authorTrustTechBadge = '⚙️ Технічна частина: ШІ-інженер з IBM — промпти, захист від галюцинацій, перевірка точності';
+export const authorTrustQuote = '';
+
+export const authorTrustTechBadge = '⚙️ Технічну частину розробив Lead AI інженер з IBM';
 
 export const authorTrustClosing = '';
 
@@ -144,7 +148,9 @@ export const pricingContent = {
     'Telegram-підтримка: застрягли — напишіть, допоможемо',
   ],
   highlightFeatures: [1, 2],
-  competitorText: '',
+  competitors: [],
+  uniqueBadge: '',
+  priceAnchor: '≈ ціна однієї консультації',
   guarantee: 'Не підійшло — повне повернення без питань.',
   cta: 'Отримати довідник — 999 ₴',
   trustBadge: 'Оплата карткою Visa / Mastercard',
