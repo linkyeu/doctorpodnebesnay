@@ -2,10 +2,10 @@ import { lazy, Suspense, useEffect } from 'react';
 import styles from './AiCoursePage.module.css';
 import { trackViewContent } from '../utils/analytics';
 import CourseHero from '../components/ai-course/CourseHero/CourseHero';
+import DailyReality from '../components/ai-course/DailyReality/DailyReality';
+import WhatsInside from '../components/ai-course/WhatsInside/WhatsInside';
 import StickyMobileCta from '../components/ai-course/StickyMobileCta/StickyMobileCta';
 
-const DailyReality = lazy(() => import('../components/ai-course/DailyReality/DailyReality'));
-const WhatsInside = lazy(() => import('../components/ai-course/WhatsInside/WhatsInside'));
 const AuthorTrust = lazy(() => import('../components/ai-course/AuthorTrust/AuthorTrust'));
 const Pricing = lazy(() => import('../components/ai-course/Pricing/Pricing'));
 const CourseFooter = lazy(() => import('../components/ai-course/CourseFooter/CourseFooter'));
@@ -73,9 +73,9 @@ export default function AiCoursePage() {
   return (
     <div className={styles.coursePage}>
       <CourseHero />
+      <DailyReality />
+      <WhatsInside />
       <Suspense fallback={null}>
-        <DailyReality />
-        <WhatsInside />
         <AuthorTrust />
         <Pricing />
         <CourseFooter />

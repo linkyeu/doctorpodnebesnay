@@ -35,6 +35,8 @@ export default function WhatsInside() {
               loop
               muted
               playsInline
+              poster="/videos/toolkit-tour-poster.jpg"
+              preload="none"
               src="/videos/toolkit-tour.webm"
             />
           </div>

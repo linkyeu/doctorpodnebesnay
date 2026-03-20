@@ -23,7 +23,7 @@ const trustItems = [
 export default function CourseHero() {
   const handleScrollToContent = (e: React.MouseEvent) => {
     e.preventDefault();
-    document.getElementById('daily-reality')?.scrollIntoView({ behavior: 'smooth' });
+    document.getElementById('whats-inside')?.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
@@ -56,7 +56,7 @@ export default function CourseHero() {
         <p className={styles.subtitle} dangerouslySetInnerHTML={{ __html: heroContent.subtitle }} />
         <div className={styles.ctaWrapper}>
           <a
-            href="#daily-reality"
+            href="#whats-inside"
             onClick={handleScrollToContent}
             className={styles.cta}
           >
