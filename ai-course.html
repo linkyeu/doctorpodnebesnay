@@ -3,23 +3,37 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Др. Піднебесна — Доказове батьківство без паніки | Сімейний лікар</title>
-    <meta name="description" content="Лікар Любов Піднебесна: консультації для українських батьків по всьому світу. Розвінчуємо міфи, спираємось на науку. Сімейний лікар з 13-річним досвідом." />
+    <title>ШІ-помічник лікаря — готові рішення з джерелами МОЗ | Др. Піднебесна</title>
+    <meta name="description" content="Впевнений діагноз — навіть у складному випадку. 16 готових рішень для лікарів на основі протоколів МОЗ. 999 ₴, одноразова покупка." />
     <!-- Open Graph (Telegram, Facebook, LinkedIn link previews) -->
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://doctorpidnebesna.com/" />
-    <meta property="og:title" content="Др. Піднебесна — Доказове батьківство без паніки | Сімейний лікар" />
-    <meta property="og:description" content="Лікар Любов Піднебесна: консультації для українських батьків по всьому світу. Розвінчуємо міфи, спираємось на науку. Сімейний лікар з 13-річним досвідом." />
-    <meta property="og:image" content="https://doctorpidnebesna.com/og-image.png" />
+    <meta property="og:url" content="https://doctorpidnebesna.com/ai-course" />
+    <meta property="og:title" content="AI-інструменти для лікарів — готові рішення для практики | Др. Піднебесна" />
+    <meta property="og:description" content="Впевнений діагноз — навіть у складному випадку. Готові рішення на основі протоколів МОЗ." />
+    <meta property="og:image" content="https://doctorpidnebesna.com/images/ai-course/og-ai-toolkit.png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="Др. Любов Піднебесна — сімейний лікар, науковий навігатор батьківства" />
+    <meta property="og:image:alt" content="AI-інструменти для лікарів — онлайн-довідник від Др. Піднебесна" />
     <meta property="og:locale" content="uk_UA" />
+    <!-- Preload hero image — LCP element, start downloading immediately -->
+    <link rel="preload" as="image" type="image/webp" fetchpriority="high" href="/images/ai-course/hero-medical-bg.webp" />
+    <!-- Critical CSS for /ai-course hero shell (painted before JS loads) -->
+    <style>
+      #ai-shell{position:relative;min-height:100svh;background:#0a1628;overflow:hidden;display:flex;flex-direction:column}
+      #ai-shell .sh-bg{position:absolute;inset:0;z-index:0}
+      #ai-shell .sh-bg img{display:block;width:100%;height:100%;object-fit:cover;object-position:center top}
+      #ai-shell .sh-ov{position:absolute;inset:0;z-index:1;background:linear-gradient(to bottom,rgba(10,22,40,.18) 0%,rgba(10,22,40,.35) 30%,rgba(10,22,40,.6) 60%,rgba(10,22,40,.85) 100%);pointer-events:none}
+      #ai-shell .sh-ct{position:relative;z-index:10;max-width:740px;margin:auto auto;padding:clamp(60px,8vh,120px) 24px 0;text-align:center;display:flex;flex-direction:column;align-items:center;gap:24px}
+      #ai-shell .sh-t{font-family:Manrope,sans-serif;font-size:2.5rem;line-height:1.2;color:#fff;font-weight:800;text-transform:uppercase;letter-spacing:.03em;text-shadow:0 2px 30px rgba(0,0,0,.5)}
+      @media(max-width:767px){#ai-shell .sh-t{font-size:1.75rem;line-height:1.15}#ai-shell .sh-ct{padding-bottom:40px}}
+      @media(min-width:768px){#ai-shell .sh-ct{padding-bottom:64px}}
+    </style>
+
     <!-- Favicon -->
     <link rel="icon" href="/favicon.ico" sizes="32x32" />
     <link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="32x32" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-    <link rel="canonical" href="https://doctorpidnebesna.com/" />
+    <link rel="canonical" href="https://doctorpidnebesna.com/ai-course" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <!-- Non-render-blocking font load: display=swap handles FOUT -->
@@ -192,6 +206,17 @@
     </noscript>
 
     <div id="root"></div>
+    <script>
+      var src = '/images/ai-course/hero-medical-bg.webp';
+      document.getElementById('root').innerHTML =
+        '<section id="ai-shell">' +
+          '<div class="sh-bg"><img src="' + src + '" alt="" fetchpriority="high"></div>' +
+          '<div class="sh-ov"></div>' +
+          '<div class="sh-ct">' +
+            '<h1 class="sh-t">Впевнений прийом —<br>від першого огляду до виписки</h1>' +
+          '</div>' +
+        '</section>';
+    </script>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

@@ -5,6 +5,17 @@
 [build.environment]
   NODE_VERSION = "22"
 
+# Serve ai-course.html with correct OG tags for /ai-course
+[[redirects]]
+  from = "/ai-course"
+  to = "/ai-course.html"
+  status = 200
+
+[[redirects]]
+  from = "/ai-course/"
+  to = "/ai-course.html"
+  status = 200
+
 # SPA fallback — serves index.html for all routes
 [[redirects]]
   from = "/*"
@@ -17,9 +28,14 @@
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
 
-# No cache for index.html so users always get the latest version
+# No cache for HTML entry points so users always get the latest version
 [[headers]]
   for = "/index.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/ai-course.html"
   [headers.values]
     Cache-Control = "public, max-age=0, must-revalidate"
 
