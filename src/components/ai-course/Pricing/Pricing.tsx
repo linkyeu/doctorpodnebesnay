@@ -1,7 +1,7 @@
 import { useScrollReveal } from '../../../hooks/useScrollReveal';
 import styles from './Pricing.module.css';
 import { pricingContent } from '../../../data/ai-course';
-import { getPaymentUrl, trackPurchaseIntent } from '../../../utils/analytics';
+import { getPaymentUrl, trackAndNavigate } from '../../../utils/analytics';
 
 export default function Pricing() {
   const sectionRef = useScrollReveal<HTMLElement>(0.1);
@@ -51,7 +51,7 @@ export default function Pricing() {
           <a
             href={getPaymentUrl('pricing')}
             className={styles.cta}
-            onClick={() => trackPurchaseIntent('pricing')}
+            onClick={(e) => trackAndNavigate('pricing', e)}
           >
             {pricingContent.cta}
           </a>

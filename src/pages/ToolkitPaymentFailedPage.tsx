@@ -1,8 +1,13 @@
 import { useEffect } from 'react';
 import { TELEGRAM_SUPPORT } from '../data/links';
+import { trackPaymentFailed } from '../utils/analytics';
 import styles from './ToolkitPaymentFailedPage.module.css';
 
 export default function ToolkitPaymentFailedPage() {
+  useEffect(() => {
+    trackPaymentFailed();
+  }, []);
+
   useEffect(() => {
     document.title = 'Помилка оплати | Онлайн-довідник ШІ-інструментів для лікарів';
 
@@ -52,7 +57,7 @@ export default function ToolkitPaymentFailedPage() {
           На жаль, оплату не було завершено. Кошти не списані з вашого рахунку.
         </p>
 
-        <a href="/toolkit" className={styles.retryBtn}>
+        <a href="/ai-course#pricing" className={styles.retryBtn}>
           Спробувати ще раз
         </a>
 
@@ -64,7 +69,7 @@ export default function ToolkitPaymentFailedPage() {
         </p>
       </div>
 
-      <a href="/toolkit" className={styles.backLink}>
+      <a href="/ai-course" className={styles.backLink}>
         ← Повернутися на сторінку продукту
       </a>
     </div>

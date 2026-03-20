@@ -7,7 +7,7 @@ import {
   whatsInsideFeatures,
   pricingContent,
 } from '../../../data/ai-course';
-import { getPaymentUrl, trackPurchaseIntent } from '../../../utils/analytics';
+import { getPaymentUrl, trackAndNavigate } from '../../../utils/analytics';
 
 export default function WhatsInside() {
   const sectionRef = useScrollReveal<HTMLElement>(0.1);
@@ -79,7 +79,7 @@ export default function WhatsInside() {
           <a
             href={getPaymentUrl('whats-inside')}
             className={styles.cta}
-            onClick={() => trackPurchaseIntent('whats-inside')}
+            onClick={(e) => trackAndNavigate('whats-inside', e)}
           >
             {pricingContent.cta}
           </a>

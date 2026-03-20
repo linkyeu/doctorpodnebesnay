@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import styles from './AiCoursePage.module.css';
+import { trackViewContent } from '../utils/analytics';
 import CourseHero from '../components/ai-course/CourseHero/CourseHero';
 import DailyReality from '../components/ai-course/DailyReality/DailyReality';
 import WhatsInside from '../components/ai-course/WhatsInside/WhatsInside';
@@ -10,6 +11,10 @@ import CourseFooter from '../components/ai-course/CourseFooter/CourseFooter';
 import StickyMobileCta from '../components/ai-course/StickyMobileCta/StickyMobileCta';
 
 export default function AiCoursePage() {
+  useEffect(() => {
+    trackViewContent();
+  }, []);
+
   useEffect(() => {
     document.title = 'ШІ-помічник лікаря — готові рішення з джерелами МОЗ | Др. Піднебесна';
 

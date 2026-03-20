@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import styles from './StickyMobileCta.module.css';
 import { heroContent } from '../../../data/ai-course';
-import { getPaymentUrl, trackPurchaseIntent } from '../../../utils/analytics';
+import { getPaymentUrl, trackAndNavigate } from '../../../utils/analytics';
 
 export default function StickyMobileCta() {
   const [visible, setVisible] = useState(false);
@@ -23,7 +23,7 @@ export default function StickyMobileCta() {
       <a
         href={getPaymentUrl('sticky')}
         className={styles.button}
-        onClick={() => trackPurchaseIntent('sticky')}
+        onClick={(e) => trackAndNavigate('sticky', e)}
       >
         {heroContent.cta}
       </a>

@@ -1,15 +1,10 @@
 import { useEffect } from 'react';
 import styles from './ToolkitThankYouPage.module.css';
-import '../utils/analytics'; // Window.gtag type declaration
+import { trackPurchase } from '../utils/analytics';
 
 export default function ToolkitThankYouPage() {
   useEffect(() => {
-    window.gtag?.('event', 'purchase', {
-      event_category: 'conversion',
-      event_label: 'ai_toolkit_payment_success',
-      value: 999,
-      currency: 'UAH',
-    });
+    trackPurchase();
   }, []);
 
   useEffect(() => {
