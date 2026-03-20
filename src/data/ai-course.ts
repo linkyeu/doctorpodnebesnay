@@ -42,7 +42,7 @@ export const dailyRealityContent = {
     ],
     assistantIntro: '',
     assistantTraits: [],
-    closing: 'Це не про ШІ замінить лікаря.\nЦе про лікаря, який працює впевненіше.',
+    closing: '',
   },
 };
 
@@ -143,7 +143,7 @@ export const pricingContent = {
   features: [
     'Без терміну дії — доступ не зникне',
     'Оновлення автоматично: нові рішення, нові протоколи',
-    'Telegram-підтримка: застрягли — напишіть, допоможемо',
+    'Telegram-підтримка: застряг — напиши, допоможемо',
   ],
   highlightFeatures: [1, 2],
   competitors: [],

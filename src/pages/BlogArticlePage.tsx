@@ -1,3 +1,6 @@
+// NOTE: This file is excluded from tsconfig.app.json and routes (App.tsx).
+// To re-enable blog, reinstall: npm i react-markdown remark-gfm rehype-raw rehype-slug
+// Then remove the exclude from tsconfig.app.json and uncomment routes in App.tsx.
 import { useState, useEffect, useMemo, useCallback } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';

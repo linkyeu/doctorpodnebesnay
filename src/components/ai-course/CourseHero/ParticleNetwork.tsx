@@ -118,6 +118,9 @@ export default function ParticleNetwork() {
       canvas!.style.height = `${height}px`;
       ctx!.setTransform(dpr, 0, 0, dpr, 0, 0);
       buildHexPattern();
+      if (particles.length > 0 && (motionQuery.matches || isMobile)) {
+        drawStaticFrame();
+      }
     }
 
     /* ─── Hex grid pattern (cached) ─── */
@@ -390,15 +393,18 @@ export default function ParticleNetwork() {
       }
     }
 
-    /* ─── Main animation loop ─── */
+    /* ─── Main animation loop (throttled to 30fps on desktop) ─── */
 
     let lastTime = 0;
+    let lastFrameTime = 0;
+    const FRAME_INTERVAL = 1000 / 30;
 
     function animate(now: number) {
-      if (!isVisible) {
-        animId = requestAnimationFrame(animate);
-        return;
-      }
+      animId = requestAnimationFrame(animate);
+
+      if (!isVisible) return;
+      if (now - lastFrameTime < FRAME_INTERVAL) return;
+      lastFrameTime = now;
 
       const dt = lastTime ? Math.min(now - lastTime, 32) : 16;
       lastTime = now;
@@ -496,8 +502,6 @@ export default function ParticleNetwork() {
       }
 
       updateAndDrawWaves(now);
-
-      animId = requestAnimationFrame(animate);
     }
 
     // IntersectionObserver
@@ -511,7 +515,6 @@ export default function ParticleNetwork() {
 
     // Mouse tracking (desktop)
     function handleMouseMove(e: MouseEvent) {
-      if (isMobile) return;
       const rect = canvas!.getBoundingClientRect();
       mouseX = e.clientX - rect.left;
       mouseY = e.clientY - rect.top;
@@ -526,33 +529,36 @@ export default function ParticleNetwork() {
     }
 
     function handleClick(e: MouseEvent) {
-      if (isMobile) return;
       const rect = canvas!.getBoundingClientRect();
       spawnWave(e.clientX - rect.left, e.clientY - rect.top);
     }
 
-    // Init
+    // Init — resize sets dimensions, then particles use them
     resize();
     initParticles();
 
-    if (motionQuery.matches) {
+    if (motionQuery.matches || isMobile) {
       drawStaticFrame();
     } else {
       animId = requestAnimationFrame(animate);
     }
 
     window.addEventListener('resize', resize);
-    canvas.addEventListener('mousemove', handleMouseMove);
-    canvas.addEventListener('mouseleave', handleMouseLeave);
-    canvas.addEventListener('click', handleClick);
+    if (!isMobile) {
+      canvas.addEventListener('mousemove', handleMouseMove);
+      canvas.addEventListener('mouseleave', handleMouseLeave);
+      canvas.addEventListener('click', handleClick);
+    }
 
     return () => {
       cancelAnimationFrame(animId);
       observer.disconnect();
       window.removeEventListener('resize', resize);
-      canvas.removeEventListener('mousemove', handleMouseMove);
-      canvas.removeEventListener('mouseleave', handleMouseLeave);
-      canvas.removeEventListener('click', handleClick);
+      if (!isMobile) {
+        canvas.removeEventListener('mousemove', handleMouseMove);
+        canvas.removeEventListener('mouseleave', handleMouseLeave);
+        canvas.removeEventListener('click', handleClick);
+      }
     };
   }, []);
 

@@ -35,7 +35,7 @@ export default function DailyReality() {
                   <li key={i}>{benefit}</li>
                 ))}
               </ul>
-              <p className={styles.closing}>{after.closing}</p>
+              {after.closing && <p className={styles.closing}>{after.closing}</p>}
             </div>
           </div>
       </div>

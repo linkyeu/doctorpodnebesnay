@@ -16,16 +16,16 @@
     <meta property="og:image:alt" content="AI-інструменти для лікарів — онлайн-довідник від Др. Піднебесна" />
     <meta property="og:locale" content="uk_UA" />
     <!-- Preload hero image — LCP element, start downloading immediately -->
-    <link rel="preload" as="image" type="image/webp" fetchpriority="high" href="/images/ai-course/hero-medical-bg.webp" />
+    <link rel="preload" as="image" type="image/webp" fetchpriority="high" href="/images/ai-course/hero-medical-bg-1920w.webp" imagesrcset="/images/ai-course/hero-medical-bg-640w.webp 640w, /images/ai-course/hero-medical-bg-1024w.webp 1024w, /images/ai-course/hero-medical-bg-1920w.webp 1920w" imagesizes="100vw" />
     <!-- Critical CSS for /ai-course hero shell (painted before JS loads) -->
     <style>
       #ai-shell{position:relative;min-height:100svh;background:#0a1628;overflow:hidden;display:flex;flex-direction:column}
       #ai-shell .sh-bg{position:absolute;inset:0;z-index:0}
       #ai-shell .sh-bg img{display:block;width:100%;height:100%;object-fit:cover;object-position:center top}
       #ai-shell .sh-ov{position:absolute;inset:0;z-index:1;background:linear-gradient(to bottom,rgba(10,22,40,.18) 0%,rgba(10,22,40,.35) 30%,rgba(10,22,40,.6) 60%,rgba(10,22,40,.85) 100%);pointer-events:none}
-      #ai-shell .sh-ct{position:relative;z-index:10;max-width:740px;margin:auto auto;padding:clamp(60px,8vh,120px) 24px 0;text-align:center;display:flex;flex-direction:column;align-items:center;gap:24px}
-      #ai-shell .sh-t{font-family:Manrope,sans-serif;font-size:2.5rem;line-height:1.2;color:#fff;font-weight:800;text-transform:uppercase;letter-spacing:.03em;text-shadow:0 2px 30px rgba(0,0,0,.5)}
-      @media(max-width:767px){#ai-shell .sh-t{font-size:1.75rem;line-height:1.15}#ai-shell .sh-ct{padding-bottom:40px}}
+      #ai-shell .sh-ct{position:relative;z-index:10;max-width:780px;margin:auto auto;padding:clamp(60px,8vh,120px) 24px 0;text-align:center;display:flex;flex-direction:column;align-items:center;gap:32px}
+      #ai-shell .sh-t{font-family:'DM Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:clamp(2rem,5vw,3.25rem);line-height:1.15;color:#fff;font-weight:700;letter-spacing:-.02em;text-shadow:0 2px 30px rgba(0,0,0,.4)}
+      @media(max-width:767px){#ai-shell .sh-ct{padding-bottom:40px}}
       @media(min-width:768px){#ai-shell .sh-ct{padding-bottom:64px}}
     </style>
 
@@ -207,10 +207,9 @@
 
     <div id="root"></div>
     <script>
-      var src = '/images/ai-course/hero-medical-bg.webp';
       document.getElementById('root').innerHTML =
         '<section id="ai-shell">' +
-          '<div class="sh-bg"><img src="' + src + '" alt="" fetchpriority="high"></div>' +
+          '<div class="sh-bg"><img src="/images/ai-course/hero-medical-bg-1920w.webp" srcset="/images/ai-course/hero-medical-bg-640w.webp 640w, /images/ai-course/hero-medical-bg-1024w.webp 1024w, /images/ai-course/hero-medical-bg-1920w.webp 1920w" sizes="100vw" alt="" fetchpriority="high" loading="eager"></div>' +
           '<div class="sh-ov"></div>' +
           '<div class="sh-ct">' +
             '<h1 class="sh-t">Впевнений прийом —<br>від першого огляду до виписки</h1>' +

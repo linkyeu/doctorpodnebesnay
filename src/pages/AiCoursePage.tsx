@@ -5,7 +5,7 @@ import CourseHero from '../components/ai-course/CourseHero/CourseHero';
 import DailyReality from '../components/ai-course/DailyReality/DailyReality';
 import WhatsInside from '../components/ai-course/WhatsInside/WhatsInside';
 import AuthorTrust from '../components/ai-course/AuthorTrust/AuthorTrust';
-import SocialProof from '../components/ai-course/SocialProof/SocialProof';
+
 import Pricing from '../components/ai-course/Pricing/Pricing';
 import CourseFooter from '../components/ai-course/CourseFooter/CourseFooter';
 import StickyMobileCta from '../components/ai-course/StickyMobileCta/StickyMobileCta';
@@ -76,7 +76,7 @@ export default function AiCoursePage() {
       <DailyReality />
       <WhatsInside />
       <AuthorTrust />
-      <SocialProof />
+
       <Pricing />
       <CourseFooter />
       <StickyMobileCta />

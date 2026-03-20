@@ -31,13 +31,14 @@ export default function CourseHero() {
       {/* Dark medical still-life background */}
       <div className={styles.heroBackground}>
         <img
-          src="/images/ai-course/hero-medical-bg.webp"
+          src="/images/ai-course/hero-medical-bg-1920w.webp"
+          srcSet="/images/ai-course/hero-medical-bg-640w.webp 640w, /images/ai-course/hero-medical-bg-1024w.webp 1024w, /images/ai-course/hero-medical-bg-1920w.webp 1920w"
+          sizes="100vw"
           alt=""
           className={`${styles.heroImage} ${styles.medicalBg}`}
           draggable={false}
           fetchPriority="high"
           loading="eager"
-          decoding="async"
         />
       </div>
 
