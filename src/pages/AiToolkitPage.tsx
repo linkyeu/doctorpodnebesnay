@@ -226,7 +226,7 @@ export default function AiToolkitPage() {
 
   useEffect(() => {
     document.title =
-      'ШІ-помічник лікаря — 16 готових рішень для щоденної практики';
+      'ШІ-помічник лікаря — 17 готових рішень для щоденної практики';
 
     const metaDesc = document.querySelector('meta[name="description"]');
     const descContent =
@@ -241,7 +241,7 @@ export default function AiToolkitPage() {
     }
 
     const ogTags: Record<string, string> = {
-      'og:title': 'ШІ-помічник лікаря — 16 готових рішень',
+      'og:title': 'ШІ-помічник лікаря — 17 готових рішень',
       'og:description': descContent,
       'og:url': 'https://doctorpidnebesna.com/toolkit',
       'og:type': 'website',
@@ -298,7 +298,7 @@ export default function AiToolkitPage() {
     <div className={`${styles.toolkitPage} toolkit-scope`}>
       <ToolkitNav blocks={blocks} />
       <main className={styles.content}>
-        <h1 className="sr-only">ШІ-помічник лікаря — 16 готових рішень для щоденної практики</h1>
+        <h1 className="sr-only">ШІ-помічник лікаря — 17 готових рішень для щоденної практики</h1>
         <ToolkitWelcome onScrollToSolution={handleScrollToSolution} onCollapse={expandFirstBlockIfReady} />
 
         {/* Setup — mandatory first step, collapsible */}

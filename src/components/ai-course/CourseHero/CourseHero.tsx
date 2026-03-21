@@ -1,6 +1,7 @@
 import styles from './CourseHero.module.css';
 import ParticleNetwork from './ParticleNetwork';
 import { heroContent } from '../../../data/ai-course';
+import { getPaymentUrl, trackAndNavigate } from '../../../utils/analytics';
 
 const trustIcons: Record<string, React.ReactNode> = {
   zap: (
@@ -56,9 +57,16 @@ export default function CourseHero() {
         <p className={styles.subtitle} dangerouslySetInnerHTML={{ __html: heroContent.subtitle }} />
         <div className={styles.ctaWrapper}>
           <a
+            href={getPaymentUrl('hero')}
+            className={styles.cta}
+            onClick={(e) => trackAndNavigate('hero', e)}
+          >
+            {heroContent.cta}
+          </a>
+          <a
             href="#whats-inside"
             onClick={handleScrollToContent}
-            className={styles.cta}
+            className={styles.ctaSoft}
           >
             {heroContent.heroCta}
           </a>
