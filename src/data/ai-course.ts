@@ -7,7 +7,7 @@ export const heroContent = {
   sourceNote: '',
   productLine: '',
   heroCta: 'Що всередині ↓',
-  cta: 'Отримати довідник — 999 ₴',
+  cta: 'Отримати — 999 ₴',
   badges: [
     { icon: 'lightning' as const, text: 'Працює одразу' },
     { icon: 'chart' as const, text: 'Оновлюється' },
