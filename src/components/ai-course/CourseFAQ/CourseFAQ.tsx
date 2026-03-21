@@ -4,7 +4,7 @@ import { useScrollReveal } from '../../../hooks/useScrollReveal';
 import styles from './CourseFAQ.module.css';
 
 export default function CourseFAQ() {
-  const [openId, setOpenId] = useState<string | null>(null);
+  const [openId, setOpenId] = useState<string | null>(courseFaqItems[0]?.id ?? null);
   const ref = useScrollReveal<HTMLDivElement>();
 
   const toggle = (id: string) => {

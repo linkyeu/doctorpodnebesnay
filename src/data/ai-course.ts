@@ -3,7 +3,7 @@
 export const heroContent = {
   title: 'Впевнений прийом —<br>від першого огляду до виписки',
   subtitle:
-    '16 готових ШІ-рішень для щоденної практики лікаря. <br>Діагностика, виписки, протоколи, саморозвиток — з джерелами, без сумнівів, за хвилини',
+    '17 готових ШІ-рішень для щоденної практики лікаря. <br>Діагностика, виписки, протоколи, саморозвиток — з джерелами, без сумнівів, за хвилини',
   sourceNote: '',
   productLine: '',
   heroCta: 'Що всередині',
@@ -69,7 +69,7 @@ export interface WhatsInsideBlock {
   icon?: string;
 }
 
-export const whatsInsideHeading = '16 готових рішень у 4 блоках';
+export const whatsInsideHeading = '17 готових рішень у 4 блоках';
 export const whatsInsideSubheading = 'Не курс із модулями. Онлайн-довідник: відкрив у браузері, вставив дані пацієнта, отримав відповідь.';
 
 export const whatsInsideBlocks: WhatsInsideBlock[] = [
