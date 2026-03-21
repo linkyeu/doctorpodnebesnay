@@ -46,7 +46,7 @@ export const dailyRealityContent = {
     punchline: '',
   },
   after: {
-    heading: '',
+    heading: 'Твій прийом із ШІ',
     intro: 'Ти приходиш на роботу — і:',
     benefits: [
       'нетипові симптоми → диференціальний діагноз із посиланням на протокол',
