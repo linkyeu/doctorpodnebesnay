@@ -2,7 +2,7 @@
 
 .section {
   background: #0d1b2a;
-  padding: var(--space-20) var(--space-6);
+  padding: var(--space-16) var(--space-6);
   position: relative;
 }
 

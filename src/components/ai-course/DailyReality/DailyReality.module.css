@@ -1,8 +1,14 @@
 /* ─── DailyReality — light tinted before/after split ─── */
 
 .section {
-  padding: var(--space-20, 80px) var(--space-6, 24px);
+  padding: var(--space-12, 48px) var(--space-6, 24px);
   background: var(--color-bg);
+}
+
+@media (min-width: 768px) {
+  .section {
+    padding: var(--space-16, 64px) var(--space-6, 24px);
+  }
 }
 
 /* ─── Split layout — contained ─── */

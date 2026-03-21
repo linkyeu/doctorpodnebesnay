@@ -1,0 +1,81 @@
+/* ─── AiAdoptionStats — single-stat editorial callout ─── */
+
+.section {
+  padding: 32px 24px;
+  background: var(--color-bg, #FAFAF8);
+}
+
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.card {
+  text-align: center;
+  padding: 44px 24px 36px;
+  border-radius: 16px;
+  background: #F0F4F8;
+  border: 1px solid rgba(27, 58, 75, 0.08);
+}
+
+/* ─── The number — dominant visual, heavier than anything on page ─── */
+
+.value {
+  display: block;
+  font-size: clamp(5rem, 18vw, 7.5rem);
+  font-weight: 800;
+  color: var(--color-primary, #1B3A4B);
+  line-height: 1;
+  letter-spacing: -0.04em;
+  margin-bottom: 14px;
+}
+
+/* ─── Main statement — matches DailyReality heading style ─── */
+
+.label {
+  font-size: clamp(1.75rem, 3vw, 2.125rem);
+  font-weight: 800;
+  color: var(--color-primary, #1B3A4B);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  margin: 0 0 12px;
+}
+
+/* ─── Growth context ─── */
+
+.context {
+  font-size: clamp(0.95rem, 1.5vw, 1.05rem);
+  color: var(--color-text-muted, #6B7280);
+  line-height: 1.5;
+  margin: 0 0 20px;
+}
+
+/* ─── Source link — verifiable, clickable ─── */
+
+.source {
+  display: inline-block;
+  font-size: 0.78rem;
+  color: var(--color-text-muted, #6B7280);
+  text-decoration: none;
+  border-bottom: 1px dashed rgba(107, 114, 128, 0.4);
+  padding-bottom: 1px;
+  transition: color 0.2s, border-color 0.2s;
+  line-height: 1.4;
+}
+
+.source:hover {
+  color: var(--color-primary, #1B3A4B);
+  border-bottom-color: var(--color-primary, #1B3A4B);
+}
+
+/* ─── Desktop: more breathing room ─── */
+
+@media (min-width: 768px) {
+  .section {
+    padding: 40px 24px;
+  }
+
+  .card {
+    padding: 56px 48px 44px;
+  }
+}
