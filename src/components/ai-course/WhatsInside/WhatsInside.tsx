@@ -32,14 +32,6 @@ export default function WhatsInside() {
             <source src="/videos/workflow-demo.mp4" type="video/mp4" />
             <source src="/videos/workflow-demo.webm" type="video/webm" />
           </video>
-          <p className={styles.videoCaption}>
-            Скопіював запит → вставив дані → отримав пояснення для пацієнта
-          </p>
-          <div className={styles.timeBadge}>
-            <span className={styles.timeBefore}>10 хв пояснень</span>
-            <span className={styles.timeArrow}>→</span>
-            <span className={styles.timeAfter}>30 секунд</span>
-          </div>
         </div>
 
         {/* 4 content blocks */}
