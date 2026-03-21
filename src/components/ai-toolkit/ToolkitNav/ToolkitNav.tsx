@@ -2,14 +2,47 @@ import { useState, useEffect, useCallback, useRef } from 'react';
 import type { Block } from '../../../data/ai-toolkit';
 import styles from './ToolkitNav.module.css';
 
+const COLLAPSED_KEY = 'toolkit_sidebar_collapsed';
+
 interface ToolkitNavProps {
   blocks: Block[];
+  onCollapseChange?: (collapsed: boolean) => void;
 }
 
-export default function ToolkitNav({ blocks }: ToolkitNavProps) {
+export default function ToolkitNav({ blocks, onCollapseChange }: ToolkitNavProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const [isCollapsed, setIsCollapsed] = useState(() => {
+    return localStorage.getItem(COLLAPSED_KEY) === '1';
+  });
   const [activeId, setActiveId] = useState<string>('');
   const navRef = useRef<HTMLElement>(null);
+
+  const toggleCollapse = useCallback(() => {
+    setIsCollapsed((prev) => {
+      const next = !prev;
+      localStorage.setItem(COLLAPSED_KEY, next ? '1' : '0');
+      onCollapseChange?.(next);
+      return next;
+    });
+  }, [onCollapseChange]);
+
+  // Notify parent of initial collapse state
+  useEffect(() => {
+    onCollapseChange?.(isCollapsed);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  // Keyboard shortcut: [ to toggle sidebar
+  useEffect(() => {
+    const handleKey = (e: KeyboardEvent) => {
+      if (e.key === '[' && !e.metaKey && !e.ctrlKey && !e.altKey) {
+        const tag = (e.target as HTMLElement)?.tagName;
+        if (tag === 'INPUT' || tag === 'TEXTAREA' || (e.target as HTMLElement)?.isContentEditable) return;
+        toggleCollapse();
+      }
+    };
+    document.addEventListener('keydown', handleKey);
+    return () => document.removeEventListener('keydown', handleKey);
+  }, [toggleCollapse]);
 
   // Scrollspy: observe setup, block and solution headings
   useEffect(() => {
@@ -80,7 +113,7 @@ export default function ToolkitNav({ blocks }: ToolkitNavProps) {
     }
   }, [isOpen]);
 
-  const sidebarContent = (
+  const sidebarContent = (collapsed: boolean) => (
     <>
       {/* Setup + Blocks */}
       <ul className={styles.list} role="list">
@@ -89,9 +122,10 @@ export default function ToolkitNav({ blocks }: ToolkitNavProps) {
             type="button"
             className={`${styles.blockTitle} ${styles.setupTitle} ${activeId === 'setup' ? styles.active : ''}`}
             onClick={() => handleClick('setup')}
+            data-label="Налаштування ChatGPT"
           >
             <span className={styles.setupIcon} aria-hidden="true">⚙</span>
-            Налаштування ChatGPT
+            <span className={styles.blockLabel}>Налаштування ChatGPT</span>
           </button>
         </li>
         {blocks.map((block) => (
@@ -100,23 +134,26 @@ export default function ToolkitNav({ blocks }: ToolkitNavProps) {
               type="button"
               className={`${styles.blockTitle} ${activeId === `block-${block.id}` ? styles.active : ''}`}
               onClick={() => handleClick(`block-${block.id}`)}
+              data-label={block.navTitle ?? block.title}
             >
               <span className={styles.blockDot} style={{ backgroundColor: block.color }} />
-              {block.navTitle ?? block.title}
+              <span className={styles.blockLabel}>{block.navTitle ?? block.title}</span>
             </button>
-            <ul className={styles.solutionList} role="list">
-              {block.solutions.map((solution) => (
-                <li key={solution.id}>
-                  <button
-                    type="button"
-                    className={`${styles.solutionItem} ${activeId === `solution-${solution.id}` ? styles.active : ''}`}
-                    onClick={() => handleClick(`solution-${solution.id}`)}
-                  >
-                    {solution.navTitle ?? solution.title}
-                  </button>
-                </li>
-              ))}
-            </ul>
+            {!collapsed && (
+              <ul className={styles.solutionList} role="list">
+                {block.solutions.map((solution) => (
+                  <li key={solution.id}>
+                    <button
+                      type="button"
+                      className={`${styles.solutionItem} ${activeId === `solution-${solution.id}` ? styles.active : ''}`}
+                      onClick={() => handleClick(`solution-${solution.id}`)}
+                    >
+                      {solution.navTitle ?? solution.title}
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            )}
           </li>
         ))}
       </ul>
@@ -161,12 +198,33 @@ export default function ToolkitNav({ blocks }: ToolkitNavProps) {
             ✕
           </button>
         </div>
-        {sidebarContent}
+        {sidebarContent(false)}
       </div>
 
-      {/* Desktop: fixed dark sidebar — always visible */}
-      <nav ref={navRef} className={styles.sidebar} aria-label="Навігація по розділах">
-        {sidebarContent}
+      {/* Desktop: fixed dark sidebar — collapsible */}
+      <nav
+        ref={navRef}
+        className={`${styles.sidebar} ${isCollapsed ? styles.sidebarCollapsed : ''}`}
+        aria-label="Навігація по розділах"
+      >
+        {sidebarContent(isCollapsed)}
+        <button
+          type="button"
+          className={styles.collapseToggle}
+          onClick={toggleCollapse}
+          aria-label={isCollapsed ? 'Розгорнути навігацію' : 'Згорнути навігацію'}
+          title={isCollapsed ? 'Розгорнути ([ )' : 'Згорнути ([ )'}
+        >
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path
+              d={isCollapsed ? 'M6 3L11 8L6 13' : 'M10 3L5 8L10 13'}
+              stroke="currentColor"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        </button>
       </nav>
     </>
   );

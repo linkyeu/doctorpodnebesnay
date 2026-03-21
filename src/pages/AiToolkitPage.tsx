@@ -113,6 +113,8 @@ export default function AiToolkitPage() {
     return Date.now() - ts < 30 * 24 * 60 * 60 * 1000;
   });
 
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+
   const [expandedBlocks, setExpandedBlocks] = useState<Record<string, boolean>>(() => {
     const initial = Object.fromEntries(blocks.map((b) => [b.id, false]));
     const hash = window.location.hash.replace('#', '');
@@ -296,8 +298,8 @@ export default function AiToolkitPage() {
 
   return (
     <div className={`${styles.toolkitPage} toolkit-scope`}>
-      <ToolkitNav blocks={blocks} />
-      <main className={styles.content}>
+      <ToolkitNav blocks={blocks} onCollapseChange={setSidebarCollapsed} />
+      <main className={`${styles.content} ${sidebarCollapsed ? styles.contentCollapsed : ''}`}>
         <h1 className="sr-only">ШІ-помічник лікаря — 17 готових рішень для щоденної практики</h1>
         <ToolkitWelcome onScrollToSolution={handleScrollToSolution} onCollapse={expandFirstBlockIfReady} />
 

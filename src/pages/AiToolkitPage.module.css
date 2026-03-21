@@ -240,6 +240,11 @@
   .content {
     margin-left: 240px;
     padding: var(--space-8) var(--space-8) var(--space-16);
+    transition: margin-left 250ms ease;
+  }
+
+  .contentCollapsed {
+    margin-left: 68px;
   }
 }
 
@@ -248,6 +253,10 @@
     max-width: 960px;
     margin-left: calc((100% - 960px) / 2 + 120px);
     margin-right: auto;
+  }
+
+  .contentCollapsed {
+    margin-left: calc((100% - 960px) / 2 + 34px);
   }
 }
 
