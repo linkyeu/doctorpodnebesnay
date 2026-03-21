@@ -105,61 +105,55 @@
   margin: 0;
 }
 
-/* ─── Product video tour ─── */
+/* ─── Workflow demo video ─── */
 
 .videoWrapper {
-  max-width: 900px;
+  max-width: 400px;
   margin: 0 auto var(--space-10);
   text-align: center;
 }
 
-.browserFrame {
-  background: linear-gradient(145deg, #f8f9fc, #eef1f5);
-  border-radius: 16px;
-  padding: 4px;
-  box-shadow:
-    0 30px 80px rgba(27, 58, 75, 0.18),
-    0 12px 32px rgba(0, 0, 0, 0.1),
-    0 0 0 1px rgba(27, 58, 75, 0.06);
-  overflow: hidden;
-}
-
-.browserBar {
-  display: flex;
-  align-items: center;
-  gap: var(--space-2);
-  padding: 10px 16px;
-  background: #1B3A4B;
-  border-radius: 12px 12px 0 0;
-}
-
-.browserDots {
-  display: flex;
-  gap: 6px;
-}
-
-.dot:nth-child(1) { background: #ef4444; }
-.dot:nth-child(2) { background: #eab308; }
-.dot:nth-child(3) { background: #22c55e; }
-
-.dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-}
-
-.browserUrl {
-  font-size: 0.75rem;
-  color: #94a3b8;
-  margin-left: var(--space-2);
-  font-weight: 500;
-}
-
-.productVideo {
+.workflowVideo {
   display: block;
   width: 100%;
   height: auto;
-  border-radius: 0 0 12px 12px;
+  border-radius: 16px;
+  box-shadow:
+    0 20px 60px rgba(27, 58, 75, 0.15),
+    0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+.videoCaption {
+  font-size: 0.85rem;
+  color: #4B5563;
+  margin-top: var(--space-3);
+  line-height: 1.5;
+}
+
+.timeBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  background: #F0FDF4;
+  border: 1px solid #D1FAE5;
+  border-radius: 20px;
+  padding: 6px 16px;
+  margin-top: var(--space-2);
+  font-size: 0.85rem;
+}
+
+.timeBefore {
+  color: #9CA3AF;
+  text-decoration: line-through;
+}
+
+.timeArrow {
+  color: #9CA3AF;
+}
+
+.timeAfter {
+  color: #16A34A;
+  font-weight: 700;
 }
 
 

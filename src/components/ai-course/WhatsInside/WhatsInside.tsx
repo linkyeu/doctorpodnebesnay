@@ -18,27 +18,27 @@ export default function WhatsInside() {
         <h2 className={styles.heading}>{whatsInsideHeading}</h2>
         <p className={styles.subheading}>{whatsInsideSubheading}</p>
 
-        {/* Product video tour */}
+        {/* Workflow demo video */}
         <div className={styles.videoWrapper}>
-          <div className={styles.browserFrame}>
-            <div className={styles.browserBar}>
-              <div className={styles.browserDots}>
-                <span className={styles.dot} />
-                <span className={styles.dot} />
-                <span className={styles.dot} />
-              </div>
-              <span className={styles.browserUrl}>doctorpidnebesna.com/toolkit</span>
-            </div>
-            <video
-              className={styles.productVideo}
-              autoPlay
-              loop
-              muted
-              playsInline
-              poster="/videos/toolkit-tour-poster.jpg"
-              preload="none"
-              src="/videos/toolkit-tour.webm"
-            />
+          <video
+            className={styles.workflowVideo}
+            autoPlay
+            loop
+            muted
+            playsInline
+            poster="/images/ai-course/workflow-demo-poster.jpg"
+            preload="none"
+          >
+            <source src="/videos/workflow-demo.mp4" type="video/mp4" />
+            <source src="/videos/workflow-demo.webm" type="video/webm" />
+          </video>
+          <p className={styles.videoCaption}>
+            Скопіював запит → вставив дані → отримав пояснення для пацієнта
+          </p>
+          <div className={styles.timeBadge}>
+            <span className={styles.timeBefore}>10 хв пояснень</span>
+            <span className={styles.timeArrow}>→</span>
+            <span className={styles.timeAfter}>30 секунд</span>
           </div>
         </div>
 
