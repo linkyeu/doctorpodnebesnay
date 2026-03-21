@@ -5,7 +5,7 @@ declare global {
   }
 }
 
-type CtaSource = 'sticky' | 'whats-inside' | 'pricing';
+type CtaSource = 'hero' | 'sticky' | 'whats-inside' | 'pricing';
 
 const BASE_PAYMENT_URL = 'https://secure.wayforpay.com/payment/sed1c44a9652f';
 
@@ -26,13 +26,13 @@ export function trackViewContent(): void {
     event_category: 'engagement',
     event_label: 'ai-toolkit',
     currency: 'UAH',
-    value: 999,
+    value: 899,
   });
   window.fbq?.('track', 'ViewContent', {
     content_name: 'ai-toolkit',
     content_type: 'product',
     currency: 'UAH',
-    value: 999,
+    value: 899,
   });
 }
 
@@ -48,7 +48,7 @@ export function trackAndNavigate(source: CtaSource, e: React.MouseEvent): void {
     content_name: 'ai-toolkit',
     content_category: source,
     currency: 'UAH',
-    value: 999,
+    value: 899,
   });
   // Give pixel requests 300ms to fire before navigating away
   setTimeout(() => {
@@ -65,13 +65,13 @@ export function trackPurchase(): void {
   window.gtag?.('event', 'purchase', {
     event_category: 'conversion',
     event_label: 'ai_toolkit_payment_success',
-    value: 999,
+    value: 899,
     currency: 'UAH',
   });
   window.fbq?.('track', 'Purchase', {
     content_name: 'ai-toolkit',
     currency: 'UAH',
-    value: 999,
+    value: 899,
   }, { eventID: eventId });
 }
 

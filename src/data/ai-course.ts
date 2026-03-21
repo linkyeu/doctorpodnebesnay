@@ -7,7 +7,7 @@ export const heroContent = {
   sourceNote: '',
   productLine: '',
   heroCta: 'Що всередині ↓',
-  cta: 'Отримати — 999 ₴',
+  cta: 'Отримати — 899 ₴',
   badges: [
     { icon: 'lightning' as const, text: 'Працює одразу' },
     { icon: 'chart' as const, text: 'Оновлюється' },
@@ -151,7 +151,7 @@ export const socialProofQuotes: SocialProofQuote[] = [
 
 export const pricingContent = {
   sectionTitle: 'Одна ціна. Без підписок.',
-  price: '999 ₴',
+  price: '899 ₴',
   priceNote: '',
   features: [
     'Без терміну дії — доступ не зникне',
@@ -163,7 +163,7 @@ export const pricingContent = {
   uniqueBadge: '',
   priceAnchor: '≈ ціна однієї консультації',
   guarantee: 'Не підійшло — повне повернення без питань.',
-  cta: 'Отримати довідник — 999 ₴',
+  cta: 'Отримати довідник — 899 ₴',
   trustBadge: 'Оплата карткою Visa / Mastercard',
   subtitle: '',
   timeSaving: '',

@@ -22,7 +22,7 @@ export default function AiCoursePage() {
 
     const metaDesc = document.querySelector('meta[name="description"]');
     const descContent =
-      'Впевнений діагноз — навіть у складному випадку. 16 готових рішень для лікарів на основі протоколів МОЗ. 999 ₴, одноразова покупка.';
+      'Впевнений діагноз — навіть у складному випадку. 17 готових рішень для лікарів на основі протоколів МОЗ. 899 ₴, одноразова покупка.';
     if (metaDesc) {
       metaDesc.setAttribute('content', descContent);
     } else {
