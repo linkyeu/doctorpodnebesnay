@@ -134,7 +134,7 @@
 .subtitle {
   font-size: clamp(1rem, 2vw, 1.125rem);
   color: rgba(255, 255, 255, 0.7);
-  line-height: 1.6;
+  line-height: 1.35;
   max-width: 600px;
   text-shadow: 0 1px 16px rgba(0, 0, 0, 0.4);
 }
@@ -189,20 +189,15 @@
 
 .ctaWrapper {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-direction: row;
+  justify-content: center;
   gap: 12px;
-  width: 100%;
-  max-width: 400px;
   margin-top: var(--space-2, 8px);
 }
 
 @media (min-width: 768px) {
   .ctaWrapper {
-    flex-direction: row;
-    justify-content: center;
     max-width: none;
-    gap: 12px;
   }
 }
 
@@ -213,7 +208,7 @@
   gap: var(--space-2, 8px);
   background: var(--color-cta);
   color: #fff;
-  padding: 14px 28px;
+  padding: 10px 20px;
   border-radius: 10px;
   font-weight: 600;
   font-size: 0.95rem;
@@ -223,7 +218,8 @@
     background 0.2s ease,
     transform 0.2s ease,
     box-shadow 0.2s ease;
-  width: 100%;
+  width: auto;
+  white-space: nowrap;
 }
 
 .cta:hover {
@@ -247,7 +243,7 @@
   background: rgba(255, 255, 255, 0.1);
   border: 1px solid rgba(255, 255, 255, 0.25);
   color: #fff;
-  padding: 14px 28px;
+  padding: 10px 20px;
   border-radius: 10px;
   font-weight: 500;
   font-size: 0.95rem;
@@ -258,7 +254,8 @@
     background 0.2s ease,
     transform 0.2s ease,
     border-color 0.2s ease;
-  width: 100%;
+  width: auto;
+  white-space: nowrap;
   cursor: pointer;
 }
 
