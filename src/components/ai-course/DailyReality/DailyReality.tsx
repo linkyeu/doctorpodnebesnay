@@ -28,7 +28,7 @@ export default function DailyReality() {
           <div className={`${styles.half} ${styles.after}`}>
             <div className={styles.content}>
               <span className={styles.tag}>З ШІ-рішеннями</span>
-              <h3 className={styles.heading}>{after.heading}</h3>
+              {after.heading && <h3 className={styles.heading}>{after.heading}</h3>}
               <p className={styles.intro}>{after.intro}</p>
               <ul className={`${styles.list} ${styles.afterList}`}>
                 {after.benefits.map((benefit, i) => (

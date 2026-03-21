@@ -16,6 +16,19 @@ export const heroContent = {
   ],
 };
 
+// ── AI Adoption Stats ──
+
+export const aiAdoptionStats = {
+  mainValue: '81%',
+  mainLabel: 'лікарів у США використовують ШІ в клінічній практиці',
+  context: 'У 2023 році — 38%.',
+  source: {
+    org: 'American Medical Association',
+    detail: 'опитування 1 700 лікарів, 2026',
+    url: 'https://www.ama-assn.org/practice-management/digital-health/more-80-physicians-use-ai-professionally-ama-survey',
+  },
+};
+
 // ── Daily Reality ──
 
 export const dailyRealityContent = {
@@ -33,7 +46,7 @@ export const dailyRealityContent = {
     punchline: '',
   },
   after: {
-    heading: 'Той самий прийом із ШІ-рішеннями',
+    heading: '',
     intro: 'Ти приходиш на роботу — і:',
     benefits: [
       'нетипові симптоми → диференціальний діагноз із посиланням на протокол',
