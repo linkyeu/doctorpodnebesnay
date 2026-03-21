@@ -1,0 +1,189 @@
+/* ─── CourseFAQ — Dark cards with number badges ─── */
+
+.section {
+  background: #111827;
+  padding: var(--space-20) var(--space-6);
+  position: relative;
+}
+
+/* Separator from Pricing — shade shift + accent line */
+.section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(85%, 640px);
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(200, 149, 108, 0.4), transparent);
+  pointer-events: none;
+}
+
+.container {
+  max-width: var(--max-width-narrow);
+  margin: 0 auto;
+}
+
+.heading {
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  font-weight: 800;
+  text-align: center;
+  margin-bottom: var(--space-12);
+  color: #fff;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* ─── Accordion item (dark card) ─── */
+
+.item {
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+  transition: background var(--transition-base), border-color var(--transition-base);
+}
+
+.item:hover {
+  background: rgba(255, 255, 255, 0.07);
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+.itemOpen {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(200, 149, 108, 0.3);
+}
+
+/* ─── Trigger button ─── */
+
+.trigger {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 18px 20px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  gap: 14px;
+}
+
+.trigger:focus-visible {
+  outline: 3px solid var(--color-accent);
+  outline-offset: -3px;
+  border-radius: 14px;
+}
+
+/* ─── Number badge ─── */
+
+.num {
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  background: rgba(200, 149, 108, 0.15);
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #C8956C;
+}
+
+.question {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #e5e7eb;
+  line-height: 1.4;
+  flex: 1;
+}
+
+/* ─── Toggle icon ─── */
+
+.icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  color: rgba(255, 255, 255, 0.3);
+  transition: transform var(--transition-base);
+}
+
+.iconOpen {
+  transform: rotate(45deg);
+}
+
+/* ─── Answer panel (grid animation) ─── */
+
+.panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows var(--transition-slow);
+}
+
+.panelOpen {
+  grid-template-rows: 1fr;
+}
+
+.panelInner {
+  overflow: hidden;
+}
+
+.answer {
+  padding: 0 20px 20px 66px;
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.5);
+  line-height: 1.65;
+  max-width: 100%;
+}
+
+/* ─── Mobile ─── */
+
+@media (max-width: 768px) {
+  .section {
+    padding: var(--space-12) var(--space-4);
+  }
+
+  .trigger {
+    padding: 16px 16px;
+    gap: 12px;
+  }
+
+  .answer {
+    padding: 0 16px 16px 60px;
+  }
+
+  .heading {
+    margin-bottom: var(--space-8);
+  }
+
+  .num {
+    width: 28px;
+    height: 28px;
+    font-size: 0.75rem;
+  }
+}
+
+/* ─── Reduced motion ─── */
+
+@media (prefers-reduced-motion: reduce) {
+  .icon {
+    transition: none;
+  }
+
+  .panel {
+    transition: none;
+  }
+
+  .item {
+    transition: none;
+  }
+}

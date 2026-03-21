@@ -8,6 +8,7 @@ import StickyMobileCta from '../components/ai-course/StickyMobileCta/StickyMobil
 
 const AuthorTrust = lazy(() => import('../components/ai-course/AuthorTrust/AuthorTrust'));
 const Pricing = lazy(() => import('../components/ai-course/Pricing/Pricing'));
+const CourseFAQ = lazy(() => import('../components/ai-course/CourseFAQ/CourseFAQ'));
 const CourseFooter = lazy(() => import('../components/ai-course/CourseFooter/CourseFooter'));
 
 export default function AiCoursePage() {
@@ -78,6 +79,7 @@ export default function AiCoursePage() {
       <Suspense fallback={null}>
         <AuthorTrust />
         <Pricing />
+        <CourseFAQ />
         <CourseFooter />
       </Suspense>
       <StickyMobileCta />
